@@ -72,7 +72,7 @@ public class DnDArmor implements Armor, Bonusable
     }
 
     @Override
-    public void setBonus(Integer bonus)
+    public void setBonus(int bonus)
     {
 
     }

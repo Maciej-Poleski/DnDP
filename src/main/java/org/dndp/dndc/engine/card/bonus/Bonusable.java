@@ -21,7 +21,7 @@ public interface Bonusable
      * 
      * @param bonus
      */
-    public void setBonus(Integer bonus);
+    public void setBonus(int bonus);
 
     /**
      * Zwraca typ atrybutu.

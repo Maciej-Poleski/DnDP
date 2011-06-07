@@ -110,27 +110,36 @@
                 </executions>
             </plugin>
             <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-site-plugin</artifactId>
-            <version>3.0-beta-3</version>
-            <configuration>
-                <reportPlugins>
-                    <plugin>
-                        <groupId>com.soebes.maven.plugins.dmg</groupId>
-                        <artifactId>doxygen-maven-plugin</artifactId>
-                        <version>1.0.1</version>
-                        <configuration>
-                            <haveDot>true</haveDot>
-                            <quiet>false</quiet>
-                            <projectName>DnDC</projectName>
-                            <javadocAutobrief>true</javadocAutobrief>
-                            <optimizeOutputJava>true</optimizeOutputJava>
-                            <input>${basedir}/src/main</input>
-                            <recursive>true</recursive>
-                        </configuration>
-                    </plugin>
-                </reportPlugins>
-            </configuration>
+	            <groupId>org.apache.maven.plugins</groupId>
+	            <artifactId>maven-site-plugin</artifactId>
+	            <version>3.0-beta-3</version>
+	            <configuration>
+	                <reportPlugins>
+	                    <plugin>
+	                        <groupId>com.soebes.maven.plugins.dmg</groupId>
+	                        <artifactId>doxygen-maven-plugin</artifactId>
+	                        <version>1.0.1</version>
+	                        <configuration>
+	                            <haveDot>true</haveDot>
+	                            <quiet>false</quiet>
+	                            <projectName>DnDC</projectName>
+	                            <javadocAutobrief>true</javadocAutobrief>
+	                            <optimizeOutputJava>true</optimizeOutputJava>
+	                            <input>${basedir}/src/main</input>
+	                            <recursive>true</recursive>
+	                        </configuration>
+	                    </plugin>
+	                </reportPlugins>
+	            </configuration>
+            </plugin>
+            <plugin>
+            	<groupId>org.apache.maven.plugins</groupId>
+            	<artifactId>maven-compiler-plugin</artifactId>
+            	<version>2.3.2</version>
+            	<configuration>
+            		<source>1.6</source>
+            		<target>1.6</target>
+            	</configuration>
             </plugin>
         </plugins>
     </build>

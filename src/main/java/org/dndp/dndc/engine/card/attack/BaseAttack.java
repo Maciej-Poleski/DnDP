@@ -74,7 +74,7 @@ public abstract class BaseAttack implements Bonusable
     }
 
     @Override
-    public void setBonus(Integer bonus)
+    public void setBonus(int bonus)
     {
         this.bonus = bonus;
     }

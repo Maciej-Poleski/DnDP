@@ -88,10 +88,8 @@ public abstract class SavingThrow implements Bonusable
      *            Nowa wartość
      */
     @Override
-    public void setBonus(Integer bonus)
+    public void setBonus(int bonus)
     {
-        if(bonus == null)
-            throw new NullPointerException("Nie może być null");
         this.bonus = bonus;
     }
 
