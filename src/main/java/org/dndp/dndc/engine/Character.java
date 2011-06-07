@@ -186,7 +186,7 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
     }
 
     @Override
-    public Integer getAge()
+    public int getAge()
     {
         return description.getAge();
     }
@@ -198,13 +198,13 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
     }
 
     @Override
-    public Integer getHeight()
+    public int getHeight()
     {
         return description.getHeight();
     }
 
     @Override
-    public Integer getWeight()
+    public int getWeight()
     {
         return description.getWeight();
     }
@@ -228,7 +228,7 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
     }
 
     @Override
-    public void setWeight(Integer newValeu)
+    public void setWeight(int newValeu)
     {
         description.setWeight(newValeu);
     }
@@ -276,7 +276,7 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
     }
 
     @Override
-    public void setHeight(Integer newValeu)
+    public void setHeight(int newValeu)
     {
         description.setHeight(newValeu);
     }
@@ -300,7 +300,7 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
     }
 
     @Override
-    public void setAge(Integer newValeu)
+    public void setAge(int newValeu)
     {
         description.setAge(newValeu);
     }
@@ -364,25 +364,25 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
     // Koniec ataku
 
     @Override
-    public void setMaxHP(Integer maxHP)
+    public void setMaxHP(int maxHP)
     {
         HP.setMaxHP(maxHP);
     }
 
     @Override
-    public void setHP(Integer HP)
+    public void setHP(int HP)
     {
         this.HP.setHP(HP);
     }
 
     @Override
-    public Integer getMaxHP()
+    public int getMaxHP()
     {
         return HP.getMaxHP();
     }
 
     @Override
-    public Integer getHP()
+    public int getHP()
     {
         return HP.getHP();
     }

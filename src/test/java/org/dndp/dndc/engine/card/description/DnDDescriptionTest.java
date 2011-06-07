@@ -182,7 +182,7 @@ public class DnDDescriptionTest
     public void testSetAge()
     {
         System.out.println("setAge");
-        Integer age = 13;
+        int age = 13;
         DnDDescription instance = new DnDDescription();
         instance.setAge(age);
         assertEquals(age, instance.getAge());
@@ -279,7 +279,7 @@ public class DnDDescriptionTest
     public void testSetHeight()
     {
         System.out.println("setHeight");
-        Integer height = 999;
+        int height = 999;
         DnDDescription instance = new DnDDescription();
         instance.setHeight(height);
         assertEquals(height, instance.getHeight());
@@ -393,7 +393,7 @@ public class DnDDescriptionTest
     public void testSetWeight()
     {
         System.out.println("setWeight");
-        Integer weight = 3;
+        int weight = 3;
         DnDDescription instance = new DnDDescription();
         instance.setWeight(weight);
         assertEquals(weight, instance.getWeight());
