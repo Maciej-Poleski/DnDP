@@ -1,5 +1,7 @@
 package org.dndp.dndc.engine.card.armor;
 
+import java.util.Observable;
+
 import org.dndp.dndc.engine.card.abilities.Abilities;
 import org.dndp.dndc.engine.card.abilities.AbilityType;
 import org.dndp.dndc.engine.card.bonus.ArmorBonusHandler;
@@ -12,13 +14,14 @@ import org.dndp.dndc.engine.item.BasicEquipmentManager;
  * 
  * @author bambucha
  */
-public class DnDArmor implements Armor, Bonusable
+public class DnDArmor extends Observable implements Armor, Bonusable
 {
 
     private final Integer         BASE = 10;
     private Abilities             abilities;
     private BasicEquipmentManager equipmentManager;
     private ArmorBonusHandler     bonusHandler;
+    private int bonus;
 
     /**
      * @param abilities
@@ -77,7 +80,9 @@ public class DnDArmor implements Armor, Bonusable
     @Override
     public void setBonus(int bonus)
     {
-
+        if(this.bonus != bonus)
+            setChanged();
+        notifyObservers(this);
     }
 
     @Override

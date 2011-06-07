@@ -78,20 +78,9 @@ public class DnDSavingThrowsTest
     public void testSetSpellResistance()
     {
         System.out.println("setSpellResistance");
-        Double newValue = 2.5;
+        double newValue = 2.5;
         DnDSavingThrows instance = test;
         instance.setSpellResistance(newValue);
-        assertEquals(instance.getSpellResistance(), newValue);
+        assertEquals(instance.getSpellResistance(), newValue,0.01);
     }
-
-    @Test(expected = NullPointerException.class)
-    public void testNullExceptionSetSpellResistance()
-    {
-        System.out.println("setSpellResistance");
-        Double newValue = null;
-        DnDSavingThrows instance = test;
-        instance.setSpellResistance(newValue);
-        assertEquals(instance.getSpellResistance(), newValue);
-    }
-
 }
