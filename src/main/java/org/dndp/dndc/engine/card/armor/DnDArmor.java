@@ -71,6 +71,9 @@ public class DnDArmor implements Armor, Bonusable
         return BASE + bonusHandler.getTouchAttacksAC() + getDexterityACBonus();
     }
 
+    /**
+     * Wszystko liczone w funkcjach. Nie ma potrzeby.
+     */
     @Override
     public void setBonus(int bonus)
     {

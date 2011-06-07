@@ -7,7 +7,7 @@ import org.dndp.dndc.engine.card.abilities.AbilityType;
  * 
  * @author bambucha
  */
-public class FortitudeThrow extends SavingThrow
+public class FortitudeThrow extends SavingThrow 
 {
 
     /**

@@ -415,7 +415,7 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
     }
 
     @Override
-    public void setSpellResistance(Double newValue)
+    public void setSpellResistance(double newValue)
     {
         savingThrows.setSpellResistance(newValue);
     }
@@ -427,7 +427,7 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
     }
 
     @Override
-    public Double getSpellResistance()
+    public double getSpellResistance()
     {
         return savingThrows.getSpellResistance();
     }

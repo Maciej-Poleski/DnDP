@@ -33,7 +33,7 @@ public interface SavingThrows
      * 
      * @return Wartość odporności na czary
      */
-    Double getSpellResistance();
+    double getSpellResistance();
 
     /**
      * Ustawia nową wartość odpornosci na magię
@@ -42,6 +42,6 @@ public interface SavingThrows
      *            Nowa wartość
      * @throw IllegalArgumentException newValue &lt 0
      */
-    void setSpellResistance(Double newValue);
+    void setSpellResistance(double newValue);
 
 }
