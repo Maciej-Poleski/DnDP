@@ -3,6 +3,8 @@ package org.dndp.dndc.engine.card.fleats;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Observable;
+import java.util.Observer;
 
 import org.dndp.dndc.engine.Character;
 import org.dndp.dndc.engine.benefit.Benefit;
@@ -14,7 +16,7 @@ import org.dndp.dndc.engine.check.Checkable;
  * Również wszystkimi obowiązkami wynikającymi z piastującej funkcji. 
  * @author evil, bambucha
  */
-public class DnDCharacterFleatManager implements CharacterFleatManager
+public class DnDCharacterFleatManager extends Observable implements CharacterFleatManager, Observer
 {
     private Map<Fleat, CharacterFleat> characterFleatsMapping;
     private Character                  character;
@@ -29,7 +31,8 @@ public class DnDCharacterFleatManager implements CharacterFleatManager
     {
         this.character = character;
         characterFleatsMapping = new HashMap<Fleat, CharacterFleat>();
-
+        for( CharacterFleat fleat : characterFleatsMapping.values())
+            fleat.addObserver(this);
     }
 
     /**
@@ -95,6 +98,13 @@ public class DnDCharacterFleatManager implements CharacterFleatManager
     {
         for (CharacterFleat characterFleat : characterFleatsMapping.values())
             characterFleat.isPossible();
+    }
+
+    @Override
+    public void update(Observable o, Object arg)
+    {
+        setChanged();
+        notifyObservers(arg);
     }
 
 }

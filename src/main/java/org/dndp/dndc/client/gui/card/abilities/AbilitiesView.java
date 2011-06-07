@@ -2,12 +2,8 @@ package org.dndp.dndc.client.gui.card.abilities;
 
 import org.dndp.dndc.engine.card.abilities.Abilities;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.layout.FillLayout;
-import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.widgets.Composite;
 
 public class AbilitiesView extends Composite
 {
