@@ -16,8 +16,8 @@ public class Skill
 {
     private final String      name;
     private final AbilityType abilitiModifier;
-    private final Boolean     train;
-    private final Boolean     armorInterrupt;
+    private final boolean     train;
+    private final boolean     armorInterrupt;
 
     /**
      * Konstruktor do budowania umiejętności.

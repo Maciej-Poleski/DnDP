@@ -19,7 +19,7 @@ import org.dndp.dndc.engine.card.bonus.Bonusable;
 public class CharacterSkill extends Observable implements Bonusable
 {
     private Skill    skil;
-    private Boolean isClasses;
+    private boolean isClasses;
     private int rank;
     private int bonus;
 
@@ -97,7 +97,7 @@ public class CharacterSkill extends Observable implements Bonusable
         if (this.bonus != bonus)
             setChanged();
         this.bonus = bonus;
-        notifyObservers();
+        notifyObservers(this);
     }
 
     @Override
@@ -119,8 +119,11 @@ public class CharacterSkill extends Observable implements Bonusable
      * Ustwia czy umiejętność jest klasowa dla postaci.
      * @param isClasses Status umiejętności.
      */
-    public void setClasses(Boolean isClasses)
+    public void setClasses(boolean isClasses)
     {
+        if(this.isClasses != isClasses)
+            hasChanged();
         this.isClasses = isClasses;
+        notifyObservers(this);
     }
 }
