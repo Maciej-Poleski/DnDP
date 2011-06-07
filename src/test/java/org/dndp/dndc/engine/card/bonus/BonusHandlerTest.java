@@ -4,9 +4,9 @@
 
 package org.dndp.dndc.engine.card.bonus;
 
-import org.dndp.dndc.engine.Character;
 import static org.junit.Assert.assertEquals;
 
+import org.dndp.dndc.engine.Character;
 import org.dndp.dndc.engine.card.abilities.Abiliti;
 import org.junit.Test;
 

@@ -1,7 +1,7 @@
 package org.dndp.dndc.engine.card.attack;
 
-import org.dndp.dndc.engine.card.abilities.AbilityType;
 import org.dndp.dndc.engine.Character;
+import org.dndp.dndc.engine.card.abilities.AbilityType;
 
 /**
  * Klasa obsługująca atak wręcz

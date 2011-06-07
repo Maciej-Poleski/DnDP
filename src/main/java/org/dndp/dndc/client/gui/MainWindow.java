@@ -1,15 +1,23 @@
 package org.dndp.dndc.client.gui;
 
-import org.dndp.dndc.client.gui.card.AbilitiesView;
+import org.dndp.dndc.client.gui.card.abilities.AbilitiesView;
 import org.dndp.dndc.client.gui.chat.ChatPanel;
+import org.dndp.dndc.engine.card.abilities.DnDAbilities;
+import org.dndp.dndc.engine.card.bonus.BaseBonusHandler;
+import org.dndp.dndc.engine.card.bonus.BonusManager;
+import org.dndp.dndc.engine.card.bonus.Bonusable;
 import org.dndp.dndc.engine.chat.Chat;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
+import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Text;
 
 /**
  * Głowne okno programu.
@@ -72,7 +80,24 @@ public class MainWindow extends Thread
         data.left = new FormAttachment(0);
         data.right = new FormAttachment(100);
         
-        Composite comp = new AbilitiesView(shell, SWT.NONE);
+        Composite comp = new AbilitiesView(shell, SWT.NONE, new DnDAbilities(new BonusManager()
+        {
+            
+            @Override
+            public void registerBonus(String name, Bonusable newBonus)
+            {
+                // TODO Auto-generated method stub
+                
+            }
+            
+            @Override
+            public BaseBonusHandler getBonusHandler(String name)
+            {
+                // TODO Auto-generated method stub
+                return null;
+            }
+        }));
+        
         comp.setLayoutData(data);
         
         shell.pack();
@@ -83,4 +108,5 @@ public class MainWindow extends Thread
                 display.sleep();
         display.dispose();
     }
+ 
 }

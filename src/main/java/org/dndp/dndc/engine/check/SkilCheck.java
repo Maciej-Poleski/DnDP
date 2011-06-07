@@ -1,7 +1,7 @@
 package org.dndp.dndc.engine.check;
 
-import org.dndp.dndc.engine.card.skills.Skill;
 import org.dndp.dndc.engine.Character;
+import org.dndp.dndc.engine.card.skills.Skill;
 
 /**
  * Sprawdza czy postać ma wystarczającą ilośc rank w danej umiejętności.

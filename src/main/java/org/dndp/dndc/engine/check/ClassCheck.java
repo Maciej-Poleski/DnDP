@@ -1,7 +1,7 @@
 package org.dndp.dndc.engine.check;
 
-import org.dndp.dndc.engine.card.classes.BaseClass;
 import org.dndp.dndc.engine.Character;
+import org.dndp.dndc.engine.card.classes.BaseClass;
 
 /**
  * Sprawdza czy klasa postaci jest na wystarczającym poziomie.

@@ -4,7 +4,13 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.graphics.Point;
-import org.eclipse.swt.widgets.*;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Dialog;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Listener;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Text;
 
 /**
  *
@@ -35,11 +41,9 @@ public class ChatStartDialog extends Dialog
         nickField.addKeyListener(new KeyListener()
         {
             
-            @Override
             public void keyReleased(KeyEvent e)
             {    }
             
-            @Override
             public void keyPressed(KeyEvent e)
             {
                 if(e.keyCode == SWT.LF && valindateNickName())
@@ -50,7 +54,6 @@ public class ChatStartDialog extends Dialog
         
         OKButton.addListener(SWT.Selection, new Listener(){
 
-            @Override
             public void handleEvent(Event event)
             {
                 self.setText(nickField.getText());

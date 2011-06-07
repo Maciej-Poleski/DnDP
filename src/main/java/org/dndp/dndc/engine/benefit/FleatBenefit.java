@@ -1,7 +1,7 @@
 package org.dndp.dndc.engine.benefit;
 
-import org.dndp.dndc.engine.card.fleats.Fleat;
 import org.dndp.dndc.engine.Character;
+import org.dndp.dndc.engine.card.fleats.Fleat;
 
 /**
  * Klasa kapsułkując premię będącą atutem.

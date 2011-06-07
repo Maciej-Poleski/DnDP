@@ -7,11 +7,10 @@ package org.dndp.dndc.engine.card.attack;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
+import org.dndp.dndc.engine.Character;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-import org.dndp.dndc.engine.Character;
 
 /**
  * 

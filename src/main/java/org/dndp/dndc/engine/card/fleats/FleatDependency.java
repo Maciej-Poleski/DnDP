@@ -1,7 +1,7 @@
 package org.dndp.dndc.engine.card.fleats;
 
-import org.dndp.dndc.engine.check.Checkable;
 import org.dndp.dndc.engine.Character;
+import org.dndp.dndc.engine.check.Checkable;
 
 /**
  * To wywalenie. Podwaja org.dndp.dndc.engine.check.FeleatCheck
