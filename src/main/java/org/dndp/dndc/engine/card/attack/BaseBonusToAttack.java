@@ -1,7 +1,5 @@
 package org.dndp.dndc.engine.card.attack;
 
-import org.dndp.dndc.engine.card.abilities.AbilityType;
-import org.dndp.dndc.engine.card.bonus.Bonusable;
 
 /**
  * Klasa kapsułkująca bazową premię do ataku

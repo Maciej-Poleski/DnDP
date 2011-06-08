@@ -30,8 +30,11 @@ public class DnDAttack implements Attack
         initiative = 0;
         baseAtack = new BaseBonusToAttack(new int[] { 0 });
         melee = new MeleeAttack(mother);
+        mother.registerBonus("MeleeAttack", melee);
         range = new RangeAttack(mother);
+        mother.registerBonus("RangeAttack", range);
         grapple = new GrappleAttack(mother);
+        mother.registerBonus("GrappleAttack", grapple);
     }
 
     /**
