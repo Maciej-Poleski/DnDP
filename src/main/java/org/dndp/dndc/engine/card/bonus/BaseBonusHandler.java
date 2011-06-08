@@ -25,17 +25,17 @@ public class BaseBonusHandler
     {
         this.abilities = abilities;
         this.cared = cared;
-        bonusTypePool.put(BonusType.Alchemical, new MaximizedBonus());
-        bonusTypePool.put(BonusType.Circumstance, new AdductBonus());
-        bonusTypePool.put(BonusType.Competence, new MaximizedBonus());
-        bonusTypePool.put(BonusType.Enhancement, new AdductBonus());
-        bonusTypePool.put(BonusType.Insight, new MaximizedBonus());
-        bonusTypePool.put(BonusType.Luck, new MaximizedBonus());
-        bonusTypePool.put(BonusType.Morale, new MaximizedBonus());
-        bonusTypePool.put(BonusType.Profane, new MaximizedBonus());
-        bonusTypePool.put(BonusType.Racial, new AdductBonus());
-        bonusTypePool.put(BonusType.Resistance, new MaximizedBonus());
-        bonusTypePool.put(BonusType.Sacred, new MaximizedBonus());
+        bonusTypePool.put(BonusType.ALCHEMICAL, new MaximizedBonus());
+        bonusTypePool.put(BonusType.CIRCUMSTANCE, new AdductBonus());
+        bonusTypePool.put(BonusType.COMPETENCE, new MaximizedBonus());
+        bonusTypePool.put(BonusType.ENHANCEMENT, new AdductBonus());
+        bonusTypePool.put(BonusType.INSIGHT, new MaximizedBonus());
+        bonusTypePool.put(BonusType.LUCK, new MaximizedBonus());
+        bonusTypePool.put(BonusType.MORALE, new MaximizedBonus());
+        bonusTypePool.put(BonusType.PROFANE, new MaximizedBonus());
+        bonusTypePool.put(BonusType.RACIAL, new AdductBonus());
+        bonusTypePool.put(BonusType.RESOSTANCE, new MaximizedBonus());
+        bonusTypePool.put(BonusType.SACRED, new MaximizedBonus());
     }
 
     /**

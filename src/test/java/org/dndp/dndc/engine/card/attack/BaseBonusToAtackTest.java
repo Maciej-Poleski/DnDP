@@ -16,12 +16,12 @@ import org.junit.Test;
  */
 public class BaseBonusToAtackTest
 {
-    Integer[] main       = new Integer[] { 10, 5, 0 };
-    Integer[] off        = new Integer[] { 2 };
-    Integer[] fail       = new Integer[] { -6, -4, -2 };
-    Integer[] zero       = new Integer[] { 0 };
-    Integer[] Null       = null;
-    Integer[] OutOfRange = new Integer[] { 1, 12, 3, 4, 5, 1, 2, 4 };
+    int[] main       = new int[] { 10, 5, 0 };
+    int[] off        = new int[] { 2 };
+    int[] fail       = new int[] { -6, -4, -2 };
+    int[] zero       = new int[] { 0 };
+    int[] Null       = null;
+    int[] OutOfRange = new int[] { 1, 12, 3, 4, 5, 1, 2, 4 };
 
     public BaseBonusToAtackTest()
     {}
@@ -39,8 +39,8 @@ public class BaseBonusToAtackTest
     {
         System.out.println("getBonus");
         BaseBonusToAttack instance = new BaseBonusToAttack(main);
-        Integer[] expResult = main;
-        Integer[] result = instance.getBonus();
+        int[] expResult = main;
+        int[] result = instance.getBonus();
         assertArrayEquals(expResult, result);
     }
 
@@ -48,7 +48,7 @@ public class BaseBonusToAtackTest
     public void testSetBonus()
     {
         System.out.println("setBonus");
-        Integer[] bonus = off;
+        int[] bonus = off;
         BaseBonusToAttack instance = new BaseBonusToAttack(main);
         instance.setBonus(bonus);
         assertArrayEquals(instance.getBonus(), bonus);
@@ -58,7 +58,7 @@ public class BaseBonusToAtackTest
     public void testSetBonusException()
     {
         System.out.println("setBonus exceptrion");
-        Integer[] bonus = fail;
+        int[] bonus = fail;
         BaseBonusToAttack instance = new BaseBonusToAttack(main);
         instance.setBonus(bonus);
         instance.setBonus(bonus);
@@ -69,7 +69,7 @@ public class BaseBonusToAtackTest
     public void testSetBonusToNull()
     {
         System.out.println("setBonus to null");
-        Integer[] bonus = Null;
+        int[] bonus = Null;
         BaseBonusToAttack instance = new BaseBonusToAttack(main);
         instance.setBonus(bonus);
         assertArrayEquals(instance.getBonus(), bonus);
@@ -79,7 +79,7 @@ public class BaseBonusToAtackTest
     public void testSetBonusToZero()
     {
         System.out.println("setBonus to zero");
-        Integer[] bonus = zero;
+        int[] bonus = zero;
         BaseBonusToAttack instance = new BaseBonusToAttack(main);
         instance.setBonus(bonus);
         assertArrayEquals(instance.getBonus(), bonus);
@@ -89,7 +89,7 @@ public class BaseBonusToAtackTest
     public void testSetBonusToOutOfRange()
     {
         System.out.println("setBonus out of range");
-        Integer[] bonus = OutOfRange;
+        int[] bonus = OutOfRange;
         BaseBonusToAttack instance = new BaseBonusToAttack(main);
         instance.setBonus(bonus);
         assertArrayEquals(instance.getBonus(), bonus);

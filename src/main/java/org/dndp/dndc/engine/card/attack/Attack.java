@@ -20,7 +20,7 @@ public interface Attack
 
     public void setInitiativeModifier(Integer newValue);
 
-    public Double getSpeed();
+    public double getSpeed();
 
-    public void setSpeed(Double newValue);
+    public void setSpeed(double newValue);
 }

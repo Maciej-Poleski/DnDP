@@ -45,7 +45,7 @@ public class BonusManagerTest
     public void testRegisterAndGetBonus()
     {
         t.registerBonus("s", s);
-        t.getBonusHandler("s").addBonus(BonusType.Sacred, 2);
+        t.getBonusHandler("s").addBonus(BonusType.SACRED, 2);
         assertEquals(s.getModifier(), getModifier(2, s));
     }
 

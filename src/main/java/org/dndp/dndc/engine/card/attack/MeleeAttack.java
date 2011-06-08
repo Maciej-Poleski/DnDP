@@ -25,15 +25,15 @@ public class MeleeAttack extends BaseAttack
      * Liczy premie(nie bazową) do ataku wręcz. Uwzględnia rozmiar i Siłę
      */
     @Override
-    protected void countAttacksModifier()
+    protected int countAttacksModifier()
     {
-        atackModifier = main.getStrenght().getModifier() + main.getSize().getBaseModifier();
+        return main.getStrenght().getModifier() + main.getSize().getBaseModifier();
     }
 
     @Override
     public AbilityType getAbilityName()
     {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return AbilityType.STRENGHT;
     }
 
 }

@@ -26,15 +26,14 @@ public class RangeAttack extends BaseAttack
      * i rozmiar. Nie uwzględnia kary za odległość.
      */
     @Override
-    protected void countAttacksModifier()
+    protected int countAttacksModifier()
     {
-        atackModifier = main.getDexterity().getModifier()
-                + main.getSize().getBaseModifier();
+        return main.getSize().getBaseModifier();
     }
 
     @Override
     public AbilityType getAbilityName()
     {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return AbilityType.DEXTERITY;
     }
 }

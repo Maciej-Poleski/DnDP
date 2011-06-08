@@ -43,7 +43,7 @@ public class MeleeAtackTest
         System.out.println("countAttacksModifier");
         MeleeAttack instance = dupa;
         instance.countAttacksModifier();
-        assertEquals(instance.atackModifier, new Integer(3));
+        assertEquals(instance.countAttacksModifier(), 3);
     }
 
     @Test
@@ -51,9 +51,9 @@ public class MeleeAtackTest
     {
         System.out.println("getAttacks");
         BaseAttack instance = dupa;
-        TotalBonusToAttack expResult = new TotalBonusToAttack(new Integer[] { 3 });
+        TotalBonusToAttack expResult = new TotalBonusToAttack(new int[] { 3 });
         TotalBonusToAttack result = instance.getAttacks();
-        assertEquals(instance.atackModifier, new Integer(3));
+        assertEquals(instance.countAttacksModifier(), 3);
         assertArrayEquals(expResult.getMainHand(), result.getMainHand());
     }
 

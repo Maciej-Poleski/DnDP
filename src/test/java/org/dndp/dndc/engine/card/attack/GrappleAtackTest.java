@@ -39,8 +39,7 @@ public class GrappleAtackTest
     {
         System.out.println("countAttacksModifier");
         GrappleAttack instance = dupa;
-        instance.countAttacksModifier();
-        assertEquals(new Integer(3),instance.atackModifier);
+        assertEquals(3,instance.countAttacksModifier());
     }
 
     @Test
@@ -48,9 +47,9 @@ public class GrappleAtackTest
     {
         System.out.println("getAttacks");
         BaseAttack instance = dupa;
-        TotalBonusToAttack expResult = new TotalBonusToAttack(new Integer[] { 3 });
+        TotalBonusToAttack expResult = new TotalBonusToAttack(new int[] { 3 });
         TotalBonusToAttack result = instance.getAttacks();
-        assertEquals(instance.atackModifier, new Integer(3));
+        assertEquals(instance.countAttacksModifier(), 3);
         assertArrayEquals(result.getMainHand(),expResult.getMainHand());
     }
 

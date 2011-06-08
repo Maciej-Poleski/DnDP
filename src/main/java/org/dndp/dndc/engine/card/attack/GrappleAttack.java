@@ -29,10 +29,9 @@ public class GrappleAttack extends BaseAttack
      * rozmiar i modyfikator z siły
      */
     @Override
-    protected void countAttacksModifier()
+    protected int countAttacksModifier()
     {
-        atackModifier = main.getStrenght().getModifier();
-        atackModifier = main.getSize().getGrappleAttacksModifier();
+        return main.getSize().getGrappleAttacksModifier();
     }
 
     @Override
@@ -45,6 +44,6 @@ public class GrappleAttack extends BaseAttack
     @Override
     public AbilityType getAbilityName()
     {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return AbilityType.STRENGHT;
     }
 }

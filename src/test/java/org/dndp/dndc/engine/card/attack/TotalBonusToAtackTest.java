@@ -16,12 +16,12 @@ import org.junit.Test;
  */
 public class TotalBonusToAtackTest
 {
-    Integer[] main       = new Integer[] { 10, 5, 0 };
-    Integer[] off        = new Integer[] { 2 };
-    Integer[] fail       = new Integer[] { -6, -4, -2 };
-    Integer[] zero       = new Integer[] { 0 };
-    Integer[] Null       = null;
-    Integer[] OutOfRange = new Integer[] { 1, 12, 3, 4, 5, 1, 2, 4 };
+    int[] main       = new int[] { 10, 5, 0 };
+    int[] off        = new int[] { 2 };
+    int[] fail       = new int[] { -6, -4, -2 };
+    int[] zero       = new int[] { 0 };
+    int[] Null       = null;
+    int[] OutOfRange = new int[] { 1, 12, 3, 4, 5, 1, 2, 4 };
 
     public TotalBonusToAtackTest()
     {}
@@ -53,8 +53,8 @@ public class TotalBonusToAtackTest
     {
         System.out.println("getMainHand");
         TotalBonusToAttack instance = new TotalBonusToAttack(main);
-        Integer[] expResult = main;
-        Integer[] result = instance.getMainHand();
+        int[] expResult = main;
+        int[] result = instance.getMainHand();
         assertArrayEquals(expResult, result);
 
     }

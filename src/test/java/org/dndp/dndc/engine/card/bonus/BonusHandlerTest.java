@@ -44,10 +44,10 @@ public class BonusHandlerTest {
 		Integer bonus1 = 3;
 		Integer bonus2 = 5;
 		Integer bonus3 = 1;
-		test.addBonus(BonusType.Morale, bonus3);
-		test.addBonus(BonusType.Enhancement, bonus2);
+		test.addBonus(BonusType.MORALE, bonus3);
+		test.addBonus(BonusType.ENHANCEMENT, bonus2);
 		assertEquals(getModifier(bonus3 + bonus2, t), t.getModifier());
-		test.addBonus(BonusType.Luck, bonus1);
+		test.addBonus(BonusType.LUCK, bonus1);
 		assertEquals(getModifier(bonus3 + bonus2 + bonus1, t), t.getModifier());
 
 	}
@@ -57,14 +57,14 @@ public class BonusHandlerTest {
 		Integer bonus1 = 3;
 		Integer bonus2 = 5;
 		Integer bonus3 = 1;
-		test.addBonus(BonusType.Morale, bonus3);
-		test.addBonus(BonusType.Enhancement, bonus2);
+		test.addBonus(BonusType.MORALE, bonus3);
+		test.addBonus(BonusType.ENHANCEMENT, bonus2);
 		assertEquals(getModifier(bonus3 + bonus2, t), t.getModifier());
-		test.addBonus(BonusType.Luck, bonus1);
+		test.addBonus(BonusType.LUCK, bonus1);
 		assertEquals(getModifier(bonus3 + bonus2 + bonus1, t), t.getModifier());
-		test.removeBonus(BonusType.Morale, bonus3);
+		test.removeBonus(BonusType.MORALE, bonus3);
 		assertEquals(getModifier(bonus2 + bonus1, t), t.getModifier());
-		test.removeBonus(BonusType.Luck, bonus1);
+		test.removeBonus(BonusType.LUCK, bonus1);
 		assertEquals(getModifier(bonus2, t), t.getModifier());
 	}
 
@@ -73,14 +73,14 @@ public class BonusHandlerTest {
 		Integer bonus1 = 3;
 		Integer bonus2 = 5;
 		Integer bonus3 = 1;
-		test.addBonus(BonusType.Morale, bonus3);
-		test.addBonus(BonusType.Enhancement, bonus2);
+		test.addBonus(BonusType.MORALE, bonus3);
+		test.addBonus(BonusType.ENHANCEMENT, bonus2);
 		assertEquals(getModifier(bonus3 + bonus2, t), t.getModifier());
-		test.addBonus(BonusType.Luck, bonus1);
+		test.addBonus(BonusType.LUCK, bonus1);
 		assertEquals(getModifier(bonus3 + bonus2 + bonus1, t), t.getModifier());
-		test.removeBonus(BonusType.Alchemical, bonus3);
+		test.removeBonus(BonusType.ALCHEMICAL, bonus3);
 		assertEquals(getModifier(bonus2 + bonus1, t), t.getModifier());
-		test.removeBonus(BonusType.Luck, bonus1);
+		test.removeBonus(BonusType.LUCK, bonus1);
 		assertEquals(getModifier(bonus2, t), t.getModifier());
 	}
 

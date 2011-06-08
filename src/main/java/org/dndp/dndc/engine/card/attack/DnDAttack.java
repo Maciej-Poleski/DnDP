@@ -11,7 +11,7 @@ import org.dndp.dndc.engine.Character;
 public class DnDAttack implements Attack
 {
     private Character         mother;
-    private Double            speed;
+    private double            speed;
     private Integer           initiative;
     private BaseBonusToAttack baseAtack;
     private BaseAttack        melee;
@@ -28,7 +28,7 @@ public class DnDAttack implements Attack
         this.mother = mother;
         speed = 9D;
         initiative = 0;
-        baseAtack = new BaseBonusToAttack(new Integer[] { 0 });
+        baseAtack = new BaseBonusToAttack(new int[] { 0 });
         melee = new MeleeAttack(mother);
         range = new RangeAttack(mother);
         grapple = new GrappleAttack(mother);
@@ -99,7 +99,7 @@ public class DnDAttack implements Attack
      * @return Szybkość
      */
     @Override
-    public Double getSpeed()
+    public double getSpeed()
     {
         return speed;
     }
@@ -110,10 +110,11 @@ public class DnDAttack implements Attack
      * @param newValue
      */
     @Override
-    public void setSpeed(Double newValue)
+    public void setSpeed(double newValue)
     {
+        //TODO Sprawdzić w książce i zweryfikować dla małych istot.
         if (newValue % 1.5 != 0)
-            throw new IllegalArgumentException("Wielokrotoność 1.5");
+            throw new IllegalArgumentException("Nowa wartość musi być wielokrotoność 1.5");
         this.speed = newValue;
     }
 

@@ -1,5 +1,8 @@
 package org.dndp.dndc.engine.card.attack;
 
+import org.dndp.dndc.engine.card.abilities.AbilityType;
+import org.dndp.dndc.engine.card.bonus.Bonusable;
+
 /**
  * Klasa kapsułkująca bazową premię do ataku
  * 
@@ -7,21 +10,20 @@ package org.dndp.dndc.engine.card.attack;
  */
 public class BaseBonusToAttack
 {
-    private Integer[] bonus = new Integer[4];
+    private int[] bonus = new int[4];
 
     /**
      * Standardowy konstruktor, tworzy z tablicy obiekt
      * 
      * @param bonus
      */
-    public BaseBonusToAttack(Integer[] bonus)
+    public BaseBonusToAttack(int[] bonus)
     {
-        if (bonus.length > 4)
+        if(bonus.length > 4)
             throw new IllegalArgumentException("Tylko cztery ataki");
-        for (Integer t : bonus)
-            if (t < 0)
-                throw new IllegalArgumentException(
-                        "Bazowa premia nie mozę być ujemna");
+        for(Integer t : bonus)
+            if(t < 0)
+                throw new IllegalArgumentException("Bazowa premia nie mozę być ujemna");
         this.bonus = bonus;
     }
 
@@ -30,19 +32,18 @@ public class BaseBonusToAttack
         return bonus.length;
     }
 
-    public Integer[] getBonus()
+    public int[] getBonus()
     {
         return bonus;
     }
 
-    public void setBonus(Integer[] bonus)
+    public void setBonus(int[] bonus)
     {
-        if (bonus.length > 4)
+        if(bonus.length > 4)
             throw new IllegalArgumentException("Tylko cztery ataki");
-        for (Integer t : bonus)
-            if (t < 0)
-                throw new IllegalArgumentException(
-                        "Bazowa premia nie może być ujemna");
+        for(Integer t : bonus)
+            if(t < 0)
+                throw new IllegalArgumentException("Bazowa premia nie może być ujemna");
         this.bonus = bonus;
     }
 }

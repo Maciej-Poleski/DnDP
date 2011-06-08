@@ -8,16 +8,16 @@ package org.dndp.dndc.engine.card.attack;
  */
 public class TotalBonusToAttack
 {
-    private Integer[] mainHand;
+    private int[] mainHand;
 
-    public TotalBonusToAttack(Integer[] main)
+    public TotalBonusToAttack(int[] temp)
     {
-        if (main.length > 4)
+        if (temp.length > 4)
             throw new IllegalArgumentException("Za dużo ataków");
-        this.mainHand = main;
+        this.mainHand = temp;
     }
 
-    public Integer[] getMainHand()
+    public int[] getMainHand()
     {
         return mainHand;
     }

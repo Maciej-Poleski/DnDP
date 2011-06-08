@@ -308,7 +308,7 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
     // Koniec opisu
 
     @Override
-    public void setSpeed(Double newValue)
+    public void setSpeed(double newValue)
     {
         attack.setSpeed(newValue);
     }
@@ -326,7 +326,7 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
     }
 
     @Override
-    public Double getSpeed()
+    public double getSpeed()
     {
         return attack.getSpeed();
     }

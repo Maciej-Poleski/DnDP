@@ -41,7 +41,7 @@ public class RangeAtackTest
         System.out.println("countAttacksModifier");
         RangeAttack instance = dupa;
         instance.countAttacksModifier();
-        assertEquals(instance.atackModifier, new Integer(1));
+        assertEquals(instance.countAttacksModifier(), 1);
     }
 
     @Test
@@ -49,10 +49,10 @@ public class RangeAtackTest
     {
         System.out.println("getAttacks");
         RangeAttack instance = dupa;
-        TotalBonusToAttack expResult = new TotalBonusToAttack(new Integer[] { 1 });
+        TotalBonusToAttack expResult = new TotalBonusToAttack(new int[] { 1 });
         TotalBonusToAttack result = instance.getAttacks();
-        assertEquals(instance.atackModifier, new Integer(1));
-        for (Integer x : result.getMainHand())
+        assertEquals(instance.countAttacksModifier(), 1);
+        for (int x : result.getMainHand())
             System.out.print(x + " ");
         assertArrayEquals(expResult.getMainHand(), result.getMainHand());
 

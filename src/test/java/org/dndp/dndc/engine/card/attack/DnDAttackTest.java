@@ -46,7 +46,7 @@ public class DnDAttackTest
         System.out.println("getMeleeAttack");
         DnDAttack instance = dupa;
         BaseAttack result = instance.getMeleeAttack();
-        assertArrayEquals(new Integer[] { 5 }, result.getAttacks().getMainHand());
+        assertArrayEquals(new int[] { 5 }, result.getAttacks().getMainHand());
 
     }
 
@@ -56,7 +56,7 @@ public class DnDAttackTest
         System.out.println("getRangeAttack");
         DnDAttack instance = dupa;
         BaseAttack result = instance.getRangeAttack();
-        assertArrayEquals(new Integer[] { 2 }, result.getAttacks().getMainHand());
+        assertArrayEquals(new int[] { 2 }, result.getAttacks().getMainHand());
     }
 
     @Test
@@ -65,7 +65,7 @@ public class DnDAttackTest
         System.out.println("getGrappleAttack");
         DnDAttack instance = dupa;
         BaseAttack result = instance.getGrappleAttack();
-        assertArrayEquals(new Integer[] { 10 }, result.getAttacks().getMainHand());
+        assertArrayEquals(new int[] { 10 }, result.getAttacks().getMainHand());
     }
 
     @Test
@@ -73,8 +73,8 @@ public class DnDAttackTest
     {
         System.out.println("getInitiativeModifier");
         DnDAttack instance = dupa;
-        Integer expResult = t.getDexterity().getModifier();
-        Integer result = instance.getInitiativeModifier();
+        int expResult = t.getDexterity().getModifier();
+        int result = instance.getInitiativeModifier();
         assertEquals(expResult, result);
     }
 
@@ -82,19 +82,10 @@ public class DnDAttackTest
     public void testSetInitiativeModifier()
     {
         System.out.println("setInitiativeModifier");
-        Integer newValue = 2;
+        int newValue = 2;
         DnDAttack instance = dupa;
         instance.setInitiativeModifier(newValue);
         assertTrue(newValue + t.getDexterity().getModifier() == instance.getInitiativeModifier());
-    }
-
-    @Test(expected = NullPointerException.class)
-    public void testSetInitiativeModifierNull()
-    {
-        System.out.println("setInitiativeModifier null");
-        Integer newValue = null;
-        DnDAttack instance = dupa;
-        instance.setInitiativeModifier(newValue);
     }
 
     @Test
@@ -102,29 +93,19 @@ public class DnDAttackTest
     {
         System.out.println("getSpeed");
         DnDAttack instance = dupa;
-        Double expResult = 9D;
-        Double result = instance.getSpeed();
-        assertEquals(expResult, result);
+        double expResult = 9D;
+        double result = instance.getSpeed();
+        assertEquals(expResult, result,0.01);
     }
 
     @Test
     public void testSetSpeed()
     {
         System.out.println("setSpeed");
-        Double newValue = 6D;
+        double newValue = 6D;
         DnDAttack instance = dupa;
         instance.setSpeed(newValue);
-        assertEquals(newValue, instance.getSpeed());
-    }
-
-    @Test(expected = NullPointerException.class)
-    public void testSetSpeedNull()
-    {
-        System.out.println("setSpeed");
-        Double newValue = null;
-        DnDAttack instance = dupa;
-        instance.setSpeed(newValue);
-        assertEquals(newValue, instance.getSpeed());
+        assertEquals(newValue, instance.getSpeed(),0.01);
     }
 
     @Test
@@ -132,7 +113,7 @@ public class DnDAttackTest
     {
         System.out.println("getBaseAttack");
         DnDAttack instance = dupa;
-        BaseBonusToAttack expResult = new BaseBonusToAttack(new Integer[] { 0 });
+        BaseBonusToAttack expResult = new BaseBonusToAttack(new int[] { 0 });
         BaseBonusToAttack result = instance.getBaseAttack();
         assertArrayEquals(expResult.getBonus(), result.getBonus());
 
@@ -142,7 +123,7 @@ public class DnDAttackTest
     public void testSetBaseAttack()
     {
         System.out.println("setBaseAttack");
-        BaseBonusToAttack baseAtack = new BaseBonusToAttack(new Integer[] { 6, 1 });
+        BaseBonusToAttack baseAtack = new BaseBonusToAttack(new int[] { 6, 1 });
         DnDAttack instance = dupa;
         instance.setBaseAttack(baseAtack);
 
