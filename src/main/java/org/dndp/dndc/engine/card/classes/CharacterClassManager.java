@@ -36,7 +36,7 @@ public interface CharacterClassManager
     public abstract boolean isPromoted();
 
     /**
-     * 
+     * Wykorzystaj możliwość i rozwiń postać w danej klasie.
      * @param classes
      * @throws Exception
      */

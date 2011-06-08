@@ -1,7 +1,10 @@
 package org.dndp.dndc.engine.check;
 
 /**
- *
+ * Wyjątek nie spełnienia warunków.
+ * 
+ * Stworzony na wewnętrzne potrzeby programu,
+ * tylko po to by wewnętrzne catche były ładne.
  * 
  * @author bambucha
  */

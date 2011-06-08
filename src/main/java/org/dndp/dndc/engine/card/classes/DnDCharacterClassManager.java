@@ -2,6 +2,7 @@ package org.dndp.dndc.engine.card.classes;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Observable;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -46,6 +47,11 @@ public class DnDCharacterClassManager extends Observable implements CharacterCla
         return level;
     }
 
+    /**
+     * Zwraca ilosć doświadczenia potrzebną do levelu
+     * @param level argument pytania
+     * @return ilość potrzebnego doświadcznia
+     */
     private int getXPForLevel(int level)
     {
         return (level * (level + 1)) / 2;
@@ -138,7 +144,7 @@ public class DnDCharacterClassManager extends Observable implements CharacterCla
         for (CharacterClass baseClass : classList)
             if(baseClass.getClasses().getName().equals(classes.getName()))
                 return baseClass.getLevel();
-        throw new IllegalArgumentException("Nie powinno się stać");
+        throw new NoSuchElementException("Nie ma takiego elementu");
     }
 
 }

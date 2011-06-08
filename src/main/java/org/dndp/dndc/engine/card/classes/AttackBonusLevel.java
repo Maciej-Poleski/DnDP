@@ -7,5 +7,16 @@ package org.dndp.dndc.engine.card.classes;
  */
 public enum AttackBonusLevel
 {
-    HIGH, MEDIUM, LOW;
+    /**
+     * Wysoka premia do ataku
+     */
+    HIGH,
+    /**
+     * Średnia premia do ataku
+     */
+    MEDIUM,
+    /**
+     * Niska premia do ataku
+     */
+    LOW;
 }
