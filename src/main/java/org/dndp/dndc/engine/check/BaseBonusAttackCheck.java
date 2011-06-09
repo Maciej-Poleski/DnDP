@@ -7,7 +7,7 @@ import org.dndp.dndc.engine.Character;
  * 
  * @author bambucha
  */
-public class AttackCheck implements Checkable
+public class BaseBonusAttackCheck implements Checkable
 {
     private Integer value;
     
@@ -17,7 +17,7 @@ public class AttackCheck implements Checkable
      * Standardowy konstruktor
      * @param value Wymagana wartość.
      */
-    public AttackCheck(Integer value)
+    public BaseBonusAttackCheck(Integer value)
     {
         super();
         this.value = value;
