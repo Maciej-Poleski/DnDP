@@ -82,13 +82,15 @@ public class DnDArmor extends Observable implements Armor, Bonusable
     {
         if(this.bonus != bonus)
             setChanged();
+        this.bonus = bonus;
         notifyObservers(this);
     }
 
     @Override
     public AbilityType getAbilityName()
     {
-        return AbilityType.NONE;
+        return AbilityType.NONE;    //Pancerz sam musi załatwiać premię do Zręczności
+                                    //Ze względ na ogranicznie zbroji
     }
 
 }

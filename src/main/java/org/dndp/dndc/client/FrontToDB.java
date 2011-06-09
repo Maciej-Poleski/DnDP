@@ -1,5 +1,6 @@
 package org.dndp.dndc.client;
 
+import java.io.File;
 import java.util.Properties;
 
 import com.db4o.Db4oEmbedded;
@@ -7,7 +8,9 @@ import com.db4o.ObjectContainer;
 import com.db4o.cs.Db4oClientServer;
 
 /**
- * Fasada do bazy danych Wzorze projektowy singleton Przeglądnąć na koniec
+ * Fasada do bazy danych. Wzorze projektowy singleton 
+ * 
+ * Łaczy się na port 31117
  * 
  * @author bambucha
  */
@@ -22,7 +25,16 @@ public class FrontToDB
      */
     protected FrontToDB()
     {
+        //FIXME wywalić na koniec łącznie z odkomentowaniem wyjątku dla getInstance()
         DB = Db4oEmbedded.openFile("dnd.db");
+        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                new File("dnd.db").delete();
+            }
+        }));
     }
 
     /**
@@ -64,7 +76,6 @@ public class FrontToDB
     {
 
         if (instance == null)
-            // /Odkomentować na koniec
             // throw new IllegalStateException("Brak obiektu");
             instance = new FrontToDB();
         return instance;
