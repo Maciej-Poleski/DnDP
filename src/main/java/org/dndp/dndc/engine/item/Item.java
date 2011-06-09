@@ -10,11 +10,11 @@ import org.dndp.dndc.engine.benefit.Benefit;
 public abstract class Item implements Carryable, Wearable, Comparable<Item>
 {
     private final String     name;     // Na razie bez niczego
-    private final Benefit[]  benefits; // Premie zapewniane przez postać.
+    private final Benefit[]  benefits; // Premie zapewniane przez przedmiot
     private Double           weight;   // Waga przedmiotu
     private Value            value;    // wartość przedmiotu
 
-    private Inventory        inventory; // Umiejscownie przedmiotu w ekwipunku
+    private Inventory        inventory;// Ekwipunek do którego ma należeć przedmiot / Należy
     private EquipmentManager manager;  // Menadżer przedmiotów postaci która wykorezystuje przedmiot.
 
     /**
@@ -60,7 +60,7 @@ public abstract class Item implements Carryable, Wearable, Comparable<Item>
     /**
      * Zwraca referencję do @code Inventory @endcode jeżeli jest to przedmiot tego typu.
      * 
-     * @return referencja do invetory, lub @code null @endcode jeżeli to normalny przedmiot.
+     * @return referencja do invetory, lub @code null @endcode jeżeli to przedmiot który agreguje inne.
      */
     public Inventory getInventory()
     {

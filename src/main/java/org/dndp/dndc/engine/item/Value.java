@@ -1,5 +1,7 @@
 package org.dndp.dndc.engine.item;
 
+import static java.lang.Math.*;
+
 /**
  * Klasa troszczaca się o wartość przedmiotu <br/>
  * Zapewnia odpowiednie przedstawieni wartości. <br/>
@@ -32,9 +34,9 @@ public class Value implements Comparable<Value>
     {
         if(platinum < 0 || gold < 0 || silver < 0 || copper < 0)
             throw new IllegalArgumentException("Wartość nie może być ujemna");
-        this.platinum = platinum + (int)Math.floor(gold / 10);
-        this.gold = gold % 10 + (int)Math.floor(silver / 10);
-        this.silver = silver % 10 + (int)Math.floor(copper / 10);
+        this.platinum = platinum + (int)floor(gold / 10);
+        this.gold = gold % 10 + (int)floor(silver / 10);
+        this.silver = silver % 10 + (int)floor(copper / 10);
         this.copper = copper % 10;
     }
     
@@ -61,9 +63,9 @@ public class Value implements Comparable<Value>
      */
     private void clear()
     {
-        platinum = platinum + (int)Math.floor(gold / 10);
-        gold = gold % 10 + (int)Math.floor(silver / 10);
-        silver = silver % 10 + (int)Math.floor(copper / 10);
+        platinum = platinum + (int)floor(gold / 10);
+        gold = gold % 10 + (int)floor(silver / 10);
+        silver = silver % 10 + (int)floor(copper / 10);
         copper = copper % 10;
     }
 
@@ -207,10 +209,21 @@ public class Value implements Comparable<Value>
             t += copper + " cp";
         return t;
     }
+    
+    @Override
+    public boolean equals(Object obj)
+    {
+        if(obj instanceof Value)
+            if(compareTo((Value)obj) == 0)
+                return true;
+            else
+                return false;
+        return super.equals(obj);
+    }
 
     @Override
     public int compareTo(Value t)
     {
-        return t.abs() - this.abs();
+        return this.abs() - t.abs() ;
     }
 }

@@ -1,6 +1,6 @@
 package org.dndp.dndc.engine.item;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 
@@ -117,6 +117,22 @@ public class ValueTest
         String expResult = "17 pp 4 gp 5 sp 3 cp";
         String result = instance.toString();
         assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void compareToTest()
+    {
+        Value a = new Value(0, 0, 1, 5);
+        assertTrue(a.compareTo(a) == 0); //Zwrotność
+        Value b = new Value(0, 0, 1, 6);
+        assertTrue(a.compareTo(b) < 0);
+        assertTrue(b.compareTo(a) > 0);
+        a = Value.add(a, new Value(0, 0, 0, 1));
+        assertTrue(a.compareTo(b) == 0);
+        assertEquals(a.compareTo(b) == 0, a.equals(b));
+        a = Value.add(a, new Value(0, 0, 0, 1));
+        assertTrue(a.compareTo(b) > 0);
+        assertTrue(b.compareTo(a) < 0);
     }
 
 }
