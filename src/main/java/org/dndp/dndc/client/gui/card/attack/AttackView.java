@@ -1,15 +1,25 @@
 package org.dndp.dndc.client.gui.card.attack;
 
+import java.util.Observable;
+import java.util.Observer;
+
+import org.dndp.dndc.engine.card.attack.Attack;
+import org.dndp.dndc.engine.card.attack.BaseAttack;
+import org.dndp.dndc.engine.card.attack.BaseBonusToAtackTest;
+import org.dndp.dndc.engine.card.attack.BaseBonusToAttack;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.layout.GridData;
+import org.eclipse.wb.swt.SWTResourceManager;
 
-public class AttackView extends Composite
+public class AttackView extends Composite implements Observer , ModifyListener
 {
     private Text meleeMiscellaneousText;
     private Text meleeBonusText;
@@ -35,6 +45,8 @@ public class AttackView extends Composite
     private Text text_20;
     private Label lblSzybko;
     private Text text_21;
+    
+    private Attack model;
 
     /**
      * Create the composite.
@@ -144,7 +156,59 @@ public class AttackView extends Composite
         new Label(grpWalka, SWT.NONE);
         new Label(grpWalka, SWT.NONE);
         new Label(grpWalka, SWT.NONE);
-
+        
+        baseAttack1Text.addModifyListener(this);
+        baseAttack2Text.addModifyListener(this);
+        baseAttack3Text.addModifyListener(this);
+        baseAttack4Text.addModifyListener(this);
+    }
+    
+    @Override
+    public void update(Observable o, Object arg)
+    {
+        if(o instanceof Attack)
+        {
+            Attack tmp = (Attack)o;
+            int[] x = tmp.getMeleeAttack().getBaseAttack().getBonus();
+            meleeSumAttack1Text.setText(Integer.toString(x[0]));
+            meleeSumAttack1Text.setText(Integer.toString(x[1]));
+            meleeSumAttack1Text.setText(Integer.toString(x[2]));
+            meleeSumAttack1Text.setText(Integer.toString(x[3]));
+        }
+    }
+    
+    @Override
+    public void modifyText(ModifyEvent arg0)
+    {
+        updateModel();   
+    }
+    
+    private void updateModel()
+    {
+        int[] tmp = new int[4];
+        if((tmp[0] = parseField(baseAttack1Text)) < 0)
+            return;
+        if((tmp[1] = parseField(baseAttack2Text)) < 0)
+            return;
+        if((tmp[2] = parseField(baseAttack3Text)) < 0)
+            return;
+        if((tmp[3] = parseField(baseAttack4Text)) < 0)
+            return;
+        model.setBaseAttack(new BaseBonusToAttack(tmp));
+    }
+    
+    private int parseField(Text field)
+    {
+        try
+        {
+            field.setBackground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
+            return Integer.parseInt(field.getText());
+        }
+        catch (NumberFormatException e)
+        {
+            field.setBackground(SWTResourceManager.getColor(SWT.COLOR_RED));
+            return -1;
+        }
     }
 
     @Override
