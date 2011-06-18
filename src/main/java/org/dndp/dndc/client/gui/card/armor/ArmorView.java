@@ -1,5 +1,9 @@
 package org.dndp.dndc.client.gui.card.armor;
 
+import java.util.Observable;
+import java.util.Observer;
+
+import org.dndp.dndc.engine.card.armor.Armor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
@@ -9,7 +13,7 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
-public class ArmorView extends Composite
+public class ArmorView extends Composite implements Observer
 {
     private Text kpText;
     private Text flatFootedText;
@@ -50,6 +54,18 @@ public class ArmorView extends Composite
         touchText = new Text(grpKlasaPancerza, SWT.BORDER);
         touchText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
         
+    }
+    
+    @Override
+    public void update(Observable o, Object arg)
+    {
+        if(o instanceof Armor)
+        {
+            Armor tmp = (Armor)o;
+            kpText.setText(tmp.getAC().toString());
+            flatFootedText.setText(tmp.getFlatFootetAC().toString());
+            touchText.setText(tmp.getTouchAttaksAC().toString());
+        }
     }
 
     @Override
