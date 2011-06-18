@@ -146,5 +146,10 @@ public class DnDCharacterClassManager extends Observable implements CharacterCla
                 return baseClass.getLevel();
         throw new NoSuchElementException("Nie ma takiego elementu");
     }
-
+    
+    @Override
+    public final List<CharacterClass> getClassList()
+    {
+        return classList;
+    }
 }

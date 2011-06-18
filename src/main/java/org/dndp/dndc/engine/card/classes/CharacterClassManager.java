@@ -1,5 +1,7 @@
 package org.dndp.dndc.engine.card.classes;
 
+import java.util.List;
+
 import org.dndp.dndc.engine.check.CheckFailException;
 
 public interface CharacterClassManager
@@ -48,5 +50,10 @@ public interface CharacterClassManager
      * @return
      */
     public abstract Integer getClassLevel(BaseClass classes);
-
+    
+    /**
+     * Zwarac listę klas jaką posiada listę klas.
+     * @return Lista klas postaci.
+     */
+    public abstract  List<CharacterClass> getClassList(); 
 }

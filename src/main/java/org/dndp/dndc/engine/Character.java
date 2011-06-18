@@ -1,6 +1,7 @@
 package org.dndp.dndc.engine;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 import org.dndp.dndc.engine.card.UnavailableTestException;
@@ -18,6 +19,7 @@ import org.dndp.dndc.engine.card.bonus.BonusManager;
 import org.dndp.dndc.engine.card.bonus.Bonusable;
 import org.dndp.dndc.engine.card.bonus.DnDBonusManager;
 import org.dndp.dndc.engine.card.classes.BaseClass;
+import org.dndp.dndc.engine.card.classes.CharacterClass;
 import org.dndp.dndc.engine.card.classes.CharacterClassManager;
 import org.dndp.dndc.engine.card.classes.DnDCharacterClassManager;
 import org.dndp.dndc.engine.card.description.Description;
@@ -546,6 +548,12 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
     public Integer getClassLevel(BaseClass classes)
     {
         return classManager.getClassLevel(classes);
+    }
+
+    @Override
+    public List<CharacterClass> getClassList()
+    {
+        return classManager.getClassList();
     }
     
 }
