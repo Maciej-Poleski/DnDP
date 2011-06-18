@@ -12,9 +12,9 @@ import org.eclipse.swt.layout.FillLayout;
 
 public class ArmorView extends Composite
 {
-    private Text text;
-    private Text text_1;
-    private Text text_2;
+    private Text kpText;
+    private Text flatFootedText;
+    private Text touchText;
 
     /**
      * Create the composite.
@@ -34,22 +34,22 @@ public class ArmorView extends Composite
         lblKp.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
         lblKp.setText("KP");
         
-        text = new Text(grpKlasaPancerza, SWT.BORDER);
-        text.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+        kpText = new Text(grpKlasaPancerza, SWT.BORDER);
+        kpText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
         
         Label lblNieprzygotowany = new Label(grpKlasaPancerza, SWT.NONE);
         lblNieprzygotowany.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
         lblNieprzygotowany.setText("Nieprzygotowany");
         
-        text_1 = new Text(grpKlasaPancerza, SWT.BORDER);
-        text_1.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+        flatFootedText = new Text(grpKlasaPancerza, SWT.BORDER);
+        flatFootedText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
         
         Label lblDotykowy = new Label(grpKlasaPancerza, SWT.NONE);
         lblDotykowy.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
         lblDotykowy.setText("Dotykowy");
         
-        text_2 = new Text(grpKlasaPancerza, SWT.BORDER);
-        text_2.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+        touchText = new Text(grpKlasaPancerza, SWT.BORDER);
+        touchText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
         
     }
 
