@@ -11,17 +11,17 @@ import org.eclipse.swt.layout.GridData;
 
 public class AttackView extends Composite
 {
-    private Text text;
-    private Text text_1;
-    private Text text_2;
-    private Text text_3;
-    private Text text_4;
-    private Text text_5;
+    private Text meleeMiscellaneousText;
+    private Text meleeBonusText;
+    private Text baseAttack3Text;
+    private Text baseAttack2Text;
+    private Text baseAttack1Text;
+    private Text meleeSumAttack3Text;
     private Text text_6;
-    private Text text_7;
-    private Text text_8;
-    private Text text_9;
-    private Text text_10;
+    private Text baseAttack4Text;
+    private Text meleeSumAttack1Text;
+    private Text meleeSumAttack2Text;
+    private Text meleeSumAttack4Text;
     private Text text_11;
     private Text text_12;
     private Text text_13;
@@ -52,11 +52,11 @@ public class AttackView extends Composite
         new Label(grpWalka, SWT.NONE);
         new Label(grpWalka, SWT.NONE);
         
-        text_4 = new Text(grpWalka, SWT.BORDER);
-        text_4.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+        baseAttack1Text = new Text(grpWalka, SWT.BORDER);
+        baseAttack1Text.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
         
-        text_8 = new Text(grpWalka, SWT.BORDER);
-        text_8.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+        meleeSumAttack1Text = new Text(grpWalka, SWT.BORDER);
+        meleeSumAttack1Text.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
         new Label(grpWalka, SWT.NONE);
         new Label(grpWalka, SWT.NONE);
         
@@ -67,17 +67,17 @@ public class AttackView extends Composite
         new Label(grpWalka, SWT.NONE);
         new Label(grpWalka, SWT.NONE);
         
-        text = new Text(grpWalka, SWT.BORDER);
-        text.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 2));
+        meleeMiscellaneousText = new Text(grpWalka, SWT.BORDER);
+        meleeMiscellaneousText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 2));
         
-        text_1 = new Text(grpWalka, SWT.BORDER);
-        text_1.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 2));
+        meleeBonusText = new Text(grpWalka, SWT.BORDER);
+        meleeBonusText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 2));
         
-        text_3 = new Text(grpWalka, SWT.BORDER);
-        text_3.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+        baseAttack2Text = new Text(grpWalka, SWT.BORDER);
+        baseAttack2Text.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
         
-        text_9 = new Text(grpWalka, SWT.BORDER);
-        text_9.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+        meleeSumAttack2Text = new Text(grpWalka, SWT.BORDER);
+        meleeSumAttack2Text.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
         
         text_6 = new Text(grpWalka, SWT.BORDER);
         text_6.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 2));
@@ -100,22 +100,22 @@ public class AttackView extends Composite
         text_19 = new Text(grpWalka, SWT.BORDER);
         text_19.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 2));
         
-        text_2 = new Text(grpWalka, SWT.BORDER);
-        text_2.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+        baseAttack3Text = new Text(grpWalka, SWT.BORDER);
+        baseAttack3Text.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
         
-        text_5 = new Text(grpWalka, SWT.BORDER);
-        text_5.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+        meleeSumAttack3Text = new Text(grpWalka, SWT.BORDER);
+        meleeSumAttack3Text.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
         
         text_14 = new Text(grpWalka, SWT.BORDER);
         text_14.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
         new Label(grpWalka, SWT.NONE);
         new Label(grpWalka, SWT.NONE);
         
-        text_7 = new Text(grpWalka, SWT.BORDER);
-        text_7.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+        baseAttack4Text = new Text(grpWalka, SWT.BORDER);
+        baseAttack4Text.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
         
-        text_10 = new Text(grpWalka, SWT.BORDER);
-        text_10.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+        meleeSumAttack4Text = new Text(grpWalka, SWT.BORDER);
+        meleeSumAttack4Text.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
         new Label(grpWalka, SWT.NONE);
         new Label(grpWalka, SWT.NONE);
         
