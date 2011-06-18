@@ -1,5 +1,11 @@
 package org.dndp.dndc.client.gui.card.classes;
 
+import java.util.Observable;
+import java.util.Observer;
+
+import org.dndp.dndc.engine.card.attack.BaseAttack;
+import org.dndp.dndc.engine.card.classes.CharacterClassManager;
+import org.dndp.dndc.engine.card.classes.ClassManager;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.custom.CCombo;
@@ -11,10 +17,12 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.layout.GridData;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ListViewer;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.swt.layout.FillLayout;
 
-public class ClassesView extends Group
+public class ClassesView extends Group implements Observer
 {
     private Text text;
     private Text text_1;
@@ -22,6 +30,7 @@ public class ClassesView extends Group
     private Text text_3;
     private Text text_4;
     private Text text_5;
+    private ListViewer listViewer;
 
     /**
      * Create the composite.
@@ -34,9 +43,11 @@ public class ClassesView extends Group
         setText("Klasy");
         setLayout(new GridLayout(3, false));
         
-        ListViewer listViewer = new ListViewer(this, SWT.BORDER | SWT.V_SCROLL);
+        listViewer = new ListViewer(this, SWT.BORDER | SWT.V_SCROLL);
+        listViewer.setLabelProvider(new ClassLabelProvider());
         List list = listViewer.getList();
         list.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 2));
+        
         
         Group grpSzczegy = new Group(this, SWT.NONE);
         grpSzczegy.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 2));
@@ -83,6 +94,18 @@ public class ClassesView extends Group
         
         text_5 = new Text(composite, SWT.BORDER);
 
+    }
+    
+    
+    
+    @Override
+    public void update(Observable o, Object arg)
+    {
+        if(o instanceof CharacterClassManager)
+        {
+            CharacterClassManager tmp = (CharacterClassManager)o;
+            listViewer.setInput(arg);
+        }
     }
 
     @Override
