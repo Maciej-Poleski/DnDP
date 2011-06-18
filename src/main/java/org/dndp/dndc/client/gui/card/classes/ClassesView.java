@@ -45,6 +45,7 @@ public class ClassesView extends Group implements Observer
         
         listViewer = new ListViewer(this, SWT.BORDER | SWT.V_SCROLL);
         listViewer.setLabelProvider(new ClassLabelProvider());
+        listViewer.setContentProvider(new ClassContentProvider());
         List list = listViewer.getList();
         list.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 2));
         
@@ -104,7 +105,7 @@ public class ClassesView extends Group implements Observer
         if(o instanceof CharacterClassManager)
         {
             CharacterClassManager tmp = (CharacterClassManager)o;
-            listViewer.setInput(arg);
+            listViewer.setInput(tmp.getClassList());
         }
     }
 
