@@ -1,5 +1,6 @@
 package org.dndp.dndc.client.gui.card.skills;
 
+import org.dndp.dndc.client.gui.card.CollectionContentProvider;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.layout.GridLayout;
@@ -27,6 +28,8 @@ public class SkillsView extends Group
         setLayout(new GridLayout(2, false));
         
         TableViewer tableViewer = new TableViewer(this, SWT.BORDER | SWT.FULL_SELECTION);
+        tableViewer.setContentProvider(new CollectionContentProvider());
+        tableViewer.setLabelProvider(new SklilLabelProvider());
         table = tableViewer.getTable();
         table.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
         
