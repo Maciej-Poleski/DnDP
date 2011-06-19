@@ -3,6 +3,7 @@ package org.dndp.dndc.client.gui.card.classes;
 import java.util.Observable;
 import java.util.Observer;
 
+import org.dndp.dndc.client.gui.card.CollectionContentProvider;
 import org.dndp.dndc.engine.card.attack.BaseAttack;
 import org.dndp.dndc.engine.card.classes.CharacterClassManager;
 import org.dndp.dndc.engine.card.classes.ClassManager;
@@ -45,7 +46,7 @@ public class ClassesView extends Group implements Observer
         
         listViewer = new ListViewer(this, SWT.BORDER | SWT.V_SCROLL);
         listViewer.setLabelProvider(new ClassLabelProvider());
-        listViewer.setContentProvider(new ClassContentProvider());
+        listViewer.setContentProvider(new CollectionContentProvider());
         List list = listViewer.getList();
         list.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 2));
         

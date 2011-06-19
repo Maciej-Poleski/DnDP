@@ -1,11 +1,11 @@
-package org.dndp.dndc.client.gui.card.fleats;
+package org.dndp.dndc.client.gui.card;
 
 import java.util.Collection;
 
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
-public class FleatContentProvider implements IStructuredContentProvider
+public class CollectionContentProvider implements IStructuredContentProvider
 {
 
     @Override
