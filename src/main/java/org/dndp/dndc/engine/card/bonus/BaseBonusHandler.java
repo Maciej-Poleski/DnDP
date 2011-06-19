@@ -3,28 +3,32 @@ package org.dndp.dndc.engine.card.bonus;
 import java.util.EnumMap;
 
 import org.dndp.dndc.engine.card.abilities.Abilities;
-
+import org.dndp.dndc.engine.card.description.Description;
 
 /**
- * Zajmuje się całym pakietem wszytkich premi dla jednego atrybutu, umiejętności.
+ * Zajmuje się całym pakietem wszytkich premi dla jednego atrybutu,
+ * umiejętności.
  * 
  * @author bambucha
  */
 public class BaseBonusHandler
 {
-    private Bonusable                   cared;
-    private Abilities                   abilities;
-    protected EnumMap<BonusType, Bonus> bonusTypePool = new EnumMap<BonusType, Bonus>(BonusType.class);
+    private final Bonusable                   cared;
+    private final Abilities                   abilities;
+    private final Description                 description;
+    protected EnumMap<BonusType, Bonus> bonusTypePool = new EnumMap<BonusType, Bonus>(
+                                                              BonusType.class);
 
     /**
      * 
      * @param cared
      * @param abilities
      */
-    public BaseBonusHandler(Bonusable cared, Abilities abilities)
+    public BaseBonusHandler(Bonusable cared, Abilities abilities,Description description)
     {
         this.abilities = abilities;
         this.cared = cared;
+        this.description = description;
         bonusTypePool.put(BonusType.ALCHEMICAL, new MaximizedBonus());
         bonusTypePool.put(BonusType.CIRCUMSTANCE, new AdductBonus());
         bonusTypePool.put(BonusType.COMPETENCE, new MaximizedBonus());
@@ -48,8 +52,10 @@ public class BaseBonusHandler
         int temp = 0;
         for (Bonus t : bonusTypePool.values())
             temp += t.getBonus();
-        if(cared.getAbilityName().getAbiliti(abilities) != null)
-            return temp + cared.getAbilityName().getAbiliti(abilities).getModifier();
+        if (cared.getAbilityName().getAbiliti(abilities) != null)
+            return temp
+                    + cared.getAbilityName().getAbiliti(abilities)
+                            .getModifier();
         return temp;
     }
 
@@ -64,7 +70,7 @@ public class BaseBonusHandler
     public void addBonus(BonusType bonusType, Integer bonus)
     {
         Bonus temp = bonusTypePool.get(bonusType);
-        if(bonus == null)
+        if (bonus == null)
             throw new IllegalArgumentException("To pole nie ma takiej premi");
         temp.addBonus(bonus);
         cared.setBonus(countBonus());
@@ -81,7 +87,7 @@ public class BaseBonusHandler
     public void removeBonus(BonusType bonusType, Integer bonus)
     {
         Bonus temp = bonusTypePool.get(bonusType);
-        if(bonus == null)
+        if (bonus == null)
             throw new IllegalArgumentException("To pole nie ma takiej premi");
         temp.removeBonus(bonus);
         cared.setBonus(countBonus());

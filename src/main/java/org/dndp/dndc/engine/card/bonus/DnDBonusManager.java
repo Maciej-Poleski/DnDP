@@ -5,18 +5,21 @@ import java.util.Map;
 
 import org.dndp.dndc.engine.card.abilities.Abilities;
 import org.dndp.dndc.engine.card.armor.Armor;
-
+import org.dndp.dndc.engine.card.description.Description;
 
 /**
- * Zajmuje się obsługą, pomocników liczących premię. Przez tą klasę trzeba przepychać wszytkie zmianny. Wzorzec projektowy singleton.
+ * Zajmuje się obsługą, pomocników liczących premię. Przez tą klasę trzeba
+ * przepychać wszytkie zmianny. Wzorzec projektowy singleton.
  * 
- * @par TODO Zastanowienie się nad potrzebą wprowadzenia przestrzeni nazw (z góry określonej jakiej), i wprowadznie takowej.
+ * @par TODO Zastanowienie się nad potrzebą wprowadzenia przestrzeni nazw (z
+ *      góry określonej jakiej), i wprowadznie takowej.
  * @author bambucha
  */
 public class DnDBonusManager implements BonusManager
 {
     private Map<String, BaseBonusHandler> bonusHandlerPool = new HashMap<String, BaseBonusHandler>();
-    private Abilities                 abilities;
+    private final Abilities               abilities;
+    private final Description             description;
 
     /**
      * Standardowy konstruktor.
@@ -24,9 +27,10 @@ public class DnDBonusManager implements BonusManager
      * @param a
      *            Atrybuty postaci.
      */
-    public DnDBonusManager(Abilities a)
+    public DnDBonusManager(Abilities abilities, Description description)
     {
-        abilities = a;
+        this.abilities = abilities;
+        this.description = description;
     }
 
     /**
@@ -40,12 +44,15 @@ public class DnDBonusManager implements BonusManager
     @Override
     public void registerBonus(String name, Bonusable newBonus)
     {
-        if(bonusHandlerPool.get(name) != null)
-            throw new IllegalArgumentException("Rejestracja drugi raz tego samego klucza");
-        if(newBonus instanceof Armor)
-            bonusHandlerPool.put(name, new ArmorBonusHandler(newBonus, abilities));
+        if (bonusHandlerPool.get(name) != null)
+            throw new IllegalArgumentException(
+                    "Rejestracja drugi raz tego samego klucza");
+        if (newBonus instanceof Armor)
+            bonusHandlerPool.put(name, new ArmorBonusHandler(newBonus,
+                    abilities,description));
         else
-            bonusHandlerPool.put(name, new BaseBonusHandler(newBonus, abilities));
+            bonusHandlerPool.put(name,
+                    new BaseBonusHandler(newBonus, abilities,description));
 
     }
 
@@ -60,8 +67,9 @@ public class DnDBonusManager implements BonusManager
     public BaseBonusHandler getBonusHandler(String name)
     {
         BaseBonusHandler t = bonusHandlerPool.get(name);
-        if(t == null)
-            throw new IllegalArgumentException("Nie zarejetrowano takiego bonusu");
+        if (t == null)
+            throw new IllegalArgumentException(
+                    "Nie zarejetrowano takiego bonusu");
         else
             return t;
     }
