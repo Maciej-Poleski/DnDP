@@ -6,22 +6,16 @@ import java.util.Observer;
 import org.dndp.dndc.client.gui.card.CollectionContentProvider;
 import org.dndp.dndc.engine.card.attack.BaseAttack;
 import org.dndp.dndc.engine.card.classes.CharacterClassManager;
-import org.dndp.dndc.engine.card.classes.ClassManager;
+import org.eclipse.jface.viewers.ListViewer;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
-import org.eclipse.swt.custom.CCombo;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.Combo;
-import org.eclipse.swt.custom.CLabel;
-import org.eclipse.swt.widgets.List;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.swt.layout.GridData;
-import org.eclipse.jface.viewers.ISelectionChangedListener;
-import org.eclipse.jface.viewers.ListViewer;
-import org.eclipse.jface.viewers.SelectionChangedEvent;
-import org.eclipse.swt.layout.FillLayout;
 
 public class ClassesView extends Group implements Observer
 {
