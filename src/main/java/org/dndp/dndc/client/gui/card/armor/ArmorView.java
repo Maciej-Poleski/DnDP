@@ -56,6 +56,7 @@ public class ArmorView extends Composite implements Observer
         
     }
     
+    
     @Override
     public void update(Observable o, Object arg)
     {

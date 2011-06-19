@@ -19,6 +19,10 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.wb.swt.SWTResourceManager;
 
+/**
+ * Widok ataku. Wyświetla bazow prewmie oraz premie dla wszystkich typw ataku.
+ * @author evil,bambucha
+ */
 public class AttackView extends Composite implements Observer , ModifyListener
 {
     private Text meleeMiscellaneousText;
@@ -183,6 +187,9 @@ public class AttackView extends Composite implements Observer , ModifyListener
         updateModel();   
     }
     
+    /**
+     * Nakłada zmianny z GUI na model.
+     */
     private void updateModel()
     {
         int[] tmp = new int[4];
@@ -197,6 +204,11 @@ public class AttackView extends Composite implements Observer , ModifyListener
         model.setBaseAttack(new BaseBonusToAttack(tmp));
     }
     
+    /**
+     * Zwraca zawartość pola, a w razie błędu koloruje je na czerowono.
+     * @param field Pole do parsowania
+     * @return zawartość pola
+     */
     private int parseField(Text field)
     {
         try
