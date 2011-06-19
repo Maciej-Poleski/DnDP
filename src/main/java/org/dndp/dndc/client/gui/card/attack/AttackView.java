@@ -4,19 +4,17 @@ import java.util.Observable;
 import java.util.Observer;
 
 import org.dndp.dndc.engine.card.attack.Attack;
-import org.dndp.dndc.engine.card.attack.BaseAttack;
-import org.dndp.dndc.engine.card.attack.BaseBonusToAtackTest;
 import org.dndp.dndc.engine.card.attack.BaseBonusToAttack;
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.layout.FillLayout;
-import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Text;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Group;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Text;
 import org.eclipse.wb.swt.SWTResourceManager;
 
 public class AttackView extends Composite implements Observer , ModifyListener

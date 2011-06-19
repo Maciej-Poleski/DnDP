@@ -1,11 +1,11 @@
 package org.dndp.dndc.client.gui.card.fleats;
 
+import org.eclipse.jface.viewers.ListViewer;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
-import org.eclipse.swt.layout.FillLayout;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.List;
-import org.eclipse.jface.viewers.ListViewer;
 
 public class FleatsView extends Group
 {
