@@ -1,5 +1,6 @@
 package org.dndp.dndc.engine.card.skills;
 
+import java.util.Collection;
 import java.util.Set;
 
 import org.dndp.dndc.engine.card.UnavailableTestException;
@@ -31,5 +32,11 @@ public interface SkillManager
      * @return
      */
     public abstract Set<String> getSkilNameSet();
+    
+    /**
+     * Zwraca zbiór umiejętnośći postaci.
+     * @return zbiór umiejętności
+     */
+    public abstract Collection<CharacterSkill> getCharacterSkillSet();
 
 }

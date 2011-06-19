@@ -1,5 +1,6 @@
 package org.dndp.dndc.engine.card.skills;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -72,6 +73,12 @@ public class DnDSkilManager implements SkillManager
     public Set<String> getSkilNameSet()
     {
         return skilSet.keySet();
+    }
+    
+    @Override
+    public Collection<CharacterSkill> getCharacterSkillSet()
+    {
+        return skilSet.values();
     }
 
     @Override

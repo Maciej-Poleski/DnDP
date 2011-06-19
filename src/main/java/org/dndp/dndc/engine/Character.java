@@ -556,4 +556,10 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
         return classManager.getClassList();
     }
     
+    @Override
+    public Collection<CharacterSkill> getCharacterSkillSet()
+    {
+        return skilManager.getCharacterSkillSet();
+    }
+    
 }
