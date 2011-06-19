@@ -28,9 +28,9 @@ public class CharacterFleat extends Observable
         DISABLED,
     }
 
-    private Fleat                    fleat;
+    private final Fleat                    fleat;
     private State                    state;
-    private DnDCharacterFleatManager characterFleatManager;
+    private final DnDCharacterFleatManager characterFleatManager;
 
     /**
      * Inicjalizuje ten atut danej postaci.
@@ -99,4 +99,8 @@ public class CharacterFleat extends Observable
         }
     }
 
+    public Fleat getFleat()
+    {
+        return fleat;
+    }
 }

@@ -22,6 +22,8 @@ public class FleatsView extends Group
         setLayout(new FillLayout(SWT.HORIZONTAL));
         
         ListViewer listViewer = new ListViewer(this, SWT.BORDER | SWT.V_SCROLL);
+        listViewer.setContentProvider(new FleatContentProvider());
+        listViewer.setLabelProvider(new FleatLabelProvider());
         List fleetListView = listViewer.getList();
 
     }
