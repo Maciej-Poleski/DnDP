@@ -14,14 +14,16 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.wb.swt.SWTResourceManager;
 
+/**
+ * Pojedynczy kompozyt zajmujacy się pokazaniem pojedynczego atrybuty.
+ * @author evil,bambucha
+ */
 public class AbilitiView extends Composite implements Observer, ModifyListener
 {
     private Text value;
     private Text modifier;
     private Abiliti model;
     
-    private boolean modification;
-
     /**
      * Create the composite.
      * @param parent
@@ -63,23 +65,28 @@ public class AbilitiView extends Composite implements Observer, ModifyListener
         // Disable the check that prevents subclassing of SWT components
     }
 
+    /**
+     * Updateuje z modelu potrzebne
+     * @throw ClassCastException gdy obserwuje coś co nie jest atrybutem
+     */
     @Override
     public void update(Observable o, Object arg)
     {
         Abiliti ab = (Abiliti)arg;
-        modification = true;
         value.setText(ab.getValue().toString());
         modifier.setText(ab.getModifier().toString());
-        modification = false;
     }
 
+    /**
+     * Zmienia wygląda pola, gdy zostają wprowadzone błędne dane.
+     * Obsługuje zmiany i wpycha je na model.
+     */
     @Override
     public void modifyText(ModifyEvent arg0)
     {
         try
         {
-            if(!modification)
-                model.setValue(Integer.parseInt(value.getText()));
+            model.setValue(Integer.parseInt(value.getText()));
             value.setBackground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
         }
         catch(NumberFormatException e)
