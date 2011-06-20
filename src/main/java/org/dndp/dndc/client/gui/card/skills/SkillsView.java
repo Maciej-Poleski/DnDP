@@ -6,6 +6,7 @@ import java.util.Observer;
 import org.dndp.dndc.client.gui.card.CollectionContentProvider;
 import org.dndp.dndc.engine.card.skills.CharacterSkill;
 import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -17,6 +18,8 @@ import org.eclipse.swt.widgets.Text;
 
 public class SkillsView extends Group implements Observer
 {
+    private static final String[] titles = new String[]{"Nazwa","Razem","Ranga","Modyfikator","Bonus"};
+    
     private Table       table;
     private Text        maxRankText;
     private TableViewer tableViewer;
@@ -36,6 +39,14 @@ public class SkillsView extends Group implements Observer
         tableViewer = new TableViewer(this, SWT.BORDER | SWT.FULL_SELECTION);
         tableViewer.setContentProvider(new CollectionContentProvider());
         tableViewer.setLabelProvider(new SklilLabelProvider());
+        for(String title : titles)
+        {
+            TableViewerColumn col = new TableViewerColumn(tableViewer, SWT.RIGHT);
+            col.getColumn().setText(title);
+            col.getColumn().setResizable(true);
+            col.getColumn().setMoveable(true);
+        }
+        
         table = tableViewer.getTable();
         table.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
 
