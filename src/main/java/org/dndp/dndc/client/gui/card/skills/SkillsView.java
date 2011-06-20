@@ -1,6 +1,11 @@
 package org.dndp.dndc.client.gui.card.skills;
 
+import java.util.Observable;
+import java.util.Observer;
+
 import org.dndp.dndc.client.gui.card.CollectionContentProvider;
+import org.dndp.dndc.engine.card.skills.CharacterSkill;
+import org.dndp.dndc.engine.card.skills.SkillManager;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -11,10 +16,11 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.Text;
 
-public class SkillsView extends Group
+public class SkillsView extends Group implements Observer
 {
     private Table table;
     private Text maxRankText;
+    private TableViewer tableViewer;
 
     /**
      * Create the composite.
@@ -27,7 +33,7 @@ public class SkillsView extends Group
         setText("Umiejętności");
         setLayout(new GridLayout(2, false));
         
-        TableViewer tableViewer = new TableViewer(this, SWT.BORDER | SWT.FULL_SELECTION);
+        tableViewer = new TableViewer(this, SWT.BORDER | SWT.FULL_SELECTION);
         tableViewer.setContentProvider(new CollectionContentProvider());
         tableViewer.setLabelProvider(new SklilLabelProvider());
         table = tableViewer.getTable();
@@ -39,6 +45,8 @@ public class SkillsView extends Group
         
         maxRankText = new Text(this, SWT.BORDER);
         maxRankText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+        maxRankText.setText("Brak w silniku");
+        maxRankText.setEditable(false);
 
     }
 
@@ -46,5 +54,14 @@ public class SkillsView extends Group
     protected void checkSubclass()
     {
         // Disable the check that prevents subclassing of SWT components
+    }
+    
+    @Override
+    public void update(Observable o, Object arg)
+    {
+        if( o instanceof CharacterSkill)
+        {
+            tableViewer.setInput(arg);
+        }
     }
 }

@@ -3,6 +3,8 @@ package org.dndp.dndc.engine.card.skills;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Set;
 
 import org.dndp.dndc.client.FrontToDB;
@@ -19,7 +21,7 @@ import com.db4o.ObjectSet;
  * 
  * @author bambucha
  */
-public class DnDSkilManager implements SkillManager
+public class DnDSkilManager extends Observable implements SkillManager,Observer
 {
     private BasicEquipmentManager      baseEquipmentManager;
     private Map<String, CharacterSkill> skilSet;
@@ -33,7 +35,13 @@ public class DnDSkilManager implements SkillManager
         this.skilSet = new HashMap<String, CharacterSkill>();
         ObjectSet<Skill> query = FrontToDB.getInstance().getDB().query(Skill.class);
         for(Skill skil : query)
-            skilSet.put(skil.getName(), new CharacterSkill(skil, bonusManager));
+        {
+            CharacterSkill cs = new CharacterSkill(skil, bonusManager);
+            cs.addObserver(this);
+            skilSet.put(skil.getName(), cs);
+        }
+            
+            
     }
 
     /**
@@ -86,5 +94,11 @@ public class DnDSkilManager implements SkillManager
     {
         return skilSet.get(name);
     }
-
+    
+    @Override
+    public void update(Observable o, Object arg)
+    {
+        setChanged();
+        notifyObservers(getCharacterSkillSet());
+    }
 }
