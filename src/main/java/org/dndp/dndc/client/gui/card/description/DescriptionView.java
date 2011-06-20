@@ -3,9 +3,10 @@ package org.dndp.dndc.client.gui.card.description;
 import java.util.Observable;
 import java.util.Observer;
 
-import org.dndp.dndc.engine.PersonalityTypes;
 import org.dndp.dndc.engine.card.description.Description;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -13,7 +14,7 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.wb.swt.SWTResourceManager;
 
-public class DescriptionView extends Group implements Observer
+public class DescriptionView extends Group implements Observer, ModifyListener
 {
     private Text raceText;
     private Text religionText;
@@ -68,6 +69,11 @@ public class DescriptionView extends Group implements Observer
         
         genderText = new Text(this, SWT.BORDER);
         genderText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+        
+        playerText.addModifyListener(this);
+        nameText.addModifyListener(this);
+        ageText.addModifyListener(this);
+        weightText.addModifyListener(this);
 
     }
 
@@ -116,6 +122,12 @@ public class DescriptionView extends Group implements Observer
             field.setBackground(SWTResourceManager.getColor(SWT.COLOR_RED));
             return -1;
         }
+    }
+    
+    @Override
+    public void modifyText(ModifyEvent arg0)
+    {
+        updateModel();
     }
     
     private void updateModel()
