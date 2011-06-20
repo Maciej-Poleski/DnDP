@@ -1,6 +1,7 @@
 package org.dndp.dndc.engine.card.description;
 
 import java.util.Observable;
+import java.util.Observer;
 
 import org.dndp.dndc.engine.PersonalityTypes;
 
@@ -256,5 +257,9 @@ public class DnDDescription extends Observable implements Description
         this.race = raceOfPlayer;
         notifyObservers(this);
     }
-
+    
+    public void addDescriptionObserver(Observer o)
+    {
+        addObserver(o);
+    };
 }

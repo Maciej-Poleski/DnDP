@@ -3,11 +3,7 @@ package org.dndp.dndc.client.gui.card.hp;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-
 import org.dndp.dndc.engine.card.hp.HitPoints;
-import org.eclipse.jface.viewers.deferred.SetModel;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;

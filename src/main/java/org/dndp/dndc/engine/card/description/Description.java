@@ -1,5 +1,7 @@
 package org.dndp.dndc.engine.card.description;
 
+import java.util.Observer;
+
 import org.dndp.dndc.engine.PersonalityTypes;
 
 /**
@@ -60,4 +62,6 @@ public interface Description
     public String getSkin();
 
     public void setSkin(String newValeu);
+    
+    public void addDescriptionObserver(Observer o);
 }

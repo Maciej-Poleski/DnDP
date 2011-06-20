@@ -34,7 +34,7 @@ public class DescriptionView extends Group implements Observer, ModifyListener
      * @param parent
      * @param style
      */
-    public DescriptionView(Composite parent, int style)
+    public DescriptionView(Composite parent, int style, Description model)
     {
         super(parent, style);
         setText("Opis");

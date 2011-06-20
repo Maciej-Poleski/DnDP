@@ -21,11 +21,13 @@ public class FleatsView extends Group implements Observer
      * @param parent
      * @param style
      */
-    public FleatsView(Composite parent, int style)
+    public FleatsView(Composite parent, int style, CharacterFleatManager model)
     {
         super(parent, style);
         setText("Atuty");
         setLayout(new FillLayout(SWT.HORIZONTAL));
+        
+        model.addFleatObserver(this);
 
         listViewer = new ListViewer(this, SWT.BORDER | SWT.V_SCROLL);
         listViewer.setContentProvider(new CollectionContentProvider());

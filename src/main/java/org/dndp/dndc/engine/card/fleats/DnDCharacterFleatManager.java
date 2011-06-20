@@ -106,5 +106,10 @@ public class DnDCharacterFleatManager extends Observable implements CharacterFle
         setChanged();
         notifyObservers(arg);
     }
-
+    
+    @Override
+    public void addFleatObserver(Observer o)
+    {
+        addObserver(o);
+    }
 }
