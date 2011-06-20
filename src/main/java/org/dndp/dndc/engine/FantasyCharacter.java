@@ -317,7 +317,7 @@ public class FantasyCharacter implements Abilities, Attack, Armor, Description, 
     }
 
     @Override
-    public void setInitiativeModifier(Integer newValue)
+    public void setInitiativeModifier(int newValue)
     {
         attack.setInitiativeModifier(newValue);
     }
@@ -567,5 +567,11 @@ public class FantasyCharacter implements Abilities, Attack, Armor, Description, 
     public void addArmorObserver(Observer o)
     {
         armor.addArmorObserver(o);
+    }
+    
+    @Override
+    public void addAttackObserver(Observer o)
+    {
+        attack.addAttackObserver(o);
     }
 }

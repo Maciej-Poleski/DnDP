@@ -1,5 +1,8 @@
 package org.dndp.dndc.engine.card.attack;
 
+import java.util.Observable;
+import java.util.Observer;
+
 import org.dndp.dndc.engine.FantasyCharacter;
 
 /**
@@ -8,11 +11,11 @@ import org.dndp.dndc.engine.FantasyCharacter;
  * 
  * @author bambucha
  */
-public class DnDAttack implements Attack
+public class DnDAttack extends Observable implements Attack 
 {
     private FantasyCharacter         mother;
     private double            speed;
-    private Integer           initiative;
+    private int           initiative;
     private BaseBonusToAttack baseAtack;
     private BaseAttack        melee;
     private BaseAttack        range;
@@ -89,11 +92,13 @@ public class DnDAttack implements Attack
      *            Wartość bez premi ze zręczności
      */
     @Override
-    public void setInitiativeModifier(Integer newValue)
+    public void setInitiativeModifier(int newValue)
     {
-        if (newValue == null)
-            throw new NullPointerException();
+        if (newValue == initiative)
+            setChanged();
         initiative = newValue;
+        notifyObservers();
+        
     }
 
     /**
@@ -118,7 +123,10 @@ public class DnDAttack implements Attack
         //TODO Sprawdzić w książce i zweryfikować dla małych istot.
         if (newValue % 1.5 != 0)
             throw new IllegalArgumentException("Nowa wartość musi być wielokrotoność 1.5");
+        if(newValue != speed)
+            setChanged();
         this.speed = newValue;
+        notifyObservers();
     }
 
     /**
@@ -140,10 +148,22 @@ public class DnDAttack implements Attack
     @Override
     public void setBaseAttack(BaseBonusToAttack baseAtack)
     {
+        if(this.baseAtack.compareTo(baseAtack) != 0)
+            setChanged();
+        this.baseAtack = baseAtack;
         melee.setBaseAttack(baseAtack);
         range.setBaseAttack(baseAtack);
         grapple.setBaseAttack(baseAtack);
-        this.baseAtack = baseAtack;
+        notifyObservers();
+    }
+    
+    @Override
+    public void addAttackObserver(Observer o)
+    {
+        melee.addObserver(o);
+        range.addObserver(o);
+        grapple.addObserver(o);
+        addObserver(o);
     }
 
 }

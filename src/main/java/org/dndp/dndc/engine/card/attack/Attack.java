@@ -1,5 +1,7 @@
 package org.dndp.dndc.engine.card.attack;
 
+import java.util.Observer;
+
 /**
  * 
  * @author bambucha
@@ -18,9 +20,11 @@ public interface Attack
 
     public Integer getInitiativeModifier();
 
-    public void setInitiativeModifier(Integer newValue);
+    public void setInitiativeModifier(int newValue);
 
     public double getSpeed();
 
     public void setSpeed(double newValue);
+    
+    public void addAttackObserver(Observer o);
 }

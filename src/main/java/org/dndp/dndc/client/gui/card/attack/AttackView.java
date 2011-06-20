@@ -56,10 +56,13 @@ public class AttackView extends Composite implements Observer, ModifyListener
      * @param parent
      * @param style
      */
-    public AttackView(Composite parent, int style)
+    public AttackView(Composite parent, int style,Attack model)
     {
         super(parent, style);
         setLayout(new FillLayout(SWT.HORIZONTAL));
+        
+        this.model = model;
+        model.addAttackObserver(this);
 
         Group grpWalka = new Group(this, SWT.NONE);
         grpWalka.setText("Walka");
