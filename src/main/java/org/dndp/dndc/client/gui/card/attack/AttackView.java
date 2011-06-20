@@ -16,8 +16,6 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.wb.swt.SWTResourceManager;
-import swing2swt.layout.FlowLayout;
-import org.eclipse.swt.layout.RowLayout;
 
 /**
  * Widok ataku. Wyświetla bazow prewmie oraz premie dla wszystkich typw ataku.
@@ -89,12 +87,16 @@ public class AttackView extends Composite implements Observer , ModifyListener
         grpWrcz.setLayout(new FillLayout(SWT.VERTICAL));
         
         meleeSumAttack1Text = new Text(grpWrcz, SWT.BORDER);
+        meleeSumAttack1Text.setEditable(false);
         
         meleeSumAttack2Text = new Text(grpWrcz, SWT.BORDER);
+        meleeSumAttack2Text.setEditable(false);
         
         meleeSumAttack3Text = new Text(grpWrcz, SWT.BORDER);
+        meleeSumAttack3Text.setEditable(false);
         
         meleeSumAttack4Text = new Text(grpWrcz, SWT.BORDER);
+        meleeSumAttack4Text.setEditable(false);
         
         grpDystansowe = new Group(grpWalka, SWT.NONE);
         grpDystansowe.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
@@ -102,12 +104,16 @@ public class AttackView extends Composite implements Observer , ModifyListener
         grpDystansowe.setLayout(new FillLayout(SWT.VERTICAL));
         
         distanceAttack1Text = new Text(grpDystansowe, SWT.BORDER);
+        distanceAttack1Text.setEditable(false);
         
         distanceAttack2Text = new Text(grpDystansowe, SWT.BORDER);
+        distanceAttack2Text.setEditable(false);
         
         distanceAttack3Text = new Text(grpDystansowe, SWT.BORDER);
+        distanceAttack3Text.setEditable(false);
         
         distanceAttack4Text = new Text(grpDystansowe, SWT.BORDER);
+        distanceAttack4Text.setEditable(false);
         
         grpZwarcie = new Group(grpWalka, SWT.NONE);
         grpZwarcie.setLayout(new GridLayout(1, false));
@@ -118,6 +124,7 @@ public class AttackView extends Composite implements Observer , ModifyListener
         label.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, true, 1, 1));
         
         grappleAttackText = new Text(grpZwarcie, SWT.BORDER);
+        grappleAttackText.setEditable(false);
         grappleAttackText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 2));
         
         label_1 = new Label(grpZwarcie, SWT.NONE);
@@ -144,11 +151,18 @@ public class AttackView extends Composite implements Observer , ModifyListener
         if(o instanceof Attack)
         {
             Attack tmp = (Attack)o;
-            int[] x = tmp.getMeleeAttack().getBaseAttack().getBonus();
+            int[] x = tmp.getMeleeAttack().getAttacks().getMainHand();
             meleeSumAttack1Text.setText(Integer.toString(x[0]));
             meleeSumAttack1Text.setText(Integer.toString(x[1]));
             meleeSumAttack1Text.setText(Integer.toString(x[2]));
             meleeSumAttack1Text.setText(Integer.toString(x[3]));
+            x = tmp.getRangeAttack().getAttacks().getMainHand();
+            distanceAttack1Text.setText(Integer.toString(x[0]));
+            distanceAttack1Text.setText(Integer.toString(x[1]));
+            distanceAttack1Text.setText(Integer.toString(x[2]));
+            distanceAttack1Text.setText(Integer.toString(x[3]));
+            x = tmp.getGrappleAttack().getAttacks().getMainHand();
+            grappleAttackText.setText(Integer.toString(x[0]));
         }
     }
     
