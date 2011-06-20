@@ -1,16 +1,13 @@
 /*
- * To change this template, choose Tools | Templates and open the template in the editor.
+ * To change this template, choose Tools | Templates and open the template in
+ * the editor.
  */
 
 package org.dndp.dndc.engine.card.attack;
 
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-
 import org.dndp.dndc.engine.Character;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.junit.Test;
 
 /**
  * 
@@ -18,8 +15,8 @@ import org.junit.Test;
  */
 public class RangeAtackTest
 {
-    static Character main = new Character();
-    static RangeAttack      dupa = new RangeAttack(main);
+    static Character   main = new Character();
+    static RangeAttack dupa = new RangeAttack();
 
     public RangeAtackTest()
     {
@@ -34,28 +31,4 @@ public class RangeAtackTest
     @AfterClass
     public static void tearDownClass() throws Exception
     {}
-
-    @Test
-    public void testCountAttacksModifier()
-    {
-        System.out.println("countAttacksModifier");
-        RangeAttack instance = dupa;
-        instance.countAttacksModifier();
-        assertEquals(instance.countAttacksModifier(), 1);
-    }
-
-    @Test
-    public void testGetAttacks()
-    {
-        System.out.println("getAttacks");
-        RangeAttack instance = dupa;
-        TotalBonusToAttack expResult = new TotalBonusToAttack(new int[] { 1 });
-        TotalBonusToAttack result = instance.getAttacks();
-        assertEquals(instance.countAttacksModifier(), 1);
-        for (int x : result.getMainHand())
-            System.out.print(x + " ");
-        assertArrayEquals(expResult.getMainHand(), result.getMainHand());
-
-    }
-
 }

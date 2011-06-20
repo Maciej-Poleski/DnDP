@@ -19,7 +19,7 @@ import org.junit.Test;
 public class BonusHandlerTest {
 	Character x = new Character();
 	Abiliti t = new Abiliti();
-	BaseBonusHandler test = new BaseBonusHandler(t, x);
+	BaseBonusHandler test = new BaseBonusHandler(t, x, x);
 
 	public BonusHandlerTest() {
 
