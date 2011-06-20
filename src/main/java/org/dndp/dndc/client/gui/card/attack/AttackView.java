@@ -19,38 +19,40 @@ import org.eclipse.wb.swt.SWTResourceManager;
 
 /**
  * Widok ataku. Wyświetla bazow prewmie oraz premie dla wszystkich typw ataku.
+ * 
  * @author evil,bambucha
  */
-public class AttackView extends Composite implements Observer , ModifyListener
+public class AttackView extends Composite implements Observer, ModifyListener
 {
-    private Text baseAttack3Text;
-    private Text baseAttack2Text;
-    private Text baseAttack1Text;
-    private Text meleeSumAttack3Text;
-    private Text baseAttack4Text;
-    private Text meleeSumAttack1Text;
-    private Text meleeSumAttack2Text;
-    private Text meleeSumAttack4Text;
-    private Text distanceAttack1Text;
-    private Text distanceAttack2Text;
-    private Text distanceAttack3Text;
-    private Text distanceAttack4Text;
-    private Label lblInicjatywa;
-    private Text initiativeText;
-    private Label lblSzybko;
-    private Text speedText;
-    
+    private Text   baseAttack3Text;
+    private Text   baseAttack2Text;
+    private Text   baseAttack1Text;
+    private Text   meleeSumAttack3Text;
+    private Text   baseAttack4Text;
+    private Text   meleeSumAttack1Text;
+    private Text   meleeSumAttack2Text;
+    private Text   meleeSumAttack4Text;
+    private Text   distanceAttack1Text;
+    private Text   distanceAttack2Text;
+    private Text   distanceAttack3Text;
+    private Text   distanceAttack4Text;
+    private Label  lblInicjatywa;
+    private Text   initiativeText;
+    private Label  lblSzybko;
+    private Text   speedText;
+
     private Attack model;
-    private Group grpBazowy;
-    private Group grpWrcz;
-    private Group grpDystansowe;
-    private Group grpZwarcie;
-    private Text grappleAttackText;
-    private Label label;
-    private Label label_1;
+    private Group  grpBazowy;
+    private Group  grpWrcz;
+    private Group  grpDystansowe;
+    private Group  grpZwarcie;
+    private Text   grappleAttackText;
+    private Label  label;
+    private Label  label_1;
 
     /**
      * Create the composite.
+     * 
      * @param parent
      * @param style
      */
@@ -58,93 +60,104 @@ public class AttackView extends Composite implements Observer , ModifyListener
     {
         super(parent, style);
         setLayout(new FillLayout(SWT.HORIZONTAL));
-        
+
         Group grpWalka = new Group(this, SWT.NONE);
         grpWalka.setText("Walka");
         grpWalka.setLayout(new GridLayout(4, false));
-        
+
         grpBazowy = new Group(grpWalka, SWT.NONE);
-        grpBazowy.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+        grpBazowy.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false,
+                false, 1, 1));
         grpBazowy.setText("Bazowy");
         grpBazowy.setLayout(new FillLayout(SWT.VERTICAL));
-        
+
         baseAttack1Text = new Text(grpBazowy, SWT.BORDER);
-        
+
         baseAttack2Text = new Text(grpBazowy, SWT.BORDER);
-        
+
         baseAttack3Text = new Text(grpBazowy, SWT.BORDER);
-        
+
         baseAttack4Text = new Text(grpBazowy, SWT.BORDER);
         baseAttack4Text.addModifyListener(this);
         baseAttack3Text.addModifyListener(this);
         baseAttack2Text.addModifyListener(this);
-        
+
         baseAttack1Text.addModifyListener(this);
-        
+
         grpWrcz = new Group(grpWalka, SWT.NONE);
-        grpWrcz.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+        grpWrcz.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false,
+                1, 1));
         grpWrcz.setText("Wręcz");
         grpWrcz.setLayout(new FillLayout(SWT.VERTICAL));
-        
+
         meleeSumAttack1Text = new Text(grpWrcz, SWT.BORDER);
         meleeSumAttack1Text.setEditable(false);
-        
+
         meleeSumAttack2Text = new Text(grpWrcz, SWT.BORDER);
         meleeSumAttack2Text.setEditable(false);
-        
+
         meleeSumAttack3Text = new Text(grpWrcz, SWT.BORDER);
         meleeSumAttack3Text.setEditable(false);
-        
+
         meleeSumAttack4Text = new Text(grpWrcz, SWT.BORDER);
         meleeSumAttack4Text.setEditable(false);
-        
+
         grpDystansowe = new Group(grpWalka, SWT.NONE);
-        grpDystansowe.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+        grpDystansowe.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false,
+                false, 1, 1));
         grpDystansowe.setText("Dystansowe");
         grpDystansowe.setLayout(new FillLayout(SWT.VERTICAL));
-        
+
         distanceAttack1Text = new Text(grpDystansowe, SWT.BORDER);
         distanceAttack1Text.setEditable(false);
-        
+
         distanceAttack2Text = new Text(grpDystansowe, SWT.BORDER);
         distanceAttack2Text.setEditable(false);
-        
+
         distanceAttack3Text = new Text(grpDystansowe, SWT.BORDER);
         distanceAttack3Text.setEditable(false);
-        
+
         distanceAttack4Text = new Text(grpDystansowe, SWT.BORDER);
         distanceAttack4Text.setEditable(false);
-        
+
         grpZwarcie = new Group(grpWalka, SWT.NONE);
         grpZwarcie.setLayout(new GridLayout(1, false));
-        grpZwarcie.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1));
+        grpZwarcie.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false,
+                1, 1));
         grpZwarcie.setText("Zwarcie");
-        
+
         label = new Label(grpZwarcie, SWT.NONE);
-        label.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, true, 1, 1));
-        
+        label.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, true, 1,
+                1));
+
         grappleAttackText = new Text(grpZwarcie, SWT.BORDER);
         grappleAttackText.setEditable(false);
-        grappleAttackText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 2));
-        
+        grappleAttackText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER,
+                true, false, 1, 2));
+
         label_1 = new Label(grpZwarcie, SWT.NONE);
-        label_1.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, true, 1, 1));
-        
+        label_1.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, true,
+                1, 1));
+
         lblInicjatywa = new Label(grpWalka, SWT.NONE);
-        lblInicjatywa.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1));
+        lblInicjatywa.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false,
+                false, 1, 1));
         lblInicjatywa.setText("Inicjatywa");
-        
+
         initiativeText = new Text(grpWalka, SWT.BORDER);
-        initiativeText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
-        
+        initiativeText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
+                false, 1, 1));
+
         lblSzybko = new Label(grpWalka, SWT.NONE);
-        lblSzybko.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1));
+        lblSzybko.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false,
+                false, 1, 1));
         lblSzybko.setText("Szybkoś");
-        
+
         speedText = new Text(grpWalka, SWT.BORDER);
-        speedText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+        speedText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false,
+                1, 1));
     }
-    
+
     @Override
     public void update(Observable o, Object arg)
     {
@@ -165,13 +178,13 @@ public class AttackView extends Composite implements Observer , ModifyListener
             grappleAttackText.setText(Integer.toString(x[0]));
         }
     }
-    
+
     @Override
     public void modifyText(ModifyEvent arg0)
     {
-        updateModel();   
+        updateModel();
     }
-    
+
     /**
      * Nakłada zmianny z GUI na model.
      */
@@ -188,10 +201,12 @@ public class AttackView extends Composite implements Observer , ModifyListener
             return;
         model.setBaseAttack(new BaseBonusToAttack(tmp));
     }
-    
+
     /**
      * Zwraca zawartość pola, a w razie błędu koloruje je na czerowono.
-     * @param field Pole do parsowania
+     * 
+     * @param field
+     *            Pole do parsowania
      * @return zawartość pola
      */
     private int parseField(Text field)
@@ -201,7 +216,7 @@ public class AttackView extends Composite implements Observer , ModifyListener
             field.setBackground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
             return Integer.parseInt(field.getText());
         }
-        catch (NumberFormatException e)
+        catch(NumberFormatException e)
         {
             field.setBackground(SWTResourceManager.getColor(SWT.COLOR_RED));
             return -1;
@@ -214,4 +229,8 @@ public class AttackView extends Composite implements Observer , ModifyListener
         // Disable the check that prevents subclassing of SWT components
     }
 
+    public void setModel(Attack model)
+    {
+        this.model = model;
+    }
 }

@@ -4,8 +4,13 @@ import java.util.Observable;
 import java.util.Observer;
 
 import org.dndp.dndc.client.gui.card.CollectionContentProvider;
+import org.dndp.dndc.engine.card.classes.CharacterClass;
 import org.dndp.dndc.engine.card.classes.CharacterClassManager;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ListViewer;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
@@ -16,7 +21,8 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Text;
 
-public class ClassesView extends Group implements Observer
+public class ClassesView extends Group implements Observer,
+        ISelectionChangedListener
 {
     private Text       classNameText;
     private Text       classLevelText;
@@ -41,6 +47,7 @@ public class ClassesView extends Group implements Observer
         listViewer = new ListViewer(this, SWT.BORDER | SWT.V_SCROLL);
         listViewer.setLabelProvider(new ClassLabelProvider());
         listViewer.setContentProvider(new CollectionContentProvider());
+        listViewer.addSelectionChangedListener(this);
         List listView = listViewer.getList();
         listView.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false,
                 1, 2));
@@ -124,5 +131,20 @@ public class ClassesView extends Group implements Observer
     protected void checkSubclass()
     {
         // Disable the check that prevents subclassing of SWT components
+    }
+
+    @Override
+    public void selectionChanged(SelectionChangedEvent arg0)
+    {
+        ISelection selection = arg0.getSelection();
+        if(selection.isEmpty())
+            return;
+        else
+        {
+            CharacterClass tmp = (CharacterClass)((IStructuredSelection)selection)
+                    .getFirstElement();
+            classNameText.setText(tmp.getClasses().getName());
+            classLevelText.setText(tmp.getLevel().toString());
+        }
     }
 }
