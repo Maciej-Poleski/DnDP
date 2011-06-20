@@ -1,13 +1,19 @@
 package org.dndp.dndc.client.gui.card.description;
 
+import java.util.Observable;
+import java.util.Observer;
+
+import org.dndp.dndc.engine.PersonalityTypes;
+import org.dndp.dndc.engine.card.description.Description;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.wb.swt.SWTResourceManager;
 
-public class DescriptionView extends Group
+public class DescriptionView extends Group implements Observer
 {
     private Text raceText;
     private Text religionText;
@@ -19,6 +25,8 @@ public class DescriptionView extends Group
     private Text genderText;
     private Text nameText;
     private Text playerText;
+    
+    private Description model;
 
     /**
      * Create the composite.
@@ -68,5 +76,57 @@ public class DescriptionView extends Group
     {
         // Disable the check that prevents subclassing of SWT components
     }
-
+    
+    @Override
+    public void update(Observable o, Object arg)
+    {
+        if( o instanceof Description )
+        {
+            Description tmp = (Description)o;
+            nameText.setText(tmp.getName());
+            playerText.setText(tmp.getPlayer());
+            raceText.setText(tmp.getRase().getName());
+            religionText.setText(tmp.getGod().getName());
+            alignmentText.setText(tmp.getPersonality().getName());
+            // FIXME Dojść co to jest za pole ^^
+            personalityTypeText.setText(tmp.getPersonality().toString());
+            ageText.setText(Integer.toString(tmp.getAge()));
+            weightText.setText(Integer.toString(tmp.getWeight()));
+            sizeText.setText(tmp.getSize().name());
+            genderText.setText(tmp.getSex().getName());
+        }   
+    }
+    
+    /**
+     * Zwraca zawartość pola, a w razie błędu koloruje je na czerowono.
+     * 
+     * @param field
+     *            Pole do parsowania
+     * @return zawartość pola
+     */
+    private int parseField(Text field)
+    {
+        try
+        {
+            field.setBackground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
+            return Integer.parseInt(field.getText());
+        }
+        catch(NumberFormatException e)
+        {
+            field.setBackground(SWTResourceManager.getColor(SWT.COLOR_RED));
+            return -1;
+        }
+    }
+    
+    private void updateModel()
+    {
+        //FIXME god, race, personalytyType, size, gender #55
+        model.setName(nameText.getText());
+        model.setPlayer(playerText.getText());
+        if(parseField(ageText) > 0)
+            model.setAge(parseField(ageText));
+        if(parseField(weightText) > 0)
+            model.setWeight(parseField(weightText));
+        
+    }
 }
