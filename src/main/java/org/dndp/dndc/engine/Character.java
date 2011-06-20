@@ -79,9 +79,9 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
      */
     public Character()
     {
-        bonusManager = new DnDBonusManager(this);
-        abilities = new DnDAbilities(this);
         description = new DnDDescription();
+        bonusManager = new DnDBonusManager(this,this);
+        abilities = new DnDAbilities(this);
         HP = new DnDHitPoints();
         savingThrows = new DnDSavingThrows(this);
         armor = new DnDArmor(this, this, this);
