@@ -593,4 +593,16 @@ public class FantasyCharacter implements Abilities, Attack, Armor, Description, 
     {
         characterFleatManager.addFleatObserver(o);
     }
+    
+    @Override
+    public void addHitPointsObserver(Observer o)
+    {
+        HP.addHitPointsObserver(o);
+    }
+    
+    @Override
+    public void addSkillObserver(Observer o)
+    {
+        skilManager.addSkillObserver(o);   
+    }
 }

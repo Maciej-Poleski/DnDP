@@ -5,6 +5,7 @@ import java.util.Observer;
 
 import org.dndp.dndc.client.gui.card.CollectionContentProvider;
 import org.dndp.dndc.engine.card.skills.CharacterSkill;
+import org.dndp.dndc.engine.card.skills.SkillManager;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.swt.SWT;
@@ -30,11 +31,13 @@ public class SkillsView extends Group implements Observer
      * @param parent
      * @param style
      */
-    public SkillsView(Composite parent, int style)
+    public SkillsView(Composite parent, int style, SkillManager model)
     {
         super(parent, style);
         setText("Umiejętności");
         setLayout(new GridLayout(2, false));
+        
+        model.addSkillObserver(this);
 
         tableViewer = new TableViewer(this, SWT.BORDER | SWT.FULL_SELECTION);
         tableViewer.setContentProvider(new CollectionContentProvider());

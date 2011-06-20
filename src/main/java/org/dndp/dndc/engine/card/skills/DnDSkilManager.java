@@ -101,4 +101,10 @@ public class DnDSkilManager extends Observable implements SkillManager,Observer
         setChanged();
         notifyObservers(getCharacterSkillSet());
     }
+    
+    @Override
+    public void addSkillObserver(Observer o)
+    {
+        addObserver(o);
+    }
 }

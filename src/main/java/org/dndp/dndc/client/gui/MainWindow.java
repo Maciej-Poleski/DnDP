@@ -6,6 +6,8 @@ import org.dndp.dndc.client.gui.card.attack.AttackView;
 import org.dndp.dndc.client.gui.card.classes.ClassesView;
 import org.dndp.dndc.client.gui.card.description.DescriptionView;
 import org.dndp.dndc.client.gui.card.fleats.FleatsView;
+import org.dndp.dndc.client.gui.card.hp.HpView;
+import org.dndp.dndc.client.gui.card.skills.SkillsView;
 import org.dndp.dndc.client.gui.chat.ChatPanel;
 import org.dndp.dndc.engine.FantasyCharacter;
 import org.dndp.dndc.engine.card.abilities.DnDAbilities;
@@ -84,7 +86,7 @@ public class MainWindow extends Thread
         
         FantasyCharacter mock = new FantasyCharacter();
         
-        Composite comp = new  FleatsView(shell, SWT.NONE, mock);
+        Composite comp = new  SkillsView(shell, SWT.NONE, mock);
         
         comp.setLayoutData(data);
         
