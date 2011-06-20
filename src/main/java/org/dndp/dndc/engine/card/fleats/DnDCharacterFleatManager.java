@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
-import org.dndp.dndc.engine.Character;
+import org.dndp.dndc.engine.FantasyCharacter;
 import org.dndp.dndc.engine.benefit.Benefit;
 import org.dndp.dndc.engine.check.Checkable;
 
@@ -19,17 +19,17 @@ import org.dndp.dndc.engine.check.Checkable;
 public class DnDCharacterFleatManager extends Observable implements CharacterFleatManager, Observer
 {
     private Map<Fleat, CharacterFleat> characterFleatsMapping;
-    private Character                  character;
+    private FantasyCharacter                  fantasyCharacter;
 
     /**
      * Konstruktor.
      * 
-     * @param character
+     * @param fantasyCharacter
      *            Postać
      */
-    public DnDCharacterFleatManager(Character character)
+    public DnDCharacterFleatManager(FantasyCharacter fantasyCharacter)
     {
-        this.character = character;
+        this.fantasyCharacter = fantasyCharacter;
         characterFleatsMapping = new HashMap<Fleat, CharacterFleat>();
         for( CharacterFleat fleat : characterFleatsMapping.values())
             fleat.addObserver(this);
@@ -67,7 +67,7 @@ public class DnDCharacterFleatManager extends Observable implements CharacterFle
     {
         boolean result = true;
         for (Checkable c : fleat.getDependency())
-            result = result && c.check(character);
+            result = result && c.check(fantasyCharacter);
         return result;
     }
     
@@ -78,7 +78,7 @@ public class DnDCharacterFleatManager extends Observable implements CharacterFle
     public void setFleatBenefit(Fleat fleat)
     {
         for(Benefit b : fleat.getBenefits())
-            b.apply(character);
+            b.apply(fantasyCharacter);
     }
     
     /**
@@ -88,7 +88,7 @@ public class DnDCharacterFleatManager extends Observable implements CharacterFle
     public void unsetFleatBenefit(Fleat fleat)
     {
         for(Benefit b : fleat.getBenefits())
-            b.abandon(character);
+            b.abandon(fantasyCharacter);
     }
 
     /**

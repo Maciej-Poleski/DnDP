@@ -7,7 +7,7 @@ import java.util.Observable;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-import org.dndp.dndc.engine.Character;
+import org.dndp.dndc.engine.FantasyCharacter;
 import org.dndp.dndc.engine.benefit.Benefit;
 import org.dndp.dndc.engine.card.skills.Skill;
 import org.dndp.dndc.engine.check.CheckFailException;
@@ -21,19 +21,19 @@ import org.dndp.dndc.engine.check.Checkable;
  */
 public class DnDCharacterClassManager extends Observable implements CharacterClassManager
 {
-    private Character            character;
+    private FantasyCharacter            fantasyCharacter;
     private List<CharacterClass> classList;
     private Integer              level;
     private Integer              experiancePoint;
     private boolean              promoted;
 
     /**
-     * @param character
+     * @param fantasyCharacter
      */
-    public DnDCharacterClassManager(Character character)
+    public DnDCharacterClassManager(FantasyCharacter fantasyCharacter)
     {
         super();
-        this.character = character;
+        this.fantasyCharacter = fantasyCharacter;
         classList = new LinkedList<CharacterClass>();
     }
 
@@ -123,11 +123,11 @@ public class DnDCharacterClassManager extends Observable implements CharacterCla
         if(toPromote == null) // Postać nie ma jeszcze tej klasy...
         {
             for (Checkable checkable : classes.getConditions())
-                if(!checkable.check(character))
+                if(!checkable.check(fantasyCharacter))
                     throw new CheckFailException("Postać nie spełnia wymagań");
             toPromote = new CharacterClass(classes, 0);
             for (Skill skil : toPromote.getClasses().getClassFleats())
-                character.getSkil(skil.getName()).setClasses(true);
+                fantasyCharacter.getSkil(skil.getName()).setClasses(true);
             classList.add(toPromote);
         }
         toPromote.setLevel(toPromote.getLevel() + 1); //Dodanie poziomu do klasu
@@ -135,7 +135,7 @@ public class DnDCharacterClassManager extends Observable implements CharacterCla
         notifyObservers(); // Uaktualnienie atutów, i inne rzeczy związanie z typem.
         for (Benefit benefit : toPromote.getClasses().getLevelBenefitsList()[toPromote.getLevel()])
             //Dodanie premi klasowych
-            benefit.apply(character);
+            benefit.apply(fantasyCharacter);
     }
 
     @Override

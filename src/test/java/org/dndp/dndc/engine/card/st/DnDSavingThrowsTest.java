@@ -7,7 +7,7 @@ package org.dndp.dndc.engine.card.st;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import org.dndp.dndc.engine.Character;
+import org.dndp.dndc.engine.FantasyCharacter;
 import org.dndp.dndc.engine.card.bonus.BonusManager;
 import org.dndp.dndc.engine.card.bonus.DnDBonusManager;
 import org.junit.AfterClass;
@@ -22,7 +22,7 @@ import org.junit.Test;
 public class DnDSavingThrowsTest
 {
 
-    Character d    = new Character();
+    FantasyCharacter d    = new FantasyCharacter();
     BonusManager     s    = new DnDBonusManager(d,d);
     DnDSavingThrows  test = new DnDSavingThrows(s);
 

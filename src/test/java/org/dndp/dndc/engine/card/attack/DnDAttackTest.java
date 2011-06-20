@@ -8,7 +8,7 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import org.dndp.dndc.engine.Character;
+import org.dndp.dndc.engine.FantasyCharacter;
 import org.dndp.dndc.engine.card.description.Size;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -22,7 +22,7 @@ import org.junit.Test;
  */
 public class DnDAttackTest
 {
-    static Character t    = new Character();
+    static FantasyCharacter t    = new FantasyCharacter();
     static DnDAttack        dupa = new DnDAttack(t);
 
     public DnDAttackTest()

@@ -1,6 +1,6 @@
 package org.dndp.dndc.engine.check;
 
-import org.dndp.dndc.engine.Character;
+import org.dndp.dndc.engine.FantasyCharacter;
 
 public class SaveingThrowCheck implements Checkable
 {
@@ -25,20 +25,20 @@ public class SaveingThrowCheck implements Checkable
 
 
     @Override
-    public boolean check(Character character)
+    public boolean check(FantasyCharacter fantasyCharacter)
     {
         boolean result = true;
         if(fortitue)
         {
-            result &= character.getForttiude().getTotalModifier() >= value;
+            result &= fantasyCharacter.getForttiude().getTotalModifier() >= value;
         }
         if(dexterity)
         {
-            result &= character.getReflex().getTotalModifier() >= value;
+            result &= fantasyCharacter.getReflex().getTotalModifier() >= value;
         }
         if(will)
         {
-            result &= character.getWill().getTotalModifier() >= value;
+            result &= fantasyCharacter.getWill().getTotalModifier() >= value;
         }
         return result;
     }

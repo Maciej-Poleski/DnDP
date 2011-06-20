@@ -4,7 +4,7 @@
 
 package org.dndp.dndc.engine.card.attack;
 
-import org.dndp.dndc.engine.Character;
+import org.dndp.dndc.engine.FantasyCharacter;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 
@@ -14,7 +14,7 @@ import org.junit.BeforeClass;
  */
 public class MeleeAtackTest
 {
-    static Character main = new Character();
+    static FantasyCharacter main = new FantasyCharacter();
     static MeleeAttack      dupa = new MeleeAttack();
 
     public MeleeAtackTest()

@@ -2,7 +2,7 @@ package org.dndp.dndc.engine.card.attack;
 
 import java.util.Arrays;
 
-import org.dndp.dndc.engine.Character;
+import org.dndp.dndc.engine.FantasyCharacter;
 import org.dndp.dndc.engine.card.abilities.AbilityType;
 
 
@@ -19,7 +19,7 @@ public class GrappleAttack extends BaseAttack
      * 
      * @param main
      */
-    public GrappleAttack(Character main)
+    public GrappleAttack(FantasyCharacter main)
     {
         super();
     }

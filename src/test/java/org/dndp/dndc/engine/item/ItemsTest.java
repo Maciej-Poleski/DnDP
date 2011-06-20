@@ -4,7 +4,7 @@ import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNull;
 import static junit.framework.Assert.fail;
 
-import org.dndp.dndc.engine.Character;
+import org.dndp.dndc.engine.FantasyCharacter;
 import org.dndp.dndc.engine.benefit.Benefit;
 import org.dndp.dndc.engine.item.armor.Plate;
 import org.dndp.dndc.engine.item.things.Belt;
@@ -21,8 +21,8 @@ import org.junit.Test;
 
 public class ItemsTest
 {
-    static Character           character        = new Character();
-    static DnDEquipmentManager equipmentManager = new DnDEquipmentManager(character);
+    static FantasyCharacter           fantasyCharacter        = new FantasyCharacter();
+    static DnDEquipmentManager equipmentManager = new DnDEquipmentManager(fantasyCharacter);
 
     static Value               value            = new Value(0, 1, 2, 0);
     static Benefit[]           benefits         = new Benefit[0];

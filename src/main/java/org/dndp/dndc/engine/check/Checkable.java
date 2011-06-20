@@ -4,7 +4,7 @@
  */
 package org.dndp.dndc.engine.check;
 
-import org.dndp.dndc.engine.Character;
+import org.dndp.dndc.engine.FantasyCharacter;
 
 /**
  * Interfejs sprawdzający...
@@ -17,9 +17,9 @@ public interface Checkable
     /**
      * Sprawdza czy można zastosować.
      * 
-     * @param character
+     * @param fantasyCharacter
      *            Postać na rzecz której dokonuje sie sprawdzanie.
      * @return true Jeżeli można.
      */
-    boolean check(Character character);
+    boolean check(FantasyCharacter fantasyCharacter);
 }

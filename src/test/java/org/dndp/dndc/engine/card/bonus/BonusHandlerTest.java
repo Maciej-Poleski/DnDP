@@ -6,7 +6,7 @@ package org.dndp.dndc.engine.card.bonus;
 
 import static org.junit.Assert.assertEquals;
 
-import org.dndp.dndc.engine.Character;
+import org.dndp.dndc.engine.FantasyCharacter;
 import org.dndp.dndc.engine.card.abilities.Abiliti;
 import org.junit.Test;
 
@@ -17,7 +17,7 @@ import org.junit.Test;
  * @author bambucha
  */
 public class BonusHandlerTest {
-	Character x = new Character();
+	FantasyCharacter x = new FantasyCharacter();
 	Abiliti t = new Abiliti();
 	BaseBonusHandler test = new BaseBonusHandler(t, x, x);
 

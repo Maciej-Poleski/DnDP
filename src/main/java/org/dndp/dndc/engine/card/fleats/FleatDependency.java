@@ -1,6 +1,6 @@
 package org.dndp.dndc.engine.card.fleats;
 
-import org.dndp.dndc.engine.Character;
+import org.dndp.dndc.engine.FantasyCharacter;
 import org.dndp.dndc.engine.check.Checkable;
 
 /**
@@ -27,13 +27,13 @@ public class FleatDependency implements Checkable
     /**
      * Sprawdza czy atut jest dostępny.
      * 
-     * @param character
+     * @param fantasyCharacter
      * @return
      */
     @Override
-    public boolean check(Character character)
+    public boolean check(FantasyCharacter fantasyCharacter)
     {
-        return character.getCharacterFleat(fleat).getState() == CharacterFleat.State.ENABLED;
+        return fantasyCharacter.getCharacterFleat(fleat).getState() == CharacterFleat.State.ENABLED;
     }
 
 }

@@ -1,6 +1,6 @@
 package org.dndp.dndc.engine.item;
 
-import org.dndp.dndc.engine.Character;
+import org.dndp.dndc.engine.FantasyCharacter;
 
 /**
  * Interfejs pozwalający na taka postaci przedmiotem.
@@ -15,5 +15,5 @@ public interface Attackable
      * @param who
      *            Zatakowany
      */
-    public void Attack(Character who);
+    public void Attack(FantasyCharacter who);
 }

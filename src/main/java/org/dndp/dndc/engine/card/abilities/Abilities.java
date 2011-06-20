@@ -4,7 +4,7 @@ package org.dndp.dndc.engine.card.abilities;
  * Interfejs obsługi atrybutów
  * 
  * @author bambucha
- * @see dndp.engine.Character
+ * @see FantasyCharacter.engine.Character
  * @see engine.karta.abilities.DnDAbilities
  */
 public interface Abilities

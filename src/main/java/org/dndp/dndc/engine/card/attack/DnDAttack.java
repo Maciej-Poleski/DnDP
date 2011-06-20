@@ -1,6 +1,6 @@
 package org.dndp.dndc.engine.card.attack;
 
-import org.dndp.dndc.engine.Character;
+import org.dndp.dndc.engine.FantasyCharacter;
 
 /**
  * Klasa przechowująca informacje co do możliwych ataków wykonywanych przez
@@ -10,7 +10,7 @@ import org.dndp.dndc.engine.Character;
  */
 public class DnDAttack implements Attack
 {
-    private Character         mother;
+    private FantasyCharacter         mother;
     private double            speed;
     private Integer           initiative;
     private BaseBonusToAttack baseAtack;
@@ -23,7 +23,7 @@ public class DnDAttack implements Attack
      * 
      * @param mother
      */
-    public DnDAttack(Character mother)
+    public DnDAttack(FantasyCharacter mother)
     {
         this.mother = mother;
         speed = 9D;

@@ -1,6 +1,6 @@
 package org.dndp.dndc.engine.check;
 
-import org.dndp.dndc.engine.Character;
+import org.dndp.dndc.engine.FantasyCharacter;
 import org.dndp.dndc.engine.card.fleats.CharacterFleat.State;
 import org.dndp.dndc.engine.card.fleats.Fleat;
 
@@ -28,8 +28,8 @@ public class FleatCheck implements Checkable
      * @see engine.check.Checkable#check(engine.Character)
      */
     @Override
-    public boolean check(Character character)
+    public boolean check(FantasyCharacter fantasyCharacter)
     {
-        return character.getCharacterFleat(fleat).getState() == State.ENABLED;
+        return fantasyCharacter.getCharacterFleat(fleat).getState() == State.ENABLED;
     }
 }
