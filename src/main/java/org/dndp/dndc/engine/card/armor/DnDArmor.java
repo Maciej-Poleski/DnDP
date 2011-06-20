@@ -1,6 +1,7 @@
 package org.dndp.dndc.engine.card.armor;
 
 import java.util.Observable;
+import java.util.Observer;
 
 import org.dndp.dndc.engine.card.abilities.Abilities;
 import org.dndp.dndc.engine.card.abilities.AbilityType;
@@ -97,5 +98,11 @@ public class DnDArmor extends Observable implements Armor, Bonusable
     public boolean isSizeImportant()
     {
         return true;
+    }
+    
+    @Override
+    public void addArmorObserver(Observer o)
+    {
+        addObserver(o);
     }
 }

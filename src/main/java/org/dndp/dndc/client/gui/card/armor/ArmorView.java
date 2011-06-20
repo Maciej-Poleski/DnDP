@@ -24,7 +24,7 @@ public class ArmorView extends Composite implements Observer
      * @param parent
      * @param style
      */
-    public ArmorView(Composite parent, int style)
+    public ArmorView(Composite parent, int style, Armor model)
     {
         super(parent, style);
         setLayout(new FillLayout(SWT.HORIZONTAL));
@@ -54,6 +54,7 @@ public class ArmorView extends Composite implements Observer
         touchText = new Text(grpKlasaPancerza, SWT.BORDER);
         touchText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
         
+        model.addArmorObserver(this);
     }
     
     

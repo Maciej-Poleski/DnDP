@@ -1,5 +1,7 @@
 package org.dndp.dndc.engine.card.armor;
 
+import java.util.Observer;
+
 /**
  * Interfejs obsługi pancerza
  * @author bambucha
@@ -24,5 +26,11 @@ public interface Armor
      * @return
      */
     public Integer getAC();
+    
+    /**
+     * Dodaje obserwatora do modułu klasy pancerza.
+     * @param o obserwator
+     */
+    public void addArmorObserver(Observer o);
 
 }

@@ -1,7 +1,9 @@
 package org.dndp.dndc.client.gui;
 
 import org.dndp.dndc.client.gui.card.abilities.AbilitiesView;
+import org.dndp.dndc.client.gui.card.armor.ArmorView;
 import org.dndp.dndc.client.gui.chat.ChatPanel;
+import org.dndp.dndc.engine.FantasyCharacter;
 import org.dndp.dndc.engine.card.abilities.DnDAbilities;
 import org.dndp.dndc.engine.card.bonus.BaseBonusHandler;
 import org.dndp.dndc.engine.card.bonus.BonusManager;
@@ -76,23 +78,9 @@ public class MainWindow extends Thread
         data.left = new FormAttachment(0);
         data.right = new FormAttachment(100);
         
-        Composite comp = new AbilitiesView(shell, SWT.NONE, new DnDAbilities(new BonusManager()
-        {
-            
-            @Override
-            public void registerBonus(String name, Bonusable newBonus)
-            {
-                // TODO Auto-generated method stub
-                
-            }
-            
-            @Override
-            public BaseBonusHandler getBonusHandler(String name)
-            {
-                // TODO Auto-generated method stub
-                return null;
-            }
-        }));
+        FantasyCharacter mock = new FantasyCharacter();
+        
+        Composite comp = new ArmorView(shell, SWT.NONE, mock);
         
         comp.setLayoutData(data);
         

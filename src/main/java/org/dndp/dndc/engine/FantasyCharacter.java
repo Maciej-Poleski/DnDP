@@ -2,6 +2,7 @@ package org.dndp.dndc.engine;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Observer;
 import java.util.Set;
 
 import org.dndp.dndc.engine.card.UnavailableTestException;
@@ -562,4 +563,9 @@ public class FantasyCharacter implements Abilities, Attack, Armor, Description, 
         return skilManager.getCharacterSkillSet();
     }
     
+    @Override
+    public void addArmorObserver(Observer o)
+    {
+        armor.addArmorObserver(o);
+    }
 }
