@@ -12,7 +12,6 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -41,11 +40,11 @@ public class ClassesView extends Group implements Observer,
     public ClassesView(Composite parent, int style, CharacterClassManager model)
     {
         super(parent, SWT.NONE);
-        
+
         model.addCharacterClassObserver(this);
-        
+
         setText("Klasy");
-        setLayout(new GridLayout(3, false));
+        setLayout(new GridLayout(6, false));
 
         listViewer = new ListViewer(this, SWT.BORDER | SWT.V_SCROLL);
         listViewer.setLabelProvider(new ClassLabelProvider());
@@ -53,11 +52,11 @@ public class ClassesView extends Group implements Observer,
         listViewer.addSelectionChangedListener(this);
         List listView = listViewer.getList();
         listView.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false,
-                1, 2));
+                2, 2));
 
         Group grpSzczegy = new Group(this, SWT.NONE);
-        grpSzczegy.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false,
-                false, 1, 2));
+        grpSzczegy.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false,
+                3, 2));
         grpSzczegy.setText("Szczegóły");
         grpSzczegy.setLayout(new GridLayout(2, false));
 
@@ -85,28 +84,23 @@ public class ClassesView extends Group implements Observer,
         lblSuma.setText("Suma");
 
         sumText = new Text(this, SWT.BORDER);
-        sumText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false,
-                1, 1));
+        sumText.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false,
+                false, 1, 1));
 
-        Composite composite = new Composite(this, SWT.NONE);
-        composite.setLayout(new FillLayout(SWT.HORIZONTAL));
-        composite.setLayoutData(new GridData(SWT.FILL, SWT.TOP, false, true, 3,
-                1));
-
-        Label lblDowiadczenie = new Label(composite, SWT.CENTER);
+        Label lblDowiadczenie = new Label(this, SWT.CENTER);
         lblDowiadczenie.setText("Doświadczenie");
 
-        experienceText = new Text(composite, SWT.BORDER);
+        experienceText = new Text(this, SWT.BORDER);
 
-        Label lblSkala = new Label(composite, SWT.CENTER);
+        Label lblSkala = new Label(this, SWT.CENTER);
         lblSkala.setText("Kara");
 
-        pentlyText = new Text(composite, SWT.BORDER);
+        pentlyText = new Text(this, SWT.BORDER);
 
-        Label lblNastpnyPoziom = new Label(composite, SWT.CENTER);
+        Label lblNastpnyPoziom = new Label(this, SWT.CENTER);
         lblNastpnyPoziom.setText("Następny poziom");
 
-        nextLevelText = new Text(composite, SWT.BORDER);
+        nextLevelText = new Text(this, SWT.BORDER);
 
     }
 
