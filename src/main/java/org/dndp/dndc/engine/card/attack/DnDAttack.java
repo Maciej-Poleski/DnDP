@@ -29,9 +29,9 @@ public class DnDAttack implements Attack
         speed = 9D;
         initiative = 0;
         baseAtack = new BaseBonusToAttack(new int[] { 0 });
-        melee = new MeleeAttack(mother);
+        melee = new MeleeAttack();
         mother.registerBonus("MeleeAttack", melee);
-        range = new RangeAttack(mother);
+        range = new RangeAttack();
         mother.registerBonus("RangeAttack", range);
         grapple = new GrappleAttack(mother);
         mother.registerBonus("GrappleAttack", grapple);

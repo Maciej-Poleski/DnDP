@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.Observable;
 import java.util.Observer;
 
-import org.dndp.dndc.engine.Character;
 import org.dndp.dndc.engine.card.bonus.Bonusable;
 
 /**
@@ -17,16 +16,12 @@ public abstract class BaseAttack extends Observable implements Bonusable, Observ
 {
     private BaseBonusToAttack baseAtack;
     private int               bonus;
-    protected Character       main;
 
     /**
      * Standardowy konstruktor Ustawia bazową premię do ataku na 0
-     * 
-     * @param main
      */
-    public BaseAttack(Character main)
+    public BaseAttack()
     {
-        this.main = main;
         baseAtack = new BaseBonusToAttack(new int[] { 0 });
         bonus = 0;
     }
@@ -57,22 +52,14 @@ public abstract class BaseAttack extends Observable implements Bonusable, Observ
         notifyObservers();
     }
 
-    /**
-     * Funkcja licząca modyfikator ataku, niezależny od bazowego. Jest to
-     * uwzględnienie rozmiaru, siły, zręczności. W zalezności od ataku.
-     */
-    protected abstract int countAttacksModifier();
-
     /*
      * Zwraca całkowitą premię do ataku, bez uwzględnienia broni.
      */
     public TotalBonusToAttack getAttacks()
     {
-        countAttacksModifier();
-        int attackModifier = countAttacksModifier();
         int[] temp = Arrays.copyOf(baseAtack.getBonus(), baseAtack.getNumberOfAttacks());
         for (int q = 0; q < temp.length; ++q)
-            temp[q] += (attackModifier + bonus);
+            temp[q] += bonus;
         return new TotalBonusToAttack(temp);
     }
 
@@ -88,10 +75,14 @@ public abstract class BaseAttack extends Observable implements Bonusable, Observ
     @Override
     public void update(Observable o, Object arg)
     {
-        // TODO Auto-generated method stub
+        // FIXME Auto-generated method stub
         
     }
     
-    
+    @Override
+    public boolean isSizeImportant()
+    {
+        return true;
+    }
 
 }
