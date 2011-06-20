@@ -52,6 +52,9 @@ public class HpView extends Group implements Observer, ModifyListener
         maxHpText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 
         setModel(model);
+        hpText.addModifyListener(this);
+        maxHpText.addModifyListener(this);
+        
     }
 
     /**

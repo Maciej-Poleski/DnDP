@@ -79,6 +79,10 @@ public class StView extends Group implements Observer, ModifyListener
         spellResistanceText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
 
         setModel(model);
+        baseFortitudeText.addModifyListener(this);
+        baseReflexesText.addModifyListener(this);
+        baseWillText.addModifyListener(this);
+        
     }
 
     /**
