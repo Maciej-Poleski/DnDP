@@ -3,6 +3,7 @@ package org.dndp.dndc.engine.card.bonus;
 import java.util.EnumMap;
 
 import org.dndp.dndc.engine.card.abilities.Abilities;
+import org.dndp.dndc.engine.card.attack.GrappleAttack;
 import org.dndp.dndc.engine.card.description.Description;
 
 /**
@@ -13,9 +14,9 @@ import org.dndp.dndc.engine.card.description.Description;
  */
 public class BaseBonusHandler
 {
-    private final Bonusable                   cared;
-    private final Abilities                   abilities;
-    private final Description                 description;
+    private final Bonusable             cared;
+    private final Abilities             abilities;
+    private final Description           description;
     protected EnumMap<BonusType, Bonus> bonusTypePool = new EnumMap<BonusType, Bonus>(
                                                               BonusType.class);
 
@@ -24,7 +25,8 @@ public class BaseBonusHandler
      * @param cared
      * @param abilities
      */
-    public BaseBonusHandler(Bonusable cared, Abilities abilities,Description description)
+    public BaseBonusHandler(Bonusable cared, Abilities abilities,
+            Description description)
     {
         this.abilities = abilities;
         this.cared = cared;
@@ -50,12 +52,15 @@ public class BaseBonusHandler
     protected Integer countBonus()
     {
         int temp = 0;
-        for (Bonus t : bonusTypePool.values())
+        for(Bonus t : bonusTypePool.values())
             temp += t.getBonus();
-        if (cared.getAbilityName().getAbiliti(abilities) != null)
-            return temp
-                    + cared.getAbilityName().getAbiliti(abilities)
-                            .getModifier();
+        if(cared.getAbilityName().getAbiliti(abilities) != null)
+            temp += cared.getAbilityName().getAbiliti(abilities).getModifier();
+        if(cared.isSizeImportant() && !(cared instanceof GrappleAttack))
+            temp += description.getSize().getBaseModifier();
+        if(cared.isSizeImportant() && (cared instanceof GrappleAttack))
+            temp += description.getSize().getGrappleAttacksModifier();
+
         return temp;
     }
 
@@ -70,7 +75,7 @@ public class BaseBonusHandler
     public void addBonus(BonusType bonusType, Integer bonus)
     {
         Bonus temp = bonusTypePool.get(bonusType);
-        if (bonus == null)
+        if(bonus == null)
             throw new IllegalArgumentException("To pole nie ma takiej premi");
         temp.addBonus(bonus);
         cared.setBonus(countBonus());
@@ -87,7 +92,7 @@ public class BaseBonusHandler
     public void removeBonus(BonusType bonusType, Integer bonus)
     {
         Bonus temp = bonusTypePool.get(bonusType);
-        if (bonus == null)
+        if(bonus == null)
             throw new IllegalArgumentException("To pole nie ma takiej premi");
         temp.removeBonus(bonus);
         cared.setBonus(countBonus());

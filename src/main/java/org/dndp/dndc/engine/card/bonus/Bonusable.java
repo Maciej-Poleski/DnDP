@@ -29,4 +29,11 @@ public interface Bonusable
      * @return Typ atrybutu.
      */
     public AbilityType getAbilityName();
+
+    /**
+     * Odpowiada na pytanie czy dana wartość jest zależna od premi z rozmiaru.
+     * 
+     * @return true, jeżeli premia z rozmiaru się liczy
+     */
+    public boolean isSizeImportant();
 }
