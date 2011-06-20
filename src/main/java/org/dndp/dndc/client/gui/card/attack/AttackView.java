@@ -16,6 +16,8 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.wb.swt.SWTResourceManager;
+import swing2swt.layout.FlowLayout;
+import org.eclipse.swt.layout.RowLayout;
 
 /**
  * Widok ataku. Wyświetla bazow prewmie oraz premie dla wszystkich typw ataku.
@@ -23,32 +25,31 @@ import org.eclipse.wb.swt.SWTResourceManager;
  */
 public class AttackView extends Composite implements Observer , ModifyListener
 {
-    private Text meleeMiscellaneousText;
-    private Text meleeBonusText;
     private Text baseAttack3Text;
     private Text baseAttack2Text;
     private Text baseAttack1Text;
     private Text meleeSumAttack3Text;
-    private Text text_6;
     private Text baseAttack4Text;
     private Text meleeSumAttack1Text;
     private Text meleeSumAttack2Text;
     private Text meleeSumAttack4Text;
-    private Text text_11;
-    private Text text_12;
-    private Text text_13;
-    private Text text_14;
-    private Text text_15;
-    private Text text_16;
-    private Text text_17;
-    private Text text_18;
-    private Text text_19;
+    private Text distanceAttack1Text;
+    private Text distanceAttack2Text;
+    private Text distanceAttack3Text;
+    private Text distanceAttack4Text;
     private Label lblInicjatywa;
-    private Text text_20;
+    private Text initiativeText;
     private Label lblSzybko;
-    private Text text_21;
+    private Text speedText;
     
     private Attack model;
+    private Group grpBazowy;
+    private Group grpWrcz;
+    private Group grpDystansowe;
+    private Group grpZwarcie;
+    private Text grappleAttackText;
+    private Label label;
+    private Label label_1;
 
     /**
      * Create the composite.
@@ -62,107 +63,79 @@ public class AttackView extends Composite implements Observer , ModifyListener
         
         Group grpWalka = new Group(this, SWT.NONE);
         grpWalka.setText("Walka");
-        grpWalka.setLayout(new GridLayout(11, false));
-        new Label(grpWalka, SWT.NONE);
-        new Label(grpWalka, SWT.NONE);
+        grpWalka.setLayout(new GridLayout(4, false));
         
-        baseAttack1Text = new Text(grpWalka, SWT.BORDER);
-        baseAttack1Text.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+        grpBazowy = new Group(grpWalka, SWT.NONE);
+        grpBazowy.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+        grpBazowy.setText("Bazowy");
+        grpBazowy.setLayout(new FillLayout(SWT.VERTICAL));
         
-        meleeSumAttack1Text = new Text(grpWalka, SWT.BORDER);
-        meleeSumAttack1Text.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
-        new Label(grpWalka, SWT.NONE);
-        new Label(grpWalka, SWT.NONE);
+        baseAttack1Text = new Text(grpBazowy, SWT.BORDER);
         
-        text_12 = new Text(grpWalka, SWT.BORDER);
-        text_12.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
-        new Label(grpWalka, SWT.NONE);
-        new Label(grpWalka, SWT.NONE);
-        new Label(grpWalka, SWT.NONE);
-        new Label(grpWalka, SWT.NONE);
+        baseAttack2Text = new Text(grpBazowy, SWT.BORDER);
         
-        meleeMiscellaneousText = new Text(grpWalka, SWT.BORDER);
-        meleeMiscellaneousText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 2));
+        baseAttack3Text = new Text(grpBazowy, SWT.BORDER);
         
-        meleeBonusText = new Text(grpWalka, SWT.BORDER);
-        meleeBonusText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 2));
-        
-        baseAttack2Text = new Text(grpWalka, SWT.BORDER);
-        baseAttack2Text.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
-        
-        meleeSumAttack2Text = new Text(grpWalka, SWT.BORDER);
-        meleeSumAttack2Text.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
-        
-        text_6 = new Text(grpWalka, SWT.BORDER);
-        text_6.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 2));
-        
-        text_11 = new Text(grpWalka, SWT.BORDER);
-        text_11.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 2));
-        
-        text_13 = new Text(grpWalka, SWT.BORDER);
-        text_13.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
-        
-        text_16 = new Text(grpWalka, SWT.BORDER);
-        text_16.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 2));
-        
-        text_17 = new Text(grpWalka, SWT.BORDER);
-        text_17.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 2));
-        
-        text_18 = new Text(grpWalka, SWT.BORDER);
-        text_18.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 2));
-        
-        text_19 = new Text(grpWalka, SWT.BORDER);
-        text_19.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 2));
-        
-        baseAttack3Text = new Text(grpWalka, SWT.BORDER);
-        baseAttack3Text.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
-        
-        meleeSumAttack3Text = new Text(grpWalka, SWT.BORDER);
-        meleeSumAttack3Text.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
-        
-        text_14 = new Text(grpWalka, SWT.BORDER);
-        text_14.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
-        new Label(grpWalka, SWT.NONE);
-        new Label(grpWalka, SWT.NONE);
-        
-        baseAttack4Text = new Text(grpWalka, SWT.BORDER);
-        baseAttack4Text.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
-        
-        meleeSumAttack4Text = new Text(grpWalka, SWT.BORDER);
-        meleeSumAttack4Text.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
-        new Label(grpWalka, SWT.NONE);
-        new Label(grpWalka, SWT.NONE);
-        
-        text_15 = new Text(grpWalka, SWT.BORDER);
-        text_15.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
-        new Label(grpWalka, SWT.NONE);
-        new Label(grpWalka, SWT.NONE);
-        new Label(grpWalka, SWT.NONE);
-        new Label(grpWalka, SWT.NONE);
-        
-        lblInicjatywa = new Label(grpWalka, SWT.NONE);
-        lblInicjatywa.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 2, 1));
-        lblInicjatywa.setText("Inicjatywa");
-        
-        text_20 = new Text(grpWalka, SWT.BORDER);
-        text_20.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
-        new Label(grpWalka, SWT.NONE);
-        
-        lblSzybko = new Label(grpWalka, SWT.NONE);
-        lblSzybko.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 2, 1));
-        lblSzybko.setText("Szybkoś");
-        
-        text_21 = new Text(grpWalka, SWT.BORDER);
-        text_21.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
-        new Label(grpWalka, SWT.NONE);
-        new Label(grpWalka, SWT.NONE);
-        new Label(grpWalka, SWT.NONE);
-        new Label(grpWalka, SWT.NONE);
+        baseAttack4Text = new Text(grpBazowy, SWT.BORDER);
+        baseAttack4Text.addModifyListener(this);
+        baseAttack3Text.addModifyListener(this);
+        baseAttack2Text.addModifyListener(this);
         
         baseAttack1Text.addModifyListener(this);
-        baseAttack2Text.addModifyListener(this);
-        baseAttack3Text.addModifyListener(this);
-        baseAttack4Text.addModifyListener(this);
+        
+        grpWrcz = new Group(grpWalka, SWT.NONE);
+        grpWrcz.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+        grpWrcz.setText("Wręcz");
+        grpWrcz.setLayout(new FillLayout(SWT.VERTICAL));
+        
+        meleeSumAttack1Text = new Text(grpWrcz, SWT.BORDER);
+        
+        meleeSumAttack2Text = new Text(grpWrcz, SWT.BORDER);
+        
+        meleeSumAttack3Text = new Text(grpWrcz, SWT.BORDER);
+        
+        meleeSumAttack4Text = new Text(grpWrcz, SWT.BORDER);
+        
+        grpDystansowe = new Group(grpWalka, SWT.NONE);
+        grpDystansowe.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+        grpDystansowe.setText("Dystansowe");
+        grpDystansowe.setLayout(new FillLayout(SWT.VERTICAL));
+        
+        distanceAttack1Text = new Text(grpDystansowe, SWT.BORDER);
+        
+        distanceAttack2Text = new Text(grpDystansowe, SWT.BORDER);
+        
+        distanceAttack3Text = new Text(grpDystansowe, SWT.BORDER);
+        
+        distanceAttack4Text = new Text(grpDystansowe, SWT.BORDER);
+        
+        grpZwarcie = new Group(grpWalka, SWT.NONE);
+        grpZwarcie.setLayout(new GridLayout(1, false));
+        grpZwarcie.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1));
+        grpZwarcie.setText("Zwarcie");
+        
+        label = new Label(grpZwarcie, SWT.NONE);
+        label.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, true, 1, 1));
+        
+        grappleAttackText = new Text(grpZwarcie, SWT.BORDER);
+        grappleAttackText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 2));
+        
+        label_1 = new Label(grpZwarcie, SWT.NONE);
+        label_1.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, true, 1, 1));
+        
+        lblInicjatywa = new Label(grpWalka, SWT.NONE);
+        lblInicjatywa.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1));
+        lblInicjatywa.setText("Inicjatywa");
+        
+        initiativeText = new Text(grpWalka, SWT.BORDER);
+        initiativeText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+        
+        lblSzybko = new Label(grpWalka, SWT.NONE);
+        lblSzybko.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1));
+        lblSzybko.setText("Szybkoś");
+        
+        speedText = new Text(grpWalka, SWT.BORDER);
+        speedText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
     }
     
     @Override

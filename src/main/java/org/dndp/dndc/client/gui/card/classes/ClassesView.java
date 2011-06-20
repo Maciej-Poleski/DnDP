@@ -19,12 +19,12 @@ import org.eclipse.swt.widgets.Text;
 
 public class ClassesView extends Group implements Observer
 {
-    private Text text;
-    private Text text_1;
-    private Text text_2;
-    private Text text_3;
-    private Text text_4;
-    private Text text_5;
+    private Text classNameText;
+    private Text classLevelText;
+    private Text sumText;
+    private Text experienceText;
+    private Text pentlyText;
+    private Text nextLevelText;
     private ListViewer listViewer;
 
     /**
@@ -41,8 +41,8 @@ public class ClassesView extends Group implements Observer
         listViewer = new ListViewer(this, SWT.BORDER | SWT.V_SCROLL);
         listViewer.setLabelProvider(new ClassLabelProvider());
         listViewer.setContentProvider(new CollectionContentProvider());
-        List list = listViewer.getList();
-        list.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 2));
+        List listView = listViewer.getList();
+        listView.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 2));
         
         
         Group grpSzczegy = new Group(this, SWT.NONE);
@@ -54,22 +54,22 @@ public class ClassesView extends Group implements Observer
         lblNazwa.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
         lblNazwa.setText("Nazwa");
         
-        text = new Text(grpSzczegy, SWT.BORDER);
-        text.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+        classNameText = new Text(grpSzczegy, SWT.BORDER);
+        classNameText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
         
         Label lblPoziom = new Label(grpSzczegy, SWT.NONE);
         lblPoziom.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
         lblPoziom.setText("Poziom");
         
-        text_1 = new Text(grpSzczegy, SWT.BORDER);
-        text_1.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+        classLevelText = new Text(grpSzczegy, SWT.BORDER);
+        classLevelText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
         
         Label lblSuma = new Label(this, SWT.NONE);
         lblSuma.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false, false, 1, 1));
         lblSuma.setText("Suma");
         
-        text_2 = new Text(this, SWT.BORDER);
-        text_2.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+        sumText = new Text(this, SWT.BORDER);
+        sumText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
         
         Composite composite = new Composite(this, SWT.NONE);
         composite.setLayout(new FillLayout(SWT.HORIZONTAL));
@@ -78,17 +78,17 @@ public class ClassesView extends Group implements Observer
         Label lblDowiadczenie = new Label(composite, SWT.CENTER);
         lblDowiadczenie.setText("Doświadczenie");
         
-        text_3 = new Text(composite, SWT.BORDER);
+        experienceText = new Text(composite, SWT.BORDER);
         
         Label lblSkala = new Label(composite, SWT.CENTER);
         lblSkala.setText("Kara");
         
-        text_4 = new Text(composite, SWT.BORDER);
+        pentlyText = new Text(composite, SWT.BORDER);
         
         Label lblNastpnyPoziom = new Label(composite, SWT.CENTER);
         lblNastpnyPoziom.setText("Następny poziom");
         
-        text_5 = new Text(composite, SWT.BORDER);
+        nextLevelText = new Text(composite, SWT.BORDER);
 
     }
     
