@@ -31,7 +31,7 @@ public class DnDArmorTest
     public DnDArmorTest()
     {
         main = new Character();
-        bonusManager = new DnDBonusManager(main);
+        bonusManager = new DnDBonusManager(main,main);
         t = new DnDArmor(main, main, bonusManager);
         plate = new Plate("xxx", 1.0, new Value(1, 2, 1, 1), new Benefit[0], 1, 1.0, 1);
         nd = new Plate("xxx", 1.0, new Value(1, 2, 1, 1), new Benefit[0], 1, 1.0, 3);

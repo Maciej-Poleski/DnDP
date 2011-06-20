@@ -85,4 +85,10 @@ public class Abiliti extends Observable implements Bonusable
     {
         return AbilityType.NONE;
     }
+    
+    @Override
+    public boolean isSizeImportant()
+    {
+        return false;
+    }
 }

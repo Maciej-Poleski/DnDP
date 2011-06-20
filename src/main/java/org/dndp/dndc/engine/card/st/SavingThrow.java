@@ -101,5 +101,11 @@ public abstract class SavingThrow extends Observable implements Bonusable
         this.bonus = bonus;
         notifyObservers(this);
     }
+    
+    @Override
+    public boolean isSizeImportant()
+    {
+        return false;
+    }
 
 }

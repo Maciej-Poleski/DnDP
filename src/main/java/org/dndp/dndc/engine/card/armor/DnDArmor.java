@@ -92,5 +92,10 @@ public class DnDArmor extends Observable implements Armor, Bonusable
         return AbilityType.NONE;    //Pancerz sam musi załatwiać premię do Zręczności
                                     //Ze względ na ogranicznie zbroji
     }
-
+    
+    @Override
+    public boolean isSizeImportant()
+    {
+        return true;
+    }
 }

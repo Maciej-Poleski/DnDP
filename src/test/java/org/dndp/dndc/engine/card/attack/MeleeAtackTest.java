@@ -4,13 +4,9 @@
 
 package org.dndp.dndc.engine.card.attack;
 
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-
 import org.dndp.dndc.engine.Character;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-import org.junit.Test;
 
 /**
  * 
@@ -19,7 +15,7 @@ import org.junit.Test;
 public class MeleeAtackTest
 {
     static Character main = new Character();
-    static MeleeAttack      dupa = new MeleeAttack(main);
+    static MeleeAttack      dupa = new MeleeAttack();
 
     public MeleeAtackTest()
     {
@@ -35,26 +31,6 @@ public class MeleeAtackTest
     public static void tearDownClass() throws Exception
     {
 
-    }
-
-    @Test
-    public void testCountAttacksModifier()
-    {
-        System.out.println("countAttacksModifier");
-        MeleeAttack instance = dupa;
-        instance.countAttacksModifier();
-        assertEquals(instance.countAttacksModifier(), 3);
-    }
-
-    @Test
-    public void testGetAttacks()
-    {
-        System.out.println("getAttacks");
-        BaseAttack instance = dupa;
-        TotalBonusToAttack expResult = new TotalBonusToAttack(new int[] { 3 });
-        TotalBonusToAttack result = instance.getAttacks();
-        assertEquals(instance.countAttacksModifier(), 3);
-        assertArrayEquals(expResult.getMainHand(), result.getMainHand());
     }
 
 }

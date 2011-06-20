@@ -22,7 +22,7 @@ public class BonusManagerTest
     static Abiliti         w = new Abiliti();
 
     static Character       a = new Character();
-    static DnDBonusManager t = new DnDBonusManager(a);
+    static DnDBonusManager t = new DnDBonusManager(a,a);
 
     /**
      * Zwraca modyfilator jaki powinnien mieć atrybiut, przyz konkretynym bonusie.

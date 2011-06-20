@@ -21,17 +21,7 @@ public class GrappleAttack extends BaseAttack
      */
     public GrappleAttack(Character main)
     {
-        super(main);
-    }
-
-    /**
-     * Metodal licząca premie(nie bazową) do ataków w zwarciu. Uwzględnia
-     * rozmiar i modyfikator z siły
-     */
-    @Override
-    protected int countAttacksModifier()
-    {
-        return main.getSize().getGrappleAttacksModifier();
+        super();
     }
 
     @Override

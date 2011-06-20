@@ -1,6 +1,5 @@
 package org.dndp.dndc.engine.card.attack;
 
-import org.dndp.dndc.engine.Character;
 import org.dndp.dndc.engine.card.abilities.AbilityType;
 
 /**
@@ -13,21 +12,10 @@ public class MeleeAttack extends BaseAttack
 
     /**
      * Standardowy konstruktor z postacią
-     * 
-     * @param main
      */
-    public MeleeAttack(Character main)
+    public MeleeAttack()
     {
-        super(main);
-    }
-
-    /**
-     * Liczy premie(nie bazową) do ataku wręcz. Uwzględnia rozmiar i Siłę
-     */
-    @Override
-    protected int countAttacksModifier()
-    {
-        return main.getStrenght().getModifier() + main.getSize().getBaseModifier();
+        super();
     }
 
     @Override

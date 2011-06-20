@@ -1,6 +1,7 @@
 package org.dndp.dndc.engine.card.bonus;
 
 import org.dndp.dndc.engine.card.abilities.Abilities;
+import org.dndp.dndc.engine.card.description.Description;
 
 /**
  * Zajmuje się premiami do pancerza.
@@ -10,9 +11,9 @@ import org.dndp.dndc.engine.card.abilities.Abilities;
 public class ArmorBonusHandler extends BaseBonusHandler
 {
 
-    public ArmorBonusHandler(Bonusable cared, Abilities abilities)
+    public ArmorBonusHandler(Bonusable cared, Abilities abilities, Description description)
     {
-        super(cared, abilities);
+        super(cared, abilities,description);
         bonusTypePool.put(BonusType.ARMOR, new AdductBonus());
         bonusTypePool.put(BonusType.SHIELD, new AdductBonus());
         bonusTypePool.put(BonusType.DEFLECTION, new MaximizedBonus());

@@ -23,7 +23,7 @@ public class DnDSavingThrowsTest
 {
 
     Character d    = new Character();
-    BonusManager     s    = new DnDBonusManager(d);
+    BonusManager     s    = new DnDBonusManager(d,d);
     DnDSavingThrows  test = new DnDSavingThrows(s);
 
     public DnDSavingThrowsTest()
