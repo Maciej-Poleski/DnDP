@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Observable;
+import java.util.Observer;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -151,5 +152,11 @@ public class DnDCharacterClassManager extends Observable implements CharacterCla
     public final List<CharacterClass> getClassList()
     {
         return classList;
+    }
+    
+    @Override
+    public void addCharacterClassObserver(Observer o)
+    {
+        addObserver(o);
     }
 }

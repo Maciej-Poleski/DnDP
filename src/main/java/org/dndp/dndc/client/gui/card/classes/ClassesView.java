@@ -38,9 +38,12 @@ public class ClassesView extends Group implements Observer,
      * @param parent
      * @param style
      */
-    public ClassesView(Composite parent, int style)
+    public ClassesView(Composite parent, int style, CharacterClassManager model)
     {
         super(parent, SWT.NONE);
+        
+        model.addCharacterClassObserver(this);
+        
         setText("Klasy");
         setLayout(new GridLayout(3, false));
 
