@@ -3,7 +3,6 @@ package org.dndp.dndc.client.gui.card.st;
 import java.util.Observable;
 import java.util.Observer;
 
-import org.dndp.dndc.engine.card.st.SavingThrow;
 import org.dndp.dndc.engine.card.st.SavingThrows;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
@@ -36,6 +35,8 @@ public class StView extends Group implements Observer, ModifyListener
     {
         super(parent, style);
         setLayout(new GridLayout(3, false));
+        
+        
         
         Label lblWytrzymao = new Label(this, SWT.NONE);
         lblWytrzymao.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
@@ -82,6 +83,7 @@ public class StView extends Group implements Observer, ModifyListener
         baseFortitudeText.addModifyListener(this);
         baseReflexesText.addModifyListener(this);
         baseWillText.addModifyListener(this);
+        model.addSavingThrowObserver(this);
         
     }
 

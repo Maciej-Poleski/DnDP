@@ -605,4 +605,10 @@ public class FantasyCharacter implements Abilities, Attack, Armor, Description, 
     {
         skilManager.addSkillObserver(o);   
     }
+    
+    @Override
+    public void addSavingThrowObserver(Observer o)
+    {
+        savingThrows.addSavingThrowObserver(o);
+    }
 }

@@ -1,6 +1,7 @@
 package org.dndp.dndc.engine.card.st;
 
 import java.util.Observable;
+import java.util.Observer;
 
 import org.dndp.dndc.engine.card.bonus.BonusManager;
 
@@ -69,5 +70,10 @@ public class DnDSavingThrows extends Observable implements SavingThrows
         spell = newValue;
         notifyObservers(this);
     }
-
+    
+   @Override
+    public void addSavingThrowObserver(Observer o)
+    {
+       addObserver(o);
+    }
 }

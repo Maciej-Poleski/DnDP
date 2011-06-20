@@ -1,5 +1,7 @@
 package org.dndp.dndc.engine.card.st;
 
+import java.util.Observer;
+
 /**
  * Interfejs rzutów obronnych
  * 
@@ -43,5 +45,7 @@ public interface SavingThrows
      * @throw IllegalArgumentException newValue &lt 0
      */
     void setSpellResistance(double newValue);
+    
+    void addSavingThrowObserver(Observer o);
 
 }
