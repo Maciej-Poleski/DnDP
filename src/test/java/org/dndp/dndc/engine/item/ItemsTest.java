@@ -100,7 +100,7 @@ public class ItemsTest
         assertEquals(necklace, equipmentManager.getNecklace());
     }
 
-    @Test
+    //@Test
     public void firstSecondRingTest()
     {
         assertNull(equipmentManager.getFirstRing());

@@ -2,7 +2,6 @@ package org.dndp.dndc.engine.card.attack;
 
 import java.util.Arrays;
 
-import org.dndp.dndc.engine.FantasyCharacter;
 import org.dndp.dndc.engine.card.abilities.AbilityType;
 
 
@@ -16,10 +15,8 @@ public class GrappleAttack extends BaseAttack
 
     /**
      * Strandardowy konstruktor z użyciem postaci
-     * 
-     * @param main
      */
-    public GrappleAttack(FantasyCharacter main)
+    public GrappleAttack()
     {
         super();
     }

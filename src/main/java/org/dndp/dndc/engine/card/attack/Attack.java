@@ -18,13 +18,9 @@ public interface Attack
 
     public BaseAttack getGrappleAttack();
 
-    public Integer getInitiativeModifier();
+    public Initiative getInitiative();
 
-    public void setInitiativeModifier(int newValue);
+    public Speed getSpeed();
 
-    public double getSpeed();
-
-    public void setSpeed(double newValue);
-    
     public void addAttackObserver(Observer o);
 }
