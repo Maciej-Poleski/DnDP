@@ -2,7 +2,6 @@ package org.dndp.dndc.engine.card.attack;
 
 import java.util.Arrays;
 import java.util.Observable;
-import java.util.Observer;
 
 import org.dndp.dndc.engine.card.bonus.Bonusable;
 
@@ -12,7 +11,7 @@ import org.dndp.dndc.engine.card.bonus.Bonusable;
  * 
  * @author bambucha
  */
-public abstract class BaseAttack extends Observable implements Bonusable, Observer
+public abstract class BaseAttack extends Observable implements Bonusable
 {
     private BaseBonusToAttack baseAtack;
     private int               bonus;
@@ -46,19 +45,20 @@ public abstract class BaseAttack extends Observable implements Bonusable, Observ
     {
         if(baseAtack == null)
             throw new NullPointerException();
-        if(! this.baseAtack.equals(baseAtack))
+        if(!this.baseAtack.equals(baseAtack))
             setChanged();
         this.baseAtack = baseAtack;
         notifyObservers();
     }
 
-    /*
+    /**
      * Zwraca całkowitą premię do ataku, bez uwzględnienia broni.
      */
     public TotalBonusToAttack getAttacks()
     {
-        int[] temp = Arrays.copyOf(baseAtack.getBonus(), baseAtack.getNumberOfAttacks());
-        for (int q = 0; q < temp.length; ++q)
+        int[] temp = Arrays.copyOf(baseAtack.getBonus(),
+                baseAtack.getNumberOfAttacks());
+        for(int q = 0; q < temp.length; ++q)
             temp[q] += bonus;
         return new TotalBonusToAttack(temp);
     }
@@ -72,13 +72,6 @@ public abstract class BaseAttack extends Observable implements Bonusable, Observ
         notifyObservers(this);
     }
 
-    @Override
-    public void update(Observable o, Object arg)
-    {
-        // FIXME Auto-generated method stub
-        
-    }
-    
     @Override
     public boolean isSizeImportant()
     {

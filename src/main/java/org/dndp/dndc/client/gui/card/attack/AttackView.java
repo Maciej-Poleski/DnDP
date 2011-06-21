@@ -4,7 +4,11 @@ import java.util.Observable;
 import java.util.Observer;
 
 import org.dndp.dndc.engine.card.attack.Attack;
+import org.dndp.dndc.engine.card.attack.BaseAttack;
 import org.dndp.dndc.engine.card.attack.BaseBonusToAttack;
+import org.dndp.dndc.engine.card.attack.GrappleAttack;
+import org.dndp.dndc.engine.card.attack.MeleeAttack;
+import org.dndp.dndc.engine.card.attack.RangeAttack;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -164,22 +168,23 @@ public class AttackView extends Composite implements Observer, ModifyListener
     @Override
     public void update(Observable o, Object arg)
     {
-        if(o instanceof Attack)
-        {
-            Attack tmp = (Attack)o;
-            int[] x = tmp.getMeleeAttack().getAttacks().getMainHand();
+        int[] x = ((BaseAttack)o).getAttacks().getMainHand();
+        if(o instanceof MeleeAttack)
+        {            
             meleeSumAttack1Text.setText(Integer.toString(x[0]));
             meleeSumAttack1Text.setText(Integer.toString(x[1]));
             meleeSumAttack1Text.setText(Integer.toString(x[2]));
             meleeSumAttack1Text.setText(Integer.toString(x[3]));
-            x = tmp.getRangeAttack().getAttacks().getMainHand();
+        }
+        if( o instanceof RangeAttack)
+        {
             distanceAttack1Text.setText(Integer.toString(x[0]));
             distanceAttack1Text.setText(Integer.toString(x[1]));
             distanceAttack1Text.setText(Integer.toString(x[2]));
             distanceAttack1Text.setText(Integer.toString(x[3]));
-            x = tmp.getGrappleAttack().getAttacks().getMainHand();
+        }  
+        if( o instanceof GrappleAttack)
             grappleAttackText.setText(Integer.toString(x[0]));
-        }
     }
 
     @Override
