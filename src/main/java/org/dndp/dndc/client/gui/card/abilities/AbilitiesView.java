@@ -4,8 +4,9 @@ import org.dndp.dndc.engine.card.abilities.Abilities;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Group;
 
-public class AbilitiesView extends Composite
+public class AbilitiesView extends Group
 {
     
     
@@ -18,6 +19,7 @@ public class AbilitiesView extends Composite
     {
         super(parent, style);
         setLayout(new FillLayout(SWT.VERTICAL));
+        setText("Atrybuty");
         
         new AbilitiView(this, SWT.NONE,"Siła", model.getStrenght());
         new AbilitiView(this, SWT.NONE,"Zrecznosc", model.getDexterity());

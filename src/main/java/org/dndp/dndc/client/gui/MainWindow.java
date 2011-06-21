@@ -8,21 +8,19 @@ import org.dndp.dndc.client.gui.card.description.DescriptionView;
 import org.dndp.dndc.client.gui.card.fleats.FleatsView;
 import org.dndp.dndc.client.gui.card.hp.HpView;
 import org.dndp.dndc.client.gui.card.skills.SkillsView;
-import org.dndp.dndc.client.gui.card.st.StView;
 import org.dndp.dndc.client.gui.chat.ChatPanel;
 import org.dndp.dndc.engine.FantasyCharacter;
-import org.dndp.dndc.engine.card.abilities.DnDAbilities;
-import org.dndp.dndc.engine.card.bonus.BaseBonusHandler;
-import org.dndp.dndc.engine.card.bonus.BonusManager;
-import org.dndp.dndc.engine.card.bonus.Bonusable;
 import org.dndp.dndc.engine.chat.Chat;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Layout;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Label;
 
 /**
  * Głowne okno programu.
@@ -34,34 +32,53 @@ public class MainWindow extends Thread
     private Display display;
     private Shell   shell;
     private ChatPanel chatPanel;
-    private Chat chat;
+    //private Chat chat;
+    private FantasyCharacter x;
 
-    public MainWindow(Chat chat)
+    public MainWindow()
     {
-        this.chat = chat;
+        //this.chat = chat;
+        x = new FantasyCharacter();
     }
 
     private void build()
     {
-        shell.setLayout(new FormLayout());
-        chatPanel = new ChatPanel(shell, SWT.NO_FOCUS, chat );
-        chat.setGui(chatPanel);
-        FormData data = new FormData();
-        data.top = new FormAttachment(0);
-        data.bottom = new FormAttachment(100);
-        data.left = new FormAttachment(0);
-        data.right = new FormAttachment(100);
-        chatPanel.setLayoutData(data);
+        Layout gl_shell = new FormLayout();
+        //gl_shell.numColumns = 3;
+        shell.setLayout(gl_shell);
+        //chatPanel = new ChatPanel(shell, SWT.NO_FOCUS, chat );
+        //chat.setGui(chatPanel);
         
-        shell.pack();
+        AbilitiesView abilitiesView = new AbilitiesView(shell, SWT.NONE, x);
+        FormData data = new FormData(SWT.DEFAULT, SWT.DEFAULT);
+        data.top = new FormAttachment(0);
+        data.left = new FormAttachment(0);
+        abilitiesView.setLayoutData(data);
+        ArmorView armorView = new ArmorView(shell, SWT.NONE, x);
+        AttackView attackView = new AttackView(shell, SWT.NONE, x);
+        HpView hpView = new HpView(shell, SWT.NONE, x);
+        ArmorView armorView_1 = new ArmorView(shell, SWT.NONE, x);
+        DescriptionView descriptionView = new DescriptionView(shell, SWT.NONE, x);
+
+        ClassesView classesView = new ClassesView(shell, SWT.NONE, x);
+        FleatsView fleatsView = new FleatsView(shell, SWT.NONE, x);
+        SkillsView skillsView = new SkillsView(shell, SWT.NONE, x);
+        
+        
+        
+        //shell.pack();
         shell.open();
     }
 
+    /**
+     * @wbp.parser.entryPoint
+     */
     @Override
     public void run()
     {
         display = new Display();
         shell = new Shell(display);
+        shell.setSize(921, 609);
         build();
         while (!shell.isDisposed())
             if(!display.readAndDispatch())
@@ -74,30 +91,11 @@ public class MainWindow extends Thread
         return chatPanel;
     }
     
+    
     public static void main(String args[])
     {
-        Display display = new Display();
-        Shell shell = new Shell(display);
-        shell.setLayout(new FormLayout());
-        FormData data = new FormData();
-        data.top = new FormAttachment(0);
-        data.bottom = new FormAttachment(100);
-        data.left = new FormAttachment(0);
-        data.right = new FormAttachment(100);
-        
-        FantasyCharacter mock = new FantasyCharacter();
-        
-        Composite comp = new  StView(shell, SWT.NONE, mock);
-        
-        comp.setLayoutData(data);
-        
-        shell.pack();
-        shell.open();
-        
-        while (!shell.isDisposed())
-            if(!display.readAndDispatch())
-                display.sleep();
-        display.dispose();
+        new MainWindow().start();
     }
+    
  
 }

@@ -155,6 +155,7 @@
             <groupId>swt</groupId>
             <artifactId>swt</artifactId>
             <version>3.6.2-${swt-type}</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
           <groupId>com.db4o</groupId>
