@@ -119,7 +119,7 @@ public class MainWindow extends Thread
         data.bottom = new FormAttachment(100);
         fleatsView.setLayoutData(data);
         
-        SkillsView skillsView = new SkillsView(shell, SWT.NONE, x);
+        skillsView = new SkillsView(shell, SWT.NONE, x);
         data = new FormData(SWT.DEFAULT, SWT.DEFAULT);
         data.top = new FormAttachment(classesView);
         data.left = new FormAttachment(attackView);
