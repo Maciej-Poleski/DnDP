@@ -56,10 +56,11 @@ public class BaseBonusHandler
             temp += t.getBonus();
         if(cared.getAbilityName().getAbiliti(abilities) != null)
             temp += cared.getAbilityName().getAbiliti(abilities).getModifier();
-        if(cared.isSizeImportant() && !(cared instanceof GrappleAttack))
-            temp += description.getSize().getBaseModifier();
-        if(cared.isSizeImportant() && (cared instanceof GrappleAttack))
-            temp += description.getSize().getGrappleAttacksModifier();
+        if(cared.isSizeImportant())
+            if(cared instanceof GrappleAttack)
+                temp += description.getSize().getGrappleAttacksModifier();
+            else
+                temp += description.getSize().getBaseModifier();
 
         return temp;
     }

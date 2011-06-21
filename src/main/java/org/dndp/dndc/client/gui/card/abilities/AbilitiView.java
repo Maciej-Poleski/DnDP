@@ -34,7 +34,10 @@ public class AbilitiView extends Composite implements Observer, ModifyListener
     public AbilitiView(Composite parent, int style, String name, Abiliti model)
     {
         super(parent, style);
-        setLayout(new GridLayout(3, false));
+        GridLayout gridLayout = new GridLayout(3, false);
+        gridLayout.marginHeight = 0;
+        gridLayout.horizontalSpacing = 0;
+        setLayout(gridLayout);
 
         model.addObserver(this);
         this.model = model;
