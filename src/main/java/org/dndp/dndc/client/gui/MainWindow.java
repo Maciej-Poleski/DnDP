@@ -8,20 +8,15 @@ import org.dndp.dndc.client.gui.card.description.DescriptionView;
 import org.dndp.dndc.client.gui.card.fleats.FleatsView;
 import org.dndp.dndc.client.gui.card.hp.HpView;
 import org.dndp.dndc.client.gui.card.skills.SkillsView;
-import org.dndp.dndc.client.gui.card.skills.SklilLabelProvider;
 import org.dndp.dndc.client.gui.chat.ChatPanel;
 import org.dndp.dndc.engine.FantasyCharacter;
-import org.dndp.dndc.engine.chat.Chat;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
-import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Layout;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Label;
 
 /**
  * Głowne okno programu.
@@ -102,7 +97,7 @@ public class MainWindow extends Thread
         data.top = new FormAttachment(hpView);
         data.left = new FormAttachment(classesView);
         data.right = new FormAttachment(100);
-        //data.bottom = new FormAttachment(skillsView);
+        data.bottom = new FormAttachment(classesView,0,SWT.BOTTOM);
         armorView.setLayoutData(data);
        
         data = new FormData(SWT.DEFAULT, SWT.DEFAULT);

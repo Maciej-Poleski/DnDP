@@ -34,7 +34,7 @@ public class DnDArmor extends Observable implements Armor, Bonusable
         this.abilities = abilities;
         this.equipmentManager = equipmentManager;
         bonusManager.registerBonus("Armor", this);
-        bonusHandler = (ArmorBonusHandler)bonusManager.getBonusHandler("armor");
+        bonusHandler = (ArmorBonusHandler)bonusManager.getBonusHandler("Armor");
     }
 
     protected Integer getDexterityACBonus()

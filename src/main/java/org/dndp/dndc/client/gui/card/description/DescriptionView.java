@@ -4,7 +4,6 @@ import java.util.Observable;
 import java.util.Observer;
 
 import org.dndp.dndc.engine.card.description.Description;
-import org.eclipse.jface.viewers.deferred.SetModel;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
