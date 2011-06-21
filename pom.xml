@@ -155,7 +155,6 @@
             <groupId>swt</groupId>
             <artifactId>swt</artifactId>
             <version>3.6.2-${swt-type}</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
           <groupId>com.db4o</groupId>
@@ -172,7 +171,7 @@
         	<artifactId>easymock</artifactId>
         	<version>3.0</version>
         	<type>jar</type>
-        	<scope>test</scope>
+        	<scope>compile</scope>
         </dependency>
     </dependencies>
 </project>
