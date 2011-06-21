@@ -1,5 +1,7 @@
 package org.dndp.dndc.client.gui.card.attack;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -170,27 +172,44 @@ public class AttackView extends Composite implements Observer, ModifyListener
     @Override
     public void update(Observable o, Object arg)
     {
-        
         if(o instanceof MeleeAttack)
-        {   
-            int[] x = ((BaseAttack)o).getAttacks().getMainHand();         
-            meleeSumAttack1Text.setText(Integer.toString(x[0]));
-            meleeSumAttack1Text.setText(Integer.toString(x[1]));
-            meleeSumAttack1Text.setText(Integer.toString(x[2]));
-            meleeSumAttack1Text.setText(Integer.toString(x[3]));
+        {
+            meleeSumAttack1Text.setText("");
+            meleeSumAttack2Text.setText("");
+            meleeSumAttack3Text.setText("");
+            meleeSumAttack4Text.setText("");
+            int[] x = ((BaseAttack)o).getAttacks().getMainHand();
+            if(x.length > 0)
+                meleeSumAttack1Text.setText(Integer.toString(x[0]));
+            if(x.length > 1)
+                meleeSumAttack2Text.setText(Integer.toString(x[1]));
+            if(x.length > 2)
+                meleeSumAttack3Text.setText(Integer.toString(x[2]));
+            if(x.length > 3)
+                meleeSumAttack4Text.setText(Integer.toString(x[3]));
         }
         if( o instanceof RangeAttack)
         {
+
+            distanceAttack1Text.setText("");
+            distanceAttack2Text.setText("");
+            distanceAttack3Text.setText("");
+            distanceAttack4Text.setText("");
             int[] x = ((BaseAttack)o).getAttacks().getMainHand();
-            distanceAttack1Text.setText(Integer.toString(x[0]));
-            distanceAttack1Text.setText(Integer.toString(x[1]));
-            distanceAttack1Text.setText(Integer.toString(x[2]));
-            distanceAttack1Text.setText(Integer.toString(x[3]));
+            if(x.length > 0)
+                distanceAttack1Text.setText(Integer.toString(x[0]));
+            if(x.length > 1)
+                distanceAttack2Text.setText(Integer.toString(x[1]));
+            if(x.length > 2)
+                distanceAttack3Text.setText(Integer.toString(x[2]));
+            if(x.length > 3)
+                distanceAttack4Text.setText(Integer.toString(x[3]));
         }  
         if( o instanceof GrappleAttack)
         {
             int[] x = ((BaseAttack)o).getAttacks().getMainHand();
-            grappleAttackText.setText(Integer.toString(x[0]));
+            if(x.length > 0)
+                grappleAttackText.setText(Integer.toString(x[0]));
         }
         if( o instanceof Initiative)
             initiativeText.setText(arg.toString());
@@ -211,13 +230,25 @@ public class AttackView extends Composite implements Observer, ModifyListener
     {
         int[] tmp = new int[4];
         if((tmp[0] = parseField(baseAttack1Text)) < 0)
+        {
+            model.setBaseAttack(new BaseBonusToAttack(Arrays.copyOf(tmp, 0)));
             return;
+        }
         if((tmp[1] = parseField(baseAttack2Text)) < 0)
+        {
+            model.setBaseAttack(new BaseBonusToAttack(Arrays.copyOf(tmp, 1)));
             return;
+        }
         if((tmp[2] = parseField(baseAttack3Text)) < 0)
+        {
+            model.setBaseAttack(new BaseBonusToAttack(Arrays.copyOf(tmp, 2)));
             return;
+        }
         if((tmp[3] = parseField(baseAttack4Text)) < 0)
+        {
+            model.setBaseAttack(new BaseBonusToAttack(Arrays.copyOf(tmp, 3)));
             return;
+        }       
         model.setBaseAttack(new BaseBonusToAttack(tmp));
     }
 
@@ -233,6 +264,8 @@ public class AttackView extends Composite implements Observer, ModifyListener
         try
         {
             field.setBackground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
+            if(field.getText().equals(""))
+                return -1;
             return Integer.parseInt(field.getText());
         }
         catch(NumberFormatException e)

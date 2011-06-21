@@ -24,7 +24,7 @@ public class DnDAttackTest
 {
     static FantasyCharacter t    = new FantasyCharacter();
     static DnDAttack        dupa = new DnDAttack(t);
-
+/*
     public DnDAttackTest()
     {
         t.getStrenght().setValue(22);
@@ -137,5 +137,5 @@ public class DnDAttackTest
         DnDAttack instance = dupa;
         instance.setBaseAttack(baseAtack);
     }
-
+*/
 }
