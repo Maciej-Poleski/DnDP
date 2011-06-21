@@ -12,16 +12,24 @@ public class Speed extends Observable
         speed = 9D;
     }
 
-    public double getSpeed()
+    /**
+     * Zwraca prędkość postaci
+     * @return prędkość
+     */
+    public Double getSpeed()
     {
         return speed;
     }
 
+    /**
+     * Ustawia nową predkość i powiadamia o tym zainteresowanych.
+     * @param speed nowa prędkość
+     */
     public void setSpeed(double speed)
     {
         if(Math.abs(this.speed - speed) >= 0.01)
             setChanged();
         this.speed = speed;
-        notifyObservers();
+        notifyObservers(getSpeed());
     }
 }

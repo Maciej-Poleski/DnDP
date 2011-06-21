@@ -37,77 +37,44 @@ public class DnDAttack implements Attack
         speed = new Speed();
     }
 
-    /**
-     * Zwaraca bazową premię do atku
-     * 
-     * @return Bazowa premia do ataku postaci
-     */
     @Override
     public BaseAttack getMeleeAttack()
     {
         return melee;
     }
 
-    /**
-     * Zwraca część odpowiedzialną za ataki dystansowe.
-     * 
-     * @return Moduł odpowiedzialny za ataki dystansowe.
-     */
     @Override
     public BaseAttack getRangeAttack()
     {
         return range;
     }
 
-    /**
-     * Zwraca część odpowiedzianą za ataki w zwarciu
-     * 
-     * @return Moduł odpowiedziany za zwarcie.
-     */
     @Override
     public BaseAttack getGrappleAttack()
     {
         return grapple;
     }
 
-    /**
-     * Zwraca wartość incjatywy z uwzględnieniem modufikatora od zręczności
-     * 
-     * @return Końcowa wartość modyfikatora
-     */
     @Override
     public Initiative getInitiative()
     {
         return initiative;
     }
 
-    /**
-     * Zwraca szybkość postaci
-     * 
-     * @return Szybkość
-     */
+    
     @Override
     public Speed getSpeed()
     {
         return speed;
     }
-
-    /**
-     * Zwraca aktualną bazową premię do ataku
-     * 
-     * @return Bazowa premia do ataku
-     */
+    
+    
     @Override
     public BaseBonusToAttack getBaseAttack()
     {
         return baseAtack;
     }
-
-    /**
-     * Ustawia bazową premię do ataku;
-     * 
-     * @param baseAtack
-     */
+    
     @Override
     public void setBaseAttack(BaseBonusToAttack baseAtack)
     {

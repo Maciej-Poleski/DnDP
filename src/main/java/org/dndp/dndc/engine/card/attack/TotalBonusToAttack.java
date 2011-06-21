@@ -17,6 +17,10 @@ public class TotalBonusToAttack
         this.mainHand = temp;
     }
 
+    /**
+     * Zwraca atak główną ręką.
+     * @return
+     */
     public int[] getMainHand()
     {
         return mainHand;

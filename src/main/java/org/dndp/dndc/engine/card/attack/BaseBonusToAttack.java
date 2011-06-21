@@ -25,16 +25,28 @@ public class BaseBonusToAttack implements Comparable<BaseBonusToAttack>
         this.bonus = bonus;
     }
 
+    /**
+     * Zwraca ilość ataków
+     * @return ilość ataków
+     */
     public Integer getNumberOfAttacks()
     {
         return bonus.length;
     }
 
+    /**
+     * Zwaraca bazową premię do ataku
+     * @return
+     */
     public int[] getBonus()
     {
         return bonus;
     }
 
+    /**
+     * Ustawia nowe premie dla tej bazowej premi do ataku
+     * @param bonus nowe premie
+     */
     public void setBonus(int[] bonus)
     {
         if(bonus.length > 4)

@@ -7,8 +7,10 @@ import org.dndp.dndc.engine.card.attack.Attack;
 import org.dndp.dndc.engine.card.attack.BaseAttack;
 import org.dndp.dndc.engine.card.attack.BaseBonusToAttack;
 import org.dndp.dndc.engine.card.attack.GrappleAttack;
+import org.dndp.dndc.engine.card.attack.Initiative;
 import org.dndp.dndc.engine.card.attack.MeleeAttack;
 import org.dndp.dndc.engine.card.attack.RangeAttack;
+import org.dndp.dndc.engine.card.attack.Speed;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -168,9 +170,10 @@ public class AttackView extends Composite implements Observer, ModifyListener
     @Override
     public void update(Observable o, Object arg)
     {
-        int[] x = ((BaseAttack)o).getAttacks().getMainHand();
+        
         if(o instanceof MeleeAttack)
-        {            
+        {   
+            int[] x = ((BaseAttack)o).getAttacks().getMainHand();         
             meleeSumAttack1Text.setText(Integer.toString(x[0]));
             meleeSumAttack1Text.setText(Integer.toString(x[1]));
             meleeSumAttack1Text.setText(Integer.toString(x[2]));
@@ -178,13 +181,21 @@ public class AttackView extends Composite implements Observer, ModifyListener
         }
         if( o instanceof RangeAttack)
         {
+            int[] x = ((BaseAttack)o).getAttacks().getMainHand();
             distanceAttack1Text.setText(Integer.toString(x[0]));
             distanceAttack1Text.setText(Integer.toString(x[1]));
             distanceAttack1Text.setText(Integer.toString(x[2]));
             distanceAttack1Text.setText(Integer.toString(x[3]));
         }  
         if( o instanceof GrappleAttack)
+        {
+            int[] x = ((BaseAttack)o).getAttacks().getMainHand();
             grappleAttackText.setText(Integer.toString(x[0]));
+        }
+        if( o instanceof Initiative)
+            initiativeText.setText(arg.toString());
+        if( o instanceof Speed)
+            speedText.setText(arg.toString());
     }
 
     @Override

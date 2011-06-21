@@ -18,27 +18,37 @@ public class Initiative extends Observable implements Bonusable
         bonusManager.registerBonus("Initiative", this);
     }
     
-    public Integer getInitiativModifier()
+    /**
+     * Zwraca całkowity modyfikator do incjatywy
+     * @return modyfikator
+     */
+    public Integer getModifier()
     {
         return base + bonus;
     }
     
-
+    /**
+     * Ustawia nowy bazowy modyfikator do incjatywy
+     * 
+     * Np wartość z atutu Doskonalsza incjatywa
+     * @param base nowa bazowa premia do incjatywy
+     */
     public void setBase(int base)
     {
         if(this.base != base)
             setChanged();
         this.base = base;
-        notifyObservers();
+        notifyObservers(getModifier());
     }
 
+    
     @Override
     public void setBonus(int bonus)
     {
         if(this.bonus != bonus)
             setChanged();
         this.bonus = bonus;
-        notifyObservers();
+        notifyObservers(getModifier());
     }
 
     @Override
