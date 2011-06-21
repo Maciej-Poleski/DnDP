@@ -15,6 +15,8 @@ import org.dndp.dndc.engine.card.attack.Attack;
 import org.dndp.dndc.engine.card.attack.BaseAttack;
 import org.dndp.dndc.engine.card.attack.BaseBonusToAttack;
 import org.dndp.dndc.engine.card.attack.DnDAttack;
+import org.dndp.dndc.engine.card.attack.Initiative;
+import org.dndp.dndc.engine.card.attack.Speed;
 import org.dndp.dndc.engine.card.bonus.BaseBonusHandler;
 import org.dndp.dndc.engine.card.bonus.BonusManager;
 import org.dndp.dndc.engine.card.bonus.Bonusable;
@@ -311,25 +313,13 @@ public class FantasyCharacter implements Abilities, Attack, Armor, Description, 
     // Koniec opisu
 
     @Override
-    public void setSpeed(double newValue)
-    {
-        attack.setSpeed(newValue);
-    }
-
-    @Override
-    public void setInitiativeModifier(int newValue)
-    {
-        attack.setInitiativeModifier(newValue);
-    }
-
-    @Override
     public void setBaseAttack(BaseBonusToAttack newValue)
     {
         attack.setBaseAttack(newValue);
     }
 
     @Override
-    public double getSpeed()
+    public Speed getSpeed()
     {
         return attack.getSpeed();
     }
@@ -347,9 +337,9 @@ public class FantasyCharacter implements Abilities, Attack, Armor, Description, 
     }
 
     @Override
-    public Integer getInitiativeModifier()
+    public Initiative getInitiative()
     {
-        return attack.getInitiativeModifier();
+        return attack.getInitiative();
     }
 
     @Override
