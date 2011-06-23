@@ -13,7 +13,7 @@
       <includes>
         <include>*.jar</include>
       </includes>
-      <fileMode>744</fileMode>
+      <fileMode>774</fileMode>
     </fileSet>
     <fileSet>
     	<directory>src/bash</directory>
@@ -29,7 +29,7 @@
       	<exclude>*:*win32*:*</exclude>
       	<exclude>*:*x86_64:*</exclude>
       </excludes>
-      <fileMode>0644</fileMode>
+      <fileMode>0664</fileMode>
       <useProjectArtifact>true</useProjectArtifact>
     </dependencySet>
 	</dependencySets>    

@@ -185,6 +185,10 @@
 					<outfile>target/${project.name}-${project.version}.exe</outfile>
 					<jar>target/${project.name}-${project.version}.jar</jar>
 					<errTitle>alakai</errTitle>
+					<classPath><mainClass>org.dndp.dndc.client.gui.MainWindow</mainClass>
+						<addDependencies>false</addDependencies>
+					        <preCp>anything</preCp>
+            				</classPath>
 					<jre>
 					  <minVersion>1.6.0</minVersion>
 					</jre>
