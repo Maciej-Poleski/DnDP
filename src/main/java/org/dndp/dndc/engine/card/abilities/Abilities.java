@@ -1,5 +1,9 @@
 package org.dndp.dndc.engine.card.abilities;
 
+import java.util.Observer;
+
+import org.dndp.dndc.engine.FantasyCharacter;
+
 /**
  * Interfejs obsługi atrybutów
  * 
@@ -20,4 +24,6 @@ public interface Abilities
     public Abiliti getWisdom();
 
     public Abiliti getCharisma();
+
+    public void addObserverToAbilities(Observer o);
 }

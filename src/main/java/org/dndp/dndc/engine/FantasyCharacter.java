@@ -2,6 +2,7 @@ package org.dndp.dndc.engine;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Observable;
 import java.util.Observer;
 import java.util.Set;
 
@@ -51,14 +52,15 @@ import org.dndp.dndc.engine.item.BasicEquipmentManager;
 import org.dndp.dndc.engine.item.DnDEquipmentManager;
 import org.dndp.dndc.engine.item.Item;
 
-
 /**
  * Reprezentacja jednej postaci Wzorzec projektowy mediator + fasada
  * 
  * @author evil , bambucha
  */
-public class FantasyCharacter implements Abilities, Attack, Armor, Description, HitPoints, SavingThrows, BonusManager, CharacterFleatManager,
-        SkillManager, StateManager, BasicEquipmentManager, CharacterClassManager
+public class FantasyCharacter implements Abilities, Attack, Armor, Description,
+        HitPoints, SavingThrows, BonusManager, CharacterFleatManager,
+        SkillManager, StateManager, BasicEquipmentManager,
+        CharacterClassManager
 {
     private Abilities             abilities;
     private Armor                 armor;
@@ -68,7 +70,7 @@ public class FantasyCharacter implements Abilities, Attack, Armor, Description, 
     private HitPoints             HP;
     private SavingThrows          savingThrows;
     private BonusManager          bonusManager;
-    private SkillManager           skilManager;
+    private SkillManager          skilManager;
     private CharacterFleatManager characterFleatManager;
     private StateManager          stateManager;
     private CharacterClassManager classManager;
@@ -83,7 +85,7 @@ public class FantasyCharacter implements Abilities, Attack, Armor, Description, 
     public FantasyCharacter()
     {
         description = new DnDDescription();
-        bonusManager = new DnDBonusManager(this,this);
+        bonusManager = new DnDBonusManager(this, this);
         abilities = new DnDAbilities(this);
         HP = new DnDHitPoints();
         savingThrows = new DnDSavingThrows(this);
@@ -94,6 +96,9 @@ public class FantasyCharacter implements Abilities, Attack, Armor, Description, 
         characterFleatManager = new DnDCharacterFleatManager(this);
         stateManager = new DnDStateManager(this);
         classManager = new DnDCharacterClassManager(this);
+
+        abilities.addObserverToAbilities(bonusManager);
+        description.addDescriptionObserver(bonusManager);
     }
 
     @Override
@@ -491,13 +496,12 @@ public class FantasyCharacter implements Abilities, Attack, Armor, Description, 
         return skilManager.getSkil(name);
     }
 
-    
     public Set<String> getSkilNameSet()
     {
         return skilManager.getSkilNameSet();
     }
 
-    //Koniec umiejętności
+    // Koniec umiejętności
 
     @Override
     public Integer getLevel()
@@ -546,59 +550,70 @@ public class FantasyCharacter implements Abilities, Attack, Armor, Description, 
     {
         return classManager.getClassList();
     }
-    
+
     @Override
     public Collection<CharacterSkill> getCharacterSkillSet()
     {
         return skilManager.getCharacterSkillSet();
     }
-    
+
     @Override
     public void addArmorObserver(Observer o)
     {
         armor.addArmorObserver(o);
     }
-    
+
     @Override
     public void addAttackObserver(Observer o)
     {
         attack.addAttackObserver(o);
     }
-    
+
     @Override
     public void addCharacterClassObserver(Observer o)
     {
         classManager.addCharacterClassObserver(o);
     }
-    
-     
+
     @Override
     public void addDescriptionObserver(Observer o)
     {
         description.addDescriptionObserver(o);
     }
-    
+
     @Override
     public void addFleatObserver(Observer o)
     {
         characterFleatManager.addFleatObserver(o);
     }
-    
+
     @Override
     public void addHitPointsObserver(Observer o)
     {
         HP.addHitPointsObserver(o);
     }
-    
+
     @Override
     public void addSkillObserver(Observer o)
     {
-        skilManager.addSkillObserver(o);   
+        skilManager.addSkillObserver(o);
     }
-    
+
     @Override
     public void addSavingThrowObserver(Observer o)
     {
         savingThrows.addSavingThrowObserver(o);
+    }
+
+    @Override
+    public void addObserverToAbilities(Observer o)
+    {
+        abilities.addObserverToAbilities(o);
+    }
+
+    @Override
+    public void update(Observable o, Object arg)
+    {
+        // Pusty dzidziczony z innych interfejsów. Może coś robić.
     }
 }
