@@ -1,5 +1,8 @@
 package org.dndp.dndc.client.gui;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import org.dndp.dndc.client.gui.card.abilities.AbilitiesView;
 import org.dndp.dndc.client.gui.card.armor.ArmorView;
 import org.dndp.dndc.client.gui.card.attack.AttackView;
@@ -137,6 +140,7 @@ public class MainWindow extends Thread
 
     public static void main(String args[])
     {
+        Logger.getLogger("").setLevel(Level.WARNING);
         new MainWindow().start();
     }
 
