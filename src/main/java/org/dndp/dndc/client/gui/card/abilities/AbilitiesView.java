@@ -30,10 +30,10 @@ public class AbilitiesView extends Group
         setText("Atrybuty");
 
         new AbilitiView(this, SWT.NONE, "Siła", model.getStrenght());
-        new AbilitiView(this, SWT.NONE, "Zrecznosc", model.getDexterity());
+        new AbilitiView(this, SWT.NONE, "Zręczność", model.getDexterity());
         new AbilitiView(this, SWT.NONE, "Budowa", model.getConstitution());
-        new AbilitiView(this, SWT.NONE, "Inteligencja", model.getInteligence());
-        new AbilitiView(this, SWT.NONE, "Roztropnosc", model.getWisdom());
+        new AbilitiView(this, SWT.NONE, "Inteligęncja", model.getInteligence());
+        new AbilitiView(this, SWT.NONE, "Roztropność", model.getWisdom());
         new AbilitiView(this, SWT.NONE, "Charyzma", model.getCharisma());
     }
 

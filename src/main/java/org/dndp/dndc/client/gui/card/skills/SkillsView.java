@@ -63,7 +63,7 @@ public class SkillsView extends Group implements Observer
         Label lblMaksymalnaIloRang = new Label(this, SWT.NONE);
         lblMaksymalnaIloRang.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER,
                 false, false, 1, 1));
-        lblMaksymalnaIloRang.setText("Maksymalna iloś rang");
+        lblMaksymalnaIloRang.setText("Maksymalna ilość rang");
 
         maxRankText = new Text(this, SWT.BORDER);
         maxRankText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,

@@ -161,7 +161,7 @@ public class AttackView extends Composite implements Observer, ModifyListener
         lblSzybko = new Label(grpWalka, SWT.NONE);
         lblSzybko.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false,
                 false, 1, 1));
-        lblSzybko.setText("Szybkoś");
+        lblSzybko.setText("Szybkość");
 
         speedText = new Text(grpWalka, SWT.BORDER);
         speedText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false,
