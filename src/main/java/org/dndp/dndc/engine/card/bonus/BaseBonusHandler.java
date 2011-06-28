@@ -3,6 +3,7 @@ package org.dndp.dndc.engine.card.bonus;
 import java.util.EnumMap;
 
 import org.dndp.dndc.engine.card.abilities.Abilities;
+import org.dndp.dndc.engine.card.abilities.AbilityType;
 import org.dndp.dndc.engine.card.attack.GrappleAttack;
 import org.dndp.dndc.engine.card.description.Description;
 
@@ -61,7 +62,10 @@ public class BaseBonusHandler
                 temp += description.getSize().getGrappleAttacksModifier();
             else
                 temp += description.getSize().getBaseModifier();
-
+        java.util.logging.Logger.getAnonymousLogger().info(
+                "Nowa wartość bonus to " + temp + " Dla "
+                        + cared.getClass().getName());
+        cared.setBonus(temp);
         return temp;
     }
 
@@ -79,7 +83,7 @@ public class BaseBonusHandler
         if(bonus == null)
             throw new IllegalArgumentException("To pole nie ma takiej premi");
         temp.addBonus(bonus);
-        cared.setBonus(countBonus());
+        countBonus();
     }
 
     /**
@@ -96,6 +100,18 @@ public class BaseBonusHandler
         if(bonus == null)
             throw new IllegalArgumentException("To pole nie ma takiej premi");
         temp.removeBonus(bonus);
-        cared.setBonus(countBonus());
+        countBonus();
+    }
+
+    public boolean isSizeImportant()
+    {
+        return cared.isSizeImportant();
+    }
+
+    public boolean isAbilitiImportant()
+    {
+        if(cared.getAbilityName() != AbilityType.NONE)
+            return true;
+        return false;
     }
 }

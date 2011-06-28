@@ -8,6 +8,7 @@ package org.dndp.dndc.engine.card.bonus;
 import static org.easymock.EasyMock.createMock;
 import static org.easymock.EasyMock.expect;
 import static org.easymock.EasyMock.replay;
+import static org.easymock.EasyMock.reset;
 import static org.junit.Assert.assertEquals;
 
 import org.dndp.dndc.engine.FantasyCharacter;
@@ -112,16 +113,23 @@ public class BonusHandlerTest
         expect(bonusalbeMock.getAbilityName()).andReturn(AbilityType.NONE)
                 .anyTimes();
         expect(bonusalbeMock.isSizeImportant()).andReturn(true).anyTimes();
+        bonusalbeMock.setBonus(-8);
+        bonusalbeMock.setBonus(0);
         replay(bonusalbeMock);
         BaseBonusHandler bonus = new BaseBonusHandler(bonusalbeMock, x, x);
         assertEquals(-8, bonus.countBonus().intValue());
         x.setSize(Size.MEDIUM);
         assertEquals(0, bonus.countBonus().intValue());
 
+        reset(bonusalbeMock);
         GrappleAttack tmpAttack = createMock(GrappleAttack.class);
+
         expect(tmpAttack.getAbilityName()).andReturn(AbilityType.STRENGHT)
                 .anyTimes();
         expect(tmpAttack.isSizeImportant()).andReturn(true).anyTimes();
+        tmpAttack.setBonus(0);
+        tmpAttack.setBonus(16);
+        tmpAttack.setBonus(-4);
         replay(tmpAttack);
         BaseBonusHandler gBonus = new BaseBonusHandler(tmpAttack, x, x);
 
@@ -131,5 +139,4 @@ public class BonusHandlerTest
         x.setSize(Size.SMALL);
         assertEquals(-4, gBonus.countBonus().intValue());
     }
-
 }
