@@ -17,6 +17,9 @@ import org.eclipse.wb.swt.SWTResourceManager;
 /**
  * Pojedynczy kompozyt zajmujacy się pokazaniem pojedynczego atrybuty.
  * 
+ * Notyfikacja powoduje odświerzenie się widoku, lub ClassCastException, gdy
+ * notyfikującym nie jest Abiliti
+ * 
  * @author evil,bambucha
  */
 public class AbilitiView extends Composite implements Observer, ModifyListener

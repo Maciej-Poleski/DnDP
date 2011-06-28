@@ -15,46 +15,58 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.wb.swt.SWTResourceManager;
 
+/**
+ * Widok punktów zdrowia postaci...
+ * 
+ * @author bambucha
+ */
 public class HpView extends Group implements Observer, ModifyListener
 {
-    private Text hpText;
-    private Text maxHpText;
+    private Text      hpText;
+    private Text      maxHpText;
     private HitPoints model;
 
     /**
      * Create the composite.
+     * 
      * @param parent
      * @param style
-     * @param model TODO
+     * @param model
+     *            model
      */
     public HpView(Composite parent, int style, HitPoints model)
     {
         super(parent, style);
         setText("PŻ");
         setLayout(new GridLayout(2, false));
-        
+
         Label lblNewLabel = new Label(this, SWT.NONE);
-        lblNewLabel.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+        lblNewLabel.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false,
+                false, 1, 1));
         lblNewLabel.setText("PŻ");
-        
+
         hpText = new Text(this, SWT.BORDER);
-        hpText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
-        
+        hpText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1,
+                1));
+
         Label lblNewLabel_1 = new Label(this, SWT.NONE);
-        lblNewLabel_1.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+        lblNewLabel_1.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false,
+                false, 1, 1));
         lblNewLabel_1.setText("MAX PŻ");
-        
+
         maxHpText = new Text(this, SWT.BORDER);
-        maxHpText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+        maxHpText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false,
+                1, 1));
 
         setModel(model);
         hpText.addModifyListener(this);
         maxHpText.addModifyListener(this);
-        
+
     }
 
     /**
-     * @param model the model to set
+     * @param model
+     *            the model to set
      */
     public void setModel(HitPoints model)
     {
@@ -72,12 +84,12 @@ public class HpView extends Group implements Observer, ModifyListener
     {
         if(o instanceof HitPoints)
         {
-            HitPoints tmp=(HitPoints)o;
+            HitPoints tmp = (HitPoints)o;
             hpText.setText(Integer.toString(tmp.getHP()));
             maxHpText.setText(Integer.toString(tmp.getMaxHP()));
         }
     }
-    
+
     @Override
     public void modifyText(ModifyEvent e)
     {
@@ -90,11 +102,12 @@ public class HpView extends Group implements Observer, ModifyListener
         {
             hpText.setBackground(SWTResourceManager.getColor(SWT.COLOR_RED));
         }
-        
+
         try
         {
             model.setMaxHP(Integer.parseInt(maxHpText.getText()));
-            maxHpText.setBackground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
+            maxHpText.setBackground(SWTResourceManager
+                    .getColor(SWT.COLOR_WHITE));
         }
         catch(NumberFormatException e1)
         {
