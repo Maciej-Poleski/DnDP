@@ -51,7 +51,9 @@ public class MainWindow extends Thread
     private void build()
     {
         Layout gl_shell = new FormLayout();
+
         shell.setLayout(gl_shell);
+        shell.setText("DnDC - 0.1");
         FormData data;
 
         descriptionView = new DescriptionView(shell, SWT.NONE, x);
