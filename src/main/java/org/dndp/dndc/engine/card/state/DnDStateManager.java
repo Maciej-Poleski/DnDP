@@ -3,7 +3,7 @@ package org.dndp.dndc.engine.card.state;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.dndp.dndc.engine.Character;
+import org.dndp.dndc.engine.FantasyCharacter;
 import org.dndp.dndc.engine.benefit.Benefit;
 
 
@@ -15,12 +15,12 @@ import org.dndp.dndc.engine.benefit.Benefit;
 public class DnDStateManager implements StateManager
 {
     private Set<State> statusSet;
-    private Character  character;
+    private FantasyCharacter  fantasyCharacter;
 
-    public DnDStateManager(Character character)
+    public DnDStateManager(FantasyCharacter fantasyCharacter)
     {
         this.statusSet = new HashSet<State>();
-        this.character = character;
+        this.fantasyCharacter = fantasyCharacter;
     }
 
     /*
@@ -32,7 +32,7 @@ public class DnDStateManager implements StateManager
     {
         statusSet.add(state);
         for (Benefit b : state.getBenefits())
-            b.apply(character);
+            b.apply(fantasyCharacter);
     }
 
     /*
@@ -46,7 +46,7 @@ public class DnDStateManager implements StateManager
             throw new IllegalArgumentException("Nie ma ustawionego takiego stanu");
         statusSet.remove(state);
         for (Benefit b : state.getBenefits())
-            b.abandon(character);
+            b.abandon(fantasyCharacter);
     }
 
 }

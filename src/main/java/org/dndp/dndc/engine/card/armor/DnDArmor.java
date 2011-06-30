@@ -1,5 +1,8 @@
 package org.dndp.dndc.engine.card.armor;
 
+import java.util.Observable;
+import java.util.Observer;
+
 import org.dndp.dndc.engine.card.abilities.Abilities;
 import org.dndp.dndc.engine.card.abilities.AbilityType;
 import org.dndp.dndc.engine.card.bonus.ArmorBonusHandler;
@@ -12,13 +15,14 @@ import org.dndp.dndc.engine.item.BasicEquipmentManager;
  * 
  * @author bambucha
  */
-public class DnDArmor implements Armor, Bonusable
+public class DnDArmor extends Observable implements Armor, Bonusable
 {
 
     private final Integer         BASE = 10;
     private Abilities             abilities;
     private BasicEquipmentManager equipmentManager;
     private ArmorBonusHandler     bonusHandler;
+    private int bonus;
 
     /**
      * @param abilities
@@ -29,8 +33,8 @@ public class DnDArmor implements Armor, Bonusable
         super();
         this.abilities = abilities;
         this.equipmentManager = equipmentManager;
-        bonusManager.registerBonus("armor", this);
-        bonusHandler = (ArmorBonusHandler)bonusManager.getBonusHandler("armor");
+        bonusManager.registerBonus("Armor", this);
+        bonusHandler = (ArmorBonusHandler)bonusManager.getBonusHandler("Armor");
     }
 
     protected Integer getDexterityACBonus()
@@ -71,16 +75,34 @@ public class DnDArmor implements Armor, Bonusable
         return BASE + bonusHandler.getTouchAttacksAC() + getDexterityACBonus();
     }
 
+    /**
+     * Wszystko liczone w funkcjach. Nie ma potrzeby.
+     */
     @Override
-    public void setBonus(Integer bonus)
+    public void setBonus(int bonus)
     {
-
+        if(this.bonus != bonus)
+            setChanged();
+        this.bonus = bonus;
+        notifyObservers(this);
     }
 
     @Override
     public AbilityType getAbilityName()
     {
-        return AbilityType.NONE;
+        return AbilityType.NONE;    //Pancerz sam musi załatwiać premię do Zręczności
+                                    //Ze względ na ogranicznie zbroji
     }
-
+    
+    @Override
+    public boolean isSizeImportant()
+    {
+        return true;
+    }
+    
+    @Override
+    public void addArmorObserver(Observer o)
+    {
+        addObserver(o);
+    }
 }

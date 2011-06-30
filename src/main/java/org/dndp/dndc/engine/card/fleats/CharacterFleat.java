@@ -1,11 +1,13 @@
 package org.dndp.dndc.engine.card.fleats;
 
+import java.util.Observable;
+
 /**
  * Klasa opisująca atut u postaci.
  * 
  * @author evil, bambucha
  */
-public class CharacterFleat
+public class CharacterFleat extends Observable
 {
     /**
      * Możliwe stany atutu danej postaci.
@@ -26,9 +28,9 @@ public class CharacterFleat
         DISABLED,
     }
 
-    private Fleat                    fleat;
+    private final Fleat                    fleat;
     private State                    state;
-    private DnDCharacterFleatManager characterFleatManager;
+    private final DnDCharacterFleatManager characterFleatManager;
 
     /**
      * Inicjalizuje ten atut danej postaci.
@@ -55,7 +57,11 @@ public class CharacterFleat
         if (state != State.DISABLED)
             return;
         if (characterFleatManager.checkFleat(fleat))
+        {
             state = State.ABLE;
+            setChanged();
+            notifyObservers();
+        }
     }
 
     /**
@@ -77,6 +83,8 @@ public class CharacterFleat
         {
             characterFleatManager.setFleatBenefit(fleat);
             state = State.ENABLED;
+            setChanged();
+            notifyObservers(State.ENABLED);
         }
     }
 
@@ -86,7 +94,13 @@ public class CharacterFleat
         {
             characterFleatManager.unsetFleatBenefit(fleat);
             state = State.ABLE;
+            setChanged();
+            notifyObservers(State.ABLE);
         }
     }
 
+    public Fleat getFleat()
+    {
+        return fleat;
+    }
 }

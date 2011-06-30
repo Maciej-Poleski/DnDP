@@ -1,5 +1,7 @@
 package org.dndp.dndc.engine.card.st;
 
+import java.util.Observable;
+
 import org.dndp.dndc.engine.Dice;
 import org.dndp.dndc.engine.card.bonus.Bonusable;
 
@@ -9,10 +11,10 @@ import org.dndp.dndc.engine.card.bonus.Bonusable;
  * 
  * @author bambucha
  */
-public abstract class SavingThrow implements Bonusable
+public abstract class SavingThrow extends Observable implements Bonusable
 {
-    private Integer base;
-    private Integer bonus;
+    private int base;
+    private int bonus;
 
     /**
      * Standardowy konstrukor, tworzy rzut z zerową premią i dodatkowymi modyfikatorami
@@ -68,7 +70,11 @@ public abstract class SavingThrow implements Bonusable
     {
         if(base < 0)
             throw new IllegalArgumentException("Nie może być < 0");
+        if(this.base != base)
+            setChanged();
         this.base = base;
+        notifyObservers(this);
+        
     }
 
     /**
@@ -88,11 +94,18 @@ public abstract class SavingThrow implements Bonusable
      *            Nowa wartość
      */
     @Override
-    public void setBonus(Integer bonus)
+    public void setBonus(int bonus)
     {
-        if(bonus == null)
-            throw new NullPointerException("Nie może być null");
+        if(this.bonus != bonus)
+            setChanged();
         this.bonus = bonus;
+        notifyObservers(this);
+    }
+    
+    @Override
+    public boolean isSizeImportant()
+    {
+        return false;
     }
 
 }

@@ -23,7 +23,7 @@ public class DnDAbilitiesTest
     public DnDAbilitiesTest()
     {}
 
-    DnDAbilities dupa = new DnDAbilities(new DnDBonusManager(null));
+    DnDAbilities dupa = new DnDAbilities(new DnDBonusManager(null,null));
 
     @BeforeClass
     public static void setUpClass() throws Exception

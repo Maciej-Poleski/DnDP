@@ -1,7 +1,6 @@
 package org.dndp.dndc.engine.card.attack;
 
 import org.dndp.dndc.engine.card.abilities.AbilityType;
-import org.dndp.dndc.engine.Character;
 
 /**
  * Klasa obsługująca ataki dystansowe
@@ -13,28 +12,15 @@ public class RangeAttack extends BaseAttack
 
     /**
      * Standardowy konstruktor z postacią
-     * 
-     * @param main
      */
-    public RangeAttack(Character main)
+    public RangeAttack()
     {
-        super(main);
-    }
-
-    /**
-     * Liczy premię do ataków dystansowych. Uwględnia modyfikatro ze zręcznośći
-     * i rozmiar. Nie uwzględnia kary za odległość.
-     */
-    @Override
-    protected void countAttacksModifier()
-    {
-        atackModifier = main.getDexterity().getModifier()
-                + main.getSize().getBaseModifier();
+        super();
     }
 
     @Override
     public AbilityType getAbilityName()
     {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return AbilityType.DEXTERITY;
     }
 }

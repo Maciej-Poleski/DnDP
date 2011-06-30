@@ -1,10 +1,12 @@
 package org.dndp.dndc.engine.card.bonus;
 
+import java.util.Observer;
+
 /**
  * 
  * @author evil
  */
-public interface BonusManager
+public interface BonusManager extends Observer
 {
 
     /**

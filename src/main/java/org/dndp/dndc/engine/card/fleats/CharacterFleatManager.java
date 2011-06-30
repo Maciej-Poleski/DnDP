@@ -1,6 +1,7 @@
 package org.dndp.dndc.engine.card.fleats;
 
 import java.util.Collection;
+import java.util.Observer;
 
 /**
  * Interfejs zapewniający operacje na atutach postaci.
@@ -24,5 +25,7 @@ public interface CharacterFleatManager
      * @return
      */
     CharacterFleat getCharacterFleat(Fleat key);
+    
+    void addFleatObserver(Observer o);
 
 }

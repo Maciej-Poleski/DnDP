@@ -1,26 +1,58 @@
 package org.dndp.dndc.engine.card.attack;
 
+import java.util.Observer;
+
 /**
- * 
+ * Interfejs ataku postaci.
  * @author bambucha
  */
 public interface Attack
 {
+    /**
+     * Zwaraca bazową premię do atakau postaci.
+     * @return bazowa premia do ataku
+     */
     public BaseBonusToAttack getBaseAttack();
 
+    /**
+     * Ustawia bazową premnię do ataku.
+     * @param newValue
+     */
     public void setBaseAttack(BaseBonusToAttack newValue);
 
+    /**
+     * Zwraca atak w wręcz postaci.
+     * @return atak w wręcz
+     */
     public BaseAttack getMeleeAttack();
 
+    /**
+     * Zwraca premie do ataków dystansowych 
+     * @return premia do ataków 
+     */
     public BaseAttack getRangeAttack();
 
+    /**
+     * Zwaca premię do ataków w zwarciu.
+     * @return premia w zwarciu 
+     */
     public BaseAttack getGrappleAttack();
 
-    public Integer getInitiativeModifier();
+    /**
+     * Zwraca incjatywę
+     * @return incjatywa postaci
+     */
+    public Initiative getInitiative();
 
-    public void setInitiativeModifier(Integer newValue);
+    /**
+     * Zwaraca szybkość postaci
+     * @return
+     */
+    public Speed getSpeed();
 
-    public Double getSpeed();
-
-    public void setSpeed(Double newValue);
+    /**
+     * Dodanie obserwera modułu postaci
+     * @param o
+     */
+    public void addAttackObserver(Observer o);
 }

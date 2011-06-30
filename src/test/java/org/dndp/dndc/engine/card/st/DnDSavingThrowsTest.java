@@ -7,7 +7,7 @@ package org.dndp.dndc.engine.card.st;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import org.dndp.dndc.engine.Character;
+import org.dndp.dndc.engine.FantasyCharacter;
 import org.dndp.dndc.engine.card.bonus.BonusManager;
 import org.dndp.dndc.engine.card.bonus.DnDBonusManager;
 import org.junit.AfterClass;
@@ -22,8 +22,8 @@ import org.junit.Test;
 public class DnDSavingThrowsTest
 {
 
-    Character d    = new Character();
-    BonusManager     s    = new DnDBonusManager(d);
+    FantasyCharacter d    = new FantasyCharacter();
+    BonusManager     s    = new DnDBonusManager(d,d);
     DnDSavingThrows  test = new DnDSavingThrows(s);
 
     public DnDSavingThrowsTest()
@@ -78,20 +78,9 @@ public class DnDSavingThrowsTest
     public void testSetSpellResistance()
     {
         System.out.println("setSpellResistance");
-        Double newValue = 2.5;
+        double newValue = 2.5;
         DnDSavingThrows instance = test;
         instance.setSpellResistance(newValue);
-        assertEquals(instance.getSpellResistance(), newValue);
+        assertEquals(instance.getSpellResistance(), newValue,0.01);
     }
-
-    @Test(expected = NullPointerException.class)
-    public void testNullExceptionSetSpellResistance()
-    {
-        System.out.println("setSpellResistance");
-        Double newValue = null;
-        DnDSavingThrows instance = test;
-        instance.setSpellResistance(newValue);
-        assertEquals(instance.getSpellResistance(), newValue);
-    }
-
 }

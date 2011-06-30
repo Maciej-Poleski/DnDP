@@ -50,46 +50,83 @@ public class BaseClass
         this.classFleats = classFleats;
     }
 
+    /**
+     * Zwraca nazwę klasy postaci
+     * @return Nazwa klasy postaci
+     */
     public String getName()
     {
         return name;
     }
 
+    /**
+     * Zwraca tablicę premi wynikających z levelu
+     * Pierwszy indeks to level
+     * @return
+     */
     public Benefit[][] getLevelBenefitsList()
     {
         return levelBenefitsList;
     }
 
+    /**
+     * Zwraca poziom przyrostu premi do ataku
+     * @return
+     */
     public AttackBonusLevel getBonusType()
     {
         return bonusType;
     }
 
+    /**
+     * Odpowiada czy dana klasa ma wysoką premię do testu na wytrzymałość.
+     * @return
+     */
     public boolean isHighFortitudeBonus()
     {
         return highFortitudeBonus;
     }
 
+    /**
+     * Odpowiada czy dana klasa ma wysoką premię do testu na refleks.
+     * @return
+     */
     public boolean isHighReflexeBonus()
     {
         return highReflexeBonus;
     }
 
+    /**
+     * Odpowiada czy dana klasa ma wysoką premię do testu na wolę.
+     * @return
+     */
     public boolean isHighWillBonus()
     {
         return highWillBonus;
     }
 
+    /**
+     * Zwraca listę umiejętności klasowych.
+     * @return
+     */
     public Skill[] getClassFleats()
     {
         return classFleats;
     }
 
+    /**
+     * Odpowiada na pytanie czy poziom w tej klasie jest brany podczas liczenia multiklasowości
+     * @return
+     */
     public boolean isUseInMulticlass()
     {
         return true;
     }
 
+    /**
+     * Zwraca warunki potrzebne by móc levelować w danej klasie.
+     * @return
+     */
     public Checkable[] getConditions()
     {
         return new Checkable[0];

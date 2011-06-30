@@ -1,7 +1,7 @@
 package org.dndp.dndc.engine.benefit;
 
+import org.dndp.dndc.engine.FantasyCharacter;
 import org.dndp.dndc.engine.card.fleats.Fleat;
-import org.dndp.dndc.engine.Character;
 
 /**
  * Klasa kapsułkując premię będącą atutem.
@@ -25,7 +25,7 @@ public class FleatBenefit implements Benefit
      * @see engine.benefit.Benefit#apply(engine.Character)
      */
     @Override
-    public void apply(Character benefitTarget)
+    public void apply(FantasyCharacter benefitTarget)
     {
         benefitTarget.getCharacterFleat(fleat).active();
     }
@@ -34,7 +34,7 @@ public class FleatBenefit implements Benefit
      * @see engine.benefit.Benefit#abandon(engine.Character)
      */
     @Override
-    public void abandon(Character benefitTarget)
+    public void abandon(FantasyCharacter benefitTarget)
     {
         benefitTarget.getCharacterFleat(fleat).deactive();
     }

@@ -1,6 +1,7 @@
 package org.dndp.dndc.engine.card.bonus;
 
 import org.dndp.dndc.engine.card.abilities.Abilities;
+import org.dndp.dndc.engine.card.description.Description;
 
 /**
  * Zajmuje się premiami do pancerza.
@@ -10,14 +11,14 @@ import org.dndp.dndc.engine.card.abilities.Abilities;
 public class ArmorBonusHandler extends BaseBonusHandler
 {
 
-    public ArmorBonusHandler(Bonusable cared, Abilities abilities)
+    public ArmorBonusHandler(Bonusable cared, Abilities abilities, Description description)
     {
-        super(cared, abilities);
-        bonusTypePool.put(BonusType.Armor, new AdductBonus());
-        bonusTypePool.put(BonusType.Shield, new AdductBonus());
-        bonusTypePool.put(BonusType.Deflection, new MaximizedBonus());
-        bonusTypePool.put(BonusType.Dodge, new AdductBonus());
-        bonusTypePool.put(BonusType.Natural, new AdductBonus());
+        super(cared, abilities,description);
+        bonusTypePool.put(BonusType.ARMOR, new AdductBonus());
+        bonusTypePool.put(BonusType.SHIELD, new AdductBonus());
+        bonusTypePool.put(BonusType.DEFLECTION, new MaximizedBonus());
+        bonusTypePool.put(BonusType.DODGE, new AdductBonus());
+        bonusTypePool.put(BonusType.NATURAL, new AdductBonus());
     }
     
     /**
@@ -35,7 +36,7 @@ public class ArmorBonusHandler extends BaseBonusHandler
      */
     public Integer getFlatFootetAC()
     {
-        return countBonus() - bonusTypePool.get(BonusType.Dodge).getBonus();
+        return countBonus() - bonusTypePool.get(BonusType.DODGE).getBonus();
     }
     
     /**
@@ -44,7 +45,7 @@ public class ArmorBonusHandler extends BaseBonusHandler
      */
     public Integer getTouchAttacksAC()
     {
-        return countBonus() - bonusTypePool.get(BonusType.Armor).getBonus() - bonusTypePool.get(BonusType.Shield).getBonus();
+        return countBonus() - bonusTypePool.get(BonusType.ARMOR).getBonus() - bonusTypePool.get(BonusType.SHIELD).getBonus();
     }
     
 }

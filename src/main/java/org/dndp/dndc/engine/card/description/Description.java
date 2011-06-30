@@ -1,5 +1,7 @@
 package org.dndp.dndc.engine.card.description;
 
+import java.util.Observer;
+
 import org.dndp.dndc.engine.PersonalityTypes;
 
 /**
@@ -33,21 +35,21 @@ public interface Description
 
     public void setSize(Size newValeu);
 
-    public Integer getAge();
+    public int getAge();
 
-    public void setAge(Integer newValeu);
+    public void setAge(int newValeu);
 
     public Sex getSex();
 
     public void setSex(Sex newValeu);
 
-    public Integer getHeight();
+    public int getHeight();
 
-    public void setHeight(Integer newValeu);
+    public void setHeight(int newValeu);
 
-    public Integer getWeight();
+    public int getWeight();
 
-    public void setWeight(Integer newValeu);
+    public void setWeight(int newValeu);
 
     public String getEye();
 
@@ -60,4 +62,6 @@ public interface Description
     public String getSkin();
 
     public void setSkin(String newValeu);
+    
+    public void addDescriptionObserver(Observer o);
 }

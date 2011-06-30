@@ -6,7 +6,7 @@ package org.dndp.dndc.engine.card.bonus;
 
 import static org.junit.Assert.assertEquals;
 
-import org.dndp.dndc.engine.Character;
+import org.dndp.dndc.engine.FantasyCharacter;
 import org.dndp.dndc.engine.card.abilities.Abiliti;
 import org.junit.Test;
 
@@ -21,8 +21,8 @@ public class BonusManagerTest
     static Abiliti         d = new Abiliti();
     static Abiliti         w = new Abiliti();
 
-    static Character       a = new Character();
-    static DnDBonusManager t = new DnDBonusManager(a);
+    static FantasyCharacter       a = new FantasyCharacter();
+    static DnDBonusManager t = new DnDBonusManager(a,a);
 
     /**
      * Zwraca modyfilator jaki powinnien mieć atrybiut, przyz konkretynym bonusie.
@@ -45,7 +45,7 @@ public class BonusManagerTest
     public void testRegisterAndGetBonus()
     {
         t.registerBonus("s", s);
-        t.getBonusHandler("s").addBonus(BonusType.Sacred, 2);
+        t.getBonusHandler("s").addBonus(BonusType.SACRED, 2);
         assertEquals(s.getModifier(), getModifier(2, s));
     }
 

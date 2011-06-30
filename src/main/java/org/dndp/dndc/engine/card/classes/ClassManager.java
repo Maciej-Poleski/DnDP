@@ -19,6 +19,11 @@ public class ClassManager
     private static ClassManager    instance;
     private Map<String, BaseClass> classMap;
 
+    /**
+     * Na potrzeby singletonu.
+     * 
+     * Pobiera listę klas z bazy danych.
+     */
     protected ClassManager()
     {
         classMap = new HashMap<String, BaseClass>();

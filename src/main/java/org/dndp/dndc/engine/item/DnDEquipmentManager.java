@@ -1,6 +1,6 @@
 package org.dndp.dndc.engine.item;
 
-import org.dndp.dndc.engine.Character;
+import org.dndp.dndc.engine.FantasyCharacter;
 import org.dndp.dndc.engine.benefit.Benefit;
 import org.dndp.dndc.engine.item.armor.Plate;
 import org.dndp.dndc.engine.item.armor.Shield;
@@ -48,7 +48,7 @@ public class DnDEquipmentManager implements EquipmentManager
      */
     private Inventory inventory; //Miejsce gdzie będzie się wsadzać plecaki i inne.
 
-    private Character owner;
+    private FantasyCharacter owner;
 
     /**
      * Standardowy konstuktor tworzący pustą postać, bez założonych itemów
@@ -56,7 +56,7 @@ public class DnDEquipmentManager implements EquipmentManager
      * @param owner
      *            Dowiązanie przedmiotów do postaci
      */
-    public DnDEquipmentManager(Character owner)
+    public DnDEquipmentManager(FantasyCharacter owner)
     {
         this.owner = owner;
         this.helmet = null;

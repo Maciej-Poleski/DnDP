@@ -1,6 +1,9 @@
 package org.dndp.dndc.engine;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Set;
 
 import org.dndp.dndc.engine.card.UnavailableTestException;
@@ -13,11 +16,14 @@ import org.dndp.dndc.engine.card.attack.Attack;
 import org.dndp.dndc.engine.card.attack.BaseAttack;
 import org.dndp.dndc.engine.card.attack.BaseBonusToAttack;
 import org.dndp.dndc.engine.card.attack.DnDAttack;
+import org.dndp.dndc.engine.card.attack.Initiative;
+import org.dndp.dndc.engine.card.attack.Speed;
 import org.dndp.dndc.engine.card.bonus.BaseBonusHandler;
 import org.dndp.dndc.engine.card.bonus.BonusManager;
 import org.dndp.dndc.engine.card.bonus.Bonusable;
 import org.dndp.dndc.engine.card.bonus.DnDBonusManager;
 import org.dndp.dndc.engine.card.classes.BaseClass;
+import org.dndp.dndc.engine.card.classes.CharacterClass;
 import org.dndp.dndc.engine.card.classes.CharacterClassManager;
 import org.dndp.dndc.engine.card.classes.DnDCharacterClassManager;
 import org.dndp.dndc.engine.card.description.Description;
@@ -46,14 +52,15 @@ import org.dndp.dndc.engine.item.BasicEquipmentManager;
 import org.dndp.dndc.engine.item.DnDEquipmentManager;
 import org.dndp.dndc.engine.item.Item;
 
-
 /**
  * Reprezentacja jednej postaci Wzorzec projektowy mediator + fasada
  * 
  * @author evil , bambucha
  */
-public class Character implements Abilities, Attack, Armor, Description, HitPoints, SavingThrows, BonusManager, CharacterFleatManager,
-        SkillManager, StateManager, BasicEquipmentManager, CharacterClassManager
+public class FantasyCharacter implements Abilities, Attack, Armor, Description,
+        HitPoints, SavingThrows, BonusManager, CharacterFleatManager,
+        SkillManager, StateManager, BasicEquipmentManager,
+        CharacterClassManager
 {
     private Abilities             abilities;
     private Armor                 armor;
@@ -63,7 +70,7 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
     private HitPoints             HP;
     private SavingThrows          savingThrows;
     private BonusManager          bonusManager;
-    private SkillManager           skilManager;
+    private SkillManager          skilManager;
     private CharacterFleatManager characterFleatManager;
     private StateManager          stateManager;
     private CharacterClassManager classManager;
@@ -75,11 +82,11 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
      *            Widok karty postaci.
      * @par TODO kolejność inicjowania poszególnych rzeczy.
      */
-    public Character()
+    public FantasyCharacter()
     {
-        bonusManager = new DnDBonusManager(this);
-        abilities = new DnDAbilities(this);
         description = new DnDDescription();
+        bonusManager = new DnDBonusManager(this, this);
+        abilities = new DnDAbilities(this);
         HP = new DnDHitPoints();
         savingThrows = new DnDSavingThrows(this);
         armor = new DnDArmor(this, this, this);
@@ -89,6 +96,9 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
         characterFleatManager = new DnDCharacterFleatManager(this);
         stateManager = new DnDStateManager(this);
         classManager = new DnDCharacterClassManager(this);
+
+        abilities.addObserverToAbilities(bonusManager);
+        description.addDescriptionObserver(bonusManager);
     }
 
     @Override
@@ -186,7 +196,7 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
     }
 
     @Override
-    public Integer getAge()
+    public int getAge()
     {
         return description.getAge();
     }
@@ -198,13 +208,13 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
     }
 
     @Override
-    public Integer getHeight()
+    public int getHeight()
     {
         return description.getHeight();
     }
 
     @Override
-    public Integer getWeight()
+    public int getWeight()
     {
         return description.getWeight();
     }
@@ -228,7 +238,7 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
     }
 
     @Override
-    public void setWeight(Integer newValeu)
+    public void setWeight(int newValeu)
     {
         description.setWeight(newValeu);
     }
@@ -276,7 +286,7 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
     }
 
     @Override
-    public void setHeight(Integer newValeu)
+    public void setHeight(int newValeu)
     {
         description.setHeight(newValeu);
     }
@@ -300,24 +310,12 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
     }
 
     @Override
-    public void setAge(Integer newValeu)
+    public void setAge(int newValeu)
     {
         description.setAge(newValeu);
     }
 
     // Koniec opisu
-
-    @Override
-    public void setSpeed(Double newValue)
-    {
-        attack.setSpeed(newValue);
-    }
-
-    @Override
-    public void setInitiativeModifier(Integer newValue)
-    {
-        attack.setInitiativeModifier(newValue);
-    }
 
     @Override
     public void setBaseAttack(BaseBonusToAttack newValue)
@@ -326,7 +324,7 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
     }
 
     @Override
-    public Double getSpeed()
+    public Speed getSpeed()
     {
         return attack.getSpeed();
     }
@@ -344,9 +342,9 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
     }
 
     @Override
-    public Integer getInitiativeModifier()
+    public Initiative getInitiative()
     {
-        return attack.getInitiativeModifier();
+        return attack.getInitiative();
     }
 
     @Override
@@ -364,25 +362,25 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
     // Koniec ataku
 
     @Override
-    public void setMaxHP(Integer maxHP)
+    public void setMaxHP(int maxHP)
     {
         HP.setMaxHP(maxHP);
     }
 
     @Override
-    public void setHP(Integer HP)
+    public void setHP(int HP)
     {
         this.HP.setHP(HP);
     }
 
     @Override
-    public Integer getMaxHP()
+    public int getMaxHP()
     {
         return HP.getMaxHP();
     }
 
     @Override
-    public Integer getHP()
+    public int getHP()
     {
         return HP.getHP();
     }
@@ -415,7 +413,7 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
     }
 
     @Override
-    public void setSpellResistance(Double newValue)
+    public void setSpellResistance(double newValue)
     {
         savingThrows.setSpellResistance(newValue);
     }
@@ -427,7 +425,7 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
     }
 
     @Override
-    public Double getSpellResistance()
+    public double getSpellResistance()
     {
         return savingThrows.getSpellResistance();
     }
@@ -498,13 +496,12 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
         return skilManager.getSkil(name);
     }
 
-    
     public Set<String> getSkilNameSet()
     {
         return skilManager.getSkilNameSet();
     }
 
-    //Koniec umiejętności
+    // Koniec umiejętności
 
     @Override
     public Integer getLevel()
@@ -547,5 +544,76 @@ public class Character implements Abilities, Attack, Armor, Description, HitPoin
     {
         return classManager.getClassLevel(classes);
     }
-    
+
+    @Override
+    public List<CharacterClass> getClassList()
+    {
+        return classManager.getClassList();
+    }
+
+    @Override
+    public Collection<CharacterSkill> getCharacterSkillSet()
+    {
+        return skilManager.getCharacterSkillSet();
+    }
+
+    @Override
+    public void addArmorObserver(Observer o)
+    {
+        armor.addArmorObserver(o);
+    }
+
+    @Override
+    public void addAttackObserver(Observer o)
+    {
+        attack.addAttackObserver(o);
+    }
+
+    @Override
+    public void addCharacterClassObserver(Observer o)
+    {
+        classManager.addCharacterClassObserver(o);
+    }
+
+    @Override
+    public void addDescriptionObserver(Observer o)
+    {
+        description.addDescriptionObserver(o);
+    }
+
+    @Override
+    public void addFleatObserver(Observer o)
+    {
+        characterFleatManager.addFleatObserver(o);
+    }
+
+    @Override
+    public void addHitPointsObserver(Observer o)
+    {
+        HP.addHitPointsObserver(o);
+    }
+
+    @Override
+    public void addSkillObserver(Observer o)
+    {
+        skilManager.addSkillObserver(o);
+    }
+
+    @Override
+    public void addSavingThrowObserver(Observer o)
+    {
+        savingThrows.addSavingThrowObserver(o);
+    }
+
+    @Override
+    public void addObserverToAbilities(Observer o)
+    {
+        abilities.addObserverToAbilities(o);
+    }
+
+    @Override
+    public void update(Observable o, Object arg)
+    {
+        // Pusty dzidziczony z innych interfejsów. Może coś robić.
+    }
 }

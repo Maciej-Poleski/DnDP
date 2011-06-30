@@ -3,7 +3,6 @@ package org.dndp.dndc.engine.card.attack;
 import java.util.Arrays;
 
 import org.dndp.dndc.engine.card.abilities.AbilityType;
-import org.dndp.dndc.engine.Character;
 
 
 /**
@@ -16,23 +15,10 @@ public class GrappleAttack extends BaseAttack
 
     /**
      * Strandardowy konstruktor z użyciem postaci
-     * 
-     * @param main
      */
-    public GrappleAttack(Character main)
+    public GrappleAttack()
     {
-        super(main);
-    }
-
-    /**
-     * Metodal licząca premie(nie bazową) do ataków w zwarciu. Uwzględnia
-     * rozmiar i modyfikator z siły
-     */
-    @Override
-    protected void countAttacksModifier()
-    {
-        atackModifier = main.getStrenght().getModifier();
-        atackModifier = main.getSize().getGrappleAttacksModifier();
+        super();
     }
 
     @Override
@@ -45,6 +31,6 @@ public class GrappleAttack extends BaseAttack
     @Override
     public AbilityType getAbilityName()
     {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return AbilityType.STRENGHT;
     }
 }

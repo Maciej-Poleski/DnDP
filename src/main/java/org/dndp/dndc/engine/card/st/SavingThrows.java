@@ -1,5 +1,7 @@
 package org.dndp.dndc.engine.card.st;
 
+import java.util.Observer;
+
 /**
  * Interfejs rzutów obronnych
  * 
@@ -33,7 +35,7 @@ public interface SavingThrows
      * 
      * @return Wartość odporności na czary
      */
-    Double getSpellResistance();
+    double getSpellResistance();
 
     /**
      * Ustawia nową wartość odpornosci na magię
@@ -42,6 +44,8 @@ public interface SavingThrows
      *            Nowa wartość
      * @throw IllegalArgumentException newValue &lt 0
      */
-    void setSpellResistance(Double newValue);
+    void setSpellResistance(double newValue);
+    
+    void addSavingThrowObserver(Observer o);
 
 }

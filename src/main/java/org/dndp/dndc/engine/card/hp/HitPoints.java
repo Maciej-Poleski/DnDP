@@ -1,5 +1,7 @@
 package org.dndp.dndc.engine.card.hp;
 
+import java.util.Observer;
+
 /**
  * Interfejs punktów życia postaci
  * 
@@ -12,21 +14,21 @@ public interface HitPoints
      * 
      * @return
      */
-    public Integer getHP();
+    public int getHP();
 
     /**
      * Ustawia ilść hp postaci.
      * 
      * @param HP
      */
-    public void setHP(Integer HP);
+    public void setHP(int HP);
 
     /**
      * Zwraca maksymalną ilość hp
      * 
      * @return
      */
-    public Integer getMaxHP();
+    public int getMaxHP();
 
     /**
      * Ustawia maksymalną ilość hp
@@ -34,6 +36,8 @@ public interface HitPoints
      * @param maxHP
      *            Maksymalna Ilość HP
      */
-    public void setMaxHP(Integer maxHP);
+    public void setMaxHP(int maxHP);
+    
+    public void addHitPointsObserver(Observer o);
 
 }

@@ -1,7 +1,7 @@
 package org.dndp.dndc.engine.check;
 
+import org.dndp.dndc.engine.FantasyCharacter;
 import org.dndp.dndc.engine.card.skills.Skill;
-import org.dndp.dndc.engine.Character;
 
 /**
  * Sprawdza czy postać ma wystarczającą ilośc rank w danej umiejętności.
@@ -30,9 +30,9 @@ public class SkilCheck implements Checkable
      * @see engine.check.Checkable#check(engine.Character)
      */
     @Override
-    public boolean check(Character character)
+    public boolean check(FantasyCharacter fantasyCharacter)
     {
-        return character.getSkil(skil.getName()).getRank() >= rank;
+        return fantasyCharacter.getSkil(skil.getName()).getRank() >= rank;
     }
 
 }

@@ -1,10 +1,14 @@
 package org.dndp.dndc.engine.card.abilities;
 
+import java.util.Observer;
+
+import org.dndp.dndc.engine.FantasyCharacter;
+
 /**
  * Interfejs obsługi atrybutów
  * 
  * @author bambucha
- * @see dndp.engine.Character
+ * @see FantasyCharacter.engine.Character
  * @see engine.karta.abilities.DnDAbilities
  */
 public interface Abilities
@@ -20,4 +24,6 @@ public interface Abilities
     public Abiliti getWisdom();
 
     public Abiliti getCharisma();
+
+    public void addObserverToAbilities(Observer o);
 }

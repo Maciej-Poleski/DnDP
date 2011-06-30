@@ -1,5 +1,8 @@
 package org.dndp.dndc.engine.card.description;
 
+import java.util.Observable;
+import java.util.Observer;
+
 import org.dndp.dndc.engine.PersonalityTypes;
 
 /**
@@ -7,7 +10,7 @@ import org.dndp.dndc.engine.PersonalityTypes;
  * 
  * @author bambucha
  */
-public class DnDDescription implements Description
+public class DnDDescription extends Observable implements Description
 {
     private String           name;
     private String           player;
@@ -15,10 +18,10 @@ public class DnDDescription implements Description
     private PersonalityTypes personality;
     private God              god;
     private Size             size;
-    private Integer          age;
+    private int              age;
     private Sex              sex;
-    private Integer          height;
-    private Integer          weight;
+    private int              height;
+    private int              weight;
     private String           eye;
     private String           hair;
     private String           skin;
@@ -77,7 +80,7 @@ public class DnDDescription implements Description
     }
 
     @Override
-    public Integer getAge()
+    public int getAge()
     {
         return this.age;
     }
@@ -89,13 +92,13 @@ public class DnDDescription implements Description
     }
 
     @Override
-    public Integer getHeight()
+    public int getHeight()
     {
         return this.height;
     }
 
     @Override
-    public Integer getWeight()
+    public int getWeight()
     {
         return this.weight;
     }
@@ -119,107 +122,144 @@ public class DnDDescription implements Description
     }
 
     @Override
-    public void setAge(Integer age)
+    public void setAge(int age)
     {
-        if (age == null)
-            throw new NullPointerException();
+        if(this.age != age)
+            setChanged();
         this.age = age;
+        notifyObservers();
     }
 
     @Override
     public void setPersonality(PersonalityTypes personality)
     {
-        if (personality == null)
+        if(personality == null)
             throw new NullPointerException();
+        if(! personality.equals(this.personality))
+            setChanged();
         this.personality = personality;
+        notifyObservers(this);
     }
 
     @Override
     public void setEye(String eye)
     {
-        if (eye == null)
+        if(eye == null)
             throw new NullPointerException();
+        if(! eye.equals(this.eye))
+            setChanged();
         this.eye = eye;
+        notifyObservers(this);
     }
 
     @Override
     public void setGod(God god)
     {
-        if (god == null)
+        if(god == null)
             throw new NullPointerException();
+        if(! god.equals(this.god))
+            setChanged();
         this.god = god;
+        notifyObservers(this);
     }
 
     @Override
     public void setHair(String hair)
     {
-        if (hair == null)
+        if(hair == null)
             throw new NullPointerException();
+        if(! hair.equals(this.hair))
+            setChanged();
         this.hair = hair;
+        notifyObservers(this);
     }
 
     @Override
-    public void setHeight(Integer height)
+    public void setHeight(int height)
     {
-        if (height == null)
-            throw new NullPointerException();
+        if(height != this.height)
+            setChanged();
         this.height = height;
+        notifyObservers(this);
     }
 
     @Override
     public void setName(String name)
     {
-        if (name == null)
+        if(name == null)
             throw new NullPointerException();
+        if(!name.equals(this.name))
+            setChanged();
         this.name = name;
+        notifyObservers(this);
     }
 
     @Override
     public void setPlayer(String player)
     {
-        if (player == null)
+        if(player == null)
             throw new NullPointerException();
+        if(!player.equals(this.player))
+            setChanged();
         this.player = player;
+        notifyObservers(this);
     }
 
     @Override
     public void setSex(Sex sex)
     {
-        if (sex == null)
+        if(sex == null)
             throw new NullPointerException();
+        if(!sex.equals(this.sex))
+            setChanged();
         this.sex = sex;
+        notifyObservers(this);
     }
 
     @Override
     public void setSize(Size size)
     {
-        if (size == null)
+        if(size == null)
             throw new NullPointerException();
+        if(!size.equals(this.size))
+            setChanged();
         this.size = size;
+        notifyObservers(this);
     }
 
     @Override
     public void setSkin(String skin)
     {
-        if (skin == null)
+        if(skin == null)
             throw new NullPointerException();
+        if(!skin.equals(this.sex))
+            setChanged();
         this.skin = skin;
+        notifyObservers(this);
     }
 
     @Override
-    public void setWeight(Integer weight)
+    public void setWeight(int weight)
     {
-        if (weight == null)
-            throw new NullPointerException();
+        if(this.weight != weight)
+            setChanged();
         this.weight = weight;
+        notifyObservers(this);
     }
 
     @Override
     public void setRase(Race raceOfPlayer)
     {
-        if (raceOfPlayer == null)
+        if(raceOfPlayer == null)
             throw new NullPointerException();
+        if(!raceOfPlayer.equals(this.race))
+            setChanged();
         this.race = raceOfPlayer;
+        notifyObservers(this);
     }
-
+    
+    public void addDescriptionObserver(Observer o)
+    {
+        addObserver(o);
+    };
 }

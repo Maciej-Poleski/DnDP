@@ -48,8 +48,8 @@ public class Main extends Thread
             chatHeandler = new Chat(handle);
         }
 
-        window = new MainWindow(chatHeandler);
-        window.start();
+        //window = new MainWindow(chatHeandler);
+        //window.start();
 
     }
 

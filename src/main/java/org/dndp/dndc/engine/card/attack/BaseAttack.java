@@ -1,10 +1,9 @@
 package org.dndp.dndc.engine.card.attack;
 
 import java.util.Arrays;
+import java.util.Observable;
 
 import org.dndp.dndc.engine.card.bonus.Bonusable;
-import org.dndp.dndc.engine.Character;
-
 
 /**
  * Klasa abstrakcyjna definiująca interfejs i cześć zachowań Wzorzec projektowy
@@ -12,22 +11,17 @@ import org.dndp.dndc.engine.Character;
  * 
  * @author bambucha
  */
-public abstract class BaseAttack implements Bonusable
+public abstract class BaseAttack extends Observable implements Bonusable
 {
     private BaseBonusToAttack baseAtack;
-    private Integer           bonus;
-    protected Character       main;
-    protected Integer         atackModifier;
+    private int               bonus;
 
     /**
      * Standardowy konstruktor Ustawia bazową premię do ataku na 0
-     * 
-     * @param main
      */
-    public BaseAttack(Character main)
+    public BaseAttack()
     {
-        this.main = main;
-        baseAtack = new BaseBonusToAttack(new Integer[] { 0 });
+        baseAtack = new BaseBonusToAttack(new int[] { 0 });
         bonus = 0;
     }
 
@@ -49,34 +43,39 @@ public abstract class BaseAttack implements Bonusable
      */
     public void setBaseAttack(BaseBonusToAttack baseAtack)
     {
-        if (baseAtack == null)
+        if(baseAtack == null)
             throw new NullPointerException();
+        if(!this.baseAtack.equals(baseAtack))
+            setChanged();
         this.baseAtack = baseAtack;
+        notifyObservers();
     }
 
     /**
-     * Funkcja licząca modyfikator ataku, niezależny od bazowego. Jest to
-     * uwzględnienie rozmiaru, siły, zręczności. W zalezności od ataku.
-     */
-    protected abstract void countAttacksModifier();
-
-    /*
      * Zwraca całkowitą premię do ataku, bez uwzględnienia broni.
      */
     public TotalBonusToAttack getAttacks()
     {
-        countAttacksModifier();
-        Integer[] temp = Arrays.copyOf(baseAtack.getBonus(),
+        int[] temp = Arrays.copyOf(baseAtack.getBonus(),
                 baseAtack.getNumberOfAttacks());
-        for (int q = 0; q < temp.length; ++q)
-            temp[q] += (atackModifier + bonus);
+        for(int q = 0; q < temp.length; ++q)
+            temp[q] += bonus;
         return new TotalBonusToAttack(temp);
     }
 
     @Override
-    public void setBonus(Integer bonus)
+    public void setBonus(int bonus)
     {
+        if(this.bonus != bonus)
+            setChanged();
         this.bonus = bonus;
+        notifyObservers(this);
+    }
+
+    @Override
+    public boolean isSizeImportant()
+    {
+        return true;
     }
 
 }

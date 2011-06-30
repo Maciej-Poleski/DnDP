@@ -1,5 +1,8 @@
 package org.dndp.dndc.engine.card.st;
 
+import java.util.Observable;
+import java.util.Observer;
+
 import org.dndp.dndc.engine.card.bonus.BonusManager;
 
 /**
@@ -7,12 +10,12 @@ import org.dndp.dndc.engine.card.bonus.BonusManager;
  * 
  * @author bambucha
  */
-public class DnDSavingThrows implements SavingThrows
+public class DnDSavingThrows extends Observable implements SavingThrows
 {
     private SavingThrow forttiude;
     private SavingThrow reflex;
     private SavingThrow will;
-    private Double      spell;
+    private double      spell;
 
     /**
      * Standardowy konstruktor.
@@ -52,17 +55,25 @@ public class DnDSavingThrows implements SavingThrows
     }
 
     @Override
-    public Double getSpellResistance()
+    public double getSpellResistance()
     {
         return spell;
     }
 
     @Override
-    public void setSpellResistance(Double newValue)
+    public void setSpellResistance(double newValue)
     {
         if(newValue < 0)
             throw new IllegalArgumentException("Nie może być < 0");
+        if(this.spell != newValue)
+            setChanged();
         spell = newValue;
+        notifyObservers(this);
     }
-
+    
+   @Override
+    public void addSavingThrowObserver(Observer o)
+    {
+       addObserver(o);
+    }
 }

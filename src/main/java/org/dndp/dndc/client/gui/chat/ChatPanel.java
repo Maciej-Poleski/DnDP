@@ -76,7 +76,6 @@ public class ChatPanel extends Composite
 
         sendButton.addListener(SWT.Selection, new Listener()
         {
-            @Override
             public void handleEvent(Event event)
             {
                 sendMessage();
@@ -86,11 +85,9 @@ public class ChatPanel extends Composite
         typeField.addKeyListener(new KeyListener()
         {
 
-            @Override
             public void keyReleased(KeyEvent e)
             {}
 
-            @Override
             public void keyPressed(KeyEvent e)
             {
                 if(e.keyCode == SWT.CR)

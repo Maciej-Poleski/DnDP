@@ -10,65 +10,70 @@ public enum BonusType
     /**
      * Alchemiczna
      */
-    Alchemical,
+    ALCHEMICAL,
     /**
      * Premia z pancerza
      */
-    Armor,
+    ARMOR,
     /**
      * Okolicznościowa
      */
-    Circumstance,
+    CIRCUMSTANCE,
     /**
      * Z biegłości 
      */
-    Competence,
+    COMPETENCE,
     /**
      * Odbicie
      */
-    Deflection,
+    DEFLECTION,
     /**
      * Unikowa
      */
-    Dodge,
+    DODGE,
     /**
      * Okolicznościowa
      */
-    Enhancement,
+    ENHANCEMENT,
     /**
      * Olśnienia
      */
-    Insight,
+    INSIGHT,
     /**
      * Z szczęścia
      */
-    Luck,
+    LUCK,
     /**
      * Morale
      */
-    Morale,
+    MORALE,
     /**
      * Pancerz naturalny
      */
-    Natural,
+    NATURAL,
     /**
      * Bluźniercza
      */
-    Profane,
+    PROFANE,
     /**
      * Rasowa
      */
-    Racial,
+    RACIAL,
     /**
      * Z odporności
      */
-    Resistance,
+    RESOSTANCE,
     /**
      * Z uświęcenia
      */
-    Sacred,
+    SACRED,
     /**
      * Z tarczy
      */
-    Shield;
+    SHIELD,
+    /**
+     * Z rozmiaru
+     * TODO implementacja odpowiedniego bonusu i umieszczenie w handlerze
+     */
+    SIZE;
 }

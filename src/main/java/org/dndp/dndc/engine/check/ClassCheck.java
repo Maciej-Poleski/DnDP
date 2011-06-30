@@ -1,7 +1,7 @@
 package org.dndp.dndc.engine.check;
 
+import org.dndp.dndc.engine.FantasyCharacter;
 import org.dndp.dndc.engine.card.classes.BaseClass;
-import org.dndp.dndc.engine.Character;
 
 /**
  * Sprawdza czy klasa postaci jest na wystarczającym poziomie.
@@ -30,9 +30,9 @@ public class ClassCheck implements Checkable
      * @see engine.check.Checkable#check(engine.Character)
      */
     @Override
-    public boolean check(Character character)
+    public boolean check(FantasyCharacter fantasyCharacter)
     {
-        return character.getClassLevel(baseClass) >= level;
+        return fantasyCharacter.getClassLevel(baseClass) >= level;
     }
 
 }

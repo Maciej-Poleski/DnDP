@@ -14,9 +14,9 @@ import org.dndp.dndc.engine.card.bonus.Bonusable;
  */
 public class Abiliti extends Observable implements Bonusable
 {
-    Integer value;
-    Integer modifier;
-    Integer bonus;
+    int value;
+    int modifier;
+    int bonus;
 
     /**
      * Konstruktor budujący atrybut o wartości 10. Dodatkowy argument to interfejs widoku danego obiektu
@@ -59,7 +59,7 @@ public class Abiliti extends Observable implements Bonusable
      * @throws IllegalArgumentException
      *             Gdy wartość atrybutu jest ujemna
      */
-    public synchronized void setValue(Integer value)
+    public synchronized void setValue(int value)
     {
         if(value < 0)
             throw new IllegalArgumentException("Ujmny atrybut");
@@ -71,7 +71,7 @@ public class Abiliti extends Observable implements Bonusable
     }
 
     @Override
-    public synchronized void setBonus(Integer bonus)
+    public synchronized void setBonus(int bonus)
     {
         if(this.bonus != bonus)
             setChanged();
@@ -84,5 +84,11 @@ public class Abiliti extends Observable implements Bonusable
     public AbilityType getAbilityName()
     {
         return AbilityType.NONE;
+    }
+    
+    @Override
+    public boolean isSizeImportant()
+    {
+        return false;
     }
 }

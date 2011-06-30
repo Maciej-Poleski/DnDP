@@ -18,10 +18,10 @@ import org.dndp.dndc.engine.card.bonus.Bonusable;
  */
 public class CharacterSkill extends Observable implements Bonusable
 {
-    private Skill    skil;
-    private Boolean isClasses;
-    private Integer rank;
-    private Integer bonus;
+    private Skill   skil;
+    private boolean isClasses;
+    private int     rank;
+    private int     bonus;
 
     /**
      * Konstruktor z opisu umiejętności
@@ -65,12 +65,14 @@ public class CharacterSkill extends Observable implements Bonusable
      * 
      * @param rank
      */
-    public void setRank(Integer rank)
+    public void setRank(int rank)
     {
-        if (rank < 0)
+        if(rank < 0)
             throw new IllegalArgumentException("rank nie może być ujemne");
+        if(this.rank != rank)
+            setChanged();
         this.rank = rank;
-        notifyObservers();
+        notifyObservers(this);
     }
 
     /**
@@ -90,12 +92,12 @@ public class CharacterSkill extends Observable implements Bonusable
      * @param bonus
      */
     @Override
-    public void setBonus(Integer bonus)
+    public void setBonus(int bonus)
     {
-        if (bonus == null)
-            throw new NullPointerException();
+        if(this.bonus != bonus)
+            setChanged();
         this.bonus = bonus;
-        notifyObservers();
+        notifyObservers(this);
     }
 
     @Override
@@ -106,6 +108,7 @@ public class CharacterSkill extends Observable implements Bonusable
 
     /**
      * Zwraca iformację czy umiejętność jest umiejętnością klasową postaci.
+     * 
      * @return true, jeśli klasowa
      */
     public Boolean isClasses()
@@ -115,10 +118,21 @@ public class CharacterSkill extends Observable implements Bonusable
 
     /**
      * Ustwia czy umiejętność jest klasowa dla postaci.
-     * @param isClasses Status umiejętności.
+     * 
+     * @param isClasses
+     *            Status umiejętności.
      */
-    public void setClasses(Boolean isClasses)
+    public void setClasses(boolean isClasses)
     {
+        if(this.isClasses != isClasses)
+            hasChanged();
         this.isClasses = isClasses;
+        notifyObservers(this);
+    }
+
+    @Override
+    public boolean isSizeImportant()
+    {
+        return false;
     }
 }

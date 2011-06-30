@@ -15,11 +15,11 @@
   </properties>
   
   <repositories>
-    <repository>
-        <id>dndp-swt</id>
-        <url>http://users.v-lo.krakow.pl/~bambucha/maven</url>
-    </repository>
-    <repository>
+  	<repository>
+       <id>dndp-swt</id>
+       <url>http://users.v-lo.krakow.pl/~bambucha/maven</url>
+    </repository> 
+  	<repository>
       <id>source.db4o</id>
       <url>http://source.db4o.com/maven</url>
     </repository>
@@ -76,6 +76,31 @@
                 <swt-type>gtk-linux-x86_64</swt-type>
             </properties>
         </profile>
+        <profile>
+        	<id>deploy</id>
+        	<dependencies>
+        		<dependency>
+		            <groupId>swt</groupId>
+		            <artifactId>swt-win32-win32-x86</artifactId>
+		            <version>3.6.2</version>
+		        </dependency>
+		        <dependency>
+		            <groupId>swt</groupId>
+		            <artifactId>swt-win32-win32-x86_64</artifactId>
+		            <version>3.6.2</version>
+		        </dependency>
+		        <dependency>
+		            <groupId>swt</groupId>
+		            <artifactId>swt-gtk-linux-x86</artifactId>
+		            <version>3.6.2</version>
+		        </dependency> 
+		        <dependency>
+		            <groupId>swt</groupId>
+		            <artifactId>swt-gtk-linux-x86_64</artifactId>
+		            <version>3.6.2</version>
+		        </dependency>
+        	</dependencies>
+        </profile>
     </profiles>
     
     <build>
@@ -89,15 +114,15 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>org.dndp.dndc.client.Main</mainClass>
+                            <mainClass>org.dndp.dndc.client.gui.MainWindow</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
-            </plugin>
+            </plugin><!-- 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
-                <version>2.2</version>
+                 <version>2.2</version> 
                 <executions>
                     <execution>
                         <configuration>
@@ -108,29 +133,88 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>-->
+            <plugin>
+	            <groupId>org.apache.maven.plugins</groupId>
+	            <artifactId>maven-site-plugin</artifactId>
+	            <version>3.0-beta-3</version>
+	            <configuration>
+	                <reportPlugins>
+	                    <plugin>
+	                        <groupId>com.soebes.maven.plugins.dmg</groupId>
+	                        <artifactId>doxygen-maven-plugin</artifactId>
+	                        <version>1.0.1</version>
+	                        <configuration>
+	                            <haveDot>true</haveDot>
+	                            <quiet>false</quiet>
+	                            <projectName>DnDC</projectName>
+	                            <javadocAutobrief>true</javadocAutobrief>
+	                            <optimizeOutputJava>true</optimizeOutputJava>
+	                            <input>${basedir}/src/main</input>
+	                            <recursive>true</recursive>
+	                        </configuration>
+	                    </plugin>
+	                </reportPlugins>
+	            </configuration>
             </plugin>
             <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-site-plugin</artifactId>
-            <version>3.0-beta-3</version>
-            <configuration>
-                <reportPlugins>
-                    <plugin>
-                        <groupId>com.soebes.maven.plugins.dmg</groupId>
-                        <artifactId>doxygen-maven-plugin</artifactId>
-                        <version>1.0.1</version>
-                        <configuration>
-                            <haveDot>true</haveDot>
-                            <quiet>false</quiet>
-                            <projectName>DnDC</projectName>
-                            <javadocAutobrief>true</javadocAutobrief>
-                            <optimizeOutputJava>true</optimizeOutputJava>
-                            <input>${basedir}/src/main</input>
-                            <recursive>true</recursive>
-                        </configuration>
-                    </plugin>
-                </reportPlugins>
-            </configuration>
+            	<groupId>org.apache.maven.plugins</groupId>
+            	<artifactId>maven-compiler-plugin</artifactId>
+            	<version>2.3.2</version>
+            	<configuration>
+            		<source>1.6</source>
+            		<target>1.6</target>
+            	</configuration>
+            </plugin>
+            <plugin>
+            	<groupId>org.bluestemsoftware.open.maven.plugin</groupId>
+            	<artifactId>launch4j-plugin</artifactId>
+            	<version>1.5.0.0</version>
+            	<executions>
+					<execution>
+						<id>deploy</id>
+						<phase>package</phase>
+						<goals>
+						  <goal>launch4j</goal>
+						</goals>					
+					</execution>
+				 </executions>
+				 <configuration>
+					<dontWrapJar>false</dontWrapJar>
+					<headerType>gui</headerType>
+					<outfile>target/${project.name}-${project.version}.exe</outfile>
+					<jar>target/${project.name}-${project.version}.jar</jar>
+					<errTitle>alakai</errTitle>
+					<classPath><mainClass>org.dndp.dndc.client.gui.MainWindow</mainClass>
+						<addDependencies>false</addDependencies>
+					        <preCp>anything</preCp>
+            				</classPath>
+					<jre>
+					  <minVersion>1.6.0</minVersion>
+					</jre>
+				 </configuration>
+            </plugin>
+            <plugin>
+            	<groupId>org.apache.maven.plugins</groupId>
+            	<artifactId>maven-assembly-plugin</artifactId>
+            	<version>2.2.1</version>
+            	<configuration>
+					<descriptors>
+						<descriptor>src/assembly/win-x86_64.xml</descriptor>
+						<descriptor>src/assembly/win-x86.xml</descriptor>
+						<descriptor>src/assembly/linux-x86.xml</descriptor>
+						<descriptor>src/assembly/linux-x86_64.xml</descriptor>
+					</descriptors>
+				</configuration>
+				<executions>
+					<execution>
+						<id>deploy</id> <!-- this is used for inheritance merges -->
+						<phase>package</phase> <!-- bind to the packaging phase -->
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
             </plugin>
         </plugins>
     </build>
@@ -144,18 +228,25 @@
         </dependency>
         <dependency>
             <groupId>swt</groupId>
-            <artifactId>swt</artifactId>
-            <version>3.6.2-${swt-type}</version>
+            <artifactId>swt-${swt-type}</artifactId>
+            <version>3.6.2</version>
         </dependency>
+        <dependency>
+            <groupId>org.eclipse</groupId>
+            <artifactId>jface</artifactId>
+            <version>3.6.0</version>
+        </dependency> 
         <dependency>
           <groupId>com.db4o</groupId>
           <artifactId>db4o-full-java5</artifactId>
           <version>7.13-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>org.eclipse</groupId>
-            <artifactId>jface</artifactId>
-            <version>3.6.0</version>
+        	<groupId>org.easymock</groupId>
+        	<artifactId>easymock</artifactId>
+        	<version>3.0</version>
+        	<type>jar</type>
+        	<scope>test</scope>
         </dependency>
     </dependencies>
 </project>
