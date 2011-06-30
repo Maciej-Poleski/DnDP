@@ -4,7 +4,13 @@ import org.dndp.dndc.engine.card.classes.CharacterClass;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
 
-
+/**
+ * Klasa przerabiająca CharacterClass na łykane przez ListViewer stringi.
+ * 
+ * 
+ * @author bambucha
+ * 
+ */
 public class ClassLabelProvider extends LabelProvider
 {
 
@@ -19,5 +25,5 @@ public class ClassLabelProvider extends LabelProvider
     {
         return ((CharacterClass)element).getClasses().getName();
     }
-    
+
 }

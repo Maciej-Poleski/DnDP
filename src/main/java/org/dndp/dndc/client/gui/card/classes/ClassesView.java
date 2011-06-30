@@ -20,9 +20,16 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Text;
 
+/**
+ * Klasa do wi
+ * 
+ * @author bambucha
+ * 
+ */
 public class ClassesView extends Group implements Observer,
         ISelectionChangedListener
 {
+
     private Text       classNameText;
     private Text       classLevelText;
     private Text       sumText;
@@ -51,8 +58,9 @@ public class ClassesView extends Group implements Observer,
         listViewer.setContentProvider(new CollectionContentProvider());
         listViewer.addSelectionChangedListener(this);
         List listView = listViewer.getList();
-        listView.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true, true,
-                2, 2));
+        GridData gd_listView = new GridData(SWT.FILL, SWT.FILL, true, true, 2,
+                2);
+        listView.setLayoutData(gd_listView);
 
         Group grpSzczegy = new Group(this, SWT.NONE);
         grpSzczegy.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false,
@@ -88,9 +96,13 @@ public class ClassesView extends Group implements Observer,
                 false, 1, 1));
 
         Label lblDowiadczenie = new Label(this, SWT.CENTER);
+        lblDowiadczenie.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false,
+                false, 1, 1));
         lblDowiadczenie.setText("Doświadczenie");
 
         experienceText = new Text(this, SWT.BORDER);
+        experienceText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false,
+                false, 1, 1));
 
         Label lblSkala = new Label(this, SWT.CENTER);
         lblSkala.setText("Kara");
@@ -104,6 +116,13 @@ public class ClassesView extends Group implements Observer,
 
     }
 
+    /**
+     * Liczy doświadczenie potrzebne na nowy poziom.
+     * 
+     * @param level
+     *            poziom
+     * @return potrzebne doświadczenie
+     */
     private int getXPForLevel(int level)
     {
         return (level * (level + 1)) / 2;

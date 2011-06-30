@@ -1,5 +1,7 @@
 package org.dndp.dndc.engine.card.abilities;
 
+import java.util.Observer;
+
 import org.dndp.dndc.engine.card.bonus.BonusManager;
 
 /**
@@ -67,5 +69,16 @@ public class DnDAbilities implements Abilities
     public Abiliti getCharisma()
     {
         return this.charisma;
+    }
+
+    @Override
+    public void addObserverToAbilities(Observer o)
+    {
+        strenght.addObserver(o);
+        dexterity.addObserver(o);
+        construction.addObserver(o);
+        intelligence.addObserver(o);
+        wisdom.addObserver(o);
+        charisma.addObserver(o);
     }
 }

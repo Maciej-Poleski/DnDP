@@ -15,19 +15,26 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.wb.swt.SWTResourceManager;
 
+/**
+ * Widok rzutów obronnych postaci.
+ * 
+ * @author bambucha
+ * 
+ */
 public class StView extends Group implements Observer, ModifyListener
 {
-    private Text fortitudeText;
-    private Text reflexesTest;
-    private Text willText;
-    private Text spellResistanceText;
+    private Text         fortitudeText;
+    private Text         reflexesTest;
+    private Text         willText;
+    private Text         spellResistanceText;
     private SavingThrows model;
-    private Text baseFortitudeText;
-    private Text baseReflexesText;
-    private Text baseWillText;
+    private Text         baseFortitudeText;
+    private Text         baseReflexesText;
+    private Text         baseWillText;
 
     /**
      * Create the composite.
+     * 
      * @param parent
      * @param style
      */
@@ -35,60 +42,70 @@ public class StView extends Group implements Observer, ModifyListener
     {
         super(parent, style);
         setLayout(new GridLayout(3, false));
-        
-        
-        
+
         Label lblWytrzymao = new Label(this, SWT.NONE);
-        lblWytrzymao.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+        lblWytrzymao.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false,
+                false, 1, 1));
         lblWytrzymao.setText("Wytrzymałoś");
-        
+
         fortitudeText = new Text(this, SWT.BORDER | SWT.RIGHT);
         fortitudeText.setEditable(false);
-        fortitudeText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
-        
+        fortitudeText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
+                false, 1, 1));
+
         baseFortitudeText = new Text(this, SWT.BORDER | SWT.RIGHT);
-        baseFortitudeText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
-        
+        baseFortitudeText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER,
+                true, false, 1, 1));
+
         Label lblRefleks = new Label(this, SWT.NONE);
-        lblRefleks.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+        lblRefleks.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false,
+                false, 1, 1));
         lblRefleks.setText("Refleks");
-        
+
         reflexesTest = new Text(this, SWT.BORDER | SWT.RIGHT);
         reflexesTest.setEditable(false);
-        reflexesTest.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
-        
+        reflexesTest.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
+                false, 1, 1));
+
         baseReflexesText = new Text(this, SWT.BORDER | SWT.RIGHT);
-        baseReflexesText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
-        
+        baseReflexesText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
+                false, 1, 1));
+
         Label lblWola = new Label(this, SWT.NONE);
-        lblWola.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+        lblWola.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false,
+                1, 1));
         lblWola.setText("Wola");
-        
+
         willText = new Text(this, SWT.BORDER | SWT.RIGHT);
         willText.setEditable(false);
-        willText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
-        
+        willText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false,
+                1, 1));
+
         baseWillText = new Text(this, SWT.BORDER | SWT.RIGHT);
-        baseWillText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
-        
+        baseWillText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
+                false, 1, 1));
+
         Label lblOdpornoNaCzary = new Label(this, SWT.NONE);
-        lblOdpornoNaCzary.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+        lblOdpornoNaCzary.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER,
+                false, false, 1, 1));
         lblOdpornoNaCzary.setText("Odpornoś na czary");
-        
+
         spellResistanceText = new Text(this, SWT.BORDER | SWT.RIGHT);
         spellResistanceText.setEditable(false);
-        spellResistanceText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
+        spellResistanceText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER,
+                true, false, 2, 1));
 
         setModel(model);
         baseFortitudeText.addModifyListener(this);
         baseReflexesText.addModifyListener(this);
         baseWillText.addModifyListener(this);
         model.addSavingThrowObserver(this);
-        
+
     }
 
     /**
-     * @param model the model to set
+     * @param model
+     *            the model to set
      */
     public void setModel(SavingThrows model)
     {
@@ -106,49 +123,61 @@ public class StView extends Group implements Observer, ModifyListener
     {
         if(o instanceof SavingThrows)
         {
-            SavingThrows tmp=(SavingThrows)o;
+            SavingThrows tmp = (SavingThrows)o;
             fortitudeText.setText(tmp.getForttiude().getBonus().toString());
-            baseFortitudeText.setText(tmp.getForttiude().getBaseModifier().toString());
+            baseFortitudeText.setText(tmp.getForttiude().getBaseModifier()
+                    .toString());
             reflexesTest.setText(tmp.getReflex().getBonus().toString());
-            baseReflexesText.setText(tmp.getReflex().getBaseModifier().toString());
+            baseReflexesText.setText(tmp.getReflex().getBaseModifier()
+                    .toString());
             willText.setText(tmp.getWill().getBonus().toString());
             baseWillText.setText(tmp.getWill().getBaseModifier().toString());
-            spellResistanceText.setText(Double.toString(tmp.getSpellResistance()));
+            spellResistanceText.setText(Double.toString(tmp
+                    .getSpellResistance()));
         }
-        
+
     }
-    
+
     @Override
     public void modifyText(ModifyEvent ex)
     {
         try
         {
-            model.getForttiude().setBaseModifier(Integer.parseInt(baseFortitudeText.getText()));
-            baseFortitudeText.setBackground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
+            model.getForttiude().setBaseModifier(
+                    Integer.parseInt(baseFortitudeText.getText()));
+            baseFortitudeText.setBackground(SWTResourceManager
+                    .getColor(SWT.COLOR_WHITE));
         }
         catch(NumberFormatException e)
         {
-            baseFortitudeText.setBackground(SWTResourceManager.getColor(SWT.COLOR_RED));
+            baseFortitudeText.setBackground(SWTResourceManager
+                    .getColor(SWT.COLOR_RED));
         }
-        
+
         try
         {
-            model.getReflex().setBaseModifier(Integer.parseInt(baseReflexesText.getText()));
-            baseReflexesText.setBackground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
+            model.getReflex().setBaseModifier(
+                    Integer.parseInt(baseReflexesText.getText()));
+            baseReflexesText.setBackground(SWTResourceManager
+                    .getColor(SWT.COLOR_WHITE));
         }
         catch(NumberFormatException e)
         {
-            baseReflexesText.setBackground(SWTResourceManager.getColor(SWT.COLOR_RED));
+            baseReflexesText.setBackground(SWTResourceManager
+                    .getColor(SWT.COLOR_RED));
         }
-        
+
         try
         {
-            model.getWill().setBaseModifier(Integer.parseInt(baseWillText.getText()));
-            baseWillText.setBackground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
+            model.getWill().setBaseModifier(
+                    Integer.parseInt(baseWillText.getText()));
+            baseWillText.setBackground(SWTResourceManager
+                    .getColor(SWT.COLOR_WHITE));
         }
         catch(NumberFormatException e)
         {
-            baseWillText.setBackground(SWTResourceManager.getColor(SWT.COLOR_RED));
+            baseWillText.setBackground(SWTResourceManager
+                    .getColor(SWT.COLOR_RED));
         }
     }
 }

@@ -1,6 +1,5 @@
 package org.dndp.dndc.client.gui.card.attack;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Observable;
 import java.util.Observer;
@@ -64,11 +63,11 @@ public class AttackView extends Composite implements Observer, ModifyListener
      * @param parent
      * @param style
      */
-    public AttackView(Composite parent, int style,Attack model)
+    public AttackView(Composite parent, int style, Attack model)
     {
         super(parent, style);
         setLayout(new FillLayout(SWT.HORIZONTAL));
-        
+
         this.model = model;
         model.addAttackObserver(this);
 
@@ -162,7 +161,7 @@ public class AttackView extends Composite implements Observer, ModifyListener
         lblSzybko = new Label(grpWalka, SWT.NONE);
         lblSzybko.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false,
                 false, 1, 1));
-        lblSzybko.setText("Szybkoś");
+        lblSzybko.setText("Szybkość");
 
         speedText = new Text(grpWalka, SWT.BORDER);
         speedText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false,
@@ -188,7 +187,7 @@ public class AttackView extends Composite implements Observer, ModifyListener
             if(x.length > 3)
                 meleeSumAttack4Text.setText(Integer.toString(x[3]));
         }
-        if( o instanceof RangeAttack)
+        if(o instanceof RangeAttack)
         {
 
             distanceAttack1Text.setText("");
@@ -204,16 +203,16 @@ public class AttackView extends Composite implements Observer, ModifyListener
                 distanceAttack3Text.setText(Integer.toString(x[2]));
             if(x.length > 3)
                 distanceAttack4Text.setText(Integer.toString(x[3]));
-        }  
-        if( o instanceof GrappleAttack)
+        }
+        if(o instanceof GrappleAttack)
         {
             int[] x = ((BaseAttack)o).getAttacks().getMainHand();
             if(x.length > 0)
                 grappleAttackText.setText(Integer.toString(x[0]));
         }
-        if( o instanceof Initiative)
+        if(o instanceof Initiative)
             initiativeText.setText(arg.toString());
-        if( o instanceof Speed)
+        if(o instanceof Speed)
             speedText.setText(arg.toString());
     }
 
@@ -248,7 +247,7 @@ public class AttackView extends Composite implements Observer, ModifyListener
         {
             model.setBaseAttack(new BaseBonusToAttack(Arrays.copyOf(tmp, 3)));
             return;
-        }       
+        }
         model.setBaseAttack(new BaseBonusToAttack(tmp));
     }
 
@@ -281,6 +280,11 @@ public class AttackView extends Composite implements Observer, ModifyListener
         // Disable the check that prevents subclassing of SWT components
     }
 
+    /**
+     * Ustawia model.
+     * 
+     * @param model
+     */
     public void setModel(Attack model)
     {
         this.model = model;

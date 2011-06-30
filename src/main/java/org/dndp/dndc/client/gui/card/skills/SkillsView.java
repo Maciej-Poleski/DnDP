@@ -17,13 +17,19 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.Text;
 
+/**
+ * Widok umiejętności. Tabela zestawiająca je razem.
+ * 
+ * @author bambucha
+ */
 public class SkillsView extends Group implements Observer
 {
-    private static final String[] titles = new String[]{"Nazwa","Razem","Ranga","Modyfikator","Bonus"};
-    
-    private Table       table;
-    private Text        maxRankText;
-    private TableViewer tableViewer;
+    private static final String[] titles = new String[] { "Nazwa", "Razem",
+            "Ranga", "Modyfikator", "Bonus" };
+
+    private Table                 table;
+    private Text                  maxRankText;
+    private TableViewer           tableViewer;
 
     /**
      * Create the composite.
@@ -36,7 +42,7 @@ public class SkillsView extends Group implements Observer
         super(parent, style);
         setText("Umiejętności");
         setLayout(new GridLayout(2, false));
-        
+
         model.addSkillObserver(this);
 
         tableViewer = new TableViewer(this, SWT.BORDER | SWT.FULL_SELECTION);
@@ -44,19 +50,20 @@ public class SkillsView extends Group implements Observer
         tableViewer.setLabelProvider(new SklilLabelProvider());
         for(String title : titles)
         {
-            TableViewerColumn col = new TableViewerColumn(tableViewer, SWT.RIGHT);
+            TableViewerColumn col = new TableViewerColumn(tableViewer,
+                    SWT.RIGHT);
             col.getColumn().setText(title);
             col.getColumn().setResizable(true);
             col.getColumn().setMoveable(true);
         }
-        
+
         table = tableViewer.getTable();
         table.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
 
         Label lblMaksymalnaIloRang = new Label(this, SWT.NONE);
         lblMaksymalnaIloRang.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER,
                 false, false, 1, 1));
-        lblMaksymalnaIloRang.setText("Maksymalna iloś rang");
+        lblMaksymalnaIloRang.setText("Maksymalna ilość rang");
 
         maxRankText = new Text(this, SWT.BORDER);
         maxRankText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,

@@ -1,5 +1,8 @@
 package org.dndp.dndc.client.gui;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import org.dndp.dndc.client.gui.card.abilities.AbilitiesView;
 import org.dndp.dndc.client.gui.card.armor.ArmorView;
 import org.dndp.dndc.client.gui.card.attack.AttackView;
@@ -20,41 +23,39 @@ import org.eclipse.swt.widgets.Shell;
 
 /**
  * Głowne okno programu.
- *
+ * 
  * @author bambucha
  */
 public class MainWindow extends Thread
 {
-    private Display display;
-    private Shell   shell;
-    private ChatPanel chatPanel;
-    //private Chat chat;
+    private Display          display;
+    private Shell            shell;
+    private ChatPanel        chatPanel;
     private FantasyCharacter x;
-    
-    private ClassesView classesView;
-    private DescriptionView descriptionView;
-    private AbilitiesView abilitiesView;
-    private HpView hpView;
-    private ArmorView armorView;
-    private AttackView attackView;
-    private FleatsView fleatsView;
-    private SkillsView skillsView;
+
+    private ClassesView      classesView;
+    private DescriptionView  descriptionView;
+    private AbilitiesView    abilitiesView;
+    private HpView           hpView;
+    private ArmorView        armorView;
+    private AttackView       attackView;
+    private FleatsView       fleatsView;
+    private SkillsView       skillsView;
 
     public MainWindow()
     {
-        //this.chat = chat;
+        // this.chat = chat;
         x = new FantasyCharacter();
     }
 
     private void build()
     {
         Layout gl_shell = new FormLayout();
-        //gl_shell.numColumns = 3;
+
         shell.setLayout(gl_shell);
-        //chatPanel = new ChatPanel(shell, SWT.NO_FOCUS, chat );
-        //chat.setGui(chatPanel);
+        shell.setText("DnDC - 0.1");
         FormData data;
-        
+
         descriptionView = new DescriptionView(shell, SWT.NONE, x);
         abilitiesView = new AbilitiesView(shell, SWT.NONE, x);
         hpView = new HpView(shell, SWT.NONE, x);
@@ -63,57 +64,49 @@ public class MainWindow extends Thread
         attackView = new AttackView(shell, SWT.NONE, x);
         fleatsView = new FleatsView(shell, SWT.NONE, x);
         skillsView = new SkillsView(shell, SWT.NONE, x);
-        
+
         data = new FormData(SWT.DEFAULT, SWT.DEFAULT);
         data.top = new FormAttachment(0);
         data.left = new FormAttachment(0);
-        data.right = new FormAttachment(classesView,0,SWT.RIGHT);
+        data.right = new FormAttachment(classesView, 0, SWT.RIGHT);
         descriptionView.setLayoutData(data);
-        
-        
+
         data = new FormData(SWT.DEFAULT, SWT.DEFAULT);
         data.top = new FormAttachment(descriptionView);
         data.left = new FormAttachment(0);
         abilitiesView.setLayoutData(data);
-        
-        
+
         data = new FormData(SWT.DEFAULT, SWT.DEFAULT);
         data.top = new FormAttachment(0);
         data.left = new FormAttachment(descriptionView);
-        data.right = new FormAttachment(armorView,0,SWT.RIGHT);
+        data.right = new FormAttachment(armorView, 0, SWT.RIGHT);
         hpView.setLayoutData(data);
-        
-        
 
-        
         data = new FormData(SWT.DEFAULT, SWT.DEFAULT);
         data.top = new FormAttachment(descriptionView);
         data.left = new FormAttachment(abilitiesView);
-        //data.right = new FormAttachment(100);
+        // data.right = new FormAttachment(100);
         classesView.setLayoutData(data);
-        
-        
+
         data = new FormData(SWT.DEFAULT, SWT.DEFAULT);
         data.top = new FormAttachment(hpView);
         data.left = new FormAttachment(classesView);
         data.right = new FormAttachment(100);
-        data.bottom = new FormAttachment(classesView,0,SWT.BOTTOM);
+        data.bottom = new FormAttachment(classesView, 0, SWT.BOTTOM);
         armorView.setLayoutData(data);
-       
+
         data = new FormData(SWT.DEFAULT, SWT.DEFAULT);
         data.top = new FormAttachment(classesView);
         data.left = new FormAttachment(abilitiesView);
-        //data.right = new FormAttachment(20);
-        //data.bottom = new FormAttachment(100);
         attackView.setLayoutData(data);
-        
+
         data = new FormData(SWT.DEFAULT, SWT.DEFAULT);
         data.top = new FormAttachment(abilitiesView);
         data.left = new FormAttachment(0);
         data.right = new FormAttachment(attackView);
         data.bottom = new FormAttachment(100);
         fleatsView.setLayoutData(data);
-        
+
         skillsView = new SkillsView(shell, SWT.NONE, x);
         data = new FormData(SWT.DEFAULT, SWT.DEFAULT);
         data.top = new FormAttachment(classesView);
@@ -121,9 +114,8 @@ public class MainWindow extends Thread
         data.right = new FormAttachment(100);
         data.bottom = new FormAttachment(100);
         skillsView.setLayoutData(data);
-        
-        
-        //shell.pack();
+
+        // shell.pack();
         shell.open();
     }
 
@@ -147,12 +139,11 @@ public class MainWindow extends Thread
     {
         return chatPanel;
     }
-    
-    
+
     public static void main(String args[])
     {
+        Logger.getLogger("").setLevel(Level.WARNING);
         new MainWindow().start();
     }
-    
- 
+
 }
