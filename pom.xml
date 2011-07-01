@@ -166,8 +166,8 @@
 				 <configuration>
 					<dontWrapJar>false</dontWrapJar>
 					<headerType>gui</headerType>
-					<outfile>target/${project.name}-${project.version}.exe</outfile>
-					<jar>${project.name}-${project.version}.jar</jar>
+					<outfile>${project.build.directory}/${project.name}-${project.version}.exe</outfile>
+					<jar>${project.build.directory}/${project.name}-${project.version}.jar</jar>
 					<errTitle>alakai</errTitle>
 					<classPath>
 						<mainClass>org.dndp.dndc.client.gui.MainWindow</mainClass>
