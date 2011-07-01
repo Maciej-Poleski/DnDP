@@ -113,7 +113,6 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <classpathPrefix></classpathPrefix>
                             <mainClass>org.dndp.dndc.client.gui.MainWindow</mainClass>
                         </manifest>
                     </archive>
@@ -165,15 +164,15 @@
 					</execution>
 				 </executions>
 				 <configuration>
-					<dontWrapJar>true</dontWrapJar>
+					<dontWrapJar>false</dontWrapJar>
 					<headerType>gui</headerType>
 					<outfile>target/${project.name}-${project.version}.exe</outfile>
-					<jar>lib/${project.name}-${project.version}.jar</jar>
+					<jar>${project.name}-${project.version}.jar</jar>
 					<errTitle>alakai</errTitle>
 					<classPath>
 						<mainClass>org.dndp.dndc.client.gui.MainWindow</mainClass>
 						<addDependencies>flase</addDependencies>
-					    <preCp>anything</preCp>
+					    <preCp>lib/</preCp>
             		</classPath>
 					<jre>
 					  <minVersion>1.6.0</minVersion>
