@@ -4,7 +4,7 @@
 
 	<groupId>org.dndp</groupId>
 	<artifactId>dndc</artifactId>
-	<version>0.1</version>
+	<version>0.1.1</version>
 	<packaging>jar</packaging>
 
 	<name>dndc</name>
@@ -165,7 +165,7 @@
 				</executions>
 				<configuration>
 					<dontWrapJar>true</dontWrapJar>
-					<headerType>console</headerType>
+					<headerType>gui</headerType>
 					<outfile>${project.build.directory}/${project.name}-${project.version}.exe</outfile>
 					<jar>lib/${project.name}-${project.version}.jar</jar>
 					<errTitle>alakai</errTitle>
