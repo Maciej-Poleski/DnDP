@@ -1,4 +1,4 @@
 #!/bin/bash
 VERSION=0.1
 
-java -jar dndc-$VERSION.jar
+java -jar lib/dndc-$VERSION.jar
