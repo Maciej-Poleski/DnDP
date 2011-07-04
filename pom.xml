@@ -31,7 +31,7 @@
             <activation>
                 <os>
                     <family>windows</family>
-                    <arch>i386</arch>
+                    <arch>x86</arch>
                 </os>
             </activation>
             <properties>
