@@ -4,15 +4,7 @@
 
 package org.dndp.dndc.engine.card.attack;
 
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 import org.dndp.dndc.engine.FantasyCharacter;
-import org.dndp.dndc.engine.card.description.Size;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
 
 
 
