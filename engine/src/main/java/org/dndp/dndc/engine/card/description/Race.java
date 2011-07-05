@@ -1,13 +1,8 @@
 package org.dndp.dndc.engine.card.description;
 
-
-import org.dndp.dndc.client.FrontToDB;
-
-import com.db4o.ObjectSet;
-import com.db4o.query.Predicate;
-
 /**
- * Klasa opisująca rasę. Dane pobiera z bazy danych w obsługiwaną przez FrontToDB.
+ * Klasa opisująca rasę. Dane pobiera z bazy danych w obsługiwaną przez
+ * FrontToDB.
  * 
  * @author bambucha
  */
@@ -33,26 +28,6 @@ public class Race
         religion = "pelor";
         language = "all";
         name = "bambucha";
-    }
-
-    /**
-     * Zwraca rasę z bazy danych.
-     * @param name Nazwa rasy
-     */
-    public static Race getFromDB(final String name)
-    {
-        ObjectSet<Race> query = FrontToDB.getInstance().getDB().query(new Predicate<Race>()
-        {
-            private static final long serialVersionUID = 1L;
-
-            @Override
-            public boolean match(Race arg0)
-            {
-                return arg0.getName() == name;
-            }
-
-        });
-        return query.get(0);
     }
 
     public String getIndividuality()

@@ -4,10 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import org.dndp.dndc.client.FrontToDB;
-
-import com.db4o.ObjectSet;
-
 /**
  * Klasa, singleton, przechowująca informacje o wszystkich klasach. Możliwe że w przyuszłości, ilośc przechowywanych informacji będzie zredukowana do tylko
  * nagłowków.
@@ -27,9 +23,6 @@ public class ClassManager
     protected ClassManager()
     {
         classMap = new HashMap<String, BaseClass>();
-        ObjectSet<BaseClass> query = FrontToDB.getInstance().getDB().query(BaseClass.class);
-        for (BaseClass basicClass : query)
-            classMap.put(basicClass.getName(), basicClass);
     }
 
     /**

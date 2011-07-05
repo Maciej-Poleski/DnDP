@@ -4,10 +4,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.dndp.dndc.client.FrontToDB;
-
-import com.db4o.ObjectSet;
-
 /**
  * Globalny Menadżer Atutów.
  * 
@@ -25,9 +21,6 @@ public final class FleatManager
     private FleatManager()
     {
         fleats = new HashMap<String, Fleat>();
-        ObjectSet<Fleat> query = FrontToDB.getInstance().getDB().query(Fleat.class);
-        for(Fleat fleat : query)
-            fleats.put(fleat.getName(), fleat);
     }
 
     /**
@@ -37,7 +30,7 @@ public final class FleatManager
      */
     public static synchronized FleatManager getInstance()
     {
-        if (fleatManager == null)
+        if(fleatManager == null)
             fleatManager = new FleatManager();
         return fleatManager;
     }
