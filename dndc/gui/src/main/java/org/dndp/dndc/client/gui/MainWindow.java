@@ -11,7 +11,6 @@ import org.dndp.dndc.client.gui.card.description.DescriptionView;
 import org.dndp.dndc.client.gui.card.fleats.FleatsView;
 import org.dndp.dndc.client.gui.card.hp.HpView;
 import org.dndp.dndc.client.gui.card.skills.SkillsView;
-import org.dndp.dndc.client.gui.chat.ChatPanel;
 import org.dndp.dndc.engine.FantasyCharacter;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FormAttachment;
@@ -30,7 +29,6 @@ public class MainWindow extends Thread
 {
     private Display          display;
     private Shell            shell;
-    private ChatPanel        chatPanel;
     private FantasyCharacter x;
 
     private ClassesView      classesView;
@@ -133,11 +131,6 @@ public class MainWindow extends Thread
             if(!display.readAndDispatch())
                 display.sleep();
         display.dispose();
-    }
-
-    public ChatPanel getChat()
-    {
-        return chatPanel;
     }
 
     public static void main(String args[])

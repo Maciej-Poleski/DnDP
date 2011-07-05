@@ -9,7 +9,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.dndp.dndc.client.gui.MainWindow;
-import org.dndp.dndc.engine.chat.Chat;
 
 /**
  * Najważniejsza klasa w programie.
@@ -21,7 +20,6 @@ public class Main extends Thread
 {
     MainWindow    window;
     FrontToServer handle;
-    Chat          chatHeandler;
 
     public Main()
     {
@@ -45,7 +43,6 @@ public class Main extends Thread
         {
             FrontToDB.getInstance(prop);
             handle = new FrontToServer(prop);
-            chatHeandler = new Chat(handle);
         }
 
         //window = new MainWindow(chatHeandler);
