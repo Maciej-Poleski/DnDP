@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Observable;
 import java.util.Observer;
 
+import org.dndp.dndc.client.gui.SWTResourceManager;
 import org.dndp.dndc.engine.card.attack.Attack;
 import org.dndp.dndc.engine.card.attack.BaseAttack;
 import org.dndp.dndc.engine.card.attack.BaseBonusToAttack;
@@ -22,7 +23,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.wb.swt.SWTResourceManager;
 
 /**
  * Widok ataku. Wyświetla bazow prewmie oraz premie dla wszystkich typw ataku.

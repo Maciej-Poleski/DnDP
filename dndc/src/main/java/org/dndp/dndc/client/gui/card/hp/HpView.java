@@ -3,6 +3,7 @@ package org.dndp.dndc.client.gui.card.hp;
 import java.util.Observable;
 import java.util.Observer;
 
+import org.dndp.dndc.client.gui.SWTResourceManager;
 import org.dndp.dndc.engine.card.hp.HitPoints;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
@@ -13,7 +14,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.wb.swt.SWTResourceManager;
 
 /**
  * Widok punktów zdrowia postaci...
