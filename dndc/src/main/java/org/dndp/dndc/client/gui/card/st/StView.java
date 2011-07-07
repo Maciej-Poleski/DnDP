@@ -42,6 +42,7 @@ public class StView extends Group implements Observer, ModifyListener
     {
         super(parent, style);
         setLayout(new GridLayout(3, false));
+        setText("Rzuty Obronne");
 
         Label lblWytrzymao = new Label(this, SWT.NONE);
         lblWytrzymao.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false,

@@ -11,6 +11,7 @@ import org.dndp.dndc.client.gui.card.description.DescriptionView;
 import org.dndp.dndc.client.gui.card.fleats.FleatsView;
 import org.dndp.dndc.client.gui.card.hp.HpView;
 import org.dndp.dndc.client.gui.card.skills.SkillsView;
+import org.dndp.dndc.client.gui.card.st.StView;
 import org.dndp.dndc.engine.FantasyCharacter;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FormAttachment;
@@ -39,6 +40,7 @@ public class MainWindow extends Thread
     private AttackView       attackView;
     private FleatsView       fleatsView;
     private SkillsView       skillsView;
+    private StView           stView;
 
     public MainWindow()
     {
@@ -62,6 +64,7 @@ public class MainWindow extends Thread
         attackView = new AttackView(shell, SWT.NONE, x);
         fleatsView = new FleatsView(shell, SWT.NONE, x);
         skillsView = new SkillsView(shell, SWT.NONE, x);
+        stView = new StView(shell, SWT.NONE, x);
 
         data = new FormData(SWT.DEFAULT, SWT.DEFAULT);
         data.top = new FormAttachment(0);
@@ -99,6 +102,12 @@ public class MainWindow extends Thread
         attackView.setLayoutData(data);
 
         data = new FormData(SWT.DEFAULT, SWT.DEFAULT);
+        data.top = new FormAttachment(armorView);
+        data.left = new FormAttachment(attackView);
+        data.right = new FormAttachment(100);
+        stView.setLayoutData(data);
+
+        data = new FormData(SWT.DEFAULT, SWT.DEFAULT);
         data.top = new FormAttachment(abilitiesView);
         data.left = new FormAttachment(0);
         data.right = new FormAttachment(attackView);
@@ -107,7 +116,7 @@ public class MainWindow extends Thread
 
         skillsView = new SkillsView(shell, SWT.NONE, x);
         data = new FormData(SWT.DEFAULT, SWT.DEFAULT);
-        data.top = new FormAttachment(classesView);
+        data.top = new FormAttachment(stView);
         data.left = new FormAttachment(attackView);
         data.right = new FormAttachment(100);
         data.bottom = new FormAttachment(100);
@@ -127,7 +136,7 @@ public class MainWindow extends Thread
         shell = new Shell(display);
         shell.setSize(921, 609);
         build();
-        while (!shell.isDisposed())
+        while(!shell.isDisposed())
             if(!display.readAndDispatch())
                 display.sleep();
         display.dispose();
