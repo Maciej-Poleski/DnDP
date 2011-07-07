@@ -39,5 +39,6 @@
 	<modules>
 		<module>dndc</module>
 		<module>engine</module>
+		<module>dnds</module>
 	</modules>
 </project>
