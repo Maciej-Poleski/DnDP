@@ -218,11 +218,6 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.db4o</groupId>
-			<artifactId>db4o-full-java5</artifactId>
-			<version>7.12</version>
-		</dependency>
-		<dependency>
 			<groupId>org.dndp</groupId>
 			<artifactId>engine</artifactId>
 			<version>0.2-SNAPSHOT</version>

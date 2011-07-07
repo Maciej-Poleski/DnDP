@@ -1,7 +1,9 @@
 package org.dndp.dndc.engine;
 
+import java.io.File;
 import java.util.Collection;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Set;
@@ -51,6 +53,11 @@ import org.dndp.dndc.engine.check.CheckFailException;
 import org.dndp.dndc.engine.item.BasicEquipmentManager;
 import org.dndp.dndc.engine.item.DnDEquipmentManager;
 import org.dndp.dndc.engine.item.Item;
+
+import com.db4o.Db4oEmbedded;
+import com.db4o.ObjectContainer;
+import com.db4o.ObjectSet;
+import com.db4o.config.EmbeddedConfiguration;
 
 /**
  * Reprezentacja jednej postaci Wzorzec projektowy mediator + fasada
@@ -615,5 +622,25 @@ public class FantasyCharacter implements Abilities, Attack, Armor, Description,
     public void update(Observable o, Object arg)
     {
         // Pusty dzidziczony z innych interfejsów. Może coś robić.
+    }
+
+    public static void store(File destination, FantasyCharacter target)
+    {
+        EmbeddedConfiguration conf = Db4oEmbedded.newConfiguration();
+        conf.common().exceptionsOnNotStorable(false);
+        ObjectContainer con = Db4oEmbedded.openFile(destination.toString());
+        con.store(target);
+        con.commit();
+        con.close();
+    }
+
+    public static FantasyCharacter load(File source)
+            throws NoSuchElementException
+    {
+        ObjectContainer con = Db4oEmbedded.openFile(source.toString());
+        ObjectSet<FantasyCharacter> s = con.query(FantasyCharacter.class);
+        if(s.hasNext())
+            return s.next();
+        throw new NoSuchElementException("Plik nie zawiera postaci");
     }
 }
