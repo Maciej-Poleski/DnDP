@@ -2,7 +2,6 @@ package org.dndp.dndc.engine;
 
 import java.io.File;
 import java.util.Collection;
-import java.util.EnumMap;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Observable;
@@ -629,8 +628,6 @@ public class FantasyCharacter implements Abilities, Attack, Armor, Description,
     {
         EmbeddedConfiguration conf = Db4oEmbedded.newConfiguration();
         conf.common().exceptionsOnNotStorable(false);
-        conf.common().objectClass(EnumMap.class)
-                .translate(new EnumMapTranslator());
         ObjectContainer con = Db4oEmbedded.openFile(conf,
                 destination.toString());
         con.store(target);

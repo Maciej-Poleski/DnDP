@@ -3,6 +3,7 @@ package org.dndp.dndc.client.gui;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.dndp.dndc.client.gui.action.FantasyCharacterLoad;
 import org.dndp.dndc.client.gui.action.FantasyCharacterSave;
 import org.dndp.dndc.client.gui.card.abilities.AbilitiesView;
 import org.dndp.dndc.client.gui.card.armor.ArmorView;
@@ -34,6 +35,8 @@ public class MainWindow extends Thread
 {
     private Display              display;
     private Shell                shell;
+
+    // FIXME: Usunięcie pola i danie przez wstrzykiwaniem konstrukotrem/seterem
     private FantasyCharacter     fantasyCharacter;
 
     private ClassesView          classesView;
@@ -46,6 +49,7 @@ public class MainWindow extends Thread
     private SkillsView           skillsView;
 
     private FantasyCharacterSave saveAction;
+    private FantasyCharacterLoad loadAction;
 
     public MainWindow()
     {
@@ -122,6 +126,7 @@ public class MainWindow extends Thread
         skillsView.setLayoutData(data);
 
         saveAction = new FantasyCharacterSave(this);
+        loadAction = new FantasyCharacterLoad(this);
 
         Menu menu = new Menu(shell, SWT.BAR);
         shell.setMenuBar(menu);
@@ -133,6 +138,21 @@ public class MainWindow extends Thread
         FileCascadeMenuItem.setMenu(menu_1);
 
         MenuItem mntmWczytaj = new MenuItem(menu_1, SWT.NONE);
+        mntmWczytaj.addSelectionListener(new SelectionListener()
+        {
+
+            @Override
+            public void widgetSelected(SelectionEvent e)
+            {
+                loadAction.run();
+            }
+
+            @Override
+            public void widgetDefaultSelected(SelectionEvent e)
+            {
+                loadAction.run();
+            }
+        });
         mntmWczytaj.setText("Wczytaj");
 
         MenuItem mntmZapisz = new MenuItem(menu_1, SWT.NONE);
@@ -164,7 +184,21 @@ public class MainWindow extends Thread
 
     public FantasyCharacter getFantasyCharacter()
     {
+
         return fantasyCharacter;
+    }
+
+    public void setFantasyCharacter(FantasyCharacter fantasyCharacter)
+    {
+        descriptionView.setModel(fantasyCharacter);
+        hpView.setModel(fantasyCharacter);
+        abilitiesView.setModel(fantasyCharacter);
+        armorView.setModel(fantasyCharacter);
+        attackView.setModel(fantasyCharacter);
+        classesView.setModel(fantasyCharacter);
+        fleatsView.setModel(fantasyCharacter);
+        skillsView.setModel(fantasyCharacter);
+        this.fantasyCharacter = fantasyCharacter;
     }
 
     public Shell getShell()
