@@ -11,11 +11,18 @@ public class FantasyCharacterSave extends Action
 {
     private MainWindow window;
 
+    /**
+     * @wbp.parser.entryPoint
+     */
     public FantasyCharacterSave(MainWindow window)
     {
         this.window = window;
+        setText("Zapisz");
     }
 
+    /**
+     * @wbp.parser.entryPoint
+     */
     @Override
     public void run()
     {

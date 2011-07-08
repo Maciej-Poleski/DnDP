@@ -4,6 +4,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.dndp.dndc.client.gui.MainWindow;
+import org.eclipse.swt.widgets.Display;
 
 /**
  * Najważniejsza klasa w programie.
@@ -27,6 +28,7 @@ public class Main extends Thread
         window = new MainWindow();
         window.setBlockOnOpen(true);
         window.open();
+        Display.getCurrent().dispose();
     }
 
     public static void main(String[] args)

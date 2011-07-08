@@ -1,5 +1,8 @@
 package org.dndp.dndc.client.gui;
 
+import org.dndp.dndc.client.gui.action.Exit;
+import org.dndp.dndc.client.gui.action.FantasyCharacterLoad;
+import org.dndp.dndc.client.gui.action.FantasyCharacterSave;
 import org.dndp.dndc.client.gui.card.abilities.AbilitiesView;
 import org.dndp.dndc.client.gui.card.armor.ArmorView;
 import org.dndp.dndc.client.gui.card.attack.AttackView;
@@ -9,6 +12,8 @@ import org.dndp.dndc.client.gui.card.fleats.FleatsView;
 import org.dndp.dndc.client.gui.card.hp.HpView;
 import org.dndp.dndc.client.gui.card.skills.SkillsView;
 import org.dndp.dndc.engine.FantasyCharacter;
+import org.eclipse.jface.action.MenuManager;
+import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.window.ApplicationWindow;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FormAttachment;
@@ -16,7 +21,9 @@ import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Layout;
+import org.eclipse.swt.widgets.Shell;
 
 /**
  * Głowne okno programu.
@@ -41,8 +48,10 @@ public class MainWindow extends ApplicationWindow
     public MainWindow(FantasyCharacter model)
     {
         super(null);
-        this.fantasyCharacter = model;
+
         addMenuBar();
+        this.fantasyCharacter = model;
+
     }
 
     /**
@@ -55,8 +64,24 @@ public class MainWindow extends ApplicationWindow
     }
 
     @Override
+    protected MenuManager createMenuManager()
+    {
+        System.out.println("tworzenie menu managera");
+        MenuManager bar_menu = new MenuManager("");
+
+        MenuManager file_menu = new MenuManager("File");
+        file_menu.add(new FantasyCharacterLoad(this));
+        file_menu.add(new FantasyCharacterSave(this));
+        file_menu.add(new Separator());
+        file_menu.add(new Exit(this));
+        bar_menu.add(file_menu);
+        return bar_menu;
+    }
+
+    @Override
     protected Control createContents(Composite parent)
     {
+        System.out.println("create");
         Composite shell = new Composite(parent, SWT.NONE);
         Layout gl_shell = new FormLayout();
 
@@ -124,6 +149,21 @@ public class MainWindow extends ApplicationWindow
         return shell;
     }
 
+    @Override
+    public void create()
+    {
+        addMenuBar();
+        addToolBar(SWT.NONE);
+        super.create();
+    }
+
+    protected void configureShell(Shell newShell)
+    {
+        System.out.println("config");
+        super.configureShell(newShell);
+        newShell.setText("DnDC");
+    }
+
     public FantasyCharacter getFantasyCharacter()
     {
 
@@ -141,5 +181,13 @@ public class MainWindow extends ApplicationWindow
         fleatsView.setModel(fantasyCharacter);
         skillsView.setModel(fantasyCharacter);
         this.fantasyCharacter = fantasyCharacter;
+    }
+
+    public static void main(String[] args)
+    {
+        MainWindow w = new MainWindow();
+        w.setBlockOnOpen(true);
+        w.open();
+        Display.getCurrent().dispose();
     }
 }
