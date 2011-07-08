@@ -30,6 +30,7 @@ public class SimpleServer extends Thread
     {
         conf = Db4oClientServer.newServerConfiguration();
         conf.common().messageLevel(2);
+        conf.common().exceptionsOnNotStorable(false);
         try
         {
             conf.common().outStream(new PrintStream(new File(logfile)));
