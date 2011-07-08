@@ -160,7 +160,7 @@ public class DescriptionView extends Group implements Observer, ModifyListener
 
     public void setModel(Description model)
     {
-        model.addDescriptionObserver(this);
         this.model = model;
+        this.model.addDescriptionObserver(this);
     }
 }

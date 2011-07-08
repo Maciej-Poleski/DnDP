@@ -14,6 +14,7 @@ public class FantasyCharacterLoad extends Action
     public FantasyCharacterLoad(MainWindow window)
     {
         this.window = window;
+        setText("Wczytaj");
     }
 
     @Override

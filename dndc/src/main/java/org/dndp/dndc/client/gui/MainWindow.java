@@ -1,10 +1,5 @@
 package org.dndp.dndc.client.gui;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import org.dndp.dndc.client.gui.action.FantasyCharacterLoad;
-import org.dndp.dndc.client.gui.action.FantasyCharacterSave;
 import org.dndp.dndc.client.gui.card.abilities.AbilitiesView;
 import org.dndp.dndc.client.gui.card.armor.ArmorView;
 import org.dndp.dndc.client.gui.card.attack.AttackView;
@@ -14,55 +9,58 @@ import org.dndp.dndc.client.gui.card.fleats.FleatsView;
 import org.dndp.dndc.client.gui.card.hp.HpView;
 import org.dndp.dndc.client.gui.card.skills.SkillsView;
 import org.dndp.dndc.engine.FantasyCharacter;
+import org.eclipse.jface.window.ApplicationWindow;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
-import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Layout;
-import org.eclipse.swt.widgets.Menu;
-import org.eclipse.swt.widgets.MenuItem;
-import org.eclipse.swt.widgets.Shell;
 
 /**
  * Głowne okno programu.
  * 
  * @author bambucha
  */
-public class MainWindow extends Thread
+public class MainWindow extends ApplicationWindow
 {
-    private Display              display;
-    private Shell                shell;
 
     // FIXME: Usunięcie pola i danie przez wstrzykiwaniem konstrukotrem/seterem
-    private FantasyCharacter     fantasyCharacter;
+    private FantasyCharacter fantasyCharacter;
 
-    private ClassesView          classesView;
-    private DescriptionView      descriptionView;
-    private AbilitiesView        abilitiesView;
-    private HpView               hpView;
-    private ArmorView            armorView;
-    private AttackView           attackView;
-    private FleatsView           fleatsView;
-    private SkillsView           skillsView;
+    private ClassesView      classesView;
+    private DescriptionView  descriptionView;
+    private AbilitiesView    abilitiesView;
+    private HpView           hpView;
+    private ArmorView        armorView;
+    private AttackView       attackView;
+    private FleatsView       fleatsView;
+    private SkillsView       skillsView;
 
-    private FantasyCharacterSave saveAction;
-    private FantasyCharacterLoad loadAction;
-
-    public MainWindow()
+    public MainWindow(FantasyCharacter model)
     {
-        // this.chat = chat;
-        fantasyCharacter = new FantasyCharacter();
+        super(null);
+        this.fantasyCharacter = model;
+        addMenuBar();
     }
 
-    private void build()
+    /**
+     * @wbp.parser.constructor
+     */
+    public MainWindow()
     {
+        super(null);
+        this.fantasyCharacter = new FantasyCharacter();
+    }
+
+    @Override
+    protected Control createContents(Composite parent)
+    {
+        Composite shell = new Composite(parent, SWT.NONE);
         Layout gl_shell = new FormLayout();
 
         shell.setLayout(gl_shell);
-        shell.setText("DnDC - 0.1");
         FormData data;
 
         descriptionView = new DescriptionView(shell, SWT.NONE, fantasyCharacter);
@@ -72,8 +70,6 @@ public class MainWindow extends Thread
         armorView = new ArmorView(shell, SWT.NONE, fantasyCharacter);
         attackView = new AttackView(shell, SWT.NONE, fantasyCharacter);
         fleatsView = new FleatsView(shell, SWT.NONE, fantasyCharacter);
-        skillsView = new SkillsView(shell, SWT.NONE, fantasyCharacter);
-        skillsView.setLayoutData(new FormData());
 
         data = new FormData(SWT.DEFAULT, SWT.DEFAULT);
         data.top = new FormAttachment(0);
@@ -125,61 +121,7 @@ public class MainWindow extends Thread
         data.bottom = new FormAttachment(100);
         skillsView.setLayoutData(data);
 
-        saveAction = new FantasyCharacterSave(this);
-        loadAction = new FantasyCharacterLoad(this);
-
-        Menu menu = new Menu(shell, SWT.BAR);
-        shell.setMenuBar(menu);
-
-        MenuItem FileCascadeMenuItem = new MenuItem(menu, SWT.CASCADE);
-        FileCascadeMenuItem.setText("Plik");
-
-        Menu menu_1 = new Menu(FileCascadeMenuItem);
-        FileCascadeMenuItem.setMenu(menu_1);
-
-        MenuItem mntmWczytaj = new MenuItem(menu_1, SWT.NONE);
-        mntmWczytaj.addSelectionListener(new SelectionListener()
-        {
-
-            @Override
-            public void widgetSelected(SelectionEvent e)
-            {
-                loadAction.run();
-            }
-
-            @Override
-            public void widgetDefaultSelected(SelectionEvent e)
-            {
-                loadAction.run();
-            }
-        });
-        mntmWczytaj.setText("Wczytaj");
-
-        MenuItem mntmZapisz = new MenuItem(menu_1, SWT.NONE);
-        mntmZapisz.setText("Zapisz");
-        mntmZapisz.addSelectionListener(new SelectionListener()
-        {
-
-            @Override
-            public void widgetSelected(SelectionEvent arg0)
-            {
-                saveAction.run();
-            }
-
-            @Override
-            public void widgetDefaultSelected(SelectionEvent arg0)
-            {
-                saveAction.run();
-            }
-        });
-
-        new MenuItem(menu_1, SWT.SEPARATOR);
-
-        MenuItem mntmZakocz = new MenuItem(menu_1, SWT.NONE);
-        mntmZakocz.setText("Zakończ");
-
-        // shell.pack();
-        shell.open();
+        return shell;
     }
 
     public FantasyCharacter getFantasyCharacter()
@@ -199,33 +141,5 @@ public class MainWindow extends Thread
         fleatsView.setModel(fantasyCharacter);
         skillsView.setModel(fantasyCharacter);
         this.fantasyCharacter = fantasyCharacter;
-    }
-
-    public Shell getShell()
-    {
-        return shell;
-    }
-
-    /**
-     * @wbp.parser.entryPoint
-     */
-    @Override
-    public void run()
-    {
-        display = new Display();
-        shell = new Shell(display);
-        shell.setSize(921, 609);
-        build();
-        while(!shell.isDisposed())
-            if(!display.readAndDispatch())
-                display.sleep();
-        display.dispose();
-    }
-
-    public static void main(String args[])
-    {
-        Logger.getLogger("").setLevel(Level.WARNING);
-
-        new MainWindow().start();
     }
 }
