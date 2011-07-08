@@ -87,4 +87,9 @@ public class SkillsView extends Group implements Observer
             tableViewer.setInput(arg);
         }
     }
+
+    public void setModel(SkillManager model)
+    {
+        model.addSkillObserver(this);
+    }
 }

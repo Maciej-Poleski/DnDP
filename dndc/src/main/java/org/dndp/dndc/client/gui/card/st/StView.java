@@ -27,10 +27,11 @@ public class StView extends Group implements Observer, ModifyListener
     private Text         reflexesTest;
     private Text         willText;
     private Text         spellResistanceText;
-    private SavingThrows model;
     private Text         baseFortitudeText;
     private Text         baseReflexesText;
     private Text         baseWillText;
+
+    private SavingThrows model;
 
     /**
      * Create the composite.
@@ -99,7 +100,6 @@ public class StView extends Group implements Observer, ModifyListener
         baseFortitudeText.addModifyListener(this);
         baseReflexesText.addModifyListener(this);
         baseWillText.addModifyListener(this);
-        model.addSavingThrowObserver(this);
 
     }
 
@@ -109,7 +109,9 @@ public class StView extends Group implements Observer, ModifyListener
      */
     public void setModel(SavingThrows model)
     {
+
         this.model = model;
+        this.model.addSavingThrowObserver(this);
     }
 
     @Override
