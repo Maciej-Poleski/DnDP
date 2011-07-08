@@ -88,4 +88,9 @@ public class ArmorView extends Composite implements Observer
     {
         // Disable the check that prevents subclassing of SWT components
     }
+
+    public void setModel(Armor model)
+    {
+        model.addArmorObserver(this);
+    }
 }

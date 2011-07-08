@@ -287,6 +287,7 @@ public class AttackView extends Composite implements Observer, ModifyListener
      */
     public void setModel(Attack model)
     {
+        model.addAttackObserver(this);
         this.model = model;
     }
 }
