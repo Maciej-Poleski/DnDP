@@ -48,8 +48,6 @@ public class ClassesView extends Group implements Observer,
     {
         super(parent, SWT.NONE);
 
-        model.addCharacterClassObserver(this);
-
         setText("Klasy");
         setLayout(new GridLayout(6, false));
 
@@ -114,6 +112,8 @@ public class ClassesView extends Group implements Observer,
 
         nextLevelText = new Text(this, SWT.BORDER);
 
+        setModel(model);
+
     }
 
     /**
@@ -162,5 +162,10 @@ public class ClassesView extends Group implements Observer,
             classNameText.setText(tmp.getClasses().getName());
             classLevelText.setText(tmp.getLevel().toString());
         }
+    }
+
+    public void setModel(CharacterClassManager model)
+    {
+        model.addCharacterClassObserver(this);
     }
 }

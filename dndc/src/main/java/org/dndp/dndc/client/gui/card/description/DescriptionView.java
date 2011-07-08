@@ -90,16 +90,8 @@ public class DescriptionView extends Group implements Observer, ModifyListener
         nameText.addModifyListener(this);
         ageText.addModifyListener(this);
         weightText.addModifyListener(this);
-        setModel(model);
-    }
 
-    /**
-     * @param model
-     *            the model to set
-     */
-    public void setModel(Description model)
-    {
-        this.model = model;
+        setModel(model);
     }
 
     @Override
@@ -164,6 +156,11 @@ public class DescriptionView extends Group implements Observer, ModifyListener
             model.setAge(parseField(ageText));
         if(parseField(weightText) > 0)
             model.setWeight(parseField(weightText));
+    }
 
+    public void setModel(Description model)
+    {
+        model.addDescriptionObserver(this);
+        this.model = model;
     }
 }
