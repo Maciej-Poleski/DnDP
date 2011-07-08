@@ -631,7 +631,8 @@ public class FantasyCharacter implements Abilities, Attack, Armor, Description,
         conf.common().exceptionsOnNotStorable(false);
         conf.common().objectClass(EnumMap.class)
                 .translate(new EnumMapTranslator());
-        ObjectContainer con = Db4oEmbedded.openFile(destination.toString());
+        ObjectContainer con = Db4oEmbedded.openFile(conf,
+                destination.toString());
         con.store(target);
         con.commit();
         con.close();
