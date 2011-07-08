@@ -17,6 +17,13 @@ import org.eclipse.swt.widgets.Group;
 public class AbilitiesView extends Group
 {
 
+    private final AbilitiView strenght;
+    private AbilitiView       dextarity;
+    private AbilitiView       construction;
+    private final AbilitiView inteligence;
+    private AbilitiView       wisdom;
+    private AbilitiView       charisma;
+
     /**
      * Create the composite.
      * 
@@ -29,17 +36,32 @@ public class AbilitiesView extends Group
         setLayout(new FillLayout(SWT.VERTICAL));
         setText("Atrybuty");
 
-        new AbilitiView(this, SWT.NONE, "Siła", model.getStrenght());
-        new AbilitiView(this, SWT.NONE, "Zręczność", model.getDexterity());
-        new AbilitiView(this, SWT.NONE, "Budowa", model.getConstitution());
-        new AbilitiView(this, SWT.NONE, "Inteligęncja", model.getInteligence());
-        new AbilitiView(this, SWT.NONE, "Roztropność", model.getWisdom());
-        new AbilitiView(this, SWT.NONE, "Charyzma", model.getCharisma());
+        strenght = new AbilitiView(this, SWT.NONE, "Siła", model.getStrenght());
+        dextarity = new AbilitiView(this, SWT.NONE, "Zręczność",
+                model.getDexterity());
+        construction = new AbilitiView(this, SWT.NONE, "Budowa",
+                model.getConstitution());
+        inteligence = new AbilitiView(this, SWT.NONE, "Inteligęncja",
+                model.getInteligence());
+        wisdom = new AbilitiView(this, SWT.NONE, "Roztropność",
+                model.getWisdom());
+        charisma = new AbilitiView(this, SWT.NONE, "Charyzma",
+                model.getCharisma());
     }
 
     @Override
     protected void checkSubclass()
     {
         // Disable the check that prevents subclassing of SWT components
+    }
+
+    public void setModel(Abilities model)
+    {
+        strenght.setModel(model.getStrenght());
+        dextarity.setModel(model.getDexterity());
+        construction.setModel(model.getConstitution());
+        inteligence.setModel(model.getConstitution());
+        wisdom.setModel(model.getConstitution());
+        charisma.setModel(model.getConstitution());
     }
 }

@@ -106,6 +106,8 @@ public class AbilitiView extends Composite implements Observer, ModifyListener
 
     public void setModel(Abiliti model)
     {
+        this.model.deleteObserver(this);
         this.model = model;
+        model.addObserver(this);
     }
 }
