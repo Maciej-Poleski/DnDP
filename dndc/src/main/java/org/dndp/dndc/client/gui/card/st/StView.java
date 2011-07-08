@@ -125,13 +125,14 @@ public class StView extends Group implements Observer, ModifyListener
         if(o instanceof SavingThrows)
         {
             SavingThrows tmp = (SavingThrows)o;
-            fortitudeText.setText(tmp.getForttiude().getBonus().toString());
+            fortitudeText.setText(tmp.getForttiude().getTotalModifier()
+                    .toString());
             baseFortitudeText.setText(tmp.getForttiude().getBaseModifier()
                     .toString());
-            reflexesTest.setText(tmp.getReflex().getBonus().toString());
+            reflexesTest.setText(tmp.getReflex().getTotalModifier().toString());
             baseReflexesText.setText(tmp.getReflex().getBaseModifier()
                     .toString());
-            willText.setText(tmp.getWill().getBonus().toString());
+            willText.setText(tmp.getWill().getTotalModifier().toString());
             baseWillText.setText(tmp.getWill().getBaseModifier().toString());
             spellResistanceText.setText(Double.toString(tmp
                     .getSpellResistance()));
