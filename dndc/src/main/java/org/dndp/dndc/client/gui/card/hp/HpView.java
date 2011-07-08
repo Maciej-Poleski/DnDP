@@ -70,7 +70,9 @@ public class HpView extends Group implements Observer, ModifyListener
      */
     public void setModel(HitPoints model)
     {
+
         this.model = model;
+        this.model.addHitPointsObserver(this);
     }
 
     @Override

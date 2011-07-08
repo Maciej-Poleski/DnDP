@@ -32,12 +32,10 @@ public class FleatsView extends Group implements Observer
         setText("Atuty");
         setLayout(new FillLayout(SWT.HORIZONTAL));
 
-        model.addFleatObserver(this);
-
         listViewer = new ListViewer(this, SWT.BORDER | SWT.V_SCROLL);
         listViewer.setContentProvider(new CollectionContentProvider());
         listViewer.setLabelProvider(new FleatLabelProvider());
-
+        setModel(model);
     }
 
     @Override
@@ -54,5 +52,10 @@ public class FleatsView extends Group implements Observer
             listViewer.setInput(((CharacterFleatManager)o)
                     .getAllCharacterFleats());
         }
+    }
+
+    public void setModel(CharacterFleatManager model)
+    {
+        model.addFleatObserver(this);
     }
 }
