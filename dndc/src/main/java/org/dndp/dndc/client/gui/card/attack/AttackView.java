@@ -68,9 +68,6 @@ public class AttackView extends Composite implements Observer, ModifyListener
         super(parent, style);
         setLayout(new FillLayout(SWT.HORIZONTAL));
 
-        this.model = model;
-        model.addAttackObserver(this);
-
         Group grpWalka = new Group(this, SWT.NONE);
         grpWalka.setText("Walka");
         grpWalka.setLayout(new GridLayout(4, false));
@@ -166,6 +163,8 @@ public class AttackView extends Composite implements Observer, ModifyListener
         speedText = new Text(grpWalka, SWT.BORDER);
         speedText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false,
                 1, 1));
+
+        setModel(model);
     }
 
     @Override
@@ -287,7 +286,7 @@ public class AttackView extends Composite implements Observer, ModifyListener
      */
     public void setModel(Attack model)
     {
-        model.addAttackObserver(this);
         this.model = model;
+        this.model.addAttackObserver(this);
     }
 }

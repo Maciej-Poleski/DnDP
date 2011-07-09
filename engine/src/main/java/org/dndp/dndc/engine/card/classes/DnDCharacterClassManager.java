@@ -71,6 +71,8 @@ public class DnDCharacterClassManager extends ChangeObservable implements
         for(CharacterClass characterClass : classList)
             if(characterClass.getClasses().isUseInMulticlass())
                 set.add(characterClass.getLevel());
+        if(set.size() < 1)
+            return false;
         if(set.last() - set.first() > 3)
             return true;
         return false;

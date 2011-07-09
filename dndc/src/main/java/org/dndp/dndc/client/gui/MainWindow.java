@@ -104,6 +104,7 @@ public class MainWindow extends ApplicationWindow
         data.top = new FormAttachment(0);
         data.left = new FormAttachment(0);
         data.right = new FormAttachment(classesView, 0, SWT.RIGHT);
+        data.bottom = new FormAttachment(hpView, 0, SWT.BOTTOM);
         descriptionView.setLayoutData(data);
 
         data = new FormData(SWT.DEFAULT, SWT.DEFAULT);
@@ -156,6 +157,7 @@ public class MainWindow extends ApplicationWindow
         data.bottom = new FormAttachment(100);
         skillsView.setLayoutData(data);
 
+        parent.pack();
         return shell;
     }
 

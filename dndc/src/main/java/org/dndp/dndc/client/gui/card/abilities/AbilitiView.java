@@ -42,9 +42,6 @@ public class AbilitiView extends Composite implements Observer, ModifyListener
         gridLayout.horizontalSpacing = 0;
         setLayout(gridLayout);
 
-        model.addObserver(this);
-        this.model = model;
-
         Label lblNewLabel = new Label(this, SWT.CENTER);
         lblNewLabel.setText(name);
         lblNewLabel.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, true,
@@ -65,6 +62,7 @@ public class AbilitiView extends Composite implements Observer, ModifyListener
         gd_modifier.widthHint = 30;
         modifier.setLayoutData(gd_modifier);
 
+        setModel(model);
     }
 
     @Override
@@ -81,7 +79,7 @@ public class AbilitiView extends Composite implements Observer, ModifyListener
     @Override
     public void update(Observable o, Object arg)
     {
-        Abiliti ab = (Abiliti)arg;
+        Abiliti ab = (Abiliti)o;
         value.setText(ab.getValue().toString());
         modifier.setText(ab.getModifier().toString());
     }
@@ -106,7 +104,6 @@ public class AbilitiView extends Composite implements Observer, ModifyListener
 
     public void setModel(Abiliti model)
     {
-        this.model.deleteObserver(this);
         this.model = model;
         model.addObserver(this);
     }
