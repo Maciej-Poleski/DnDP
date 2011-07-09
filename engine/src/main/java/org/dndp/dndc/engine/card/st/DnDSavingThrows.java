@@ -90,4 +90,11 @@ public class DnDSavingThrows extends Observable implements SavingThrows,
     {
         deleteObservers();
     }
+
+    @Override
+    public void update(Observable o, Object arg)
+    {
+        setChanged();
+        notifyObservers();
+    }
 }

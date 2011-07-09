@@ -137,17 +137,6 @@ public class DnDCharacterClassManager extends Observable implements
                 fantasyCharacter.getSkil(skil.getName()).setClasses(true);
             classList.add(toPromote);
         }
-<<<<<<< HEAD
-        toPromote.setLevel(toPromote.getLevel() + 1); // Dodanie poziomu do
-                                                      // klasu
-        setChanged();
-        notifyObservers(); // Uaktualnienie atutów, i inne rzeczy związanie z
-                           // typem.
-        for(Benefit benefit : toPromote.getClasses().getLevelBenefitsList()[toPromote
-                .getLevel()])
-            // Dodanie premi klasowych
-            benefit.apply(fantasyCharacter);
-=======
         toPromote.setLevel(toPromote.getLevel() + 1); // Dodanie poziomu
 
         for(Benefit benefit : toPromote.getClasses().getLevelBenefitsList()[toPromote
@@ -156,8 +145,6 @@ public class DnDCharacterClassManager extends Observable implements
         updateSavingThrows();
         setChanged();
         notifyObservers(); // Uaktualnienie atutów, i inne rzeczy...
-
->>>>>>> st-from-class
     }
 
     @Override
@@ -181,7 +168,6 @@ public class DnDCharacterClassManager extends Observable implements
         addObserver(o);
     }
 
-<<<<<<< HEAD
     @Override
     public void removeObserverFromClasses(Observer o)
     {
@@ -192,7 +178,8 @@ public class DnDCharacterClassManager extends Observable implements
     public void removeObserversFromClasses()
     {
         deleteObservers();
-=======
+    }
+
     private void updateSavingThrows()
     {
         int fortitude = 0;
@@ -207,6 +194,6 @@ public class DnDCharacterClassManager extends Observable implements
         fantasyCharacter.getForttiude().setBaseModifier(fortitude);
         fantasyCharacter.getReflex().setBaseModifier(refelex);
         fantasyCharacter.getWill().setBaseModifier(will);
->>>>>>> st-from-class
+
     }
 }

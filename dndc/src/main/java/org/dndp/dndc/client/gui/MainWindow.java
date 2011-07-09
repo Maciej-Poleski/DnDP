@@ -1,11 +1,8 @@
 package org.dndp.dndc.client.gui;
 
-<<<<<<< HEAD
 import org.dndp.dndc.client.gui.action.Exit;
 import org.dndp.dndc.client.gui.action.FantasyCharacterLoad;
 import org.dndp.dndc.client.gui.action.FantasyCharacterSave;
-=======
->>>>>>> st-from-class
 import org.dndp.dndc.client.gui.card.abilities.AbilitiesView;
 import org.dndp.dndc.client.gui.card.armor.ArmorView;
 import org.dndp.dndc.client.gui.card.attack.AttackView;
@@ -93,15 +90,15 @@ public class MainWindow extends ApplicationWindow
         shell.setLayout(gl_shell);
         FormData data;
 
-        descriptionView = new DescriptionView(shell, SWT.NONE, x);
-        abilitiesView = new AbilitiesView(shell, SWT.NONE, x);
-        hpView = new HpView(shell, SWT.NONE, x);
-        classesView = new ClassesView(shell, SWT.NONE, x);
-        armorView = new ArmorView(shell, SWT.NONE, x);
-        attackView = new AttackView(shell, SWT.NONE, x);
-        fleatsView = new FleatsView(shell, SWT.NONE, x);
-        skillsView = new SkillsView(shell, SWT.NONE, x);
-        stView = new StView(shell, SWT.NONE, x);
+        descriptionView = new DescriptionView(shell, SWT.NONE, fantasyCharacter);
+        abilitiesView = new AbilitiesView(shell, SWT.NONE, fantasyCharacter);
+        hpView = new HpView(shell, SWT.NONE, fantasyCharacter);
+        classesView = new ClassesView(shell, SWT.NONE, fantasyCharacter);
+        armorView = new ArmorView(shell, SWT.NONE, fantasyCharacter);
+        attackView = new AttackView(shell, SWT.NONE, fantasyCharacter);
+        fleatsView = new FleatsView(shell, SWT.NONE, fantasyCharacter);
+        skillsView = new SkillsView(shell, SWT.NONE, fantasyCharacter);
+        stView = new StView(shell, SWT.NONE, fantasyCharacter);
 
         data = new FormData(SWT.DEFAULT, SWT.DEFAULT);
         data.top = new FormAttachment(0);
