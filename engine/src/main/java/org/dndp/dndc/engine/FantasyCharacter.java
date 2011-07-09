@@ -624,10 +624,123 @@ public class FantasyCharacter implements Abilities, Attack, Armor, Description,
         // Pusty dzidziczony z innych interfejsów. Może coś robić.
     }
 
+    @Override
+    public void removeObserverFromClasses(Observer o)
+    {
+        classManager.removeObserverFromClasses(o);
+    }
+
+    @Override
+    public void removeObserversFromClasses()
+    {
+        classManager.removeObserversFromClasses();
+    }
+
+    @Override
+    public void removeObserverFromSkill(Observer o)
+    {
+        skilManager.removeObserverFromSkill(o);
+    }
+
+    @Override
+    public void removeObserversFromSkill()
+    {
+        skilManager.removeObserversFromSkill();
+    }
+
+    @Override
+    public void removeObserverFromFleat(Observer o)
+    {
+        characterFleatManager.removeObserverFromFleat(o);
+    }
+
+    @Override
+    public void removeObserversFromFleat()
+    {
+        characterFleatManager.removeObserversFromFleat();
+    }
+
+    @Override
+    public void removeObserverFromST(Observer o)
+    {
+        savingThrows.removeObserverFromST(o);
+    }
+
+    @Override
+    public void removeObserversFromST()
+    {
+        savingThrows.removeObserversFromST();
+    }
+
+    @Override
+    public void removeObserversFromHP()
+    {
+        HP.removeObserversFromHP();
+    }
+
+    @Override
+    public void removeObserverFromHP(Observer o)
+    {
+        HP.removeObserverFromHP(o);
+    }
+
+    @Override
+    public void removeObserverFromDescription(Observer o)
+    {
+        description.removeObserverFromDescription(o);
+    }
+
+    @Override
+    public void removeObserversFromDescription()
+    {
+        description.removeObserversFromDescription();
+    }
+
+    @Override
+    public void removeObserverFromArmor(Observer o)
+    {
+        armor.removeObserverFromArmor(o);
+    }
+
+    @Override
+    public void removeObserversFromArmor()
+    {
+        armor.removeObserversFromArmor();
+    }
+
+    @Override
+    public void removeObserverFromAttack(Observer o)
+    {
+        attack.removeObserverFromAttack(o);
+    }
+
+    @Override
+    public void removeObserversFromAttack()
+    {
+        attack.removeObserversFromAttack();
+    }
+
+    @Override
+    public void removeObserverFromAbilities(Observer o)
+    {
+        abilities.removeObserverFromAbilities(o);
+    }
+
+    @Override
+    public void removeAllObserversFromAbilites()
+    {
+        abilities.removeAllObserversFromAbilites();
+    }
+
     public static void store(File destination, FantasyCharacter target)
     {
         EmbeddedConfiguration conf = Db4oEmbedded.newConfiguration();
         conf.common().exceptionsOnNotStorable(false);
+        conf.common().activationDepth(2);
+        conf.common().maxStackDepth(2);
+        conf.common().callbacks(false);
+        conf.common().messageLevel(3);
+
         ObjectContainer con = Db4oEmbedded.openFile(conf,
                 destination.toString());
         con.store(target);
@@ -638,10 +751,20 @@ public class FantasyCharacter implements Abilities, Attack, Armor, Description,
     public static FantasyCharacter load(File source)
             throws NoSuchElementException
     {
-        ObjectContainer con = Db4oEmbedded.openFile(source.toString());
+        EmbeddedConfiguration conf = Db4oEmbedded.newConfiguration();
+        conf.common().exceptionsOnNotStorable(false);
+        conf.common().activationDepth(3);
+        conf.common().maxStackDepth(3);
+        // conf.common().callbacks(false);
+        ObjectContainer con = Db4oEmbedded.openFile(conf, source.toString());
         ObjectSet<FantasyCharacter> s = con.query(FantasyCharacter.class);
+        FantasyCharacter tmp;
         if(s.hasNext())
-            return s.next();
-        throw new NoSuchElementException("Plik nie zawiera postaci");
+            tmp = s.next();
+        else
+            throw new NoSuchElementException("Plik nie zawiera postaci");
+        con.close();
+        return tmp;
+
     }
 }

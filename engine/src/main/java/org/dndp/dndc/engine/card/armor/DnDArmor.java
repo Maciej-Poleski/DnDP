@@ -22,13 +22,14 @@ public class DnDArmor extends Observable implements Armor, Bonusable
     private Abilities             abilities;
     private BasicEquipmentManager equipmentManager;
     private ArmorBonusHandler     bonusHandler;
-    private int bonus;
+    private int                   bonus;
 
     /**
      * @param abilities
      * @param equipmentManager
      */
-    public DnDArmor(Abilities abilities, BasicEquipmentManager equipmentManager, BonusManager bonusManager)
+    public DnDArmor(Abilities abilities,
+            BasicEquipmentManager equipmentManager, BonusManager bonusManager)
     {
         super();
         this.abilities = abilities;
@@ -39,7 +40,8 @@ public class DnDArmor extends Observable implements Armor, Bonusable
 
     protected Integer getDexterityACBonus()
     {
-        return Math.min(abilities.getDexterity().getModifier(), equipmentManager.getMaximumDexterityACBonus());
+        return Math.min(abilities.getDexterity().getModifier(),
+                equipmentManager.getMaximumDexterityACBonus());
     }
 
     /**
@@ -90,19 +92,32 @@ public class DnDArmor extends Observable implements Armor, Bonusable
     @Override
     public AbilityType getAbilityName()
     {
-        return AbilityType.NONE;    //Pancerz sam musi załatwiać premię do Zręczności
-                                    //Ze względ na ogranicznie zbroji
+        return AbilityType.NONE; // Pancerz sam musi załatwiać premię do
+                                 // Zręczności
+                                 // Ze względ na ogranicznie zbroji
     }
-    
+
     @Override
     public boolean isSizeImportant()
     {
         return true;
     }
-    
+
     @Override
     public void addArmorObserver(Observer o)
     {
         addObserver(o);
+    }
+
+    @Override
+    public void removeObserverFromArmor(Observer o)
+    {
+        removeObserverFromArmor(o);
+    }
+
+    @Override
+    public void removeObserversFromArmor()
+    {
+        removeObserversFromArmor();
     }
 }

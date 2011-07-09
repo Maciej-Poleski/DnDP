@@ -14,15 +14,15 @@ import org.dndp.dndc.engine.card.skills.Skill;
 import org.dndp.dndc.engine.check.CheckFailException;
 import org.dndp.dndc.engine.check.Checkable;
 
-
 /**
  * Klasa menadżere klas postaci pojedynaczej postaci.
  * 
  * @author bambucha
  */
-public class DnDCharacterClassManager extends Observable implements CharacterClassManager
+public class DnDCharacterClassManager extends Observable implements
+        CharacterClassManager
 {
-    private FantasyCharacter            fantasyCharacter;
+    private FantasyCharacter     fantasyCharacter;
     private List<CharacterClass> classList;
     private Integer              level;
     private Integer              experiancePoint;
@@ -50,7 +50,9 @@ public class DnDCharacterClassManager extends Observable implements CharacterCla
 
     /**
      * Zwraca ilosć doświadczenia potrzebną do levelu
-     * @param level argument pytania
+     * 
+     * @param level
+     *            argument pytania
      * @return ilość potrzebnego doświadcznia
      */
     private int getXPForLevel(int level)
@@ -66,7 +68,7 @@ public class DnDCharacterClassManager extends Observable implements CharacterCla
     public boolean isMultiClassCharacter()
     {
         SortedSet<Integer> set = new TreeSet<Integer>();
-        for (CharacterClass characterClass : classList)
+        for(CharacterClass characterClass : classList)
             if(characterClass.getClasses().isUseInMulticlass())
                 set.add(characterClass.getLevel());
         if(set.last() - set.first() > 3)
@@ -86,7 +88,9 @@ public class DnDCharacterClassManager extends Observable implements CharacterCla
 
     /*
      * (non-Javadoc)
-     * @see engine.card.classes.CharacterClassManager#setExperiancePoint(java.lang.Integer)
+     * @see
+     * engine.card.classes.CharacterClassManager#setExperiancePoint(java.lang
+     * .Integer)
      */
     @Override
     public void setExperiancePoint(Integer experiancePoint)
@@ -112,51 +116,69 @@ public class DnDCharacterClassManager extends Observable implements CharacterCla
 
     /*
      * (non-Javadoc)
-     * @see engine.card.classes.CharacterClassManager#promote(engine.card.classes.BaseClass)
+     * @see
+     * engine.card.classes.CharacterClassManager#promote(engine.card.classes
+     * .BaseClass)
      */
     @Override
     public void promote(BaseClass classes) throws CheckFailException
     {
         CharacterClass toPromote = null;
-        for (CharacterClass characterClass : classList)
-            if(characterClass.getClass().equals(classes)) // FIXIT Może nie działać.
+        for(CharacterClass characterClass : classList)
+            if(characterClass.getClass().equals(classes)) // FIXIT Może nie
+                                                          // działać.
                 toPromote = characterClass;
         if(toPromote == null) // Postać nie ma jeszcze tej klasy...
         {
-            for (Checkable checkable : classes.getConditions())
+            for(Checkable checkable : classes.getConditions())
                 if(!checkable.check(fantasyCharacter))
                     throw new CheckFailException("Postać nie spełnia wymagań");
             toPromote = new CharacterClass(classes, 0);
-            for (Skill skil : toPromote.getClasses().getClassFleats())
+            for(Skill skil : toPromote.getClasses().getClassFleats())
                 fantasyCharacter.getSkil(skil.getName()).setClasses(true);
             classList.add(toPromote);
         }
-        toPromote.setLevel(toPromote.getLevel() + 1); //Dodanie poziomu do klasu
+        toPromote.setLevel(toPromote.getLevel() + 1); // Dodanie poziomu do
+                                                      // klasu
         setChanged();
-        notifyObservers(); // Uaktualnienie atutów, i inne rzeczy związanie z typem.
-        for (Benefit benefit : toPromote.getClasses().getLevelBenefitsList()[toPromote.getLevel()])
-            //Dodanie premi klasowych
+        notifyObservers(); // Uaktualnienie atutów, i inne rzeczy związanie z
+                           // typem.
+        for(Benefit benefit : toPromote.getClasses().getLevelBenefitsList()[toPromote
+                .getLevel()])
+            // Dodanie premi klasowych
             benefit.apply(fantasyCharacter);
     }
 
     @Override
     public Integer getClassLevel(BaseClass classes)
     {
-        for (CharacterClass baseClass : classList)
+        for(CharacterClass baseClass : classList)
             if(baseClass.getClasses().getName().equals(classes.getName()))
                 return baseClass.getLevel();
         throw new NoSuchElementException("Nie ma takiego elementu");
     }
-    
+
     @Override
     public final List<CharacterClass> getClassList()
     {
         return classList;
     }
-    
+
     @Override
     public void addCharacterClassObserver(Observer o)
     {
         addObserver(o);
+    }
+
+    @Override
+    public void removeObserverFromClasses(Observer o)
+    {
+        deleteObserver(o);
+    }
+
+    @Override
+    public void removeObserversFromClasses()
+    {
+        deleteObservers();
     }
 }

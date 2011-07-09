@@ -4,8 +4,9 @@ import java.util.Collection;
 import java.util.Observer;
 
 /**
- * Interfejs zapewniający operacje na atutach postaci.
- * Zapewnia wyszukiwanie oraz wylistowanie atutów.
+ * Interfejs zapewniający operacje na atutach postaci. Zapewnia wyszukiwanie
+ * oraz wylistowanie atutów.
+ * 
  * @author evil, bambucha
  */
 public interface CharacterFleatManager
@@ -25,7 +26,11 @@ public interface CharacterFleatManager
      * @return
      */
     CharacterFleat getCharacterFleat(Fleat key);
-    
+
     void addFleatObserver(Observer o);
+
+    void removeObserverFromFleat(Observer o);
+
+    void removeObserversFromFleat();
 
 }

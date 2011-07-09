@@ -10,16 +10,17 @@ import org.dndp.dndc.engine.FantasyCharacter;
 import org.dndp.dndc.engine.benefit.Benefit;
 import org.dndp.dndc.engine.check.Checkable;
 
-
 /**
- * Klasa zajmująca się zarządzaniem atutami.
- * Również wszystkimi obowiązkami wynikającymi z piastującej funkcji. 
+ * Klasa zajmująca się zarządzaniem atutami. Również wszystkimi obowiązkami
+ * wynikającymi z piastującej funkcji.
+ * 
  * @author evil, bambucha
  */
-public class DnDCharacterFleatManager extends Observable implements CharacterFleatManager, Observer
+public class DnDCharacterFleatManager extends Observable implements
+        CharacterFleatManager, Observer
 {
     private Map<Fleat, CharacterFleat> characterFleatsMapping;
-    private FantasyCharacter                  fantasyCharacter;
+    private FantasyCharacter           fantasyCharacter;
 
     /**
      * Konstruktor.
@@ -31,7 +32,7 @@ public class DnDCharacterFleatManager extends Observable implements CharacterFle
     {
         this.fantasyCharacter = fantasyCharacter;
         characterFleatsMapping = new HashMap<Fleat, CharacterFleat>();
-        for( CharacterFleat fleat : characterFleatsMapping.values())
+        for(CharacterFleat fleat : characterFleatsMapping.values())
             fleat.addObserver(this);
     }
 
@@ -49,7 +50,8 @@ public class DnDCharacterFleatManager extends Observable implements CharacterFle
     /**
      * Zwraca CharacterFleat dla danego Fleat
      * 
-     * @param key Atut
+     * @param key
+     *            Atut
      * @return Atut postaci odpowiadający atutowi
      */
     @Override
@@ -57,33 +59,39 @@ public class DnDCharacterFleatManager extends Observable implements CharacterFle
     {
         return characterFleatsMapping.get(key);
     }
-    
+
     /**
      * Sprawdza czy atut jest możliwy do wzięcia.
-     * @param fleat Atut do sprawdzenia.
+     * 
+     * @param fleat
+     *            Atut do sprawdzenia.
      * @return true, jeśli można wziąć.
      */
     public boolean checkFleat(Fleat fleat)
     {
         boolean result = true;
-        for (Checkable c : fleat.getDependency())
+        for(Checkable c : fleat.getDependency())
             result = result && c.check(fantasyCharacter);
         return result;
     }
-    
+
     /**
      * Ustawia wszystkie premię atutu na postaci.
-     * @param fleat Atut do ustawienia premi.
+     * 
+     * @param fleat
+     *            Atut do ustawienia premi.
      */
     public void setFleatBenefit(Fleat fleat)
     {
         for(Benefit b : fleat.getBenefits())
             b.apply(fantasyCharacter);
     }
-    
+
     /**
      * Zabiera wszystkie premię wynikające z atutu.
-     * @param fleat Atut do wzięcia premi.
+     * 
+     * @param fleat
+     *            Atut do wzięcia premi.
      */
     public void unsetFleatBenefit(Fleat fleat)
     {
@@ -96,7 +104,7 @@ public class DnDCharacterFleatManager extends Observable implements CharacterFle
      */
     public void update()
     {
-        for (CharacterFleat characterFleat : characterFleatsMapping.values())
+        for(CharacterFleat characterFleat : characterFleatsMapping.values())
             characterFleat.isPossible();
     }
 
@@ -106,10 +114,22 @@ public class DnDCharacterFleatManager extends Observable implements CharacterFle
         setChanged();
         notifyObservers(arg);
     }
-    
+
     @Override
     public void addFleatObserver(Observer o)
     {
         addObserver(o);
+    }
+
+    @Override
+    public void removeObserverFromFleat(Observer o)
+    {
+        deleteObserver(o);
+    }
+
+    @Override
+    public void removeObserversFromFleat()
+    {
+        deleteObservers();
     }
 }

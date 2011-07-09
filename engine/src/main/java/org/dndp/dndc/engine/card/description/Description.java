@@ -62,6 +62,10 @@ public interface Description
     public String getSkin();
 
     public void setSkin(String newValeu);
-    
+
     public void addDescriptionObserver(Observer o);
+
+    public void removeObserverFromDescription(Observer o);
+
+    public void removeObserversFromDescription();
 }

@@ -135,7 +135,7 @@ public class DnDDescription extends Observable implements Description
     {
         if(personality == null)
             throw new NullPointerException();
-        if(! personality.equals(this.personality))
+        if(!personality.equals(this.personality))
             setChanged();
         this.personality = personality;
         notifyObservers(this);
@@ -146,7 +146,7 @@ public class DnDDescription extends Observable implements Description
     {
         if(eye == null)
             throw new NullPointerException();
-        if(! eye.equals(this.eye))
+        if(!eye.equals(this.eye))
             setChanged();
         this.eye = eye;
         notifyObservers(this);
@@ -157,7 +157,7 @@ public class DnDDescription extends Observable implements Description
     {
         if(god == null)
             throw new NullPointerException();
-        if(! god.equals(this.god))
+        if(!god.equals(this.god))
             setChanged();
         this.god = god;
         notifyObservers(this);
@@ -168,7 +168,7 @@ public class DnDDescription extends Observable implements Description
     {
         if(hair == null)
             throw new NullPointerException();
-        if(! hair.equals(this.hair))
+        if(!hair.equals(this.hair))
             setChanged();
         this.hair = hair;
         notifyObservers(this);
@@ -257,9 +257,21 @@ public class DnDDescription extends Observable implements Description
         this.race = raceOfPlayer;
         notifyObservers(this);
     }
-    
+
     public void addDescriptionObserver(Observer o)
     {
         addObserver(o);
     };
+
+    @Override
+    public void removeObserverFromDescription(Observer o)
+    {
+        deleteObserver(o);
+    }
+
+    @Override
+    public void removeObserversFromDescription()
+    {
+        deleteObservers();
+    }
 }

@@ -45,7 +45,11 @@ public interface SavingThrows
      * @throw IllegalArgumentException newValue &lt 0
      */
     void setSpellResistance(double newValue);
-    
+
     void addSavingThrowObserver(Observer o);
+
+    void removeObserverFromST(Observer o);
+
+    void removeObserversFromST();
 
 }

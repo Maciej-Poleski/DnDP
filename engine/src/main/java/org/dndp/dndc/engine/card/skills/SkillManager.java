@@ -6,7 +6,6 @@ import java.util.Set;
 
 import org.dndp.dndc.engine.card.UnavailableTestException;
 
-
 public interface SkillManager
 {
 
@@ -15,13 +14,17 @@ public interface SkillManager
      * 
      * @param name
      * @return
-     * @throws UnavailableTestException Gdy test jest niemożluwy do przeprowadzenia
+     * @throws UnavailableTestException
+     *             Gdy test jest niemożluwy do przeprowadzenia
      */
-    public abstract Integer testSkil(String name) throws UnavailableTestException;
-    
+    public abstract Integer testSkil(String name)
+            throws UnavailableTestException;
+
     /**
      * Zwraca umiejętność postaci na podstawie jej nazyw.
-     * @param name Nazwa umiejętności.
+     * 
+     * @param name
+     *            Nazwa umiejętności.
      * @return Umiejętność postaci.
      */
     public abstract CharacterSkill getSkil(String name);
@@ -33,13 +36,18 @@ public interface SkillManager
      * @return
      */
     public abstract Set<String> getSkilNameSet();
-    
+
     /**
      * Zwraca zbiór umiejętnośći postaci.
+     * 
      * @return zbiór umiejętności
      */
     public abstract Collection<CharacterSkill> getCharacterSkillSet();
-    
+
     public abstract void addSkillObserver(Observer o);
+
+    public abstract void removeObserverFromSkill(Observer o);
+
+    public abstract void removeObserversFromSkill();
 
 }

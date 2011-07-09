@@ -1,5 +1,6 @@
 package org.dndp.dndc.engine.card.attack;
 
+import java.util.Observable;
 import java.util.Observer;
 
 import org.dndp.dndc.engine.card.bonus.BonusManager;
@@ -19,6 +20,8 @@ public class DnDAttack implements Attack
     private BaseAttack        range;
     private BaseAttack        grapple;
 
+    private Observable[]      tab;
+
     /**
      * Standardowy konstrutor tworzący postać na 0 wym poziomie.
      * 
@@ -35,6 +38,7 @@ public class DnDAttack implements Attack
         bonusManager.registerBonus("GrappleAttack", grapple);
         initiative = new Initiative(bonusManager);
         speed = new Speed();
+        tab = new Observable[] { melee, range, grapple, initiative, speed };
     }
 
     @Override
@@ -61,20 +65,18 @@ public class DnDAttack implements Attack
         return initiative;
     }
 
-    
     @Override
     public Speed getSpeed()
     {
         return speed;
     }
-    
-    
+
     @Override
     public BaseBonusToAttack getBaseAttack()
     {
         return baseAtack;
     }
-    
+
     @Override
     public void setBaseAttack(BaseBonusToAttack baseAtack)
     {
@@ -87,11 +89,28 @@ public class DnDAttack implements Attack
     @Override
     public void addAttackObserver(Observer o)
     {
-        melee.addObserver(o);
-        range.addObserver(o);
-        grapple.addObserver(o);
-        initiative.addObserver(o);
-        speed.addObserver(o);
+        for(Observable ob : tab)
+        {
+            ob.addObserver(o);
+        }
+    }
+
+    @Override
+    public void removeObserverFromAttack(Observer o)
+    {
+        for(Observable ob : tab)
+        {
+            ob.deleteObserver(o);
+        }
+    }
+
+    @Override
+    public void removeObserversFromAttack()
+    {
+        for(Observable ob : tab)
+        {
+            ob.deleteObservers();
+        }
     }
 
 }

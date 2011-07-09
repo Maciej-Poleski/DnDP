@@ -19,6 +19,8 @@ public class DnDAbilities implements Abilities
     private Abiliti wisdom;
     private Abiliti charisma;
 
+    private Abiliti tab[];
+
     public DnDAbilities(BonusManager bonusManager)
     {
         this.strenght = new Abiliti();
@@ -33,6 +35,9 @@ public class DnDAbilities implements Abilities
         bonusManager.registerBonus("Wisdom", wisdom);
         this.charisma = new Abiliti();
         bonusManager.registerBonus("Charisma", charisma);
+
+        tab = new Abiliti[] { strenght, dexterity, construction, intelligence,
+                wisdom, charisma };
     }
 
     @Override
@@ -74,11 +79,21 @@ public class DnDAbilities implements Abilities
     @Override
     public void addObserverToAbilities(Observer o)
     {
-        strenght.addObserver(o);
-        dexterity.addObserver(o);
-        construction.addObserver(o);
-        intelligence.addObserver(o);
-        wisdom.addObserver(o);
-        charisma.addObserver(o);
+        for(Abiliti a : tab)
+            a.addObserver(o);
+    }
+
+    @Override
+    public void removeAllObserversFromAbilites()
+    {
+        for(Abiliti a : tab)
+            a.deleteObservers();
+    }
+
+    @Override
+    public void removeObserverFromAbilities(Observer o)
+    {
+        for(Abiliti a : tab)
+            a.deleteObserver(o);
     }
 }

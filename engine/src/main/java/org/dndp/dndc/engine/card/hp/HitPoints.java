@@ -37,7 +37,11 @@ public interface HitPoints
      *            Maksymalna Ilość HP
      */
     public void setMaxHP(int maxHP);
-    
+
     public void addHitPointsObserver(Observer o);
+
+    public void removeObserversFromHP();
+
+    public void removeObserverFromHP(Observer o);
 
 }

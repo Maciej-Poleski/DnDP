@@ -70,10 +70,22 @@ public class DnDSavingThrows extends Observable implements SavingThrows
         spell = newValue;
         notifyObservers(this);
     }
-    
-   @Override
+
+    @Override
     public void addSavingThrowObserver(Observer o)
     {
-       addObserver(o);
+        addObserver(o);
+    }
+
+    @Override
+    public void removeObserverFromST(Observer o)
+    {
+        deleteObserver(o);
+    }
+
+    @Override
+    public void removeObserversFromST()
+    {
+        deleteObservers();
     }
 }

@@ -7,6 +7,8 @@ import org.dndp.dndc.engine.FantasyCharacter;
 /**
  * Interfejs obsługi atrybutów
  * 
+ * TODO dokumentacja
+ * 
  * @author bambucha
  * @see FantasyCharacter.engine.Character
  * @see engine.karta.abilities.DnDAbilities
@@ -26,4 +28,8 @@ public interface Abilities
     public Abiliti getCharisma();
 
     public void addObserverToAbilities(Observer o);
+
+    public void removeObserverFromAbilities(Observer o);
+
+    public void removeAllObserversFromAbilites();
 }

@@ -103,4 +103,16 @@ public class DnDSkilManager extends Observable implements SkillManager,
     {
         addObserver(o);
     }
+
+    @Override
+    public void removeObserverFromSkill(Observer o)
+    {
+        deleteObserver(o);
+    }
+
+    @Override
+    public void removeObserversFromSkill()
+    {
+        deleteObservers();
+    }
 }

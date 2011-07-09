@@ -49,10 +49,22 @@ public class DnDHitPoints extends Observable implements HitPoints
         this.maxHP = maxHP;
         notifyObservers(this);
     }
-    
+
     @Override
     public void addHitPointsObserver(Observer o)
     {
         addObserver(o);
+    }
+
+    @Override
+    public void removeObserverFromHP(Observer o)
+    {
+        deleteObserver(o);
+    }
+
+    @Override
+    public void removeObserversFromHP()
+    {
+        deleteObservers();
     }
 }
