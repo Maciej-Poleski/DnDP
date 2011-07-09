@@ -125,8 +125,7 @@ public class DnDCharacterClassManager extends Observable implements
     {
         CharacterClass toPromote = null;
         for(CharacterClass characterClass : classList)
-            if(characterClass.getClass().equals(classes)) // FIXIT Może nie
-                                                          // działać.
+            if(characterClass.getClass().equals(classes))
                 toPromote = characterClass;
         if(toPromote == null) // Postać nie ma jeszcze tej klasy...
         {
@@ -138,6 +137,7 @@ public class DnDCharacterClassManager extends Observable implements
                 fantasyCharacter.getSkil(skil.getName()).setClasses(true);
             classList.add(toPromote);
         }
+<<<<<<< HEAD
         toPromote.setLevel(toPromote.getLevel() + 1); // Dodanie poziomu do
                                                       // klasu
         setChanged();
@@ -147,6 +147,17 @@ public class DnDCharacterClassManager extends Observable implements
                 .getLevel()])
             // Dodanie premi klasowych
             benefit.apply(fantasyCharacter);
+=======
+        toPromote.setLevel(toPromote.getLevel() + 1); // Dodanie poziomu
+
+        for(Benefit benefit : toPromote.getClasses().getLevelBenefitsList()[toPromote
+                .getLevel()])
+            benefit.apply(fantasyCharacter);// Dodanie premi klasowych
+        updateSavingThrows();
+        setChanged();
+        notifyObservers(); // Uaktualnienie atutów, i inne rzeczy...
+
+>>>>>>> st-from-class
     }
 
     @Override
@@ -170,6 +181,7 @@ public class DnDCharacterClassManager extends Observable implements
         addObserver(o);
     }
 
+<<<<<<< HEAD
     @Override
     public void removeObserverFromClasses(Observer o)
     {
@@ -180,5 +192,21 @@ public class DnDCharacterClassManager extends Observable implements
     public void removeObserversFromClasses()
     {
         deleteObservers();
+=======
+    private void updateSavingThrows()
+    {
+        int fortitude = 0;
+        int refelex = 0;
+        int will = 0;
+        for(CharacterClass cl : getClassList())
+        {
+            fortitude += cl.getFortitudeBonus();
+            refelex += cl.getReflexBonus();
+            will += cl.getWillBonus();
+        }
+        fantasyCharacter.getForttiude().setBaseModifier(fortitude);
+        fantasyCharacter.getReflex().setBaseModifier(refelex);
+        fantasyCharacter.getWill().setBaseModifier(will);
+>>>>>>> st-from-class
     }
 }

@@ -10,7 +10,8 @@ import org.dndp.dndc.engine.card.bonus.BonusManager;
  * 
  * @author bambucha
  */
-public class DnDSavingThrows extends Observable implements SavingThrows
+public class DnDSavingThrows extends Observable implements SavingThrows,
+        Observer
 {
     private SavingThrow forttiude;
     private SavingThrow reflex;
@@ -21,8 +22,6 @@ public class DnDSavingThrows extends Observable implements SavingThrows
      * Standardowy konstruktor.
      * 
      * @param bonusManager
-     *            Menadżer bonusów.
-     * @param view
      *            Widok rzutów.
      */
     public DnDSavingThrows(BonusManager bonusManager)
@@ -34,6 +33,9 @@ public class DnDSavingThrows extends Observable implements SavingThrows
         will = new WillThrow();
         bonusManager.registerBonus("WillThrow", will);
         spell = 0.0;
+        forttiude.addObserver(this);
+        reflex.addObserver(this);
+        will.addObserver(this);
     }
 
     @Override

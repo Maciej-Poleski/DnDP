@@ -1,6 +1,7 @@
 package org.dndp.dndc.engine.card.st;
 
 import java.util.Observable;
+import java.util.logging.Logger;
 
 import org.dndp.dndc.engine.Dice;
 import org.dndp.dndc.engine.card.bonus.Bonusable;
@@ -13,11 +14,14 @@ import org.dndp.dndc.engine.card.bonus.Bonusable;
  */
 public abstract class SavingThrow extends Observable implements Bonusable
 {
-    private int base;
-    private int bonus;
+    private static Logger log = Logger.getLogger("SavingThrows");
+
+    private int           base;
+    private int           bonus;
 
     /**
-     * Standardowy konstrukor, tworzy rzut z zerową premią i dodatkowymi modyfikatorami
+     * Standardowy konstrukor, tworzy rzut z zerową premią i dodatkowymi
+     * modyfikatorami
      * 
      * @param view
      *            Widok rzutu
@@ -66,15 +70,16 @@ public abstract class SavingThrow extends Observable implements Bonusable
      * @throws IllegalArgumentException
      *             base &lt 0
      */
-    public void setBaseModifier(Integer base)
+    public void setBaseModifier(int base)
     {
         if(base < 0)
             throw new IllegalArgumentException("Nie może być < 0");
         if(this.base != base)
             setChanged();
+        log.info("Nowy bazowy modyfikator to " + Integer.toString(base));
         this.base = base;
         notifyObservers(this);
-        
+
     }
 
     /**
@@ -101,7 +106,7 @@ public abstract class SavingThrow extends Observable implements Bonusable
         this.bonus = bonus;
         notifyObservers(this);
     }
-    
+
     @Override
     public boolean isSizeImportant()
     {

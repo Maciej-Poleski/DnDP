@@ -1,8 +1,11 @@
 package org.dndp.dndc.client.gui;
 
+<<<<<<< HEAD
 import org.dndp.dndc.client.gui.action.Exit;
 import org.dndp.dndc.client.gui.action.FantasyCharacterLoad;
 import org.dndp.dndc.client.gui.action.FantasyCharacterSave;
+=======
+>>>>>>> st-from-class
 import org.dndp.dndc.client.gui.card.abilities.AbilitiesView;
 import org.dndp.dndc.client.gui.card.armor.ArmorView;
 import org.dndp.dndc.client.gui.card.attack.AttackView;
@@ -11,6 +14,7 @@ import org.dndp.dndc.client.gui.card.description.DescriptionView;
 import org.dndp.dndc.client.gui.card.fleats.FleatsView;
 import org.dndp.dndc.client.gui.card.hp.HpView;
 import org.dndp.dndc.client.gui.card.skills.SkillsView;
+import org.dndp.dndc.client.gui.card.st.StView;
 import org.dndp.dndc.engine.FantasyCharacter;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
@@ -44,6 +48,7 @@ public class MainWindow extends ApplicationWindow
     private AttackView       attackView;
     private FleatsView       fleatsView;
     private SkillsView       skillsView;
+    private StView           stView;
 
     public MainWindow(FantasyCharacter model)
     {
@@ -88,13 +93,15 @@ public class MainWindow extends ApplicationWindow
         shell.setLayout(gl_shell);
         FormData data;
 
-        descriptionView = new DescriptionView(shell, SWT.NONE, fantasyCharacter);
-        abilitiesView = new AbilitiesView(shell, SWT.NONE, fantasyCharacter);
-        hpView = new HpView(shell, SWT.NONE, fantasyCharacter);
-        classesView = new ClassesView(shell, SWT.NONE, fantasyCharacter);
-        armorView = new ArmorView(shell, SWT.NONE, fantasyCharacter);
-        attackView = new AttackView(shell, SWT.NONE, fantasyCharacter);
-        fleatsView = new FleatsView(shell, SWT.NONE, fantasyCharacter);
+        descriptionView = new DescriptionView(shell, SWT.NONE, x);
+        abilitiesView = new AbilitiesView(shell, SWT.NONE, x);
+        hpView = new HpView(shell, SWT.NONE, x);
+        classesView = new ClassesView(shell, SWT.NONE, x);
+        armorView = new ArmorView(shell, SWT.NONE, x);
+        attackView = new AttackView(shell, SWT.NONE, x);
+        fleatsView = new FleatsView(shell, SWT.NONE, x);
+        skillsView = new SkillsView(shell, SWT.NONE, x);
+        stView = new StView(shell, SWT.NONE, x);
 
         data = new FormData(SWT.DEFAULT, SWT.DEFAULT);
         data.top = new FormAttachment(0);
@@ -132,6 +139,12 @@ public class MainWindow extends ApplicationWindow
         attackView.setLayoutData(data);
 
         data = new FormData(SWT.DEFAULT, SWT.DEFAULT);
+        data.top = new FormAttachment(armorView);
+        data.left = new FormAttachment(attackView);
+        data.right = new FormAttachment(100);
+        stView.setLayoutData(data);
+
+        data = new FormData(SWT.DEFAULT, SWT.DEFAULT);
         data.top = new FormAttachment(abilitiesView);
         data.left = new FormAttachment(0);
         data.right = new FormAttachment(attackView);
@@ -140,7 +153,7 @@ public class MainWindow extends ApplicationWindow
 
         skillsView = new SkillsView(shell, SWT.NONE, fantasyCharacter);
         data = new FormData(SWT.DEFAULT, SWT.DEFAULT);
-        data.top = new FormAttachment(classesView);
+        data.top = new FormAttachment(stView);
         data.left = new FormAttachment(attackView);
         data.right = new FormAttachment(100);
         data.bottom = new FormAttachment(100);
