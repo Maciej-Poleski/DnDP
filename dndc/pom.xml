@@ -191,6 +191,13 @@
 				</executions>
 			</plugin>
 		</plugins>
+		<resources>
+			<resource>
+				<directory>src/bash</directory>
+				<filtering>true</filtering>
+				<targetPath>../luncher</targetPath>
+			</resource>
+		</resources>
 	</build>
 	
 		<dependencies>
