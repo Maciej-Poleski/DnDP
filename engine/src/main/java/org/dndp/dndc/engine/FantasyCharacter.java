@@ -732,17 +732,31 @@ public class FantasyCharacter implements Abilities, Attack, Armor, Description,
         abilities.removeAllObserversFromAbilites();
     }
 
+    private void removeAllObservers()
+    {
+        abilities.removeAllObserversFromAbilites();
+        armor.removeObserversFromArmor();
+        description.removeObserversFromDescription();
+        attack.removeObserversFromAttack();
+        HP.removeObserversFromHP();
+        savingThrows.removeObserversFromST();
+        skilManager.removeObserversFromSkill();
+        characterFleatManager.removeObserversFromFleat();
+        classManager.removeObserversFromClasses();
+    }
+
     public static void store(File destination, FantasyCharacter target)
     {
         EmbeddedConfiguration conf = Db4oEmbedded.newConfiguration();
         conf.common().exceptionsOnNotStorable(false);
-        conf.common().activationDepth(2);
-        conf.common().maxStackDepth(2);
-        conf.common().callbacks(false);
+        // conf.common().activationDepth(2);
+        // conf.common().maxStackDepth(2);
+        // conf.common().callbacks(false);
         conf.common().messageLevel(3);
 
         ObjectContainer con = Db4oEmbedded.openFile(conf,
                 destination.toString());
+        target.removeAllObservers(); // Wyczyszczona z wszystkich obserwatorów.
         con.store(target);
         con.commit();
         con.close();
@@ -753,8 +767,8 @@ public class FantasyCharacter implements Abilities, Attack, Armor, Description,
     {
         EmbeddedConfiguration conf = Db4oEmbedded.newConfiguration();
         conf.common().exceptionsOnNotStorable(false);
-        conf.common().activationDepth(3);
-        conf.common().maxStackDepth(3);
+        // conf.common().activationDepth(3);
+        // conf.common().maxStackDepth(3);
         // conf.common().callbacks(false);
         ObjectContainer con = Db4oEmbedded.openFile(conf, source.toString());
         ObjectSet<FantasyCharacter> s = con.query(FantasyCharacter.class);

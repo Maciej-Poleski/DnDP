@@ -112,12 +112,12 @@ public class DnDArmor extends Observable implements Armor, Bonusable
     @Override
     public void removeObserverFromArmor(Observer o)
     {
-        removeObserverFromArmor(o);
+        deleteObserver(o);
     }
 
     @Override
     public void removeObserversFromArmor()
     {
-        removeObserversFromArmor();
+        deleteObservers();
     }
 }
