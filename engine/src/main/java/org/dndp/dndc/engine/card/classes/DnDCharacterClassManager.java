@@ -3,7 +3,6 @@ package org.dndp.dndc.engine.card.classes;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Observable;
 import java.util.Observer;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -13,13 +12,14 @@ import org.dndp.dndc.engine.benefit.Benefit;
 import org.dndp.dndc.engine.card.skills.Skill;
 import org.dndp.dndc.engine.check.CheckFailException;
 import org.dndp.dndc.engine.check.Checkable;
+import org.dndp.dndc.engine.util.ChangeObservable;
 
 /**
  * Klasa menadżere klas postaci pojedynaczej postaci.
  * 
  * @author bambucha
  */
-public class DnDCharacterClassManager extends Observable implements
+public class DnDCharacterClassManager extends ChangeObservable implements
         CharacterClassManager
 {
     private FantasyCharacter     fantasyCharacter;

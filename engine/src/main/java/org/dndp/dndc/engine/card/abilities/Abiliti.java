@@ -1,25 +1,25 @@
 package org.dndp.dndc.engine.card.abilities;
 
-import java.util.Observable;
-
 import org.dndp.dndc.engine.card.bonus.Bonusable;
-
+import org.dndp.dndc.engine.util.ChangeObservable;
 
 /**
- * Klasa atrybutu stworzona na potrzeby enkapsulację modyfikatora i wartości. Implementuje Bonusable, by uwzględnić modyfikatory z usprawnienia.
+ * Klasa atrybutu stworzona na potrzeby enkapsulację modyfikatora i wartości.
+ * Implementuje Bonusable, by uwzględnić modyfikatory z usprawnienia.
  * 
  * @author bambucha
  * @see dndp.engine.card.abilities.Abilities
  * @see dndp.engine.card.abilities.DnDAbilities
  */
-public class Abiliti extends Observable implements Bonusable
+public class Abiliti extends ChangeObservable implements Bonusable
 {
     int value;
     int modifier;
     int bonus;
 
     /**
-     * Konstruktor budujący atrybut o wartości 10. Dodatkowy argument to interfejs widoku danego obiektu
+     * Konstruktor budujący atrybut o wartości 10. Dodatkowy argument to
+     * interfejs widoku danego obiektu
      * 
      * @param view
      *            Widok dla atrybutu
@@ -85,7 +85,7 @@ public class Abiliti extends Observable implements Bonusable
     {
         return AbilityType.NONE;
     }
-    
+
     @Override
     public boolean isSizeImportant()
     {

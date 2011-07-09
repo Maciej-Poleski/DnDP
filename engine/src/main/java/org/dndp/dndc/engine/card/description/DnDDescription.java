@@ -1,16 +1,16 @@
 package org.dndp.dndc.engine.card.description;
 
-import java.util.Observable;
 import java.util.Observer;
 
 import org.dndp.dndc.engine.PersonalityTypes;
+import org.dndp.dndc.engine.util.ChangeObservable;
 
 /**
  * Implementacja opisu postaci
  * 
  * @author bambucha
  */
-public class DnDDescription extends Observable implements Description
+public class DnDDescription extends ChangeObservable implements Description
 {
     private String           name;
     private String           player;

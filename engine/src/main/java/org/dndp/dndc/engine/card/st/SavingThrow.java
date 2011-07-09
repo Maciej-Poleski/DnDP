@@ -1,10 +1,10 @@
 package org.dndp.dndc.engine.card.st;
 
-import java.util.Observable;
 import java.util.logging.Logger;
 
 import org.dndp.dndc.engine.Dice;
 import org.dndp.dndc.engine.card.bonus.Bonusable;
+import org.dndp.dndc.engine.util.ChangeObservable;
 
 /**
  * Klasa opisująca rzut obronny. <br/>
@@ -12,7 +12,7 @@ import org.dndp.dndc.engine.card.bonus.Bonusable;
  * 
  * @author bambucha
  */
-public abstract class SavingThrow extends Observable implements Bonusable
+public abstract class SavingThrow extends ChangeObservable implements Bonusable
 {
     private static Logger log = Logger.getLogger("SavingThrows");
 

@@ -1,14 +1,15 @@
 package org.dndp.dndc.engine.card.hp;
 
-import java.util.Observable;
 import java.util.Observer;
+
+import org.dndp.dndc.engine.util.ChangeObservable;
 
 /**
  * Klasa obsługująca punkty życia i inne zdażenia.
  * 
  * @author bambucha
  */
-public class DnDHitPoints extends Observable implements HitPoints
+public class DnDHitPoints extends ChangeObservable implements HitPoints
 {
     private int maxHP;
     private int HP;

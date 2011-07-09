@@ -9,6 +9,7 @@ import java.util.Observer;
 import org.dndp.dndc.engine.FantasyCharacter;
 import org.dndp.dndc.engine.benefit.Benefit;
 import org.dndp.dndc.engine.check.Checkable;
+import org.dndp.dndc.engine.util.ChangeObservable;
 
 /**
  * Klasa zajmująca się zarządzaniem atutami. Również wszystkimi obowiązkami
@@ -16,7 +17,7 @@ import org.dndp.dndc.engine.check.Checkable;
  * 
  * @author evil, bambucha
  */
-public class DnDCharacterFleatManager extends Observable implements
+public class DnDCharacterFleatManager extends ChangeObservable implements
         CharacterFleatManager, Observer
 {
     private Map<Fleat, CharacterFleat> characterFleatsMapping;

@@ -4,13 +4,14 @@ import java.util.Observable;
 import java.util.Observer;
 
 import org.dndp.dndc.engine.card.bonus.BonusManager;
+import org.dndp.dndc.engine.util.ChangeObservable;
 
 /**
  * Klasa opiekująca sie rzutami obronnymi
  * 
  * @author bambucha
  */
-public class DnDSavingThrows extends Observable implements SavingThrows,
+public class DnDSavingThrows extends ChangeObservable implements SavingThrows,
         Observer
 {
     private SavingThrow forttiude;

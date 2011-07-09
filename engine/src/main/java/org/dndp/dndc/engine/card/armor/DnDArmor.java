@@ -1,6 +1,5 @@
 package org.dndp.dndc.engine.card.armor;
 
-import java.util.Observable;
 import java.util.Observer;
 
 import org.dndp.dndc.engine.card.abilities.Abilities;
@@ -9,13 +8,14 @@ import org.dndp.dndc.engine.card.bonus.ArmorBonusHandler;
 import org.dndp.dndc.engine.card.bonus.BonusManager;
 import org.dndp.dndc.engine.card.bonus.Bonusable;
 import org.dndp.dndc.engine.item.BasicEquipmentManager;
+import org.dndp.dndc.engine.util.ChangeObservable;
 
 /**
  * Klasa licząca Klasę pancerza dla postaci.
  * 
  * @author bambucha
  */
-public class DnDArmor extends Observable implements Armor, Bonusable
+public class DnDArmor extends ChangeObservable implements Armor, Bonusable
 {
 
     private final Integer         BASE = 10;

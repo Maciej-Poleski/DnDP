@@ -11,13 +11,14 @@ import org.dndp.dndc.engine.Dice;
 import org.dndp.dndc.engine.card.UnavailableTestException;
 import org.dndp.dndc.engine.card.bonus.BonusManager;
 import org.dndp.dndc.engine.item.BasicEquipmentManager;
+import org.dndp.dndc.engine.util.ChangeObservable;
 
 /**
  * Klasa opiekująca się umiejetnoscieami bohaterów
  * 
  * @author bambucha
  */
-public class DnDSkilManager extends Observable implements SkillManager,
+public class DnDSkilManager extends ChangeObservable implements SkillManager,
         Observer
 {
     private BasicEquipmentManager       baseEquipmentManager;

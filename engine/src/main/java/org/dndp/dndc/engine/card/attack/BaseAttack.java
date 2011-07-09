@@ -1,9 +1,9 @@
 package org.dndp.dndc.engine.card.attack;
 
 import java.util.Arrays;
-import java.util.Observable;
 
 import org.dndp.dndc.engine.card.bonus.Bonusable;
+import org.dndp.dndc.engine.util.ChangeObservable;
 
 /**
  * Klasa abstrakcyjna definiująca interfejs i cześć zachowań Wzorzec projektowy
@@ -11,7 +11,7 @@ import org.dndp.dndc.engine.card.bonus.Bonusable;
  * 
  * @author bambucha
  */
-public abstract class BaseAttack extends Observable implements Bonusable
+public abstract class BaseAttack extends ChangeObservable implements Bonusable
 {
     private BaseBonusToAttack baseAtack;
     private int               bonus;
