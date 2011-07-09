@@ -107,7 +107,7 @@
 					<archive>
 						<manifest>
 							<addClasspath>true</addClasspath>
-							<mainClass>org.dndp.dndc.client.gui.MainWindow</mainClass>
+							<mainClass>org.dndp.dndc.client.Main</mainClass>
 						</manifest>
 					</archive>
 				</configuration>
