@@ -24,8 +24,8 @@ public class DnDCharacterClassManager extends ChangeObservable implements
 {
     private FantasyCharacter     fantasyCharacter;
     private List<CharacterClass> classList;
-    private Integer              level;
-    private Integer              experiancePoint;
+    private int                  level;
+    private int                  experiancePoint;
     private boolean              promoted;
 
     /**
