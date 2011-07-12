@@ -192,6 +192,7 @@ public class MainWindow extends ApplicationWindow
         classesView.setModel(fantasyCharacter);
         fleatsView.setModel(fantasyCharacter);
         skillsView.setModel(fantasyCharacter);
+        stView.setModel(fantasyCharacter);
         this.fantasyCharacter = fantasyCharacter;
     }
 
