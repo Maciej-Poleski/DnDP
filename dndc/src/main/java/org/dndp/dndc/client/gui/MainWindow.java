@@ -103,13 +103,14 @@ public class MainWindow extends ApplicationWindow
         data = new FormData(SWT.DEFAULT, SWT.DEFAULT);
         data.top = new FormAttachment(0);
         data.left = new FormAttachment(0);
-        data.right = new FormAttachment(classesView, 0, SWT.RIGHT);
+        data.right = new FormAttachment(70);
         data.bottom = new FormAttachment(hpView, 0, SWT.BOTTOM);
         descriptionView.setLayoutData(data);
 
         data = new FormData(SWT.DEFAULT, SWT.DEFAULT);
         data.top = new FormAttachment(descriptionView);
         data.left = new FormAttachment(0);
+        data.right = new FormAttachment(20);
         abilitiesView.setLayoutData(data);
 
         data = new FormData(SWT.DEFAULT, SWT.DEFAULT);
@@ -121,7 +122,7 @@ public class MainWindow extends ApplicationWindow
         data = new FormData(SWT.DEFAULT, SWT.DEFAULT);
         data.top = new FormAttachment(descriptionView);
         data.left = new FormAttachment(abilitiesView);
-        // data.right = new FormAttachment(100);
+        data.right = new FormAttachment(70);
         classesView.setLayoutData(data);
 
         data = new FormData(SWT.DEFAULT, SWT.DEFAULT);
@@ -134,12 +135,14 @@ public class MainWindow extends ApplicationWindow
         data = new FormData(SWT.DEFAULT, SWT.DEFAULT);
         data.top = new FormAttachment(classesView);
         data.left = new FormAttachment(abilitiesView);
+        data.right = new FormAttachment(70);
         attackView.setLayoutData(data);
 
         data = new FormData(SWT.DEFAULT, SWT.DEFAULT);
         data.top = new FormAttachment(armorView);
         data.left = new FormAttachment(attackView);
         data.right = new FormAttachment(100);
+        data.bottom = new FormAttachment(attackView, 0, SWT.BOTTOM);
         stView.setLayoutData(data);
 
         data = new FormData(SWT.DEFAULT, SWT.DEFAULT);
@@ -151,8 +154,8 @@ public class MainWindow extends ApplicationWindow
 
         skillsView = new SkillsView(shell, SWT.NONE, fantasyCharacter);
         data = new FormData(SWT.DEFAULT, SWT.DEFAULT);
-        data.top = new FormAttachment(stView);
-        data.left = new FormAttachment(attackView);
+        data.top = new FormAttachment(attackView, 0, SWT.BOTTOM);
+        data.left = new FormAttachment(60);
         data.right = new FormAttachment(100);
         data.bottom = new FormAttachment(100);
         skillsView.setLayoutData(data);

@@ -4,12 +4,16 @@ import java.util.Observable;
 import java.util.Observer;
 
 import org.dndp.dndc.client.gui.SWTResourceManager;
+import org.dndp.dndc.engine.PersonalityTypes;
 import org.dndp.dndc.engine.card.description.Description;
+import org.dndp.dndc.engine.card.description.Sex;
+import org.dndp.dndc.engine.card.description.Size;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Text;
@@ -24,15 +28,15 @@ public class DescriptionView extends Group implements Observer, ModifyListener
     private Text        raceText;
     private Text        religionText;
     private Text        alignmentText;
-    private Text        personalityTypeText;
+    private Combo       personalityTypeCombo;
     private Text        ageText;
     private Text        weightText;
-    private Text        sizeText;
-    private Text        genderText;
+    private Combo       sizeCombo;
     private Text        nameText;
     private Text        playerText;
 
     private Description model;
+    private Combo       ganderCombo;
 
     /**
      * Create the composite.
@@ -49,10 +53,13 @@ public class DescriptionView extends Group implements Observer, ModifyListener
         nameText = new Text(this, SWT.BORDER);
         nameText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false,
                 4, 1));
+        nameText.addModifyListener(this);
 
         playerText = new Text(this, SWT.BORDER);
         playerText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
                 false, 4, 1));
+
+        playerText.addModifyListener(this);
 
         raceText = new Text(this, SWT.BORDER);
         raceText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false,
@@ -66,30 +73,33 @@ public class DescriptionView extends Group implements Observer, ModifyListener
         alignmentText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
                 false, 1, 1));
 
-        personalityTypeText = new Text(this, SWT.BORDER);
-        personalityTypeText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER,
+        personalityTypeCombo = new Combo(this, SWT.READ_ONLY);
+        personalityTypeCombo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER,
                 true, false, 1, 1));
+        for(PersonalityTypes t : PersonalityTypes.values())
+            personalityTypeCombo.add(t.getName());
 
         ageText = new Text(this, SWT.BORDER);
         ageText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false,
                 1, 1));
+        ageText.addModifyListener(this);
 
         weightText = new Text(this, SWT.BORDER);
         weightText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
                 false, 1, 1));
-
-        sizeText = new Text(this, SWT.BORDER);
-        sizeText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false,
-                1, 1));
-
-        genderText = new Text(this, SWT.BORDER);
-        genderText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
-                false, 1, 1));
-
-        playerText.addModifyListener(this);
-        nameText.addModifyListener(this);
-        ageText.addModifyListener(this);
         weightText.addModifyListener(this);
+
+        sizeCombo = new Combo(this, SWT.READ_ONLY);
+        sizeCombo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false,
+                1, 1));
+        for(Size s : Size.values())
+            sizeCombo.add(s.name());
+
+        ganderCombo = new Combo(this, SWT.READ_ONLY);
+        ganderCombo.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
+                false, 1, 1));
+        for(Sex s : Sex.values())
+            ganderCombo.add(s.getName());
 
         setModel(model);
     }
@@ -110,13 +120,14 @@ public class DescriptionView extends Group implements Observer, ModifyListener
             playerText.setText(tmp.getPlayer());
             raceText.setText(tmp.getRase().getName());
             religionText.setText(tmp.getGod().getName());
-            alignmentText.setText(tmp.getPersonality().getName());
+            // alignmentText.setText(tmp.getPersonality().getName());
+            // tmp.
             // FIXME Dojść co to jest za pole ^^
-            personalityTypeText.setText(tmp.getPersonality().toString());
+            personalityTypeCombo.select(tmp.getPersonality().ordinal());
             ageText.setText(Integer.toString(tmp.getAge()));
             weightText.setText(Integer.toString(tmp.getWeight()));
-            sizeText.setText(tmp.getSize().name());
-            genderText.setText(tmp.getSex().getName());
+            sizeCombo.select(tmp.getSize().ordinal());
+            ganderCombo.select(tmp.getSex().ordinal());
         }
     }
 
@@ -156,6 +167,13 @@ public class DescriptionView extends Group implements Observer, ModifyListener
             model.setAge(parseField(ageText));
         if(parseField(weightText) > 0)
             model.setWeight(parseField(weightText));
+        if(personalityTypeCombo.getSelectionIndex() > 0)
+            model.setPersonality(PersonalityTypes.values()[personalityTypeCombo
+                    .getSelectionIndex()]);
+        if(sizeCombo.getSelectionIndex() > 0)
+            model.setSize(Size.values()[sizeCombo.getSelectionIndex()]);
+        if(ganderCombo.getSelectionIndex() > 0)
+            model.setSex(Sex.values()[ganderCombo.getSelectionIndex()]);
     }
 
     public void setModel(Description model)
