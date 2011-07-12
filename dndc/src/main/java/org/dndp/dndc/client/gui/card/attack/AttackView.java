@@ -73,8 +73,8 @@ public class AttackView extends Composite implements Observer, ModifyListener
         grpWalka.setLayout(new GridLayout(4, false));
 
         grpBazowy = new Group(grpWalka, SWT.NONE);
-        grpBazowy.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false,
-                false, 1, 1));
+        grpBazowy.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false,
+                1, 1));
         grpBazowy.setText("Bazowy");
         grpBazowy.setLayout(new FillLayout(SWT.VERTICAL));
 
@@ -92,7 +92,7 @@ public class AttackView extends Composite implements Observer, ModifyListener
         baseAttack1Text.addModifyListener(this);
 
         grpWrcz = new Group(grpWalka, SWT.NONE);
-        grpWrcz.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false,
+        grpWrcz.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false,
                 1, 1));
         grpWrcz.setText("Wręcz");
         grpWrcz.setLayout(new FillLayout(SWT.VERTICAL));
@@ -110,7 +110,7 @@ public class AttackView extends Composite implements Observer, ModifyListener
         meleeSumAttack4Text.setEditable(false);
 
         grpDystansowe = new Group(grpWalka, SWT.NONE);
-        grpDystansowe.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false,
+        grpDystansowe.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
                 false, 1, 1));
         grpDystansowe.setText("Dystansowe");
         grpDystansowe.setLayout(new FillLayout(SWT.VERTICAL));
@@ -129,7 +129,7 @@ public class AttackView extends Composite implements Observer, ModifyListener
 
         grpZwarcie = new Group(grpWalka, SWT.NONE);
         grpZwarcie.setLayout(new GridLayout(1, false));
-        grpZwarcie.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false,
+        grpZwarcie.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false,
                 1, 1));
         grpZwarcie.setText("Zwarcie");
 

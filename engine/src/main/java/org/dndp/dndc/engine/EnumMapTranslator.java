@@ -10,6 +10,14 @@ import org.dndp.dndc.engine.card.bonus.BonusType;
 import com.db4o.ObjectContainer;
 import com.db4o.config.ObjectConstructor;
 
+/**
+ * Klasa tłumacząca EnumMapa na normalny Map który da się radę storować.
+ * 
+ * Napisan brzydko. FIXME: Przepisać lepiej.
+ * 
+ * @author bambucha
+ * 
+ */
 public class EnumMapTranslator implements ObjectConstructor
 {
 
@@ -35,6 +43,7 @@ public class EnumMapTranslator implements ObjectConstructor
         return out;
     }
 
+    @SuppressWarnings("rawtypes")
     @Override
     public Class storedClass()
     {

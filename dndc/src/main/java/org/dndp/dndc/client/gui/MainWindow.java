@@ -50,8 +50,6 @@ public class MainWindow extends ApplicationWindow
     public MainWindow(FantasyCharacter model)
     {
         super(null);
-
-        addMenuBar();
         this.fantasyCharacter = model;
 
     }
@@ -168,7 +166,7 @@ public class MainWindow extends ApplicationWindow
     public void create()
     {
         addMenuBar();
-        addToolBar(SWT.NONE);
+        // addToolBar(SWT.NONE);
         super.create();
     }
 

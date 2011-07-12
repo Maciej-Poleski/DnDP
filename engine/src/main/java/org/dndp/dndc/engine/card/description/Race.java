@@ -27,7 +27,7 @@ public class Race
         lands = "all";
         religion = "pelor";
         language = "all";
-        name = "bambucha";
+        names = "bambucha";
     }
 
     public String getIndividuality()
