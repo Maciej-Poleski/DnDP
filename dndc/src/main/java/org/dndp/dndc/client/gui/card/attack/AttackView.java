@@ -170,6 +170,18 @@ public class AttackView extends Composite implements Observer, ModifyListener
     @Override
     public void update(Observable o, Object arg)
     {
+        if(o instanceof BaseAttack)
+        {
+            int[] x = ((BaseAttack)o).getBaseAttack().getBonus();
+            if(x.length > 0)
+                baseAttack1Text.setText(Integer.toString(x[0]));
+            if(x.length > 1)
+                baseAttack2Text.setText(Integer.toString(x[1]));
+            if(x.length > 2)
+                baseAttack3Text.setText(Integer.toString(x[2]));
+            if(x.length > 3)
+                baseAttack4Text.setText(Integer.toString(x[3]));
+        }
         if(o instanceof MeleeAttack)
         {
             meleeSumAttack1Text.setText("");
@@ -209,6 +221,7 @@ public class AttackView extends Composite implements Observer, ModifyListener
             if(x.length > 0)
                 grappleAttackText.setText(Integer.toString(x[0]));
         }
+
         if(o instanceof Initiative)
             initiativeText.setText(arg.toString());
         if(o instanceof Speed)

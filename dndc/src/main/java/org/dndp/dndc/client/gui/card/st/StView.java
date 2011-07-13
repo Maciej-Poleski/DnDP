@@ -160,7 +160,6 @@ public class StView extends Group implements Observer
             reflexesTest.setText(tmp.getReflex().getTotalModifier().toString());
             spellResistanceText.setText(Double.toString(tmp
                     .getSpellResistance()));
-            clear();
             baseWillText.setText(tmp.getWill().getBaseModifier().toString());
             baseFortitudeText.setText(tmp.getForttiude().getBaseModifier()
                     .toString());
@@ -181,12 +180,5 @@ public class StView extends Group implements Observer
         {
             field.setBackground(SWTResourceManager.getColor(SWT.COLOR_RED));
         }
-    }
-
-    public void clear()
-    {
-        baseFortitudeText.setText("");
-        baseReflexesText.setText("");
-        baseWillText.setText("");
     }
 }
