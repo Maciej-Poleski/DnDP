@@ -13,16 +13,16 @@ import org.dndp.dndc.engine.util.ChangeObservable;
  */
 public abstract class BaseAttack extends ChangeObservable implements Bonusable
 {
-    private BaseBonusToAttack baseAtack;
-    private int               bonus;
+    private int    bonus;
+    private Attack attack;
 
     /**
      * Standardowy konstruktor Ustawia bazową premię do ataku na 0
      */
-    public BaseAttack()
+    public BaseAttack(Attack a)
     {
-        baseAtack = new BaseBonusToAttack(new int[] { 0 });
         bonus = 0;
+        attack = a;
     }
 
     /**
@@ -32,23 +32,7 @@ public abstract class BaseAttack extends ChangeObservable implements Bonusable
      */
     public BaseBonusToAttack getBaseAttack()
     {
-        return baseAtack;
-    }
-
-    /**
-     * Ustawia bazową premię do ataku
-     * 
-     * @param baseAtack
-     *            Premia do ustawienia
-     */
-    public void setBaseAttack(BaseBonusToAttack baseAtack)
-    {
-        if(baseAtack == null)
-            throw new NullPointerException();
-        if(!this.baseAtack.equals(baseAtack))
-            setChanged();
-        this.baseAtack = baseAtack;
-        notifyObservers();
+        return attack.getBaseAttack();
     }
 
     /**
@@ -56,8 +40,8 @@ public abstract class BaseAttack extends ChangeObservable implements Bonusable
      */
     public TotalBonusToAttack getAttacks()
     {
-        int[] temp = Arrays.copyOf(baseAtack.getBonus(),
-                baseAtack.getNumberOfAttacks());
+        int[] temp = Arrays.copyOf(attack.getBaseAttack().getBonus(), attack
+                .getBaseAttack().getNumberOfAttacks());
         for(int q = 0; q < temp.length; ++q)
             temp[q] += bonus;
         return new TotalBonusToAttack(temp);
@@ -76,6 +60,12 @@ public abstract class BaseAttack extends ChangeObservable implements Bonusable
     public boolean isSizeImportant()
     {
         return true;
+    }
+
+    void update()
+    {
+        setChanged();
+        notifyObservers();
     }
 
 }

@@ -10,12 +10,9 @@ import org.dndp.dndc.engine.card.abilities.AbilityType;
 public class MeleeAttack extends BaseAttack
 {
 
-    /**
-     * Standardowy konstruktor z postacią
-     */
-    public MeleeAttack()
+    public MeleeAttack(Attack a)
     {
-        super();
+        super(a);
     }
 
     @Override

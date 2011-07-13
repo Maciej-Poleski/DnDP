@@ -4,7 +4,6 @@ import java.util.Arrays;
 
 import org.dndp.dndc.engine.card.abilities.AbilityType;
 
-
 /**
  * Implementacja licząca premie do walk w zwarciu
  * 
@@ -15,10 +14,12 @@ public class GrappleAttack extends BaseAttack
 
     /**
      * Strandardowy konstruktor z użyciem postaci
+     * 
+     * @param attack
      */
-    public GrappleAttack()
+    public GrappleAttack(Attack attack)
     {
-        super();
+        super(attack);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package org.dndp.dndc.engine.card.attack;
 
+import java.util.Arrays;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -30,11 +31,11 @@ public class DnDAttack implements Attack
     public DnDAttack(BonusManager bonusManager)
     {
         baseAtack = new BaseBonusToAttack(new int[] { 0 });
-        melee = new MeleeAttack();
+        melee = new MeleeAttack(this);
         bonusManager.registerBonus("MeleeAttack", melee);
-        range = new RangeAttack();
+        range = new RangeAttack(this);
         bonusManager.registerBonus("RangeAttack", range);
-        grapple = new GrappleAttack();
+        grapple = new GrappleAttack(this);
         bonusManager.registerBonus("GrappleAttack", grapple);
         initiative = new Initiative(bonusManager);
         speed = new Speed();
@@ -80,10 +81,15 @@ public class DnDAttack implements Attack
     @Override
     public void setBaseAttack(BaseBonusToAttack baseAtack)
     {
+        boolean need = !Arrays.equals(this.baseAtack.getBonus(),
+                baseAtack.getBonus());
         this.baseAtack = baseAtack;
-        melee.setBaseAttack(baseAtack);
-        range.setBaseAttack(baseAtack);
-        grapple.setBaseAttack(baseAtack);
+        if(need)
+        {
+            melee.update();
+            range.update();
+            grapple.update();
+        }
     }
 
     @Override

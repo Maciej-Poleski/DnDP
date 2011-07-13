@@ -15,8 +15,9 @@ import org.junit.BeforeClass;
  */
 public class GrappleAtackTest
 {
-    static FantasyCharacter     main = new FantasyCharacter();
-    static GrappleAttack dupa = new GrappleAttack();
+    static FantasyCharacter main = new FantasyCharacter();
+
+    // static GrappleAttack dupa = new GrappleAttack();
 
     public GrappleAtackTest()
     {

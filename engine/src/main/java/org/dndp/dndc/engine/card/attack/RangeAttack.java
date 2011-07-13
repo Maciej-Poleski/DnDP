@@ -12,10 +12,12 @@ public class RangeAttack extends BaseAttack
 
     /**
      * Standardowy konstruktor z postacią
+     * 
+     * @param attack
      */
-    public RangeAttack()
+    public RangeAttack(Attack attack)
     {
-        super();
+        super(attack);
     }
 
     @Override

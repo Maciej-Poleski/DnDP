@@ -1,5 +1,6 @@
 /*
- * To change this template, choose Tools | Templates and open the template in the editor.
+ * To change this template, choose Tools | Templates and open the template in
+ * the editor.
  */
 
 package org.dndp.dndc.engine.card.attack;
@@ -15,7 +16,8 @@ import org.junit.BeforeClass;
 public class MeleeAtackTest
 {
     static FantasyCharacter main = new FantasyCharacter();
-    static MeleeAttack      dupa = new MeleeAttack();
+
+    // static MeleeAttack dupa = new MeleeAttack();
 
     public MeleeAtackTest()
     {

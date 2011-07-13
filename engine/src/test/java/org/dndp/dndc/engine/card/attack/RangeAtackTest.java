@@ -15,8 +15,9 @@ import org.junit.BeforeClass;
  */
 public class RangeAtackTest
 {
-    static FantasyCharacter   main = new FantasyCharacter();
-    static RangeAttack dupa = new RangeAttack();
+    static FantasyCharacter main = new FantasyCharacter();
+
+    // static RangeAttack dupa = new RangeAttack();
 
     public RangeAtackTest()
     {
