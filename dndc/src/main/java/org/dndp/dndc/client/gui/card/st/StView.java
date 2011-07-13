@@ -4,6 +4,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import org.dndp.dndc.client.gui.SWTResourceManager;
+import org.dndp.dndc.engine.card.st.SavingThrow;
 import org.dndp.dndc.engine.card.st.SavingThrows;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
@@ -21,7 +22,7 @@ import org.eclipse.swt.widgets.Text;
  * @author bambucha
  * 
  */
-public class StView extends Group implements Observer, ModifyListener
+public class StView extends Group implements Observer
 {
     private Text         fortitudeText;
     private Text         reflexesTest;
@@ -98,10 +99,35 @@ public class StView extends Group implements Observer, ModifyListener
                 true, false, 2, 1));
 
         setModel(model);
-        baseFortitudeText.addModifyListener(this);
-        baseReflexesText.addModifyListener(this);
-        baseWillText.addModifyListener(this);
+        addListeners();
+    }
 
+    private void addListeners()
+    {
+        baseFortitudeText.addModifyListener(new ModifyListener()
+        {
+            @Override
+            public void modifyText(ModifyEvent arg0)
+            {
+                pareseField(model.getForttiude(), baseFortitudeText);
+            }
+        });
+        baseReflexesText.addModifyListener(new ModifyListener()
+        {
+            @Override
+            public void modifyText(ModifyEvent arg0)
+            {
+                pareseField(model.getReflex(), baseReflexesText);
+            }
+        });
+        baseWillText.addModifyListener(new ModifyListener()
+        {
+            @Override
+            public void modifyText(ModifyEvent arg0)
+            {
+                pareseField(model.getWill(), baseWillText);
+            }
+        });
     }
 
     /**
@@ -127,61 +153,40 @@ public class StView extends Group implements Observer, ModifyListener
         if(o instanceof SavingThrows)
         {
             SavingThrows tmp = (SavingThrows)o;
+
             fortitudeText.setText(tmp.getForttiude().getTotalModifier()
                     .toString());
-            baseFortitudeText.setText(tmp.getForttiude().getBaseModifier()
-                    .toString());
-            reflexesTest.setText(tmp.getReflex().getTotalModifier().toString());
-            baseReflexesText.setText(tmp.getReflex().getBaseModifier()
-                    .toString());
             willText.setText(tmp.getWill().getTotalModifier().toString());
-            baseWillText.setText(tmp.getWill().getBaseModifier().toString());
+            reflexesTest.setText(tmp.getReflex().getTotalModifier().toString());
             spellResistanceText.setText(Double.toString(tmp
                     .getSpellResistance()));
+            clear();
+            baseWillText.setText(tmp.getWill().getBaseModifier().toString());
+            baseFortitudeText.setText(tmp.getForttiude().getBaseModifier()
+                    .toString());
+            baseReflexesText.setText(tmp.getReflex().getBaseModifier()
+                    .toString());
         }
 
     }
 
-    @Override
-    public void modifyText(ModifyEvent ex)
+    private void pareseField(SavingThrow model, Text field)
     {
         try
         {
-            model.getForttiude().setBaseModifier(
-                    Integer.parseInt(baseFortitudeText.getText()));
-            baseFortitudeText.setBackground(SWTResourceManager
-                    .getColor(SWT.COLOR_WHITE));
+            model.setBaseModifier(Integer.parseInt(field.getText()));
+            field.setBackground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
         }
         catch(NumberFormatException e)
         {
-            baseFortitudeText.setBackground(SWTResourceManager
-                    .getColor(SWT.COLOR_RED));
+            field.setBackground(SWTResourceManager.getColor(SWT.COLOR_RED));
         }
+    }
 
-        try
-        {
-            model.getReflex().setBaseModifier(
-                    Integer.parseInt(baseReflexesText.getText()));
-            baseReflexesText.setBackground(SWTResourceManager
-                    .getColor(SWT.COLOR_WHITE));
-        }
-        catch(NumberFormatException e)
-        {
-            baseReflexesText.setBackground(SWTResourceManager
-                    .getColor(SWT.COLOR_RED));
-        }
-
-        try
-        {
-            model.getWill().setBaseModifier(
-                    Integer.parseInt(baseWillText.getText()));
-            baseWillText.setBackground(SWTResourceManager
-                    .getColor(SWT.COLOR_WHITE));
-        }
-        catch(NumberFormatException e)
-        {
-            baseWillText.setBackground(SWTResourceManager
-                    .getColor(SWT.COLOR_RED));
-        }
+    public void clear()
+    {
+        baseFortitudeText.setText("");
+        baseReflexesText.setText("");
+        baseWillText.setText("");
     }
 }
