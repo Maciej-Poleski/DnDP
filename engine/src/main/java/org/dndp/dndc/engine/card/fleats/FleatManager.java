@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.dndp.dndc.engine.database.Database;
+
 /**
  * Globalny Menadżer Atutów.
  * 
@@ -21,6 +23,8 @@ public final class FleatManager
     private FleatManager()
     {
         fleats = new HashMap<String, Fleat>();
+        for(Fleat fleat : Database.get().getFleats())
+            fleats.put(fleat.getName(), fleat);
     }
 
     /**

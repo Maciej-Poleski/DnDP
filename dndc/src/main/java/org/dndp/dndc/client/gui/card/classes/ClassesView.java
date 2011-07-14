@@ -56,9 +56,8 @@ public class ClassesView extends Group implements Observer,
         listViewer.setContentProvider(new CollectionContentProvider());
         listViewer.addSelectionChangedListener(this);
         List listView = listViewer.getList();
-        GridData gd_listView = new GridData(SWT.FILL, SWT.FILL, true, true, 2,
-                2);
-        listView.setLayoutData(gd_listView);
+        listView.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2,
+                2));
 
         Group grpSzczegy = new Group(this, SWT.NONE);
         grpSzczegy.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false,

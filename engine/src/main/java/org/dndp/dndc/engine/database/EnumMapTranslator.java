@@ -1,4 +1,4 @@
-package org.dndp.dndc.engine;
+package org.dndp.dndc.engine.database;
 
 import java.util.EnumMap;
 import java.util.Map.Entry;

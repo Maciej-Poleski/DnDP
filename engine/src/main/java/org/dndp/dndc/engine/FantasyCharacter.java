@@ -51,6 +51,7 @@ import org.dndp.dndc.engine.card.state.DnDStateManager;
 import org.dndp.dndc.engine.card.state.State;
 import org.dndp.dndc.engine.card.state.StateManager;
 import org.dndp.dndc.engine.check.CheckFailException;
+import org.dndp.dndc.engine.database.EnumMapTranslator;
 import org.dndp.dndc.engine.item.BasicEquipmentManager;
 import org.dndp.dndc.engine.item.DnDEquipmentManager;
 import org.dndp.dndc.engine.item.Item;

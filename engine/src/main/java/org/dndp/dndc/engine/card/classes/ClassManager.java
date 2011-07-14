@@ -4,8 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import org.dndp.dndc.engine.database.Database;
+
 /**
- * Klasa, singleton, przechowująca informacje o wszystkich klasach. Możliwe że w przyuszłości, ilośc przechowywanych informacji będzie zredukowana do tylko
+ * Klasa, singleton, przechowująca informacje o wszystkich klasach. Możliwe że w
+ * przyuszłości, ilośc przechowywanych informacji będzie zredukowana do tylko
  * nagłowków.
  * 
  * @author bambucha
@@ -23,6 +26,8 @@ public class ClassManager
     protected ClassManager()
     {
         classMap = new HashMap<String, BaseClass>();
+        for(BaseClass baseClass : Database.get().getFantasyClass())
+            classMap.put(baseClass.getName(), baseClass);
     }
 
     /**

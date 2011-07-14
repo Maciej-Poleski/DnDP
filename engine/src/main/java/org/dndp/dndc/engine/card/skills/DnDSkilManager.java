@@ -10,6 +10,7 @@ import java.util.Set;
 import org.dndp.dndc.engine.Dice;
 import org.dndp.dndc.engine.card.UnavailableTestException;
 import org.dndp.dndc.engine.card.bonus.BonusManager;
+import org.dndp.dndc.engine.database.Database;
 import org.dndp.dndc.engine.item.BasicEquipmentManager;
 import org.dndp.dndc.engine.util.ChangeObservable;
 
@@ -31,7 +32,9 @@ public class DnDSkilManager extends ChangeObservable implements SkillManager,
     {
         this.baseEquipmentManager = main;
         this.skilSet = new HashMap<String, CharacterSkill>();
-
+        for(Skill skill : Database.get().getSkills())
+            skilSet.put(skill.getName(),
+                    new CharacterSkill(skill, bonusManager));
     }
 
     /**
