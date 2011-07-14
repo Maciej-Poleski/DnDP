@@ -5,7 +5,7 @@
 	<groupId>org.dndp</groupId>
 	<artifactId>dndc</artifactId>
 	<version>0.2-SNAPSHOT</version>
-	<description>DnDClient</description>
+	<name>DnDClient</name>
 	<parent>
 		<groupId>org.dndp</groupId>
 		<artifactId>dndp</artifactId>
@@ -191,6 +191,13 @@
 				</executions>
 			</plugin>
 		</plugins>
+		<resources>
+			<resource>
+				<directory>src/bash</directory>
+				<filtering>true</filtering>
+				<targetPath>../luncher</targetPath>
+			</resource>
+		</resources>
 	</build>
 	
 		<dependencies>
