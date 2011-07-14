@@ -34,7 +34,7 @@ public class Database
     private Database()
     {
         EmbeddedConfiguration config = Db4oEmbedded.newConfiguration();
-        config.file().readOnly(true);
+        // config.file().readOnly(true);
         config.file().lockDatabaseFile(false);
         db = Db4oEmbedded.openFile(config, "main.db");
     }
