@@ -11,8 +11,21 @@
 	<parent>
 		<artifactId>dndp</artifactId>
 		<groupId>org.dndp</groupId>
-		<version>0.1.1</version>
+		<version>0.2-SNAPSHOT</version>
 	</parent>
+	
+	<distributionManagement>
+		<repository>
+			<id>users-dndp-maven</id>
+			<name>DnDP Maven Reposiotory</name>
+			<url>scp://users.v-lo.krakow.pl/home/dndp/WWW/DnDP/maven/</url>
+		</repository>
+		<site>
+			<id>users-dndp-site</id>
+			<name>DnDProject Site</name>
+			<url>scp://users.v-lo.krakow.pl/home/dndp/WWW/site</url>
+		</site>
+	</distributionManagement>
 
 	<repositories>
 		<repository>
