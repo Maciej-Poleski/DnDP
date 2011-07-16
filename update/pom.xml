@@ -3,13 +3,13 @@
 
 	<groupId>org.dndp</groupId>
 	<artifactId>UpdateManager</artifactId>
-	<version>0.2</version>
+	<version>0.3-SNAPSHOT</version>
 	<name>UpdateManager</name>
 	<packaging>jar</packaging>
 	<parent>
 		<groupId>org.dndp</groupId>
 		<artifactId>dndp</artifactId>
-		<version>0.2</version>
+		<version>0.3-SNAPSHOT</version>
 	</parent>
 	
 	<distributionManagement>
