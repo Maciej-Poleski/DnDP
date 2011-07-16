@@ -11,7 +11,7 @@
 
 	<scm>
 		<connection>scm:git:git://git.assembla.com/DnDP.git/</connection>
-		<developerConnection>scm:git:ssh://git@git.assembla.com:DnDP.git/</developerConnection>
+		<developerConnection>scm:git:ssh://git@git.assembla.com/DnDP.git/</developerConnection>
 		<url>http://www.assembla.com/code/DnDP/git/nodes</url>
 	</scm>
 
