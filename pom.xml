@@ -3,15 +3,52 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.dndp</groupId>
 	<artifactId>dndp</artifactId>
-	<version>0.1.1</version>
+	<version>0.3-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>DnDProject</name>
 	<description>P</description>
-	
+
+	<scm>
+		<connection>scm:git:git://git.assembla.com/DnDP.git/</connection>
+		<developerConnection>scm:git:origin</developerConnection>
+		<url>http://www.assembla.com/code/DnDP/git/nodes</url>
+	</scm>
+
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>surefire-report-maven-plugin</artifactId>
+				<version>2.0-beta-1</version>
+				<reportSets>
+					<reportSet />
+				</reportSets>
+			</plugin>
+			<plugin>
+				<groupId>com.googlecode.metridoc</groupId>
+				<artifactId>metridoc-maven-plugin</artifactId>
+				<version>0.7</version>
+			</plugin>
+		</plugins>
+	</reporting>
+
+	<distributionManagement>
+		<repository>
+			<id>users-dndp-maven</id>
+			<name>DnDP Maven Reposiotory</name>
+			<url>scp://users.v-lo.krakow.pl/home/dndp/WWW/DnDP/maven/</url>
+		</repository>
+		<site>
+			<id>users-dndp-site</id>
+			<name>DnDProject Site</name>
+			<url>scp://users.v-lo.krakow.pl/home/dndp/WWW/site</url>
+		</site>
+	</distributionManagement>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-	
+
 	<build>
 		<plugins>
 			<plugin>
@@ -23,7 +60,22 @@
 					<target>1.6</target>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<tagNameFormat>${project.version}</tagNameFormat>
+				</configuration>
+			</plugin>
 		</plugins>
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-ssh</artifactId>
+				<version>1.0</version>
+			</extension>
+		</extensions>
 	</build>
 	<dependencies>
 		<dependency>
