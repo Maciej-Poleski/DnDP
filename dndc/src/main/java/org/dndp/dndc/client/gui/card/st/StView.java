@@ -43,7 +43,9 @@ public class StView extends Group implements Observer
     public StView(Composite parent, int style, SavingThrows model)
     {
         super(parent, style);
-        setLayout(new GridLayout(3, false));
+        GridLayout gridLayout = new GridLayout(3, false);
+        gridLayout.marginTop = 5;
+        setLayout(gridLayout);
         setText("Rzuty Obronne");
 
         Label lblWytrzymao = new Label(this, SWT.NONE);

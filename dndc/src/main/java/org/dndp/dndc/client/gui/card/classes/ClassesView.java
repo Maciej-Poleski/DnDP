@@ -49,7 +49,9 @@ public class ClassesView extends Group implements Observer,
         super(parent, SWT.NONE);
 
         setText("Klasy");
-        setLayout(new GridLayout(6, false));
+        GridLayout gridLayout = new GridLayout(6, false);
+        gridLayout.marginTop = 5;
+        setLayout(gridLayout);
 
         listViewer = new ListViewer(this, SWT.BORDER | SWT.V_SCROLL);
         listViewer.setLabelProvider(new ClassLabelProvider());

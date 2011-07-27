@@ -30,7 +30,9 @@ public class FleatsView extends Group implements Observer
     {
         super(parent, style);
         setText("Atuty");
-        setLayout(new FillLayout(SWT.HORIZONTAL));
+        FillLayout fillLayout = new FillLayout(SWT.HORIZONTAL);
+        fillLayout.marginHeight = 5;
+        setLayout(fillLayout);
 
         listViewer = new ListViewer(this, SWT.BORDER | SWT.V_SCROLL);
         listViewer.setContentProvider(new CollectionContentProvider());

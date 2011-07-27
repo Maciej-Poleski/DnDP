@@ -38,7 +38,9 @@ public class HpView extends Group implements Observer, ModifyListener
     {
         super(parent, style);
         setText("PŻ");
-        setLayout(new GridLayout(2, false));
+        GridLayout gridLayout = new GridLayout(2, false);
+        gridLayout.marginTop = 5;
+        setLayout(gridLayout);
 
         Label lblNewLabel = new Label(this, SWT.NONE);
         lblNewLabel.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false,

@@ -41,7 +41,9 @@ public class SkillsView extends Group implements Observer
     {
         super(parent, style);
         setText("Umiejętności");
-        setLayout(new GridLayout(2, false));
+        GridLayout gridLayout = new GridLayout(2, false);
+        gridLayout.marginTop = 5;
+        setLayout(gridLayout);
 
         model.addSkillObserver(this);
 

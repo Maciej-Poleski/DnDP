@@ -48,7 +48,9 @@ public class DescriptionView extends Group implements Observer, ModifyListener
     {
         super(parent, style);
         setText("Opis");
-        setLayout(new GridLayout(8, false));
+        GridLayout gridLayout = new GridLayout(8, false);
+        gridLayout.marginTop = 5;
+        setLayout(gridLayout);
 
         nameText = new Text(this, SWT.BORDER);
         nameText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false,

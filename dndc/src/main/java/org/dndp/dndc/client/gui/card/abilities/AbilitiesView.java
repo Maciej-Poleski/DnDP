@@ -33,7 +33,9 @@ public class AbilitiesView extends Group
     public AbilitiesView(Composite parent, int style, Abilities model)
     {
         super(parent, style);
-        setLayout(new FillLayout(SWT.VERTICAL));
+        FillLayout fillLayout = new FillLayout(SWT.VERTICAL);
+        fillLayout.marginHeight = 5;
+        setLayout(fillLayout);
         setText("Atrybuty");
 
         strenght = new AbilitiView(this, SWT.NONE, "Siła", model.getStrenght());

@@ -39,7 +39,9 @@ public class ArmorView extends Composite implements Observer
 
         Group grpKlasaPancerza = new Group(this, SWT.NONE);
         grpKlasaPancerza.setText("Klasa Pancerza");
-        grpKlasaPancerza.setLayout(new GridLayout(2, false));
+        GridLayout gl_grpKlasaPancerza = new GridLayout(2, false);
+        gl_grpKlasaPancerza.marginTop = 5;
+        grpKlasaPancerza.setLayout(gl_grpKlasaPancerza);
 
         Label lblKp = new Label(grpKlasaPancerza, SWT.NONE);
         lblKp.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false,
