@@ -20,7 +20,7 @@ import org.eclipse.swt.widgets.Text;
  * 
  * @author bambucha
  */
-public class HpView extends Group implements Observer, ModifyListener
+public class HpView extends Group implements Observer
 {
     private Text      hpText;
     private Text      maxHpText;
@@ -59,8 +59,22 @@ public class HpView extends Group implements Observer, ModifyListener
                 1, 1));
 
         setModel(model);
-        hpText.addModifyListener(this);
-        maxHpText.addModifyListener(this);
+        hpText.addModifyListener(new ModifyListener()
+        {
+            @Override
+            public void modifyText(ModifyEvent arg0)
+            {
+                parseHPField();
+            }
+        });
+        maxHpText.addModifyListener(new ModifyListener()
+        {
+            @Override
+            public void modifyText(ModifyEvent arg0)
+            {
+                parseMaxHPField();
+            }
+        });
 
     }
 
@@ -92,8 +106,7 @@ public class HpView extends Group implements Observer, ModifyListener
         }
     }
 
-    @Override
-    public void modifyText(ModifyEvent e)
+    private void parseHPField()
     {
         try
         {
@@ -104,7 +117,10 @@ public class HpView extends Group implements Observer, ModifyListener
         {
             hpText.setBackground(SWTResourceManager.getColor(SWT.COLOR_RED));
         }
+    }
 
+    private void parseMaxHPField()
+    {
         try
         {
             model.setMaxHP(Integer.parseInt(maxHpText.getText()));
