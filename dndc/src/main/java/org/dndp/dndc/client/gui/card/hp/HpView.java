@@ -20,7 +20,7 @@ import org.eclipse.swt.widgets.Text;
  * 
  * @author bambucha
  */
-public class HpView extends Group implements Observer, ModifyListener
+public class HpView extends Group implements Observer
 {
     private Text      hpText;
     private Text      maxHpText;
@@ -61,8 +61,24 @@ public class HpView extends Group implements Observer, ModifyListener
                 1, 1));
 
         setModel(model);
-        hpText.addModifyListener(this);
-        maxHpText.addModifyListener(this);
+        hpText.addModifyListener(new ModifyListener()
+        {
+
+            @Override
+            public void modifyText(ModifyEvent e)
+            {
+                pareseHPField();
+            }
+        });
+        maxHpText.addModifyListener(new ModifyListener()
+        {
+
+            @Override
+            public void modifyText(ModifyEvent e)
+            {
+                pareseMaxHPField();
+            }
+        });
 
     }
 
@@ -94,26 +110,28 @@ public class HpView extends Group implements Observer, ModifyListener
         }
     }
 
-    @Override
-    public void modifyText(ModifyEvent e)
+    private void pareseHPField()
     {
         try
         {
-            model.setHP(Integer.parseInt(hpText.getText()));
             hpText.setBackground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
+            model.setHP(Integer.parseInt(hpText.getText()));
         }
-        catch(NumberFormatException e1)
+        catch(NumberFormatException e)
         {
             hpText.setBackground(SWTResourceManager.getColor(SWT.COLOR_RED));
         }
+    }
 
+    private void pareseMaxHPField()
+    {
         try
         {
-            model.setMaxHP(Integer.parseInt(maxHpText.getText()));
             maxHpText.setBackground(SWTResourceManager
                     .getColor(SWT.COLOR_WHITE));
+            model.setMaxHP(Integer.parseInt(maxHpText.getText()));
         }
-        catch(NumberFormatException e1)
+        catch(NumberFormatException e)
         {
             maxHpText.setBackground(SWTResourceManager.getColor(SWT.COLOR_RED));
         }
