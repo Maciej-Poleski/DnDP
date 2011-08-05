@@ -243,12 +243,5 @@
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.dndp</groupId>
-			<artifactId>UpdateManager</artifactId>
-			<version>0.3-SNAPSHOT</version>
-			<type>jar</type>
-			<scope>compile</scope>
-		</dependency>
 		</dependencies>
 </project>
