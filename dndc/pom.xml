@@ -158,30 +158,6 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.bluestemsoftware.open.maven.plugin</groupId>
-                <artifactId>launch4j-plugin</artifactId>
-                <version>1.5.0.0</version>
-                <executions>
-                    <execution>
-                        <id>deploy</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>launch4j</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <dontWrapJar>true</dontWrapJar>
-                    <headerType>gui</headerType>
-                    <outfile>${project.build.directory}/${project.name}-${project.version}.exe</outfile>
-                    <jar>lib/${project.name}-${project.version}.jar</jar>
-                    <errTitle>alakai</errTitle>
-                    <jre>
-                        <minVersion>1.6.0</minVersion>
-                    </jre>
-                </configuration>
-            </plugin>
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>2.2.1</version>
@@ -206,13 +182,6 @@
                 </executions>
             </plugin>
         </plugins>
-        <resources>
-            <resource>
-                <directory>src/bash</directory>
-                <filtering>true</filtering>
-                <targetPath>../luncher</targetPath>
-            </resource>
-        </resources>
     </build>
 
     <dependencies>

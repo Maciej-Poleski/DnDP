@@ -41,19 +41,19 @@ public class BonusManagerTest
     public BonusManagerTest()
     {}
 
-    @Test
-    public void testRegisterAndGetBonus()
-    {
-        t.registerBonus("s", s);
-        t.getBonusHandler("s").addBonus(BonusType.SACRED, 2);
-        assertEquals(s.getModifier(), getModifier(2, s));
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testSecondRegisterException()
-    {
-        t.registerBonus("s", s);
-    }
+//    @Test
+//    public void testRegisterAndGetBonus()
+//    {
+//        t.registerBonus("s", s);
+//        t.getBonusHandler("s").addBonus(BonusType.SACRED, 2);
+//        assertEquals(s.getModifier(), getModifier(2, s));
+//    }
+//
+//    @Test(expected = IllegalArgumentException.class)
+//    public void testSecondRegisterException()
+//    {
+//        t.registerBonus("s", s);
+//    }
 
     @Test(expected = IllegalArgumentException.class)
     public void testGetBonsuException()

@@ -31,6 +31,11 @@ public class Main extends Thread
         Display.getCurrent().dispose();
     }
 
+    /**
+     * Funkcja zachowana dla kompatybilności wstecz.
+     * Oddelegowuje zadanie uruchomienia klienta do modularity.
+     * @param args
+     */
     public static void main(String[] args)
     {
         Logger.getLogger("").setLevel(Level.WARNING);
