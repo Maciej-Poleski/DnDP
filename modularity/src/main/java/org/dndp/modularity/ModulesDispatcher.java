@@ -33,7 +33,7 @@ import java.util.jar.JarFile;
  * @author evil
  * 
  */
-class ModulesDispatcher
+public class ModulesDispatcher
 {
     private static List<Module> registeredModules = null;
     private static List<Module> brokenModules     = null;
@@ -132,4 +132,13 @@ class ModulesDispatcher
         return brokenModules;
     }
 
+    /**
+     * Chwilowo jest to główny EntryPoint platformy.
+     * @param args Argumenty przekazane przez stage2 (ścieżka do katalogu głównego aplikacji i platforma)
+     */
+    public static void main(String... args)
+    {
+        dispatch(args[0]+"lib");
+        dispatch(args[0]+"modules");  // TODO: Uściślić implementacje
+    }
 }

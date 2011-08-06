@@ -34,7 +34,9 @@ public class Main extends Thread
     public static void main(String[] args)
     {
         Logger.getLogger("").setLevel(Level.WARNING);
-        new Main().start();
+//        new Main().start();  // Ten moduł zostanie uruchomiony przez ModuledDispatchera
+        org.dndp.modularity.ModulesDispatcher.main(args);
+        // Ta instrukcja tworzy jedyne silne wiązanie do modularity i powoduje, że staje się on zależnością.
     }
 
 }
