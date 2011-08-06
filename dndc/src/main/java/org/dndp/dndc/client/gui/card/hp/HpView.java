@@ -63,20 +63,18 @@ public class HpView extends Group implements Observer
         setModel(model);
         hpText.addModifyListener(new ModifyListener()
         {
-
             @Override
-            public void modifyText(ModifyEvent e)
+            public void modifyText(ModifyEvent arg0)
             {
-                pareseHPField();
+                parseHPField();
             }
         });
         maxHpText.addModifyListener(new ModifyListener()
         {
-
             @Override
-            public void modifyText(ModifyEvent e)
+            public void modifyText(ModifyEvent arg0)
             {
-                pareseMaxHPField();
+                parseMaxHPField();
             }
         });
 
@@ -110,7 +108,7 @@ public class HpView extends Group implements Observer
         }
     }
 
-    private void pareseHPField()
+    private void parseHPField()
     {
         try
         {
@@ -123,7 +121,7 @@ public class HpView extends Group implements Observer
         }
     }
 
-    private void pareseMaxHPField()
+    private void parseMaxHPField()
     {
         try
         {
