@@ -67,6 +67,9 @@ public class ModulesDispatcher
             }
         });
 
+        if(modulesFound==null)
+            return new ArrayList<Module>();
+
         List<Module> classList = new ArrayList<Module>();
 
         for(String module : modulesFound)
