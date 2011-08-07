@@ -69,10 +69,13 @@ public class ExitQuestionDialog extends Dialog
             {
                 FileDialog d = new FileDialog(parent.getShell());
                 text.setText(d.open());
+                path = text.getText();
             }
         });
 
-        text.setText(new File("autosave.cha").getAbsolutePath());
+        File defaultPath = new File("autosave.cha");
+        text.setText(defaultPath.getAbsolutePath());
+        path = defaultPath.getAbsolutePath();
 
         return container;
     }
@@ -99,7 +102,18 @@ public class ExitQuestionDialog extends Dialog
     @Override
     protected Point getInitialSize()
     {
-        return new Point(312, 118);
+        return new Point(388, 122);
     }
 
+    @Override
+    protected void configureShell(Shell newShell)
+    {
+        super.configureShell(newShell);
+        newShell.setText("Zapisywanie Postaci");
+    }
+
+    public String getResult()
+    {
+        return path;
+    }
 }

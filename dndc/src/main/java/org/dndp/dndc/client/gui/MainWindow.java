@@ -17,6 +17,8 @@ import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.window.ApplicationWindow;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ShellAdapter;
+import org.eclipse.swt.events.ShellEvent;
 import org.eclipse.swt.layout.FormAttachment;
 import org.eclipse.swt.layout.FormData;
 import org.eclipse.swt.layout.FormLayout;
@@ -51,7 +53,6 @@ public class MainWindow extends ApplicationWindow
     {
         super(null);
         this.fantasyCharacter = model;
-
     }
 
     /**
@@ -172,9 +173,16 @@ public class MainWindow extends ApplicationWindow
 
     protected void configureShell(Shell newShell)
     {
-        System.out.println("config");
         super.configureShell(newShell);
         newShell.setText("DnDC");
+        newShell.addShellListener(new ShellAdapter()
+        {
+            @Override
+            public void shellClosed(ShellEvent e)
+            {
+                new Exit(MainWindow.this).run();
+            }
+        });
     }
 
     public FantasyCharacter getFantasyCharacter()
