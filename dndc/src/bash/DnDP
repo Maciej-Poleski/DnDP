@@ -1,4 +1,0 @@
-#!/bin/bash
-VERSION=${project.version}
-
-java -jar lib/dndc-$VERSION.jar
