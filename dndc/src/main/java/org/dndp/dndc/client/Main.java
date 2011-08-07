@@ -34,7 +34,7 @@ public class Main extends Thread
     /**
      * Funkcja zachowana dla kompatybilności wstecz.
      * Oddelegowuje zadanie uruchomienia klienta do modularity.
-     * @param args
+     * @param args Pierwszym argumentem jest ścieżka do katalogu roboczego, pozostałe argumenty pozostają niezdefiniowane
      */
     public static void main(String[] args)
     {
