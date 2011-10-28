@@ -1,12 +1,15 @@
 /*
- * To change this template, choose Tools | Templates and open the template in the editor.
+ * To change this template, choose Tools | Templates and open the template in
+ * the editor.
  */
 
 package org.dndp.dndc.engine.card.bonus;
 
 import static org.junit.Assert.assertEquals;
+import static org.fest.assertions.Assertions.*;
 
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -17,69 +20,88 @@ import org.junit.Test;
 public class MaximizedBonusTest
 {
 
-    @BeforeClass
-    public static void setUpClass() throws Exception
-    {}
+	MaximizedBonus	maximizedBonus;
 
-    @AfterClass
-    public static void tearDownClass() throws Exception
-    {}
+	@Before
+	public void setUpClass() throws Exception
+	{
+		maximizedBonus = new MaximizedBonus();
+	}
 
-    @Test
-    public void testAddBonus()
-    {
-        System.out.println("addBonus");
-        Integer bonus1 = 2;
-        Integer bonus2 = 4;
-        Integer bonus3 = 1;
-        MaximizedBonus instance = new MaximizedBonus();
-        instance.addBonus(bonus1);
-        assertEquals(bonus1, instance.getBonus());
-        instance.addBonus(bonus2);
-        assertEquals(bonus2, instance.getBonus());
-        instance.addBonus(bonus3);
-        assertEquals(bonus2, instance.getBonus());
+	@Test
+	public void testAddBonus()
+	{
+		maximizedBonus.addBonus(2);
+		assertThat(maximizedBonus.getBonus()).isEqualTo(2);
+		maximizedBonus.addBonus(4);
+		assertThat(maximizedBonus.getBonus()).isEqualTo(4);
+		maximizedBonus.addBonus(1);
+		assertThat(maximizedBonus.getBonus()).isEqualTo(4);
+	}
 
-    }
+	@Test
+	public void testPenty()
+	{
+		maximizedBonus.addBonus(-2);
+		assertThat(maximizedBonus.getBonus()).isEqualTo(-2);
+	}
 
-    @Test
-    public void testRemoveBonus()
-    {
-        System.out.println("removeBonus");
-        Integer bonus1 = 2;
-        Integer bonus2 = 4;
-        Integer bonus3 = 1;
-        MaximizedBonus instance = new MaximizedBonus();
-        instance.addBonus(bonus1);
-        instance.addBonus(bonus2);
-        instance.addBonus(bonus3);
-        assertEquals(bonus2, instance.getBonus());
-        instance.removeBonus(bonus2);
-        assertEquals(bonus1, instance.getBonus());
-        instance.removeBonus(bonus1);
-        assertEquals(bonus3, instance.getBonus());
-        instance.removeBonus(bonus3);
-        assertEquals(new Integer(0), instance.getBonus());
-    }
+	@Test
+	public void testAddAndRemoveMany()
+	{
+		maximizedBonus.addBonus(2);
+		maximizedBonus.addBonus(2);
+		maximizedBonus.addBonus(2);
+		maximizedBonus.addBonus(2);
+		assertThat(maximizedBonus.getBonus()).isEqualTo(2);
+		maximizedBonus.removeBonus(2);
+		maximizedBonus.removeBonus(2);
+		maximizedBonus.removeBonus(2);
+		assertThat(maximizedBonus.getBonus()).isEqualTo(0);
+	}
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testRemoveBonusException()
-    {
-        System.out.println("removeBonus");
-        Integer bonus1 = 2;
-        Integer bonus2 = 4;
-        Integer bonus3 = 1;
-        MaximizedBonus instance = new MaximizedBonus();
-        instance.addBonus(bonus1);
-        instance.addBonus(bonus2);
-        instance.addBonus(bonus3);
-        assertEquals(instance.getBonus(), bonus2);
-        instance.removeBonus(bonus2);
-        assertEquals(instance.getBonus(), bonus1);
-        instance.removeBonus(bonus1);
-        assertEquals(instance.getBonus(), bonus3);
-        instance.removeBonus(bonus2);
-        assertEquals(instance.getBonus(), new Integer(0));
-    }
+	@Test(expected = IllegalArgumentException.class)
+	public void testAddAnnyEqualAndRemoveTooMany()
+	{
+		maximizedBonus.addBonus(2);
+		maximizedBonus.addBonus(2);
+		maximizedBonus.addBonus(2);
+		maximizedBonus.addBonus(2);
+		maximizedBonus.removeBonus(2);
+		maximizedBonus.removeBonus(2);
+		maximizedBonus.removeBonus(2);
+		maximizedBonus.removeBonus(2);
+	}
+
+	@Test
+	public void testRemoveBonus()
+	{
+		maximizedBonus.addBonus(2);
+		maximizedBonus.addBonus(4);
+		maximizedBonus.addBonus(1);
+		assertThat(maximizedBonus.getBonus()).isEqualTo(4);
+		maximizedBonus.removeBonus(4);
+		assertThat(maximizedBonus.getBonus()).isEqualTo(2);
+		maximizedBonus.removeBonus(2);
+		assertThat(maximizedBonus.getBonus()).isEqualTo(1);
+		maximizedBonus.removeBonus(1);
+		assertThat(maximizedBonus.getBonus()).isEqualTo(0);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testRemoveBonusException()
+	{
+
+		maximizedBonus.addBonus(2);
+		maximizedBonus.addBonus(4);
+		maximizedBonus.addBonus(1);
+		assertThat(maximizedBonus.getBonus()).isEqualTo(4);
+		maximizedBonus.removeBonus(4);
+		assertThat(maximizedBonus.getBonus()).isEqualTo(2);
+		maximizedBonus.removeBonus(4);
+		assertThat(maximizedBonus.getBonus()).isEqualTo(1);
+		maximizedBonus.removeBonus(1);
+		assertThat(maximizedBonus.getBonus()).isEqualTo(0);
+	}
 
 }

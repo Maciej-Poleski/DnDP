@@ -45,6 +45,16 @@ public class AdductBonusTest
 	}
 
 	@Test
+	public void testAddDobuleSameAndRemoveIt()
+	{
+		adductBonus.addBonus(6);
+		adductBonus.addBonus(6);
+		adductBonus.removeBonus(6);
+		adductBonus.removeBonus(6);
+		assertThat(adductBonus.getBonus()).isEqualTo(0);
+	}
+
+	@Test
 	public void testRemoveBonus()
 	{
 		adductBonus.addBonus(2);
