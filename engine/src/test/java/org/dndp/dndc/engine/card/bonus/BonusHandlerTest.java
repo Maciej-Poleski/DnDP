@@ -1,138 +1,116 @@
-/*
- * To change this template, choose Tools | Templates and open the template in
- * the editor.
- */
-
 package org.dndp.dndc.engine.card.bonus;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
+import static org.fest.assertions.Assertions.assertThat;
 
 import org.dndp.dndc.engine.FantasyCharacter;
-import org.dndp.dndc.engine.card.abilities.Abiliti;
+import org.dndp.dndc.engine.card.abilities.Abilities;
 import org.dndp.dndc.engine.card.abilities.AbilityType;
 import org.dndp.dndc.engine.card.attack.GrappleAttack;
+import org.dndp.dndc.engine.card.description.Description;
+import org.dndp.dndc.engine.card.description.DnDDescription;
 import org.dndp.dndc.engine.card.description.Size;
 import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Z racji że w zorze określającym modyfikator jest użuta podłoga( nie
- * formalnie) to określenie wartości staje się cięższe.
  * 
  * @author bambucha
  */
 public class BonusHandlerTest
 {
-	FantasyCharacter	x		= new FantasyCharacter();
-	Abiliti				t		= new Abiliti();
-	BaseBonusHandler	test	= new BaseBonusHandler(t, x, x);
-
-	public BonusHandlerTest()
-	{
-
-	}
+	FantasyCharacter	character;
+	Description			description;
+	BaseBonusHandler	bonusHandler;
+	Bonusable			tester;
+	Abilities			abilities;
 
 	@Before
 	public void init()
 	{
-
-	}
-
-	/**
-	 * Zwraca modyfilator jaki powinnien mieć atrybiut, przyz konkretynym
-	 * bonusie.
-	 * 
-	 * @param bonus
-	 *            Bonus
-	 * @param t
-	 *            Atrubut
-	 * @return Modyfikator
-	 */
-	private Integer getModifier(Integer bonus, Abiliti t)
-	{
-		return new Integer(((bonus - t.getValue()) + 10) / 2);
+		tester = mock(Bonusable.class);
+		when(tester.getAbilityName()).thenReturn(AbilityType.NONE);
+		character = mock(FantasyCharacter.class);
+		abilities = mock(Abilities.class);
+		description = mock(DnDDescription.class);
+		bonusHandler = new BaseBonusHandler(tester, abilities, description);
 	}
 
 	@Test
 	public void testAddBonus()
 	{
-		Integer bonus1 = 3;
-		Integer bonus2 = 5;
-		Integer bonus3 = 1;
-		test.addBonus(BonusType.MORALE, bonus3);
-		test.addBonus(BonusType.ENHANCEMENT, bonus2);
-		assertEquals(getModifier(bonus3 + bonus2, t), t.getModifier());
-		test.addBonus(BonusType.LUCK, bonus1);
-		assertEquals(getModifier(bonus3 + bonus2 + bonus1, t), t.getModifier());
+		bonusHandler.addBonus(BonusType.MORALE, 3);
+		verify(tester).setBonus(3);
+		bonusHandler.addBonus(BonusType.ENHANCEMENT, 5);
+		verify(tester).setBonus(8);
+		bonusHandler.addBonus(BonusType.LUCK, 2);
+		verify(tester).setBonus(10);
+	}
+
+	@Test
+	public void removeBonus() throws Exception
+	{
+		bonusHandler.addBonus(BonusType.MORALE, 3);
+		bonusHandler.removeBonus(BonusType.MORALE, 3);
+
+		assertThat(bonusHandler.countBonus()).isEqualTo(0);
 
 	}
 
 	@Test
-	public void testRemoveBonus()
+	public void testRemoveManyBonus()
 	{
-		Integer bonus1 = 3;
-		Integer bonus2 = 5;
-		Integer bonus3 = 1;
-		test.addBonus(BonusType.MORALE, bonus3);
-		test.addBonus(BonusType.ENHANCEMENT, bonus2);
-		assertEquals(getModifier(bonus3 + bonus2, t), t.getModifier());
-		test.addBonus(BonusType.LUCK, bonus1);
-		assertEquals(getModifier(bonus3 + bonus2 + bonus1, t), t.getModifier());
-		test.removeBonus(BonusType.MORALE, bonus3);
-		assertEquals(getModifier(bonus2 + bonus1, t), t.getModifier());
-		test.removeBonus(BonusType.LUCK, bonus1);
-		assertEquals(getModifier(bonus2, t), t.getModifier());
+		bonusHandler.addBonus(BonusType.MORALE, 3);
+		bonusHandler.addBonus(BonusType.ENHANCEMENT, 3);
+		bonusHandler.addBonus(BonusType.LUCK, 3);
+		bonusHandler.removeBonus(BonusType.MORALE, 3);
+		bonusHandler.removeBonus(BonusType.LUCK, 3);
+		verify(tester).setBonus(9);
+		verify(tester, times(2)).setBonus(6);
+		verify(tester, times(2)).setBonus(3);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void testRemoveBonusException()
+	public void bonusHandlerRemoveBonusException()
 	{
-		Integer bonus1 = 3;
-		Integer bonus2 = 5;
-		Integer bonus3 = 1;
-		test.addBonus(BonusType.MORALE, bonus3);
-		test.addBonus(BonusType.ENHANCEMENT, bonus2);
-		assertEquals(getModifier(bonus3 + bonus2, t), t.getModifier());
-		test.addBonus(BonusType.LUCK, bonus1);
-		assertEquals(getModifier(bonus3 + bonus2 + bonus1, t), t.getModifier());
-		test.removeBonus(BonusType.ALCHEMICAL, bonus3);
-		assertEquals(getModifier(bonus2 + bonus1, t), t.getModifier());
-		test.removeBonus(BonusType.LUCK, bonus1);
-		assertEquals(getModifier(bonus2, t), t.getModifier());
+		bonusHandler.removeBonus(BonusType.ALCHEMICAL, 3);
 	}
 
-	// @Test
-	// public void testSizeBonus()
-	// {
-	// x.setSize(Size.COLOSSAL);
-	// Bonusable bonusalbeMock = createMock(Bonusable.class);
-	// expect(bonusalbeMock.getAbilityName()).andReturn(AbilityType.NONE)
-	// .anyTimes();
-	// expect(bonusalbeMock.isSizeImportant()).andReturn(true).anyTimes();
-	// bonusalbeMock.setBonus(-8);
-	// bonusalbeMock.setBonus(0);
-	// replay(bonusalbeMock);
-	// BaseBonusHandler bonus = new BaseBonusHandler(bonusalbeMock, x, x);
-	// assertEquals(-8, bonus.countBonus().intValue());
-	// x.setSize(Size.MEDIUM);
-	// assertEquals(0, bonus.countBonus().intValue());
-	//
-	// reset(bonusalbeMock);
-	// GrappleAttack tmpAttack = createMock(GrappleAttack.class);
-	//
-	// expect(tmpAttack.getAbilityName()).andReturn(AbilityType.STRENGHT)
-	// .anyTimes();
-	// expect(tmpAttack.isSizeImportant()).andReturn(true).anyTimes();
-	// tmpAttack.setBonus(0);
-	// tmpAttack.setBonus(16);
-	// tmpAttack.setBonus(-4);
-	// replay(tmpAttack);
-	// BaseBonusHandler gBonus = new BaseBonusHandler(tmpAttack, x, x);
-	//
-	// assertEquals(0, gBonus.countBonus().intValue());
-	// x.setSize(Size.COLOSSAL);
-	// assertEquals(16, gBonus.countBonus().intValue());
-	// x.setSize(Size.SMALL);
-	// assertEquals(-4, gBonus.countBonus().intValue());
-	// }
+	@Test
+	public void testColossalModifier() throws Exception
+	{
+		// when
+		when(description.getSize()).thenReturn(Size.COLOSSAL);
+		when(tester.isSizeImportant()).thenReturn(true);
+		// then
+		assertThat(bonusHandler.countBonus()).isEqualTo(-8);
+	}
+
+	@Test
+	public void testMediumSizeBonusToArmor()
+	{
+		when(tester.isSizeImportant()).thenReturn(true);
+		when(description.getSize()).thenReturn(Size.MEDIUM);
+
+		assertThat(bonusHandler.countBonus()).isEqualTo(0);
+	}
+
+	@Test
+	public void testSizeBonusToGrappleAttack()
+	{
+		GrappleAttack tester = mock(GrappleAttack.class);
+		bonusHandler = new BaseBonusHandler(tester, abilities, description);
+		when(tester.getAbilityName()).thenReturn(AbilityType.STRENGHT);
+		when(tester.isSizeImportant()).thenReturn(true);
+		when(description.getSize()).thenReturn(Size.COLOSSAL);
+		assertThat(bonusHandler.countBonus()).isEqualTo(16);
+		verify(tester).setBonus(16);
+		when(description.getSize()).thenReturn(Size.MEDIUM);
+		assertThat(bonusHandler.countBonus()).isEqualTo(0);
+		verify(tester).setBonus(0);
+		when(description.getSize()).thenReturn(Size.SMALL);
+		assertThat(bonusHandler.countBonus()).isEqualTo(-4);
+		verify(tester).setBonus(-4);
+	}
 }

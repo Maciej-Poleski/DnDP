@@ -1,6 +1,6 @@
 package org.dndp.dndc.engine.card.bonus;
 
-import static org.fest.assertions.Assertions.*;
+import static org.fest.assertions.Assertions.assertThat;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -13,11 +13,6 @@ public class AdductBonusTest
 {
 	private AdductBonus	adductBonus;
 
-	public AdductBonusTest()
-	{
-
-	}
-
 	@Before
 	public void before()
 	{
@@ -25,7 +20,7 @@ public class AdductBonusTest
 	}
 
 	@Test
-	public void testAddBonus()
+	public void AddBonus()
 	{
 		adductBonus.addBonus(6);
 		assertThat(adductBonus.getBonus()).isEqualTo(6);
@@ -36,16 +31,24 @@ public class AdductBonusTest
 	}
 
 	@Test
-	public void testDoubleSameBonus()
+	public void AddManyBonus()
 	{
 		adductBonus.addBonus(6);
-		assertThat(adductBonus.getBonus()).isEqualTo(6);
+		adductBonus.addBonus(3);
+		adductBonus.addBonus(11);
+		assertThat(adductBonus.getBonus()).isEqualTo(20);
+	}
+
+	@Test
+	public void DoubleSameBonus()
+	{
+		adductBonus.addBonus(6);
 		adductBonus.addBonus(6);
 		assertThat(adductBonus.getBonus()).isEqualTo(12);
 	}
 
 	@Test
-	public void testAddDobuleSameAndRemoveIt()
+	public void AddDobuleSameAndRemoveIt()
 	{
 		adductBonus.addBonus(6);
 		adductBonus.addBonus(6);
@@ -55,29 +58,31 @@ public class AdductBonusTest
 	}
 
 	@Test
-	public void testRemoveBonus()
+	public void RemoveBonus()
+	{
+		adductBonus.addBonus(2);
+		adductBonus.removeBonus(2);
+		assertThat(adductBonus.getBonus()).isEqualTo(0);
+	}
+
+	@Test
+	public void RemoveManyBonus()
 	{
 		adductBonus.addBonus(2);
 		adductBonus.addBonus(4);
 		adductBonus.addBonus(1);
-		assertThat(adductBonus.getBonus()).isEqualTo(7);
 		adductBonus.removeBonus(2);
-		assertThat(adductBonus.getBonus()).isEqualTo(5);
 		adductBonus.removeBonus(4);
 		assertThat(adductBonus.getBonus()).isEqualTo(1);
-		adductBonus.addBonus(1);
-		assertThat(adductBonus.getBonus()).isEqualTo(2);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void testRemoveBonusException()
+	public void RemoveBonusException()
 	{
 		adductBonus.addBonus(2);
 		adductBonus.addBonus(4);
 		adductBonus.addBonus(1);
-		assertThat(adductBonus.getBonus()).isEqualTo(7);
 		adductBonus.removeBonus(2);
-		assertThat(adductBonus.getBonus()).isEqualTo(5);
 		adductBonus.removeBonus(2);
 	}
 }

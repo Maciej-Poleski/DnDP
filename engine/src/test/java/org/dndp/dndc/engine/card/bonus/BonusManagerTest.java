@@ -1,5 +1,6 @@
 /*
- * To change this template, choose Tools | Templates and open the template in the editor.
+ * To change this template, choose Tools | Templates and open the template in
+ * the editor.
  */
 
 package org.dndp.dndc.engine.card.bonus;
@@ -10,55 +11,55 @@ import org.dndp.dndc.engine.FantasyCharacter;
 import org.dndp.dndc.engine.card.abilities.Abiliti;
 import org.junit.Test;
 
-
 /**
  * 
  * @author bambucha
  */
 public class BonusManagerTest
 {
-    static Abiliti         s = new Abiliti();
-    static Abiliti         d = new Abiliti();
-    static Abiliti         w = new Abiliti();
+	static Abiliti			s	= new Abiliti();
+	static Abiliti			d	= new Abiliti();
+	static Abiliti			w	= new Abiliti();
 
-    static FantasyCharacter       a = new FantasyCharacter();
-    static DnDBonusManager t = new DnDBonusManager(a,a);
+	static FantasyCharacter	a	= new FantasyCharacter();
+	static DnDBonusManager	t	= new DnDBonusManager(a, a);
 
-    /**
-     * Zwraca modyfilator jaki powinnien mieć atrybiut, przyz konkretynym bonusie.
-     * 
-     * @param bonus
-     *            Bonus
-     * @param t
-     *            Atrubut
-     * @return Modyfikator
-     */
-    private Integer getModifier(Integer bonus, Abiliti t)
-    {
-        return new Integer(((bonus - t.getValue()) + 10) / 2);
-    }
+	/**
+	 * Zwraca modyfilator jaki powinnien mieć atrybiut, przyz konkretynym
+	 * bonusie.
+	 * 
+	 * @param bonus
+	 *            Bonus
+	 * @param t
+	 *            Atrubut
+	 * @return Modyfikator
+	 */
+	private Integer getModifier(Integer bonus, Abiliti t)
+	{
+		return new Integer(((bonus - t.getValue()) + 10) / 2);
+	}
 
-    public BonusManagerTest()
-    {}
+	public BonusManagerTest()
+	{}
 
-//    @Test
-//    public void testRegisterAndGetBonus()
-//    {
-//        t.registerBonus("s", s);
-//        t.getBonusHandler("s").addBonus(BonusType.SACRED, 2);
-//        assertEquals(s.getModifier(), getModifier(2, s));
-//    }
-//
-//    @Test(expected = IllegalArgumentException.class)
-//    public void testSecondRegisterException()
-//    {
-//        t.registerBonus("s", s);
-//    }
+	@Test
+	public void testRegisterAndGetBonus()
+	{
+		t.registerBonus("s", s);
+		t.getBonusHandler("s").addBonus(BonusType.SACRED, 2);
+		assertEquals(s.getModifier(), getModifier(2, s));
+	}
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testGetBonsuException()
-    {
-        t.getBonusHandler("stredfht");
-    }
+	@Test(expected = IllegalArgumentException.class)
+	public void testSecondRegisterException()
+	{
+		t.registerBonus("s", s);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testGetBonsuException()
+	{
+		t.getBonusHandler("stredfht");
+	}
 
 }

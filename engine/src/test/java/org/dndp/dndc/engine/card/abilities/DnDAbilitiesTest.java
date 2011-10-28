@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates and open the template in
- * the editor.
- */
-
 package org.dndp.dndc.engine.card.abilities;
 
 import static org.fest.assertions.Assertions.assertThat;

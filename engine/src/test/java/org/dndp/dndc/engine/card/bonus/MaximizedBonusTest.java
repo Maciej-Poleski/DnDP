@@ -5,12 +5,9 @@
 
 package org.dndp.dndc.engine.card.bonus;
 
-import static org.junit.Assert.assertEquals;
-import static org.fest.assertions.Assertions.*;
+import static org.fest.assertions.Assertions.assertThat;
 
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
