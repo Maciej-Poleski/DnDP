@@ -1,6 +1,5 @@
 package org.dndp.dndc.engine.item;
 
-import static org.junit.Assert.*;
 import static org.fest.assertions.Assertions.*;
 
 import org.junit.Before;
