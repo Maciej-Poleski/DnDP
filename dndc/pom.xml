@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.dndp</groupId>
 		<artifactId>dndp</artifactId>
-		<version>0.2</version>
+		<version>0.3-SNAPSHOT</version>
 	</parent>
 	
 	<distributionManagement>
@@ -200,13 +200,6 @@
 				</executions>
 			</plugin>
 		</plugins>
-		<resources>
-			<resource>
-				<directory>src/bash</directory>
-				<filtering>true</filtering>
-				<targetPath>../luncher</targetPath>
-			</resource>
-		</resources>
 	</build>
 	
 		<dependencies>
@@ -236,14 +229,14 @@
 		<dependency>
 			<groupId>org.dndp</groupId>
 			<artifactId>engine</artifactId>
-			<version>0.2</version>
+			<version>${project.version}</version>
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.dndp</groupId>
 			<artifactId>UpdateManager</artifactId>
-			<version>0.2</version>
+			<version>${project.version}</version>
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
