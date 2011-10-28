@@ -1,20 +1,22 @@
 package org.dndp.dndc.engine.item;
 
-import static org.fest.assertions.Assertions.*;
-import static org.mockito.Mockito.*;
-import static org.dndp.dndc.engine.item.SimpleItemGenerator.*;
+import static org.dndp.dndc.engine.item.SimpleItemGenerator.getBelt;
+import static org.dndp.dndc.engine.item.SimpleItemGenerator.getBracer;
+import static org.dndp.dndc.engine.item.SimpleItemGenerator.getCoat;
+import static org.dndp.dndc.engine.item.SimpleItemGenerator.getGlasses;
+import static org.dndp.dndc.engine.item.SimpleItemGenerator.getGloves;
+import static org.dndp.dndc.engine.item.SimpleItemGenerator.getHelmet;
+import static org.dndp.dndc.engine.item.SimpleItemGenerator.getNacklace;
+import static org.dndp.dndc.engine.item.SimpleItemGenerator.getPlate;
+import static org.dndp.dndc.engine.item.SimpleItemGenerator.getRing;
+import static org.dndp.dndc.engine.item.SimpleItemGenerator.getShirt;
+import static org.fest.assertions.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
 
 import org.dndp.dndc.engine.FantasyCharacter;
 import org.dndp.dndc.engine.item.armor.Plate;
 import org.dndp.dndc.engine.item.things.Belt;
 import org.dndp.dndc.engine.item.things.Bracer;
-import org.dndp.dndc.engine.item.things.Coat;
-import org.dndp.dndc.engine.item.things.Glasses;
-import org.dndp.dndc.engine.item.things.Gloves;
-import org.dndp.dndc.engine.item.things.Helmet;
-import org.dndp.dndc.engine.item.things.Necklace;
-import org.dndp.dndc.engine.item.things.Ring;
-import org.dndp.dndc.engine.item.things.Shirt;
 import org.junit.Before;
 import org.junit.Test;
 
