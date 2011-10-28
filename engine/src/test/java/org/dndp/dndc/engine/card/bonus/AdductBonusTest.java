@@ -1,7 +1,8 @@
 package org.dndp.dndc.engine.card.bonus;
 
-import static org.junit.Assert.assertEquals;
+import static org.fest.assertions.Assertions.*;
 
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -10,65 +11,63 @@ import org.junit.Test;
  */
 public class AdductBonusTest
 {
+	private AdductBonus	adductBonus;
 
-    public AdductBonusTest()
-    {
+	public AdductBonusTest()
+	{
 
-    }
+	}
 
-    @Test
-    public void testAddBonus()
-    {
-        System.out.println("addBonus");
-        Integer bonus1 = 2;
-        Integer bonus2 = 4;
-        Integer bonus3 = 1;
-        AdductBonus instance = new AdductBonus();
-        instance.addBonus(bonus1);
-        assertEquals(instance.getBonus(), bonus1);
-        instance.addBonus(bonus2);
-        assertEquals(instance.getBonus(), new Integer(bonus1 + bonus2));
-        instance.addBonus(bonus3);
-        assertEquals(instance.getBonus(), new Integer(bonus1 + bonus2 + bonus3));
-    }
+	@Before
+	public void before()
+	{
+		adductBonus = new AdductBonus();
+	}
 
-    @Test
-    public void testRemoveBonus()
-    {
-        System.out.println("removeBonus");
-        Integer bonus1 = 2;
-        Integer bonus2 = 4;
-        Integer bonus3 = 1;
-        AdductBonus instance = new AdductBonus();
-        instance.addBonus(bonus1);
-        instance.addBonus(bonus2);
-        instance.addBonus(bonus3);
-        assertEquals(instance.getBonus(), new Integer(bonus1 + bonus2 + bonus3));
-        instance.removeBonus(bonus2);
-        assertEquals(instance.getBonus(), new Integer(bonus1 + bonus3));
-        instance.removeBonus(bonus1);
-        assertEquals(instance.getBonus(), new Integer(bonus3));
-        instance.addBonus(bonus2);
-        assertEquals(instance.getBonus(), new Integer(bonus2 + bonus3));
-    }
+	@Test
+	public void testAddBonus()
+	{
+		adductBonus.addBonus(6);
+		assertThat(adductBonus.getBonus()).isEqualTo(6);
+		adductBonus.addBonus(3);
+		assertThat(adductBonus.getBonus()).isEqualTo(9);
+		adductBonus.addBonus(11);
+		assertThat(adductBonus.getBonus()).isEqualTo(20);
+	}
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testRemoveBonusException()
-    {
-        System.out.println("removeBonus");
-        Integer bonus1 = 2;
-        Integer bonus2 = 4;
-        Integer bonus3 = 1;
-        AdductBonus instance = new AdductBonus();
-        instance.addBonus(bonus1);
-        instance.addBonus(bonus2);
-        instance.addBonus(bonus3);
-        assertEquals(instance.getBonus(), new Integer(bonus1 + bonus2 + bonus3));
-        instance.removeBonus(bonus2);
-        assertEquals(instance.getBonus(), new Integer(bonus1 + bonus3));
-        instance.removeBonus(bonus2);
-        assertEquals(instance.getBonus(), new Integer(bonus3));
-        instance.addBonus(bonus2);
-        assertEquals(instance.getBonus(), new Integer(bonus2 + bonus3));
-    }
+	@Test
+	public void testDoubleSameBonus()
+	{
+		adductBonus.addBonus(6);
+		assertThat(adductBonus.getBonus()).isEqualTo(6);
+		adductBonus.addBonus(6);
+		assertThat(adductBonus.getBonus()).isEqualTo(12);
+	}
+
+	@Test
+	public void testRemoveBonus()
+	{
+		adductBonus.addBonus(2);
+		adductBonus.addBonus(4);
+		adductBonus.addBonus(1);
+		assertThat(adductBonus.getBonus()).isEqualTo(7);
+		adductBonus.removeBonus(2);
+		assertThat(adductBonus.getBonus()).isEqualTo(5);
+		adductBonus.removeBonus(4);
+		assertThat(adductBonus.getBonus()).isEqualTo(1);
+		adductBonus.addBonus(1);
+		assertThat(adductBonus.getBonus()).isEqualTo(2);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testRemoveBonusException()
+	{
+		adductBonus.addBonus(2);
+		adductBonus.addBonus(4);
+		adductBonus.addBonus(1);
+		assertThat(adductBonus.getBonus()).isEqualTo(7);
+		adductBonus.removeBonus(2);
+		assertThat(adductBonus.getBonus()).isEqualTo(5);
+		adductBonus.removeBonus(2);
+	}
 }
