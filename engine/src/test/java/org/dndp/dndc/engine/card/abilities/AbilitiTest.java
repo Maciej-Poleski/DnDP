@@ -2,6 +2,7 @@ package org.dndp.dndc.engine.card.abilities;
 
 import static org.fest.assertions.Assertions.*;
 
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -13,8 +14,11 @@ public class AbilitiTest
 {
 	private Abiliti	abiliti;
 
-	public AbilitiTest()
-	{}
+	@Before
+	public void before()
+	{
+		abiliti = new Abiliti();
+	}
 
 	@Test
 	public void testGetModifier()
