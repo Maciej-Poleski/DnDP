@@ -5,9 +5,12 @@
 
 package org.dndp.dndc.engine.card.attack;
 
-import org.dndp.dndc.engine.FantasyCharacter;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
+import static org.fest.assertions.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
+
+import org.dndp.dndc.engine.card.abilities.AbilityType;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * 
@@ -15,24 +18,24 @@ import org.junit.BeforeClass;
  */
 public class MeleeAtackTest
 {
-    static FantasyCharacter main = new FantasyCharacter();
+	MeleeAttack	test;
 
-    // static MeleeAttack dupa = new MeleeAttack();
+	public MeleeAtackTest()
+	{
 
-    public MeleeAtackTest()
-    {
-        main.getStrenght().setValue(16);
-        main.getDexterity().setValue(13);
-    }
+	}
 
-    @BeforeClass
-    public static void setUpClass() throws Exception
-    {}
+	@Before
+	public void setUpClass() throws Exception
+	{
+		Attack attack = mock(Attack.class);
+		test = new MeleeAttack(attack);
+	}
 
-    @AfterClass
-    public static void tearDownClass() throws Exception
-    {
-
-    }
+	@Test
+	public void meleeAttackUseStrenght() throws Exception
+	{
+		assertThat(test.getAbilityName()).isEqualTo(AbilityType.STRENGHT);
+	}
 
 }
