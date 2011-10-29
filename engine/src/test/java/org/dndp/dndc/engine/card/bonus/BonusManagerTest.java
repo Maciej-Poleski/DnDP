@@ -1,14 +1,16 @@
-/*
- * To change this template, choose Tools | Templates and open the template in
- * the editor.
- */
-
 package org.dndp.dndc.engine.card.bonus;
 
-import static org.junit.Assert.assertEquals;
+import static org.fest.assertions.Assertions.assertThat;
+import static org.mockito.Matchers.anyInt;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
-import org.dndp.dndc.engine.FantasyCharacter;
+import java.util.MissingResourceException;
+
 import org.dndp.dndc.engine.card.abilities.Abiliti;
+import org.dndp.dndc.engine.card.abilities.Abilities;
+import org.dndp.dndc.engine.card.description.Description;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -17,49 +19,43 @@ import org.junit.Test;
  */
 public class BonusManagerTest
 {
-	static Abiliti			s	= new Abiliti();
-	static Abiliti			d	= new Abiliti();
-	static Abiliti			w	= new Abiliti();
+	BonusManager	bonusManager;
 
-	static FantasyCharacter	a	= new FantasyCharacter();
-	static DnDBonusManager	t	= new DnDBonusManager(a, a);
-
-	/**
-	 * Zwraca modyfilator jaki powinnien mieć atrybiut, przyz konkretynym
-	 * bonusie.
-	 * 
-	 * @param bonus
-	 *            Bonus
-	 * @param t
-	 *            Atrubut
-	 * @return Modyfikator
-	 */
-	private Integer getModifier(Integer bonus, Abiliti t)
+	@Before
+	public void before()
 	{
-		return new Integer(((bonus - t.getValue()) + 10) / 2);
+		Abilities abilities = mock(Abilities.class);
+		Description description = mock(Description.class);
+		bonusManager = new DnDBonusManager(abilities, description);
 	}
-
-	public BonusManagerTest()
-	{}
 
 	@Test
-	public void testRegisterAndGetBonus()
+	public void registrationBonus() throws Exception
 	{
-		t.registerBonus("s", s);
-		t.getBonusHandler("s").addBonus(BonusType.SACRED, 2);
-		assertEquals(s.getModifier(), getModifier(2, s));
+		// given
+		Abiliti tester = mock(Abiliti.class);
+		// when
+		bonusManager.registerBonus("test", tester);
+		// then
+		verify(tester).setBonus(anyInt());
+		assertThat(bonusManager.getBonusHandler("test")).isNotNull().isEqualTo(
+				tester);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void testSecondRegisterException()
+	public void secondRegistrationException() throws Exception
 	{
-		t.registerBonus("s", s);
+		// given
+		Abiliti tester = mock(Abiliti.class);
+		// when
+		bonusManager.registerBonus("test", tester);
+		bonusManager.registerBonus("test", tester);
+		// then
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = MissingResourceException.class)
 	public void testGetBonsuException()
 	{
-		t.getBonusHandler("stredfht");
+		bonusManager.getBonusHandler("Armor");
 	}
-
 }
