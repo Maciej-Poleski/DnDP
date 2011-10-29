@@ -1,17 +1,14 @@
-/*
- * To change this template, choose Tools | Templates and open the template in the editor.
- */
-
 package org.dndp.dndc.engine.card.description;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.fest.assertions.Assertions.*;
+import static org.mockito.Mockito.*;
+
+import java.util.Observer;
 
 import org.dndp.dndc.engine.PersonalityTypes;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
-
+import org.mockito.Mockito;
 
 /**
  * 
@@ -19,413 +16,405 @@ import org.junit.Test;
  */
 public class DnDDescriptionTest
 {
+	DnDDescription	description;
 
-    public DnDDescriptionTest()
-    {}
+	@Before
+	public void setUpClass() throws Exception
+	{
+		description = new DnDDescription();
+	}
 
-    @BeforeClass
-    public static void setUpClass() throws Exception
-    {}
+	private Observer getObserver()
+	{
+		Observer obs = mock(Observer.class);
+		description.addDescriptionObserver(obs);
+		return obs;
+	}
 
-    @AfterClass
-    public static void tearDownClass() throws Exception
-    {}
+	@Test
+	public void testGetName()
+	{
+		assertThat(description.getName()).isNotNull().isEmpty();
+	}
 
-    @Test
-    public void testGetName()
-    {
-        System.out.println("getName");
-        DnDDescription instance = new DnDDescription();
-        String expResult = "";
-        String result = instance.getName();
-        assertNotNull(result);
-        assertEquals(expResult, result);
+	@Test
+	public void testGetPlayer()
+	{
+		assertThat(description.getPlayer()).isNotNull().isEmpty();
+	}
 
-    }
+	@Test
+	public void testGetRase()
+	{
+		assertThat(description.getRase()).isNotNull();
+	}
 
-    @Test
-    public void testGetPlayer()
-    {
-        System.out.println("getPlayer");
-        DnDDescription instance = new DnDDescription();
-        String expResult = "";
-        String result = instance.getPlayer();
-        assertNotNull(result);
-        assertEquals(expResult, result);
-    }
+	@Test
+	public void testGetPersonality()
+	{
+		assertThat(description.getPersonality()).isNotNull();
+	}
 
-    @Test
-    public void testGetRase()
-    {
-        System.out.println("getRase");
-        DnDDescription instance = new DnDDescription();
-        Race result = instance.getRase();
-        assertNotNull(result);
-        //assertEquals(expResult, result);
-    }
+	@Test
+	public void testGetGod()
+	{
+		assertThat(description.getGod()).isNotNull();
+	}
 
-    @Test
-    public void testGetPersonality()
-    {
-        System.out.println("getPersonality");
-        DnDDescription instance = new DnDDescription();
-        PersonalityTypes result = instance.getPersonality();
-        assertNotNull(result);
-        // assertEquals(expResult, result);
+	@Test
+	public void testGetSize()
+	{
+		assertThat(description.getSize()).isNotNull().isEqualTo(Size.MEDIUM);
+	}
 
-    }
+	@Test
+	public void testGetAge()
+	{
+		assertThat(description.getAge()).isNotNull().isZero();
+	}
 
-    @Test
-    public void testGetGod()
-    {
-        System.out.println("getGod");
-        DnDDescription instance = new DnDDescription();
-        God result = instance.getGod();
-        assertNotNull(result);
-        //assertEquals(expResult, result);
+	@Test
+	public void testGetSex()
+	{
+		assertThat(description.getSex()).isNotNull().isEqualTo(Sex.MALE);
+	}
 
-    }
+	@Test
+	public void testGetHeight()
+	{
+		assertThat(description.getHeight()).isEqualTo(170);
+	}
 
-    @Test
-    public void testGetSize()
-    {
-        System.out.println("getSize");
-        DnDDescription instance = new DnDDescription();
-        Size expResult = Size.MEDIUM;
-        Size result = instance.getSize();
-        assertNotNull(result);
-        assertEquals(expResult, result);
+	@Test
+	public void testGetWeight()
+	{
+		assertThat(description.getWeight()).isEqualTo(100);
+	}
 
-    }
+	@Test
+	public void testGetEye()
+	{
+		assertThat(description.getEye()).isNotNull();
+	}
 
-    @Test
-    public void testGetAge()
-    {
-        System.out.println("getAge");
-        DnDDescription instance = new DnDDescription();
-        Integer expResult = 0;
-        Integer result = instance.getAge();
-        assertNotNull(result);
-        assertEquals(expResult, result);
+	@Test
+	public void testGetHair()
+	{
+		assertThat(description.getEye()).isNotNull();
+	}
 
-    }
+	@Test
+	public void testGetSkin()
+	{
+		assertThat(description.getSkin()).isNotNull();
+	}
 
-    @Test
-    public void testGetSex()
-    {
-        System.out.println("getSex");
-        DnDDescription instance = new DnDDescription();
-        Sex expResult = Sex.MALE;
-        Sex result = instance.getSex();
-        assertNotNull(result);
-        assertEquals(expResult, result);
+	@Test
+	public void testSetAge()
+	{
+		description.setAge(13);
+		assertThat(description.getAge()).isEqualTo(13);
+	}
 
-    }
+	@Test
+	public void sameValeLikeBeforeForAge() throws Exception
+	{
+		// given
+		description.setAge(15);
+		Observer tester = getObserver();
+		// when
+		description.setAge(15);
+		// then
+		verify(tester, never()).update(eq(description), notNull());
+	}
 
-    @Test
-    public void testGetHeight()
-    {
-        System.out.println("getHeight");
-        DnDDescription instance = new DnDDescription();
-        Integer expResult = 170;
-        Integer result = instance.getHeight();
-        assertNotNull(result);
-        assertEquals(expResult, result);
+	@Test
+	public void testSetPersonality()
+	{
+		description.setPersonality(PersonalityTypes.CD);
+		assertThat(description.getPersonality()).isEqualTo(PersonalityTypes.CD);
+	}
 
-    }
+	@Test(expected = NullPointerException.class)
+	public void testSetPersonalityNullException()
+	{
+		description.setPersonality(null);
+	}
 
-    @Test
-    public void testGetWeight()
-    {
-        System.out.println("getWeight");
-        DnDDescription instance = new DnDDescription();
-        Integer expResult = 100;
-        Integer result = instance.getWeight();
-        assertNotNull(result);
-        assertEquals(expResult, result);
+	@Test
+	public void testSetEye()
+	{
+		description.setEye("oko");
+		assertThat(description.getEye()).isEqualTo("oko");
+	}
 
-    }
+	@Test(expected = NullPointerException.class)
+	public void testSetEyeNull()
+	{
+		description.setEye(null);
+	}
 
-    @Test
-    public void testGetEye()
-    {
-        System.out.println("getEye");
-        DnDDescription instance = new DnDDescription();
-        String result = instance.getEye();
-        assertNotNull(result);
-        //assertEquals(expResult, result);
+	@Test
+	public void secondSetingDidntMakeNotificationForEye() throws Exception
+	{
+		// given
+		description.setEye("oko");
+		Observer tester = getObserver();
+		// when
+		description.setEye("oko");
+		// then
+		verify(tester, never()).update(eq(description), notNull());
+	}
 
-    }
+	@Test
+	public void testSetGod()
+	{
+		God tester = new God();
+		description.setGod(tester);
+		assertThat(description.getGod()).isEqualTo(tester);
+	}
 
-    @Test
-    public void testGetHair()
-    {
-        System.out.println("getHair");
-        DnDDescription instance = new DnDDescription();
-        String result = instance.getHair();
-        assertNotNull(result);
-        //assertEquals(expResult, result);
+	@Test(expected = NullPointerException.class)
+	public void testSetGodNull()
+	{
+		description.setGod(null);
+	}
 
-    }
+	@Test
+	public void dontMakeNotifiWhenSecondTimeGodAreSame() throws Exception
+	{
+		God temp = new God();
+		// given
+		description.setGod(temp);
+		Observer tester = getObserver();
+		// when
+		description.setGod(temp);
+		// then
+		verify(tester, never()).update(eq(description), notNull());
+	}
 
-    @Test
-    public void testGetSkin()
-    {
-        System.out.println("getSkin");
-        DnDDescription instance = new DnDDescription();
-        String result = instance.getSkin();
-        assertNotNull(result);
-        //assertEquals(expResult, result);
-    }
+	@Test
+	public void testSetHair()
+	{
+		String hair = "rude";
+		description.setHair(hair);
+		assertThat(description.getHair()).isEqualTo(hair);
+	}
 
-    @Test
-    public void testSetAge()
-    {
-        System.out.println("setAge");
-        int age = 13;
-        DnDDescription instance = new DnDDescription();
-        instance.setAge(age);
-        assertEquals(age, instance.getAge());
+	@Test(expected = NullPointerException.class)
+	public void testSetHairNull()
+	{
+		description.setHair(null);
+	}
 
-    }
+	@Test
+	public void secondSetHairDontMakeNotification() throws Exception
+	{
+		// given
+		description.setHair("test");
+		Observer test = getObserver();
+		// when
+		description.setHair("test");
+		// then
+		verify(test, never()).update(eq(description), notNull());
+	}
 
-    @Test(expected = NullPointerException.class)
-    public void testSetAgeNullException()
-    {
-        System.out.println("setAge null");
-        Integer age = null;
-        DnDDescription instance = new DnDDescription();
-        instance.setAge(age);
-    }
+	@Test
+	public void testSetHeight()
+	{
+		int height = 999;
+		description.setHeight(height);
+		assertThat(description.getHeight()).isEqualTo(height);
+	}
 
-    @Test
-    public void testSetPersonality()
-    {
-        System.out.println("setPersonality");
-        PersonalityTypes personality = PersonalityTypes.CZ;
-        DnDDescription instance = new DnDDescription();
-        instance.setPersonality(personality);
-        assertEquals(personality, instance.getPersonality());
+	@Test
+	public void secondSetHeightDontMakeNotification() throws Exception
+	{
+		// given
+		description.setHeight(999);
+		Observer test = getObserver();
+		// when
+		description.setHeight(999);
+		// then
+		verify(test, never()).update(eq(description), notNull());
+	}
 
-    }
+	@Test
+	public void testSetName()
+	{
+		String name = "dupad12";
+		description.setName(name);
+		assertThat(description.getName()).isEqualTo(name);
+	}
 
-    @Test(expected = NullPointerException.class)
-    public void testSetPersonalityNullException()
-    {
-        System.out.println("setPersonality null");
-        PersonalityTypes personality = null;
-        DnDDescription instance = new DnDDescription();
-        instance.setPersonality(personality);
-    }
+	@Test
+	public void secondSetNameDontMakeNotification() throws Exception
+	{
+		// given
+		description.setName("name");
+		Observer test = getObserver();
+		// when
+		description.setName("name");
+		// then
+		verify(test, never()).update(eq(description), notNull());
+	}
 
-    @Test
-    public void testSetEye()
-    {
-        System.out.println("setEye");
-        String eye = "";
-        DnDDescription instance = new DnDDescription();
-        instance.setEye(eye);
-        assertEquals(eye, instance.getEye());
-    }
+	@Test(expected = NullPointerException.class)
+	public void testSetNameNull()
+	{
+		description.setName(null);
+	}
 
-    @Test(expected = NullPointerException.class)
-    public void testSetEyeNull()
-    {
-        System.out.println("setEye null");
-        String eye = null;
-        DnDDescription instance = new DnDDescription();
-        instance.setEye(eye);
-    }
+	@Test
+	public void testSetPlayer()
+	{
+		String player = "czarnuch";
+		description.setPlayer(player);
+		assertThat(description.getPlayer()).isEqualTo(player);
+	}
 
-    @Test
-    public void testSetGod()
-    {
-        System.out.println("setGod");
-        God god = new God();
-        DnDDescription instance = new DnDDescription();
-        instance.setGod(god);
-        assertEquals(god, instance.getGod());
-    }
+	@Test
+	public void secondSetPlayerDontMakeNotification() throws Exception
+	{
+		// given
+		description.setPlayer("test");
+		Observer test = getObserver();
+		// when
+		description.setPlayer("test");
+		// then
+		verify(test, never()).update(eq(description), notNull());
+	}
 
-    @Test(expected = NullPointerException.class)
-    public void testSetGodNull()
-    {
-        System.out.println("setGod null");
-        God god = null;
-        DnDDescription instance = new DnDDescription();
-        instance.setGod(god);
-    }
+	@Test(expected = NullPointerException.class)
+	public void testSetPlayerNull()
+	{
+		description.setPlayer(null);
+	}
 
-    @Test
-    public void testSetHair()
-    {
-        System.out.println("setHair");
-        String hair = "rude";
-        DnDDescription instance = new DnDDescription();
-        instance.setHair(hair);
-        assertEquals(hair, instance.getHair());
-    }
+	@Test
+	public void testSetSex()
+	{
+		Sex sex = Sex.FEMALE;
+		description.setSex(sex);
+		assertThat(description.getSex()).isEqualTo(sex);
 
-    @Test(expected = NullPointerException.class)
-    public void testSetHairNull()
-    {
-        System.out.println("setHair null");
-        String hair = null;
-        DnDDescription instance = new DnDDescription();
-        instance.setHair(hair);
-    }
+	}
 
-    @Test
-    public void testSetHeight()
-    {
-        System.out.println("setHeight");
-        int height = 999;
-        DnDDescription instance = new DnDDescription();
-        instance.setHeight(height);
-        assertEquals(height, instance.getHeight());
-    }
+	@Test(expected = NullPointerException.class)
+	public void testSetSexNull()
+	{
+		description.setSex(null);
+	}
 
-    @Test(expected = NullPointerException.class)
-    public void testSetHeightNull()
-    {
-        System.out.println("setHeight null");
-        Integer height = null;
-        DnDDescription instance = new DnDDescription();
-        instance.setHeight(height);
-    }
+	@Test
+	public void secondSetSexDontMakeNotification() throws Exception
+	{
+		// given
+		description.setSex(Sex.FEMALE);
+		Observer test = getObserver();
+		// when
+		description.setSex(Sex.FEMALE);
+		// then
+		verify(test, never()).update(eq(description), notNull());
+	}
 
-    @Test
-    public void testSetName()
-    {
-        System.out.println("setName");
-        String name = "dupad12";
-        DnDDescription instance = new DnDDescription();
-        instance.setName(name);
-    }
+	@Test
+	public void testSetSize()
+	{
+		Size size = Size.LARGE;
+		description.setSize(size);
+		assertThat(description.getSize()).isEqualTo(size);
+	}
 
-    @Test(expected = NullPointerException.class)
-    public void testSetNameNull()
-    {
-        System.out.println("setName null");
-        String name = null;
-        DnDDescription instance = new DnDDescription();
-        instance.setName(name);
-    }
+	@Test(expected = NullPointerException.class)
+	public void testSetSizeNull()
+	{
+		description.setSize(null);
+	}
 
-    @Test
-    public void testSetPlayer()
-    {
-        System.out.println("setPlayer");
-        String player = "czarnuch";
-        DnDDescription instance = new DnDDescription();
-        instance.setPlayer(player);
-        assertEquals(player, instance.getPlayer());
-    }
+	@Test
+	public void secondSetSizeDontMakeNotification() throws Exception
+	{
+		// given
+		description.setSize(Size.LARGE);
+		Observer test = getObserver();
+		// when
+		description.setSize(Size.LARGE);
+		// then
+		verify(test, never()).update(eq(description), notNull());
+	}
 
-    @Test(expected = NullPointerException.class)
-    public void testSetPlayerNull()
-    {
-        System.out.println("setPlayer null");
-        String player = null;
-        DnDDescription instance = new DnDDescription();
-        instance.setPlayer(player);
-    }
+	@Test
+	public void testSetSkin()
+	{
+		String skin = "black";
+		description.setSkin(skin);
+		assertThat(description.getSkin()).isEqualTo(skin);
+	}
 
-    @Test
-    public void testSetSex()
-    {
-        System.out.println("setSex");
-        Sex sex = Sex.FEMALE;
-        DnDDescription instance = new DnDDescription();
-        instance.setSex(sex);
-        assertEquals(sex, instance.getSex());
+	@Test(expected = NullPointerException.class)
+	public void testSetSkinNull()
+	{
+		description.setSkin(null);
+	}
 
-    }
+	@Test
+	public void secondSetSkinDontMakeNotification() throws Exception
+	{
+		String skin = "black";
+		// given
+		description.setSkin(skin);
+		Observer test = getObserver();
+		// when
+		description.setSkin(skin);
+		// then
+		verify(test, never()).update(eq(description), notNull());
+	}
 
-    @Test(expected = NullPointerException.class)
-    public void testSetSexNull()
-    {
-        System.out.println("setSex null");
-        Sex sex = null;
-        DnDDescription instance = new DnDDescription();
-        instance.setSex(sex);
+	@Test
+	public void testSetWeight()
+	{
+		int weight = 3;
+		description.setWeight(weight);
+		assertThat(description.getWeight()).isEqualTo(weight);
+	}
 
-    }
+	@Test
+	public void secondSetWeightDontMakeNotification() throws Exception
+	{
+		int weight = 3;
+		// given
+		description.setWeight(weight);
+		Observer test = getObserver();
+		// when
+		description.setWeight(weight);
+		// then
+		verify(test, never()).update(eq(description), notNull());
+	}
 
-    @Test
-    public void testSetSize()
-    {
-        System.out.println("setSize");
-        Size size = Size.LARGE;
-        DnDDescription instance = new DnDDescription();
-        instance.setSize(size);
-        assertEquals(size, instance.getSize());
-    }
+	@Test
+	public void testSetRace()
+	{
+		Race raceOfPlayer = new Race();
+		description.setRase(raceOfPlayer);
+		assertThat(description.getRase()).isEqualTo(raceOfPlayer);
+	}
 
-    @Test(expected = NullPointerException.class)
-    public void testSetSizeNull()
-    {
-        System.out.println("setSize null");
-        Size size = null;
-        DnDDescription instance = new DnDDescription();
-        instance.setSize(size);
-    }
+	@Test(expected = NullPointerException.class)
+	public void testSetRaseNull()
+	{
+		description.setRase(null);
+	}
 
-    @Test
-    public void testSetSkin()
-    {
-        System.out.println("setSkin");
-        String skin = "black";
-        DnDDescription instance = new DnDDescription();
-        instance.setSkin(skin);
-    }
-
-    @Test(expected = NullPointerException.class)
-    public void testSetSkinNull()
-    {
-        System.out.println("setSkin null");
-        String skin = null;
-        DnDDescription instance = new DnDDescription();
-        instance.setSkin(skin);
-    }
-
-    @Test
-    public void testSetWeight()
-    {
-        System.out.println("setWeight");
-        int weight = 3;
-        DnDDescription instance = new DnDDescription();
-        instance.setWeight(weight);
-        assertEquals(weight, instance.getWeight());
-
-    }
-
-    @Test(expected = NullPointerException.class)
-    public void testSetWeightNull()
-    {
-        System.out.println("setWeight null");
-        Integer weight = null;
-        DnDDescription instance = new DnDDescription();
-        instance.setWeight(weight);
-    }
-
-    @Test
-    public void testSetRase()
-    {
-        System.out.println("setRase");
-        Race raceOfPlayer = new Race();
-        DnDDescription instance = new DnDDescription();
-        instance.setRase(raceOfPlayer);
-        assertEquals(raceOfPlayer, instance.getRase());
-    }
-
-    @Test(expected = NullPointerException.class)
-    public void testSetRaseNull()
-    {
-        System.out.println("setRase");
-        Race raceOfPlayer = null;
-        DnDDescription instance = new DnDDescription();
-        instance.setRase(raceOfPlayer);
-    }
-
+	@Test
+	public void secondSetRaceDontMakeNotification() throws Exception
+	{
+		Race raceOfPlayer = new Race();
+		description.setRase(raceOfPlayer);
+		Observer test = getObserver();
+		// when
+		description.setRase(raceOfPlayer);
+		// then
+		verify(test, never()).update(eq(description), notNull());
+	}
 }
