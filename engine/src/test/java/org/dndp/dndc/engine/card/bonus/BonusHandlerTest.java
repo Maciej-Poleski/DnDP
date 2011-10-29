@@ -1,8 +1,10 @@
 package org.dndp.dndc.engine.card.bonus;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
 import static org.fest.assertions.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import org.dndp.dndc.engine.FantasyCharacter;
 import org.dndp.dndc.engine.card.abilities.Abilities;
@@ -106,10 +108,34 @@ public class BonusHandlerTest
 		when(description.getSize()).thenReturn(Size.COLOSSAL);
 		assertThat(bonusHandler.countBonus()).isEqualTo(16);
 		verify(tester).setBonus(16);
+	}
+
+	@Test
+	public void mediumBonusToGrappleAttack() throws Exception
+	{
+		// given
+		GrappleAttack tester = mock(GrappleAttack.class);
+		bonusHandler = new BaseBonusHandler(tester, abilities, description);
+		when(tester.getAbilityName()).thenReturn(AbilityType.STRENGHT);
+		when(tester.isSizeImportant()).thenReturn(true);
+		// when
 		when(description.getSize()).thenReturn(Size.MEDIUM);
+		// then
 		assertThat(bonusHandler.countBonus()).isEqualTo(0);
 		verify(tester).setBonus(0);
+	}
+
+	@Test
+	public void smallBonusToGrappleAttack() throws Exception
+	{
+		// given
+		GrappleAttack tester = mock(GrappleAttack.class);
+		bonusHandler = new BaseBonusHandler(tester, abilities, description);
+		when(tester.getAbilityName()).thenReturn(AbilityType.STRENGHT);
+		when(tester.isSizeImportant()).thenReturn(true);
+		// when
 		when(description.getSize()).thenReturn(Size.SMALL);
+		// then
 		assertThat(bonusHandler.countBonus()).isEqualTo(-4);
 		verify(tester).setBonus(-4);
 	}
