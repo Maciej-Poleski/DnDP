@@ -1,14 +1,15 @@
 /*
- * To change this template, choose Tools | Templates and open the template in the editor.
+ * To change this template, choose Tools | Templates and open the template in
+ * the editor.
  */
 
 package org.dndp.dndc.engine.card.st;
 
-import static org.junit.Assert.assertEquals;
+import static org.fest.assertions.Assertions.assertThat;
 
 import org.dndp.dndc.engine.card.abilities.AbilityType;
+import org.junit.Before;
 import org.junit.Test;
-
 
 /**
  * 
@@ -17,15 +18,17 @@ import org.junit.Test;
 public class WillThrowTest
 {
 
-    static WillThrow test = new WillThrow();
+	WillThrow	test;
 
-    public WillThrowTest()
-    {}
+	@Before
+	public void before()
+	{
+		test = new WillThrow();
+	}
 
-    @Test
-    public void testCountModifier()
-    {
-        assertEquals(AbilityType.WISDOM, test.getAbilityName());
-    }
-
+	@Test
+	public void willUseWisdomModifier() throws Exception
+	{
+		assertThat(test.getAbilityName()).isEqualTo(AbilityType.WISDOM);
+	}
 }
