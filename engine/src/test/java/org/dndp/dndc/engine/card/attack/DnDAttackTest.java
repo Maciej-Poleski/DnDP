@@ -19,7 +19,7 @@ import org.junit.Test;
  */
 public class DnDAttackTest
 {
-	static DnDAttack	test;
+	private static DnDAttack	test;
 
 	@Before
 	public void setUp() throws Exception

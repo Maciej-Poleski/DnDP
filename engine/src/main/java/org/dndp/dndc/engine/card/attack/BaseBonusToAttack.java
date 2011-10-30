@@ -12,7 +12,7 @@ import java.util.Observable;
  * @author bambucha, evil
  */
 public class BaseBonusToAttack extends Observable implements Iterable<Integer>, Comparable<BaseBonusToAttack> {
-    private List<Integer> bonus = new LinkedList<Integer>();
+    private final List<Integer> bonus = new LinkedList<Integer>();
 
     public BaseBonusToAttack() {
         // DO NOTHING
@@ -21,11 +21,7 @@ public class BaseBonusToAttack extends Observable implements Iterable<Integer>, 
     /**
      * Inicjalizuje obiekt czteroma liczbami.
      *
-     * @param first
-     * @param second
-     * @param third
-     * @param fourth
-     * @throws IllegalArgumentException
+     * @throws IllegalArgumentException Gdy któryś z argumentów jest ujemny.
      */
     public BaseBonusToAttack(int first, int second, int third, int fourth) throws IllegalArgumentException {
         if (first < 0 || second < 0 || third < 0 || fourth < 0)
@@ -67,6 +63,8 @@ public class BaseBonusToAttack extends Observable implements Iterable<Integer>, 
      *
      * @param selectedField Wybrane pole (w przedziale [0,3])
      * @param newValue      Wartość która zostanie zagwarantowana
+     * @throws IllegalArgumentException  Gdy podana wartość jest ujemna
+     * @throws IndexOutOfBoundsException Gdy wybrane pole nie może zostać ustawione
      */
     private void setBonusField(int selectedField, int newValue) throws IllegalArgumentException, IndexOutOfBoundsException {
         if (selectedField < 0 || selectedField > 3)

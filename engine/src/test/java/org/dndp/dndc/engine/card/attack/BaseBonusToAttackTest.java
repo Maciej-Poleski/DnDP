@@ -22,10 +22,10 @@ import org.junit.Test;
  */
 public class BaseBonusToAttackTest
 {
-	BaseBonusToAttack	test;
+	private BaseBonusToAttack	test;
 
 	@Before
-	public static void setUp() throws Exception
+	public void setUp() throws Exception
 	{
 		test = new BaseBonusToAttack();
 	}
