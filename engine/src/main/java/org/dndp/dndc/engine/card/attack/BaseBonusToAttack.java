@@ -33,6 +33,42 @@ public class BaseBonusToAttack extends Observable implements Iterable<Integer>, 
     }
 
     /**
+     * Inicjalizuje obiekt trzema liczbami.
+     *
+     * @throws IllegalArgumentException Gdy któryś z argumentów jest ujemny.
+     */
+    public BaseBonusToAttack(int first, int second, int third) throws IllegalArgumentException {
+        if (first < 0 || second < 0 || third < 0)
+            throw new IllegalArgumentException("Bazowa premia nie może być ujemna");
+        bonus.add(first);
+        bonus.add(second);
+        bonus.add(third);
+    }
+
+    /**
+     * Inicjalizuje obiekt dwoma liczbami.
+     *
+     * @throws IllegalArgumentException Gdy któryś z argumentów jest ujemny.
+     */
+    public BaseBonusToAttack(int first, int second) throws IllegalArgumentException {
+        if (first < 0 || second < 0)
+            throw new IllegalArgumentException("Bazowa premia nie może być ujemna");
+        bonus.add(first);
+        bonus.add(second);
+    }
+
+    /**
+     * Inicjalizuje obiekt jedną liczbą.
+     *
+     * @throws IllegalArgumentException Gdy któryś z argumentów jest ujemny.
+     */
+    public BaseBonusToAttack(int first) throws IllegalArgumentException {
+        if (first < 0)
+            throw new IllegalArgumentException("Bazowa premia nie może być ujemna");
+        bonus.add(first);
+    }
+
+    /**
      * Zwraca wartość wskazanego pola listy bonus.
      *
      * @param position Wybrane pole
