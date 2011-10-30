@@ -25,9 +25,9 @@ public class BaseBonusToAttackTest
 	BaseBonusToAttack	test;
 
 	@Before
-	public static void setUp() throws Exception
+	public void setUp() throws Exception
 	{
-		test = new BaseBonusToAttack();
+		test = new BaseBonusToAttack(1, 1, 1, 1);
 	}
 
 	private Observer getObserver()
@@ -65,6 +65,24 @@ public class BaseBonusToAttackTest
 	public void furethNegativeInConstrucktorIsIncoreect() throws Exception
 	{
 		new BaseBonusToAttack(1, 1, 1, -1);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void negativeOneAttackInConstructorIsIncorrect() throws Exception
+	{
+		new BaseBonusToAttack(-1);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void negativeTwoAttackInConstructorIsIncorrect() throws Exception
+	{
+		new BaseBonusToAttack(-1, -1);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void negativeThreeAttackInConstructorIsIncorrect() throws Exception
+	{
+		new BaseBonusToAttack(-1, -1, -1);
 	}
 
 	@Test
