@@ -31,7 +31,7 @@ public class BaseBonusAttackCheck implements Checkable
     @Override
     public boolean check(FantasyCharacter fantasyCharacter)
     {
-        return fantasyCharacter.getBaseAttack().getBonus()[0] >= value;
+        return fantasyCharacter.getBaseAttack().first() >= value;
     }
 
 }
