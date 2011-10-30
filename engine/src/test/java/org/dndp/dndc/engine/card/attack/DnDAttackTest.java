@@ -30,14 +30,7 @@ public class DnDAttackTest
 	@Test
 	public void testName() throws Exception
 	{
-		// given
-
-		// when
-
-		// then
-
 		throw new RuntimeException("Not implemented yet!");
-
 	}
 
 	@Test
