@@ -1,5 +1,6 @@
 package org.dndp.dndc.engine.card.attack;
 
+import java.sql.Array;
 import java.util.Arrays;
 
 import org.dndp.dndc.engine.card.bonus.Bonusable;
@@ -40,11 +41,18 @@ public abstract class BaseAttack extends ChangeObservable implements Bonusable
      */
     public TotalBonusToAttack getAttacks()
     {
-        int[] temp = Arrays.copyOf(attack.getBaseAttack().getBonus(), attack
-                .getBaseAttack().getNumberOfAttacks());
-        for(int q = 0; q < temp.length; ++q)
+        int[] temp = new int[4];
+        if(attack.getBaseAttack().getNumberOfAttacks()>0)
+                    temp[0]=attack.getBaseAttack().first();
+        if(attack.getBaseAttack().getNumberOfAttacks()>1)
+                    temp[1]=attack.getBaseAttack().second();
+        if(attack.getBaseAttack().getNumberOfAttacks()>2)
+                    temp[2]=attack.getBaseAttack().third();
+        if(attack.getBaseAttack().getNumberOfAttacks()>3)
+                    temp[3]=attack.getBaseAttack().fourth();
+        for(int q = 0; q < attack.getBaseAttack().getNumberOfAttacks(); ++q)
             temp[q] += bonus;
-        return new TotalBonusToAttack(temp);
+        return new TotalBonusToAttack(Arrays.copyOf(temp,attack.getBaseAttack().getNumberOfAttacks()));
     }
 
     @Override

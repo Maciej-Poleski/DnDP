@@ -180,15 +180,15 @@ public class AttackView extends Composite implements Observer, ModifyListener
     {
         if(o instanceof BaseAttack)
         {
-            int[] x = ((BaseAttack)o).getBaseAttack().getBonus();
+            BaseBonusToAttack x = ((BaseAttack)o).getBaseAttack();
             if(x.length > 0)
-                baseAttack1Text.setText(Integer.toString(x[0]));
+                baseAttack1Text.setText(Integer.toString(x.first()));
             if(x.length > 1)
-                baseAttack2Text.setText(Integer.toString(x[1]));
+                baseAttack2Text.setText(Integer.toString(x.second()));
             if(x.length > 2)
-                baseAttack3Text.setText(Integer.toString(x[2]));
+                baseAttack3Text.setText(Integer.toString(x.third()));
             if(x.length > 3)
-                baseAttack4Text.setText(Integer.toString(x[3]));
+                baseAttack4Text.setText(Integer.toString(x.fourth()));
         }
         if(o instanceof MeleeAttack)
         {
@@ -250,25 +250,25 @@ public class AttackView extends Composite implements Observer, ModifyListener
         int[] tmp = new int[4];
         if((tmp[0] = parseField(baseAttack1Text)) < 0)
         {
-            model.setBaseAttack(new BaseBonusToAttack(Arrays.copyOf(tmp, 0)));
+            model.setBaseAttack(new BaseBonusToAttack());
             return;
         }
         if((tmp[1] = parseField(baseAttack2Text)) < 0)
         {
-            model.setBaseAttack(new BaseBonusToAttack(Arrays.copyOf(tmp, 1)));
+            model.setBaseAttack(new BaseBonusToAttack().setFirst(tmp[0]));
             return;
         }
         if((tmp[2] = parseField(baseAttack3Text)) < 0)
         {
-            model.setBaseAttack(new BaseBonusToAttack(Arrays.copyOf(tmp, 2)));
+            model.setBaseAttack(new BaseBonusToAttack().setFirst(tmp[0]).setSecond(tmp[1]));
             return;
         }
         if((tmp[3] = parseField(baseAttack4Text)) < 0)
         {
-            model.setBaseAttack(new BaseBonusToAttack(Arrays.copyOf(tmp, 3)));
+            model.setBaseAttack(new BaseBonusToAttack().setFirst(tmp[0]).setSecond(tmp[1]).setThird(tmp[2]));
             return;
         }
-        model.setBaseAttack(new BaseBonusToAttack(tmp));
+        model.setBaseAttack(new BaseBonusToAttack(tmp[0],tmp[1],tmp[2],tmp[3]));
     }
 
     /**

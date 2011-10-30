@@ -115,9 +115,9 @@ public class DnDAttackTest
 	{
 		System.out.println("getBaseAttack");
 		DnDAttack instance = dupa;
-		BaseBonusToAttack expResult = new BaseBonusToAttack(new int[] { 0 });
+		BaseBonusToAttack expResult = new BaseBonusToAttack().setFirst(0);
 		BaseBonusToAttack result = instance.getBaseAttack();
-		assertArrayEquals(expResult.getBonus(), result.getBonus());
+		assertThat(expResult.compareTo(result)==0);
 
 	}
 
@@ -125,7 +125,7 @@ public class DnDAttackTest
 	public void testSetBaseAttack()
 	{
 		System.out.println("setBaseAttack");
-		BaseBonusToAttack baseAtack = new BaseBonusToAttack(new int[] { 6, 1 });
+		BaseBonusToAttack baseAtack = new BaseBonusToAttack().setFirst(6).setSecond(1);
 		DnDAttack instance = dupa;
 		instance.setBaseAttack(baseAtack);
 

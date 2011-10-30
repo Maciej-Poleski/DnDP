@@ -30,7 +30,7 @@ public class DnDAttack implements Attack
      */
     public DnDAttack(BonusManager bonusManager)
     {
-        baseAtack = new BaseBonusToAttack(new int[] { 0 });
+        baseAtack = new BaseBonusToAttack().setFirst(0);
         melee = new MeleeAttack(this);
         bonusManager.registerBonus("MeleeAttack", melee);
         range = new RangeAttack(this);
@@ -81,8 +81,7 @@ public class DnDAttack implements Attack
     @Override
     public void setBaseAttack(BaseBonusToAttack baseAtack)
     {
-        boolean need = !Arrays.equals(this.baseAtack.getBonus(),
-                baseAtack.getBonus());
+        boolean need = this.baseAtack.compareTo(baseAtack)==0;
         this.baseAtack = baseAtack;
         if(need)
         {
