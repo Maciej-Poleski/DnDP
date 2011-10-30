@@ -19,7 +19,7 @@ import org.junit.Test;
  */
 public class DnDAttackTest
 {
-	private static DnDAttack	test;
+	private DnDAttack	test;
 
 	@Before
 	public void setUp() throws Exception
@@ -44,8 +44,6 @@ public class DnDAttackTest
 	@Test
 	public void testGetMeleeAttack()
 	{
-		System.out.println("getMeleeAttack");
-		DnDAttack instance = dupa;
 		BaseAttack result = instance.getMeleeAttack();
 		assertArrayEquals(new int[] { 5 }, result.getAttacks().getMainHand());
 
@@ -54,8 +52,6 @@ public class DnDAttackTest
 	@Test
 	public void testGetRangeAttack()
 	{
-		System.out.println("getRangeAttack");
-		DnDAttack instance = dupa;
 		BaseAttack result = instance.getRangeAttack();
 		assertArrayEquals(new int[] { 2 }, result.getAttacks().getMainHand());
 	}
@@ -63,8 +59,6 @@ public class DnDAttackTest
 	@Test
 	public void testGetGrappleAttack()
 	{
-		System.out.println("getGrappleAttack");
-		DnDAttack instance = dupa;
 		BaseAttack result = instance.getGrappleAttack();
 		assertArrayEquals(new int[] { 10 }, result.getAttacks().getMainHand());
 	}
@@ -72,8 +66,6 @@ public class DnDAttackTest
 	@Test
 	public void testGetInitiativeModifier()
 	{
-		System.out.println("getInitiativeModifier");
-		DnDAttack instance = dupa;
 		int expResult = t.getDexterity().getModifier();
 		int result = instance.getInitiativeModifier();
 		assertEquals(expResult, result);
@@ -82,7 +74,6 @@ public class DnDAttackTest
 	@Test
 	public void testSetInitiativeModifier()
 	{
-		System.out.println("setInitiativeModifier");
 		int newValue = 2;
 		DnDAttack instance = dupa;
 		instance.setInitiativeModifier(newValue);
@@ -93,8 +84,6 @@ public class DnDAttackTest
 	@Test
 	public void testGetSpeed()
 	{
-		System.out.println("getSpeed");
-		DnDAttack instance = dupa;
 		double expResult = 9D;
 		double result = instance.getSpeed();
 		assertEquals(expResult, result, 0.01);
@@ -103,7 +92,6 @@ public class DnDAttackTest
 	@Test
 	public void testSetSpeed()
 	{
-		System.out.println("setSpeed");
 		double newValue = 6D;
 		DnDAttack instance = dupa;
 		instance.setSpeed(newValue);
@@ -113,19 +101,18 @@ public class DnDAttackTest
 	@Test
 	public void testGetBaseAttack()
 	{
-		System.out.println("getBaseAttack");
 		DnDAttack instance = dupa;
 		BaseBonusToAttack expResult = new BaseBonusToAttack().setFirst(0);
 		BaseBonusToAttack result = instance.getBaseAttack();
-		assertThat(expResult.compareTo(result)==0);
+		assertThat(expResult.compareTo(result) == 0);
 
 	}
 
 	@Test
 	public void testSetBaseAttack()
 	{
-		System.out.println("setBaseAttack");
-		BaseBonusToAttack baseAtack = new BaseBonusToAttack().setFirst(6).setSecond(1);
+		BaseBonusToAttack baseAtack = new BaseBonusToAttack().setFirst(6)
+				.setSecond(1);
 		DnDAttack instance = dupa;
 		instance.setBaseAttack(baseAtack);
 
@@ -134,7 +121,6 @@ public class DnDAttackTest
 	@Test(expected = NullPointerException.class)
 	public void testSetBaseAttackNull()
 	{
-		System.out.println("setBaseAttack null");
 		BaseBonusToAttack baseAtack = null;
 		DnDAttack instance = dupa;
 		instance.setBaseAttack(baseAtack);
