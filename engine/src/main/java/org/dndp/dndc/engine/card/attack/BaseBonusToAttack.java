@@ -107,9 +107,9 @@ public class BaseBonusToAttack extends Observable implements Iterable<Integer>, 
             throw new IllegalArgumentException("Wybrałeś zły numer pola (czy aby napewno chcesz użyć tej metody?)");
         if (newValue < 0)
             throw new IllegalArgumentException("Bazowa premia nie może być ujemna");
-        if (bonus.get(selectedField).equals(newValue))
-            return;
         try {
+            if (bonus.get(selectedField).equals(newValue))
+                return;
             bonus.remove(selectedField);
         } catch (IndexOutOfBoundsException e) {
             // ALL RIGHT - DO NOTHING
