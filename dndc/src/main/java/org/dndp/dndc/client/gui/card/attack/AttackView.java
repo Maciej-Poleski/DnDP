@@ -1,6 +1,5 @@
 package org.dndp.dndc.client.gui.card.attack;
 
-import java.util.Arrays;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -31,283 +30,284 @@ import org.eclipse.swt.widgets.Text;
  */
 public class AttackView extends Composite implements Observer, ModifyListener
 {
-    private Text   baseAttack3Text;
-    private Text   baseAttack2Text;
-    private Text   baseAttack1Text;
-    private Text   meleeSumAttack3Text;
-    private Text   baseAttack4Text;
-    private Text   meleeSumAttack1Text;
-    private Text   meleeSumAttack2Text;
-    private Text   meleeSumAttack4Text;
-    private Text   distanceAttack1Text;
-    private Text   distanceAttack2Text;
-    private Text   distanceAttack3Text;
-    private Text   distanceAttack4Text;
-    private Label  lblInicjatywa;
-    private Text   initiativeText;
-    private Label  lblSzybko;
-    private Text   speedText;
+	private Text	baseAttack3Text;
+	private Text	baseAttack2Text;
+	private Text	baseAttack1Text;
+	private Text	meleeSumAttack3Text;
+	private Text	baseAttack4Text;
+	private Text	meleeSumAttack1Text;
+	private Text	meleeSumAttack2Text;
+	private Text	meleeSumAttack4Text;
+	private Text	distanceAttack1Text;
+	private Text	distanceAttack2Text;
+	private Text	distanceAttack3Text;
+	private Text	distanceAttack4Text;
+	private Label	lblInicjatywa;
+	private Text	initiativeText;
+	private Label	lblSzybko;
+	private Text	speedText;
 
-    private Attack model;
-    private Group  grpBazowy;
-    private Group  grpWrcz;
-    private Group  grpDystansowe;
-    private Group  grpZwarcie;
-    private Text   grappleAttackText;
-    private Label  label;
-    private Label  label_1;
+	private Attack	model;
+	private Group	grpBazowy;
+	private Group	grpWrcz;
+	private Group	grpDystansowe;
+	private Group	grpZwarcie;
+	private Text	grappleAttackText;
+	private Label	label;
+	private Label	label_1;
 
-    /**
-     * Create the composite.
-     * 
-     * @param parent
-     * @param style
-     */
-    public AttackView(Composite parent, int style, Attack model)
-    {
-        super(parent, style);
-        setLayout(new FillLayout(SWT.HORIZONTAL));
+	/**
+	 * Create the composite.
+	 * 
+	 * @param parent
+	 * @param style
+	 */
+	public AttackView(Composite parent, int style, Attack model)
+	{
+		super(parent, style);
+		setLayout(new FillLayout(SWT.HORIZONTAL));
 
-        Group grpWalka = new Group(this, SWT.NONE);
-        grpWalka.setText("Walka");
-        GridLayout gl_grpWalka = new GridLayout(4, false);
-        gl_grpWalka.marginTop = 5;
-        grpWalka.setLayout(gl_grpWalka);
+		Group grpWalka = new Group(this, SWT.NONE);
+		grpWalka.setText("Walka");
+		GridLayout gl_grpWalka = new GridLayout(4, false);
+		gl_grpWalka.marginTop = 5;
+		grpWalka.setLayout(gl_grpWalka);
 
-        grpBazowy = new Group(grpWalka, SWT.NONE);
-        grpBazowy.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false,
-                1, 1));
-        grpBazowy.setText("Bazowy");
-        FillLayout fl_grpBazowy = new FillLayout(SWT.VERTICAL);
-        fl_grpBazowy.marginHeight = 5;
-        grpBazowy.setLayout(fl_grpBazowy);
+		grpBazowy = new Group(grpWalka, SWT.NONE);
+		grpBazowy.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false,
+				1, 1));
+		grpBazowy.setText("Bazowy");
+		FillLayout fl_grpBazowy = new FillLayout(SWT.VERTICAL);
+		fl_grpBazowy.marginHeight = 5;
+		grpBazowy.setLayout(fl_grpBazowy);
 
-        baseAttack1Text = new Text(grpBazowy, SWT.BORDER);
+		baseAttack1Text = new Text(grpBazowy, SWT.BORDER);
 
-        baseAttack2Text = new Text(grpBazowy, SWT.BORDER);
+		baseAttack2Text = new Text(grpBazowy, SWT.BORDER);
 
-        baseAttack3Text = new Text(grpBazowy, SWT.BORDER);
+		baseAttack3Text = new Text(grpBazowy, SWT.BORDER);
 
-        baseAttack4Text = new Text(grpBazowy, SWT.BORDER);
-        baseAttack4Text.addModifyListener(this);
-        baseAttack3Text.addModifyListener(this);
-        baseAttack2Text.addModifyListener(this);
+		baseAttack4Text = new Text(grpBazowy, SWT.BORDER);
+		baseAttack4Text.addModifyListener(this);
+		baseAttack3Text.addModifyListener(this);
+		baseAttack2Text.addModifyListener(this);
 
-        baseAttack1Text.addModifyListener(this);
+		baseAttack1Text.addModifyListener(this);
 
-        grpWrcz = new Group(grpWalka, SWT.NONE);
-        grpWrcz.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false,
-                1, 1));
-        grpWrcz.setText("Wręcz");
-        FillLayout fl_grpWrcz = new FillLayout(SWT.VERTICAL);
-        fl_grpWrcz.marginHeight = 5;
-        grpWrcz.setLayout(fl_grpWrcz);
+		grpWrcz = new Group(grpWalka, SWT.NONE);
+		grpWrcz.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false,
+				1, 1));
+		grpWrcz.setText("Wręcz");
+		FillLayout fl_grpWrcz = new FillLayout(SWT.VERTICAL);
+		fl_grpWrcz.marginHeight = 5;
+		grpWrcz.setLayout(fl_grpWrcz);
 
-        meleeSumAttack1Text = new Text(grpWrcz, SWT.BORDER);
-        meleeSumAttack1Text.setEditable(false);
+		meleeSumAttack1Text = new Text(grpWrcz, SWT.BORDER);
+		meleeSumAttack1Text.setEditable(false);
 
-        meleeSumAttack2Text = new Text(grpWrcz, SWT.BORDER);
-        meleeSumAttack2Text.setEditable(false);
+		meleeSumAttack2Text = new Text(grpWrcz, SWT.BORDER);
+		meleeSumAttack2Text.setEditable(false);
 
-        meleeSumAttack3Text = new Text(grpWrcz, SWT.BORDER);
-        meleeSumAttack3Text.setEditable(false);
+		meleeSumAttack3Text = new Text(grpWrcz, SWT.BORDER);
+		meleeSumAttack3Text.setEditable(false);
 
-        meleeSumAttack4Text = new Text(grpWrcz, SWT.BORDER);
-        meleeSumAttack4Text.setEditable(false);
+		meleeSumAttack4Text = new Text(grpWrcz, SWT.BORDER);
+		meleeSumAttack4Text.setEditable(false);
 
-        grpDystansowe = new Group(grpWalka, SWT.NONE);
-        grpDystansowe.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
-                false, 1, 1));
-        grpDystansowe.setText("Dystansowe");
-        FillLayout fl_grpDystansowe = new FillLayout(SWT.VERTICAL);
-        fl_grpDystansowe.marginHeight = 5;
-        grpDystansowe.setLayout(fl_grpDystansowe);
+		grpDystansowe = new Group(grpWalka, SWT.NONE);
+		grpDystansowe.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
+				false, 1, 1));
+		grpDystansowe.setText("Dystansowe");
+		FillLayout fl_grpDystansowe = new FillLayout(SWT.VERTICAL);
+		fl_grpDystansowe.marginHeight = 5;
+		grpDystansowe.setLayout(fl_grpDystansowe);
 
-        distanceAttack1Text = new Text(grpDystansowe, SWT.BORDER);
-        distanceAttack1Text.setEditable(false);
+		distanceAttack1Text = new Text(grpDystansowe, SWT.BORDER);
+		distanceAttack1Text.setEditable(false);
 
-        distanceAttack2Text = new Text(grpDystansowe, SWT.BORDER);
-        distanceAttack2Text.setEditable(false);
+		distanceAttack2Text = new Text(grpDystansowe, SWT.BORDER);
+		distanceAttack2Text.setEditable(false);
 
-        distanceAttack3Text = new Text(grpDystansowe, SWT.BORDER);
-        distanceAttack3Text.setEditable(false);
+		distanceAttack3Text = new Text(grpDystansowe, SWT.BORDER);
+		distanceAttack3Text.setEditable(false);
 
-        distanceAttack4Text = new Text(grpDystansowe, SWT.BORDER);
-        distanceAttack4Text.setEditable(false);
+		distanceAttack4Text = new Text(grpDystansowe, SWT.BORDER);
+		distanceAttack4Text.setEditable(false);
 
-        grpZwarcie = new Group(grpWalka, SWT.NONE);
-        grpZwarcie.setLayout(new GridLayout(1, false));
-        grpZwarcie.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false,
-                1, 1));
-        grpZwarcie.setText("Zwarcie");
+		grpZwarcie = new Group(grpWalka, SWT.NONE);
+		grpZwarcie.setLayout(new GridLayout(1, false));
+		grpZwarcie.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false,
+				1, 1));
+		grpZwarcie.setText("Zwarcie");
 
-        label = new Label(grpZwarcie, SWT.NONE);
-        label.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, true, 1,
-                1));
+		label = new Label(grpZwarcie, SWT.NONE);
+		label.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, true, 1,
+				1));
 
-        grappleAttackText = new Text(grpZwarcie, SWT.BORDER);
-        grappleAttackText.setEditable(false);
-        grappleAttackText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER,
-                true, false, 1, 2));
+		grappleAttackText = new Text(grpZwarcie, SWT.BORDER);
+		grappleAttackText.setEditable(false);
+		grappleAttackText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER,
+				true, false, 1, 2));
 
-        label_1 = new Label(grpZwarcie, SWT.NONE);
-        label_1.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, true,
-                1, 1));
+		label_1 = new Label(grpZwarcie, SWT.NONE);
+		label_1.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, true,
+				1, 1));
 
-        lblInicjatywa = new Label(grpWalka, SWT.NONE);
-        lblInicjatywa.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false,
-                false, 1, 1));
-        lblInicjatywa.setText("Inicjatywa");
+		lblInicjatywa = new Label(grpWalka, SWT.NONE);
+		lblInicjatywa.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false,
+				false, 1, 1));
+		lblInicjatywa.setText("Inicjatywa");
 
-        initiativeText = new Text(grpWalka, SWT.BORDER);
-        initiativeText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
-                false, 1, 1));
+		initiativeText = new Text(grpWalka, SWT.BORDER);
+		initiativeText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
+				false, 1, 1));
 
-        lblSzybko = new Label(grpWalka, SWT.NONE);
-        lblSzybko.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false,
-                false, 1, 1));
-        lblSzybko.setText("Szybkość");
+		lblSzybko = new Label(grpWalka, SWT.NONE);
+		lblSzybko.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false,
+				false, 1, 1));
+		lblSzybko.setText("Szybkość");
 
-        speedText = new Text(grpWalka, SWT.BORDER);
-        speedText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false,
-                1, 1));
+		speedText = new Text(grpWalka, SWT.BORDER);
+		speedText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false,
+				1, 1));
 
-        setModel(model);
-    }
+		setModel(model);
+	}
 
-    @Override
-    public void update(Observable o, Object arg)
-    {
-        if(o instanceof BaseAttack)
-        {
-            BaseBonusToAttack x = ((BaseAttack)o).getBaseAttack();
-            if(x.length > 0)
-                baseAttack1Text.setText(Integer.toString(x.first()));
-            if(x.length > 1)
-                baseAttack2Text.setText(Integer.toString(x.second()));
-            if(x.length > 2)
-                baseAttack3Text.setText(Integer.toString(x.third()));
-            if(x.length > 3)
-                baseAttack4Text.setText(Integer.toString(x.fourth()));
-        }
-        if(o instanceof MeleeAttack)
-        {
-            meleeSumAttack1Text.setText("");
-            meleeSumAttack2Text.setText("");
-            meleeSumAttack3Text.setText("");
-            meleeSumAttack4Text.setText("");
-            int[] x = ((BaseAttack)o).getAttacks().getMainHand();
-            if(x.length > 0)
-                meleeSumAttack1Text.setText(Integer.toString(x[0]));
-            if(x.length > 1)
-                meleeSumAttack2Text.setText(Integer.toString(x[1]));
-            if(x.length > 2)
-                meleeSumAttack3Text.setText(Integer.toString(x[2]));
-            if(x.length > 3)
-                meleeSumAttack4Text.setText(Integer.toString(x[3]));
-        }
-        if(o instanceof RangeAttack)
-        {
+	@Override
+	public void update(Observable o, Object arg)
+	{
+		if(o instanceof BaseAttack)
+		{/*
+		 * BaseBonusToAttack x = ((BaseAttack)o).getBaseAttack(); if(x.length >
+		 * 0) baseAttack1Text.setText(Integer.toString(x.first())); if(x.length
+		 * > 1) baseAttack2Text.setText(Integer.toString(x.second()));
+		 * if(x.length > 2)
+		 * baseAttack3Text.setText(Integer.toString(x.third())); if(x.length >
+		 * 3) baseAttack4Text.setText(Integer.toString(x.fourth()));
+		 */
+		}
+		if(o instanceof MeleeAttack)
+		{
+			meleeSumAttack1Text.setText("");
+			meleeSumAttack2Text.setText("");
+			meleeSumAttack3Text.setText("");
+			meleeSumAttack4Text.setText("");
+			int[] x = ((BaseAttack)o).getAttacks().getMainHand();
+			if(x.length > 0)
+				meleeSumAttack1Text.setText(Integer.toString(x[0]));
+			if(x.length > 1)
+				meleeSumAttack2Text.setText(Integer.toString(x[1]));
+			if(x.length > 2)
+				meleeSumAttack3Text.setText(Integer.toString(x[2]));
+			if(x.length > 3)
+				meleeSumAttack4Text.setText(Integer.toString(x[3]));
+		}
+		if(o instanceof RangeAttack)
+		{
 
-            distanceAttack1Text.setText("");
-            distanceAttack2Text.setText("");
-            distanceAttack3Text.setText("");
-            distanceAttack4Text.setText("");
-            int[] x = ((BaseAttack)o).getAttacks().getMainHand();
-            if(x.length > 0)
-                distanceAttack1Text.setText(Integer.toString(x[0]));
-            if(x.length > 1)
-                distanceAttack2Text.setText(Integer.toString(x[1]));
-            if(x.length > 2)
-                distanceAttack3Text.setText(Integer.toString(x[2]));
-            if(x.length > 3)
-                distanceAttack4Text.setText(Integer.toString(x[3]));
-        }
-        if(o instanceof GrappleAttack)
-        {
-            int[] x = ((BaseAttack)o).getAttacks().getMainHand();
-            if(x.length > 0)
-                grappleAttackText.setText(Integer.toString(x[0]));
-        }
+			distanceAttack1Text.setText("");
+			distanceAttack2Text.setText("");
+			distanceAttack3Text.setText("");
+			distanceAttack4Text.setText("");
+			int[] x = ((BaseAttack)o).getAttacks().getMainHand();
+			if(x.length > 0)
+				distanceAttack1Text.setText(Integer.toString(x[0]));
+			if(x.length > 1)
+				distanceAttack2Text.setText(Integer.toString(x[1]));
+			if(x.length > 2)
+				distanceAttack3Text.setText(Integer.toString(x[2]));
+			if(x.length > 3)
+				distanceAttack4Text.setText(Integer.toString(x[3]));
+		}
+		if(o instanceof GrappleAttack)
+		{
+			int[] x = ((BaseAttack)o).getAttacks().getMainHand();
+			if(x.length > 0)
+				grappleAttackText.setText(Integer.toString(x[0]));
+		}
 
-        if(o instanceof Initiative)
-            initiativeText.setText(arg.toString());
-        if(o instanceof Speed)
-            speedText.setText(arg.toString());
-    }
+		if(o instanceof Initiative)
+			initiativeText.setText(arg.toString());
+		if(o instanceof Speed)
+			speedText.setText(arg.toString());
+	}
 
-    @Override
-    public void modifyText(ModifyEvent arg0)
-    {
-        updateModel();
-    }
+	@Override
+	public void modifyText(ModifyEvent arg0)
+	{
+		updateModel();
+	}
 
-    /**
-     * Nakłada zmianny z GUI na model.
-     */
-    private void updateModel()
-    {
-        int[] tmp = new int[4];
-        if((tmp[0] = parseField(baseAttack1Text)) < 0)
-        {
-            model.setBaseAttack(new BaseBonusToAttack());
-            return;
-        }
-        if((tmp[1] = parseField(baseAttack2Text)) < 0)
-        {
-            model.setBaseAttack(new BaseBonusToAttack().setFirst(tmp[0]));
-            return;
-        }
-        if((tmp[2] = parseField(baseAttack3Text)) < 0)
-        {
-            model.setBaseAttack(new BaseBonusToAttack().setFirst(tmp[0]).setSecond(tmp[1]));
-            return;
-        }
-        if((tmp[3] = parseField(baseAttack4Text)) < 0)
-        {
-            model.setBaseAttack(new BaseBonusToAttack().setFirst(tmp[0]).setSecond(tmp[1]).setThird(tmp[2]));
-            return;
-        }
-        model.setBaseAttack(new BaseBonusToAttack(tmp[0],tmp[1],tmp[2],tmp[3]));
-    }
+	/**
+	 * Nakłada zmianny z GUI na model.
+	 */
+	private void updateModel()
+	{
+		int[] tmp = new int[4];
+		if((tmp[0] = parseField(baseAttack1Text)) < 0)
+		{
+			model.setBaseAttack(new BaseBonusToAttack());
+			return;
+		}
+		if((tmp[1] = parseField(baseAttack2Text)) < 0)
+		{
+			model.setBaseAttack(new BaseBonusToAttack().setFirst(tmp[0]));
+			return;
+		}
+		if((tmp[2] = parseField(baseAttack3Text)) < 0)
+		{
+			model.setBaseAttack(new BaseBonusToAttack().setFirst(tmp[0])
+					.setSecond(tmp[1]));
+			return;
+		}
+		if((tmp[3] = parseField(baseAttack4Text)) < 0)
+		{
+			model.setBaseAttack(new BaseBonusToAttack().setFirst(tmp[0])
+					.setSecond(tmp[1]).setThird(tmp[2]));
+			return;
+		}
+		model.setBaseAttack(new BaseBonusToAttack(tmp[0], tmp[1], tmp[2],
+				tmp[3]));
+	}
 
-    /**
-     * Zwraca zawartość pola, a w razie błędu koloruje je na czerowono.
-     * 
-     * @param field
-     *            Pole do parsowania
-     * @return zawartość pola
-     */
-    private int parseField(Text field)
-    {
-        try
-        {
-            field.setBackground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
-            if(field.getText().equals(""))
-                return -1;
-            return Integer.parseInt(field.getText());
-        }
-        catch(NumberFormatException e)
-        {
-            field.setBackground(SWTResourceManager.getColor(SWT.COLOR_RED));
-            return -1;
-        }
-    }
+	/**
+	 * Zwraca zawartość pola, a w razie błędu koloruje je na czerowono.
+	 * 
+	 * @param field
+	 *            Pole do parsowania
+	 * @return zawartość pola
+	 */
+	private int parseField(Text field)
+	{
+		try
+		{
+			field.setBackground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
+			if(field.getText().equals(""))
+				return -1;
+			return Integer.parseInt(field.getText());
+		}
+		catch(NumberFormatException e)
+		{
+			field.setBackground(SWTResourceManager.getColor(SWT.COLOR_RED));
+			return -1;
+		}
+	}
 
-    @Override
-    protected void checkSubclass()
-    {
-        // Disable the check that prevents subclassing of SWT components
-    }
+	@Override
+	protected void checkSubclass()
+	{
+		// Disable the check that prevents subclassing of SWT components
+	}
 
-    /**
-     * Ustawia model.
-     * 
-     * @param model
-     */
-    public void setModel(Attack model)
-    {
-        this.model = model;
-        this.model.addAttackObserver(this);
-    }
+	/**
+	 * Ustawia model.
+	 * 
+	 * @param model
+	 */
+	public void setModel(Attack model)
+	{
+		this.model = model;
+		this.model.addAttackObserver(this);
+	}
 }
