@@ -1,6 +1,5 @@
 package org.dndp.dndc.client.gui.card.attack;
 
-import java.util.Arrays;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -179,16 +178,14 @@ public class AttackView extends Composite implements Observer, ModifyListener
 	public void update(Observable o, Object arg)
 	{
 		if(o instanceof BaseAttack)
-		{
-			BaseBonusToAttack x = ((BaseAttack)o).getBaseAttack();
-			/*
-			 * if(x.length > 0)
-			 * baseAttack1Text.setText(Integer.toString(x.first())); if(x.length
-			 * > 1) baseAttack2Text.setText(Integer.toString(x.second()));
-			 * if(x.length > 2)
-			 * baseAttack3Text.setText(Integer.toString(x.third())); if(x.length
-			 * > 3) baseAttack4Text.setText(Integer.toString(x.fourth()));
-			 */
+		{/*
+		 * BaseBonusToAttack x = ((BaseAttack)o).getBaseAttack(); if(x.length >
+		 * 0) baseAttack1Text.setText(Integer.toString(x.first())); if(x.length
+		 * > 1) baseAttack2Text.setText(Integer.toString(x.second()));
+		 * if(x.length > 2)
+		 * baseAttack3Text.setText(Integer.toString(x.third())); if(x.length >
+		 * 3) baseAttack4Text.setText(Integer.toString(x.fourth()));
+		 */
 		}
 		if(o instanceof MeleeAttack)
 		{

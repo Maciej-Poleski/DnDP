@@ -66,6 +66,26 @@ public class TotalBonusToAttackTest
 	}
 
 	@Test
+	public void setNegativeForAttacks() throws Exception
+	{
+		switch(test.getNumberOfAttacks())
+		{
+			case 4:
+				test.setFourth(-2);
+				assertThat(test.fourth()).isEqualTo(-2);
+			case 3:
+				test.setThird(-2);
+				assertThat(test.third()).isEqualTo(-2);
+			case 2:
+				test.setSecond(-2);
+				assertThat(test.second()).isEqualTo(-2);
+			case 1:
+				test.setFirst(-2);
+				assertThat(test.first()).isEqualTo(-2);
+		}
+	}
+
+	@Test
 	public void getNumberOfOffhandsAttacks() throws Exception
 	{
 		assertThat(test.getNumberOffhandAttacks()).isGreaterThanOrEqualTo(0);
